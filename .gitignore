@@ -1,0 +1,32 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# phase execution outputs
+phases/**/phase*-output.json
+phases/**/step*-output.json
+
+# secrets / env
+.env
+.env.local
+.env.*.local
+.env.production
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# deployment (AWS EC2 SSH access)
+*.pem
+.aws/
+
+# Claude Code local-only settings (machine/user-specific permissions)
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
