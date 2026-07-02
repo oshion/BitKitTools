@@ -1,0 +1,14 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "1-mvp-tools",
+  "steps": [
+    { "step": 0, "name": "tool-json-formatter", "status": "pending" },
+    { "step": 1, "name": "tool-password-generator", "status": "pending" },
+    { "step": 2, "name": "tool-flight-delay-compensation", "status": "pending" },
+    { "step": 3, "name": "tool-visa-requirement-checker", "status": "pending" },
+    { "step": 4, "name": "tool-bac-calculator", "status": "pending" },
+    { "step": 5, "name": "tool-homebrew-recipe-calculator", "status": "pending" },
+    { "step": 6, "name": "tool-baby-growth-percentile", "status": "pending" },
+    { "step": 7, "name": "tool-baby-sleep-schedule", "status": "pending" }
+  ]
+}

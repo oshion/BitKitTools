@@ -21,7 +21,7 @@
 ## 남은 작업
 
 ### 개발 시작 전
-- [ ] `git init` — 아직 git 저장소가 아님. `execute.py`는 git repo가 아니면 즉시 실패한다.
+- [x] `git init` + `origin` 연결(`https://github.com/oshion/BitKitTools.git`) + 첫 커밋/푸시 완료
 - [ ] `/harness` 실행 → `phases/` 실제 phase 자동 생성. 특히 Phase 0(project-setup)에 다음이 반드시 포함되어야 함:
   - Next.js Static Export + next-intl(`as-needed` prefix) 초기 설정
   - `tools-config.ts` 확장 스키마 (ARCHITECTURE.md 참고) 타입 정의

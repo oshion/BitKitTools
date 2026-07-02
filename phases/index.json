@@ -1,3 +1,6 @@
 {
-  "phases": []
+  "phases": [
+    { "dir": "0-foundation", "status": "pending" },
+    { "dir": "1-mvp-tools", "status": "pending" }
+  ]
 }
