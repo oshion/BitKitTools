@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/postbuild.mjs",
+    "build": "next build && node scripts/postbuild.mjs && tsx scripts/generate-rss.ts",
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
@@ -32,6 +32,7 @@
     "jest-environment-jsdom": "^30.4.1",
     "tailwindcss": "^4",
     "ts-jest": "^29.4.11",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }

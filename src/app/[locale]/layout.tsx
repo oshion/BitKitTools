@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import ConsentManager from '@/components/analytics/ConsentManager'
 import AnalyticsScripts from '@/components/analytics/AnalyticsScripts'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 type Props = {
   children: React.ReactNode
@@ -25,14 +27,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale)
 
   const messages = await getMessages()
+  const safeLocale = locale as 'en' | 'ko'
 
   return (
     <html lang={locale} className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#0a0a0a]">
         {/* Consent Mode v2 defaults + CMP banner (no-op when NEXT_PUBLIC_CMP_SITE_ID unset) */}
         <ConsentManager />
+        {/* Nav (inside Header) and Footer use useTranslations — must be inside provider */}
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Header locale={safeLocale} />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </NextIntlClientProvider>
         {/* GA4 + Clarity — inserted into DOM only after analytics consent is granted */}
         <AnalyticsScripts />

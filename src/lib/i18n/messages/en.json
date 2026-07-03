@@ -18,6 +18,11 @@
     "contact": "Contact",
     "copyright": "© {year} BitKitTools. All rights reserved."
   },
+  "home": {
+    "popularTools": "Popular Tools",
+    "recentlyAdded": "Recently Added",
+    "comingSoon": "Tools coming soon — check back shortly."
+  },
   "disclaimer": {
     "general": "This tool is provided for informational purposes only. Results are estimates and should not be relied upon as professional advice.",
     "medical": "This calculator is for informational purposes only and does not constitute medical advice. Results are estimates based on general formulas. Always consult a qualified healthcare professional for health-related decisions.",
