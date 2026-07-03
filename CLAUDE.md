@@ -17,12 +17,13 @@
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 디렉토리 구조, 데이터 흐름, 레이어 규칙 |
 | [docs/ADR.md](docs/ADR.md) | 기술 선택 근거 및 트레이드오프 |
 | [docs/UI_GUIDE.md](docs/UI_GUIDE.md) | 디자인 시스템, 안티패턴 |
+| [docs/tech-debt-tracker.md](docs/tech-debt-tracker.md) | 알려진 기술 부채 목록 — 새 작업 전 반드시 확인 |
 
 ---
 
 ## 기술 스택
 
-- **프레임워크**: Next.js 15 (App Router, **Static Export** — `output: 'export'`)
+- **프레임워크**: Next.js 16 (App Router, **Static Export** — `output: 'export'`)
 - **언어**: TypeScript strict mode
 - **스타일링**: Tailwind CSS
 - **국제화**: next-intl, **as-needed locale prefix** (EN 기본=prefix 없음, KO만 `/ko/...`)
@@ -68,6 +69,8 @@
 14. **광고 영역 CLS 방지** — 광고 슬롯은 반드시 `min-height`가 고정된 `components/ui/AdSlot.tsx`를 통해서만 배치한다.
 
 15. **SEO 메타데이터 자동 생성** — 각 툴 페이지는 `tools-config.ts` 데이터를 기반으로 title/description/keywords/canonical/hreflang/OG/Schema.org(JSON-LD)를 `generateMetadata`로 자동 생성한다. 수동으로 개별 페이지에 하드코딩하지 않는다.
+
+16. **버그 리포트 대응** — 사용자가 실제 에러 로그(브라우저 콘솔, 터미널, 빌드 출력 원문)를 붙여넣으면: (1) 원인이 명확하고 간단히 고칠 수 있으면 `/harness` step 설계 없이 바로 수정하고 `npm run lint && npm test && npm run build`로 검증한다. (2) 범위가 크거나 설계 논의가 필요해 지금 당장 고치지 않기로 하면, 반드시 `docs/tech-debt-tracker.md`의 "활성 부채"에 ID/영역/내용/심각도/발견일을 기록한다 — 대화로만 남기지 않는다.
 
 > 아키텍처 상세 규칙 → [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 > 기술 선택 이유 → [ADR.md](docs/ADR.md)
