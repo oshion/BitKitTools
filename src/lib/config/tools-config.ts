@@ -168,6 +168,90 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-03',
     popular: false,
   },
+  {
+    id: 'flight-delay-compensation',
+    slug: 'flight-delay-compensation',
+    category: 'travel',
+    title: {
+      en: 'Flight Delay Compensation Calculator',
+      ko: '항공편 지연 보상 계산기',
+    },
+    description: {
+      en: 'Find out if your delayed flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, route distance, delay duration, and cause to get an instant estimate — no sign-up required.',
+      ko: 'EU 규정 261/2004 또는 미국 DOT 규정에 따라 지연된 항공편에 대한 보상을 받을 수 있는지 확인하세요. 규정, 노선 거리, 지연 시간, 지연 원인을 선택하면 즉시 추정 보상액을 확인할 수 있습니다 — 가입 불필요.',
+    },
+    keywords: {
+      en: [
+        'flight delay compensation',
+        'EU261 calculator',
+        'flight delay refund',
+        'airline compensation calculator',
+        'EU regulation 261',
+        'flight delay rights',
+        'passenger rights EU',
+        'flight compensation claim',
+        'delayed flight payout',
+        'airline delay refund calculator',
+      ],
+      ko: [
+        '항공 지연 보상',
+        'EU261 보상 계산기',
+        '항공편 지연 환불',
+        '항공사 보상금',
+        'EU 규정 261/2004',
+        '승객 권리',
+        '항공 지연 청구',
+        '항공 지연 환불 계산기',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'What conditions must be met for EU261 compensation to apply?',
+          ko: 'EU261 보상을 받으려면 어떤 조건이 충족되어야 하나요?',
+        },
+        answer: {
+          en: 'EU Regulation 261/2004 applies when your flight departs from an EU airport (regardless of airline) or arrives at an EU airport on an EU-based carrier. You must also have a confirmed reservation, have checked in on time, and your arrival delay must be 3 hours or more. Compensation is not owed for delays caused by extraordinary circumstances such as severe weather or ATC strikes.',
+          ko: 'EU 규정 261/2004는 EU 공항에서 출발하는 모든 항공편(항공사 무관)이거나, EU 항공사가 운항하는 EU 도착 항공편에 적용됩니다. 또한 예약이 확인된 상태에서 제시간에 체크인했고, 도착 지연이 3시간 이상이어야 합니다. 기상 이변이나 ATC 파업 같은 비상 상황으로 인한 지연에는 보상 의무가 없습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'If the delay was caused by bad weather, can I still claim compensation?',
+          ko: '악천후로 인한 지연이라면 보상을 청구할 수 있나요?',
+        },
+        answer: {
+          en: 'Generally, no. Under EU261, delays caused by "extraordinary circumstances" — including severe weather, security threats, air traffic control strikes, or political instability — exempt the airline from paying fixed compensation. However, the airline must still provide care such as meals and refreshments regardless of the cause. If the airline claims force majeure but you believe it was preventable, you can challenge the decision through national enforcement bodies or passenger rights services.',
+          ko: '일반적으로 그렇지 않습니다. EU261에 따르면 기상 이변, 보안 위협, ATC 파업, 정치적 불안 등 "비상 상황"으로 인한 지연은 항공사의 보상 의무를 면제합니다. 다만 원인과 무관하게 항공사는 식사 및 다과 등 기본 케어를 제공해야 합니다. 항공사가 불가항력을 주장하지만 예방 가능했다고 판단되면, 각국 집행 기관이나 승객 권리 서비스에 이의를 제기할 수 있습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'What rules apply to flights in the United States?',
+          ko: '미국 항공편에는 어떤 규정이 적용되나요?',
+        },
+        answer: {
+          en: "Unlike the EU, the United States does not have a federal law mandating fixed cash compensation for flight delays. Airlines set their own delay compensation policies under their customer service plans, which are required to be published under US DOT 14 CFR Part 259. The US does have a tarmac delay rule: domestic flights must allow passengers to deplane after 3 hours on the tarmac, and international flights after 4 hours. Always check your airline's customer service plan to understand what compensation, if any, is offered for your delay.",
+          ko: "EU와 달리 미국에는 항공편 지연에 대한 법적 고정 보상금을 의무화하는 연방법이 없습니다. 항공사는 미국 DOT 14 CFR Part 259에 따라 공개해야 하는 고객 서비스 플랜에서 지연 보상 정책을 자체적으로 정합니다. 단, 미국은 계류장 지연 규정이 있어 국내선은 3시간, 국제선은 4시간 이후 탑승객의 하기를 허용해야 합니다. 지연에 대해 어떤 보상이 제공되는지는 항공사의 고객 서비스 플랜을 확인하세요.",
+        },
+      },
+    ],
+    relatedToolIds: ['visa-requirement-checker'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/flight-delay-compensation.png',
+    status: 'testing',
+    disclaimerType: 'legal',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-03',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
