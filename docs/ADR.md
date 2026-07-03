@@ -5,7 +5,7 @@
 
 ---
 
-### ADR-001: Next.js 15 App Router + Static Export 채택
+### ADR-001: Next.js 16 App Router + Static Export 채택
 **결정**: App Router를 사용하되 `output: 'export'`로 완전 정적 HTML/CSS/JS를 빌드한다. SSR/ISR/`app/api/` 라우트 핸들러/middleware는 사용하지 않는다.
 **이유**: 서버 비용·운영 부담 없이 AWS EC2 + Nginx로 정적 파일만 서빙하면 되고, 모든 계산 로직이 클라이언트에서 완결되는 마이크로 툴 특성과 맞는다.
 **트레이드오프**: 서버 사이드 secret 보관, 동적 OG 이미지 생성, ISR, 요청 시점 언어 감지(middleware)를 포기한다. 실시간 데이터가 필요한 툴은 클라이언트 직접 fetch(ADR-006)로 제한적으로만 대응한다.
