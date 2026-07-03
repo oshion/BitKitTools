@@ -338,6 +338,90 @@ export const toolsConfig: ToolConfig[] = [
     popular: false,
   },
   {
+    id: 'homebrew-recipe-calculator',
+    slug: 'homebrew-recipe-calculator',
+    category: 'beer',
+    title: {
+      en: 'Homebrew Recipe & ABV Calculator',
+      ko: '홈브루 레시피 & 도수 계산기',
+    },
+    description: {
+      en: 'Calculate estimated ABV from Original Gravity (OG) and Final Gravity (FG) using the standard homebrewing formula. Includes a dilution calculator to hit your target alcohol percentage. All calculations run in your browser — no login, no uploads.',
+      ko: '초기 비중(OG)과 최종 비중(FG)으로 예상 도수(ABV)를 계산합니다. 목표 도수로 희석할 때 필요한 물의 양도 자동으로 계산됩니다. 모든 계산은 브라우저에서 처리되며 로그인이 필요 없습니다.',
+    },
+    keywords: {
+      en: [
+        'homebrew ABV calculator',
+        'homebrew recipe calculator',
+        'original gravity final gravity ABV',
+        'OG FG calculator',
+        'beer ABV calculator',
+        'homebrew dilution calculator',
+        'specific gravity alcohol calculator',
+        'homebrewing tools',
+        'beer gravity calculator',
+        'ABV from gravity',
+      ],
+      ko: [
+        '홈브루 도수 계산기',
+        '홈브루 레시피 계산기',
+        'OG FG 도수 계산',
+        '비중 도수 계산기',
+        '맥주 도수 계산기',
+        '홈브루 희석 계산기',
+        '초기 비중 최종 비중',
+        '홈브루잉 계산기',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'How do I measure Original Gravity (OG) and Final Gravity (FG)?',
+          ko: 'OG(초기 비중)와 FG(최종 비중)는 어떻게 측정하나요?',
+        },
+        answer: {
+          en: 'Original Gravity (OG) is measured before pitching yeast, once your wort has cooled to room temperature. Final Gravity (FG) is measured after fermentation is complete — usually when gravity readings are stable over two consecutive days. Both are measured with a hydrometer (dropped into a sample cylinder) or a refractometer (a drop placed on the prism). Hydrometers are generally more accurate for FG since alcohol affects refractometer readings.',
+          ko: 'OG(초기 비중)는 효모를 투입하기 전, 워트가 실온으로 식은 후에 측정합니다. FG(최종 비중)는 발효가 완료된 후 측정하며, 보통 이틀 연속으로 비중값이 변하지 않을 때 발효가 끝났다고 판단합니다. 측정 도구는 비중계(샘플 실린더에 담가 측정)나 굴절계(한 방울을 프리즘에 올려 측정)를 사용합니다. 알코올이 굴절계 수치에 영향을 주므로 FG 측정에는 비중계가 더 정확합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Why does the calculated ABV differ slightly from the actual ABV on the bottle?',
+          ko: '계산된 도수가 실제 병에 표기된 도수와 왜 약간 다를 수 있나요?',
+        },
+        answer: {
+          en: 'The formula ABV ≈ (OG − FG) × 131.25 is a standard homebrewing approximation that works well for most beers in the typical 3–10% ABV range. It can deviate by ±0.1–0.3% from the true value. For very high-gravity beers (OG above 1.100), a more complex Brix-corrected formula is more accurate. Commercial breweries also use lab analysis (gas chromatography or ebulliometry) to certify exact ABV on labels, which is far more precise than any gravity-based formula.',
+          ko: 'ABV ≈ (OG − FG) × 131.25 공식은 도수 3~10% 범위의 일반적인 맥주에서 잘 맞는 표준 홈브루잉 근사식입니다. 실제 도수와 ±0.1~0.3% 정도 차이가 날 수 있습니다. OG가 1.100을 넘는 고중력 맥주라면 보정 공식을 쓰는 것이 더 정확합니다. 상업 양조장은 라벨의 도수를 가스 크로마토그래피나 에뷸리오미터 같은 실험실 분석으로 측정하기 때문에 훨씬 정밀합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Will diluting my beer affect the flavour, not just the ABV?',
+          ko: '맥주를 희석하면 도수뿐 아니라 맛도 변하나요?',
+        },
+        answer: {
+          en: 'Yes, dilution affects much more than ABV. Adding water proportionally reduces hop bitterness (IBUs), malt flavour intensity, body, and colour. For highly hopped or strongly flavoured beers, even a 5–10% dilution can noticeably thin the body and soften bitterness. Brewers who routinely dilute high-gravity beers (a technique called "high-gravity brewing") account for this by over-hopping and over-malting the base batch. For homebrewers, it is worth doing a small test blend before diluting the full batch to check whether the result meets your expectations.',
+          ko: '네, 희석은 도수 외에도 많은 것을 변화시킵니다. 물을 추가하면 홉 쓴맛(IBU), 맥아 풍미 강도, 바디감, 색도가 비례적으로 줄어듭니다. 홉이 강하거나 풍미가 진한 맥주는 5~10% 희석만으로도 바디가 얇아지고 쓴맛이 부드러워지는 것을 느낄 수 있습니다. 고중력 맥주를 희석하는 양조 기법(하이 그래비티 브루잉)을 쓰는 양조장은 처음부터 홉과 맥아를 더 넣어 이를 보완합니다. 홈브루어라면 전체 배치를 희석하기 전에 소량으로 블렌딩 테스트를 해보는 것을 권장합니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['bac-calculator'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/homebrew-recipe-calculator.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-03',
+    popular: false,
+  },
+  {
     id: 'flight-delay-compensation',
     slug: 'flight-delay-compensation',
     category: 'travel',
