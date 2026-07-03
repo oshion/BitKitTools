@@ -2,12 +2,43 @@
   "project": "BitKitTools.com",
   "phase": "0-foundation",
   "steps": [
-    { "step": 0, "name": "project-setup", "status": "pending" },
-    { "step": 1, "name": "i18n-foundation", "status": "pending" },
-    { "step": 2, "name": "tools-config-schema", "status": "pending" },
-    { "step": 3, "name": "shared-components", "status": "pending" },
-    { "step": 4, "name": "analytics-cmp-integration", "status": "pending" },
-    { "step": 5, "name": "home-and-seo", "status": "pending" },
-    { "step": 6, "name": "legal-pages", "status": "pending" }
-  ]
+    {
+      "step": 0,
+      "name": "project-setup",
+      "status": "completed",
+      "started_at": "2026-07-03T09:09:41+0900",
+      "summary": "Next.js 16 Static Export(output:export) + TypeScript strict(noUncheckedIndexedAccess) + Tailwind CSS + Jest(setupFilesAfterEnv, passWithNoTests) + ESLint 커스텀 규칙(tool 간 import 금지, lib/api 격리, no-explicit-any) 설치 완료. src/ 디렉토리 구조 생성(components/{ui,layout,seo,tools}, hooks, lib/{config,api,i18n,utils}, store, types). npm run build → out/ 생성 확인."
+    },
+    {
+      "step": 1,
+      "name": "i18n-foundation",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "tools-config-schema",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "shared-components",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "analytics-cmp-integration",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "home-and-seo",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "legal-pages",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-07-03T09:09:41+0900"
 }
