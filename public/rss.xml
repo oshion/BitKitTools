@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 07:02:14 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 07:18:01 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JSON Formatter &amp; Validator</title>
@@ -20,6 +20,13 @@
       <description>Generate strong, secure passwords instantly. Customize length and character types — uppercase, lowercase, numbers, symbols. All generated in your browser using cryptographically secure randomness. Nothing is sent to any server.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/developer/password-generator</guid>
+    </item>
+    <item>
+      <title>Visa Requirement Checker</title>
+      <link>https://bitkittools.com/travel/visa-requirement-checker</link>
+      <description>Check visa requirements for your passport and destination country instantly. Find out whether you need a visa, an e-Visa/ETA, or can enter visa-free — plus general travel insurance guidance. Based on a static reference snapshot; always verify with the official consulate before travel.</description>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/travel/visa-requirement-checker</guid>
     </item>
     <item>
       <title>Flight Delay Compensation Calculator</title>
