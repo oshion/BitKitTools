@@ -39,7 +39,7 @@
       "name": "tool-bac-calculator",
       "status": "completed",
       "started_at": "2026-07-03T16:18:08+0900",
-      "completed_at": "2026-07-03T17:10:00+0900",
+      "completed_at": "2026-07-03T16:24:59+0900",
       "summary": "BAC Calculator 툴 완성 (ADR-014 강화 안전장치 전부 적용: 상시 경고 배너 BacSafetyWarning, 중립적 수치 표시, 통과 암시 표현/색상 없음). lib/utils/bacCalculator.ts(Widmark 공식, isEstimateOnly 리터럴 타입 고정, kg/lb 변환 헬퍼), lib/utils/bacCalculator.test.ts(17개 테스트 통과), components/tools/bac-calculator/BacSafetyWarning.tsx(닫기 불가, 항상 렌더링), components/tools/bac-calculator/BacCalculatorTool.tsx(성별/체중/음주항목/경과시간 입력, BAC 중립 숫자 표시, DisclaimerBanner medical 포함), tools-config.ts에 bac-calculator 항목 추가(disclaimerType: medical, relatedToolIds: homebrew-recipe-calculator), app/[locale]/beer/bac-calculator/page.tsx(EN/KO 정적 빌드 완료). 전체 178개 테스트 통과, lint/build 성공."
     },
     {
