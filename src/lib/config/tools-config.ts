@@ -254,6 +254,90 @@ export const toolsConfig: ToolConfig[] = [
     popular: false,
   },
   {
+    id: 'bac-calculator',
+    slug: 'bac-calculator',
+    category: 'beer',
+    title: {
+      en: 'BAC Calculator (Blood Alcohol Concentration)',
+      ko: '혈중 알코올 농도(BAC) 계산기',
+    },
+    description: {
+      en: 'Estimate your Blood Alcohol Concentration (BAC) using the Widmark formula. Enter your sex, weight, drinks consumed, and time elapsed to get an instant estimate — for informational reference only. Never use this to judge fitness to drive.',
+      ko: 'Widmark 공식을 사용해 혈중 알코올 농도(BAC)를 추정합니다. 성별, 체중, 음주량, 경과 시간을 입력하면 즉시 추정치를 확인할 수 있습니다 — 참고용 정보이며 운전 가능 여부 판단에 절대 사용하지 마세요.',
+    },
+    keywords: {
+      en: [
+        'BAC calculator',
+        'blood alcohol concentration calculator',
+        'Widmark formula calculator',
+        'how drunk am I calculator',
+        'alcohol calculator',
+        'drink calculator BAC',
+        'blood alcohol level',
+        'alcohol level by weight',
+        'how long to sober up',
+        'alcohol metabolism calculator',
+      ],
+      ko: [
+        '혈중 알코올 농도 계산기',
+        'BAC 계산기',
+        '음주 측정 계산기',
+        '알코올 농도 계산',
+        '음주 후 BAC',
+        '체중별 알코올 농도',
+        'Widmark 공식',
+        '음주 후 시간 계산',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Can this BAC calculator tell me whether I am safe to drive?',
+          ko: 'BAC 계산기로 운전해도 되는지 알 수 있나요?',
+        },
+        answer: {
+          en: 'No, it cannot. This calculator provides a mathematical estimate based on the Widmark formula, but individual alcohol metabolism varies widely depending on food intake, medication, fatigue, genetics, liver health, and other factors. The only way to know your actual BAC is a certified breathalyzer or blood test. More importantly, even a BAC within a legal limit does not guarantee safe driving ability. After drinking any amount of alcohol, the safest decision is always not to drive.',
+          ko: '아닙니다, 알 수 없습니다. 이 계산기는 Widmark 공식에 기반한 수학적 추정치를 제공하지만, 실제 알코올 대사 속도는 음식 섭취 여부, 약물 복용, 피로, 유전적 요인, 간 건강 등에 따라 개인차가 매우 큽니다. 실제 혈중 알코올 농도는 공인 음주 측정기나 혈액 검사로만 확인할 수 있습니다. 더 중요한 것은, BAC가 법적 기준 이내라도 안전한 운전 능력을 보장하지 않습니다. 음주 후에는 얼마를 마셨든 운전하지 않는 것이 유일하게 안전한 선택입니다.',
+        },
+      },
+      {
+        question: {
+          en: 'What is the Widmark formula and how accurate is it?',
+          ko: 'Widmark 공식이란 무엇이며 얼마나 정확한가요?',
+        },
+        answer: {
+          en: 'The Widmark formula, developed by Swedish physician Erik MP Widmark in 1932, calculates an estimated BAC using three variables: total alcohol consumed (in grams), body weight, and a gender-specific distribution factor (r = 0.68 for males, 0.55 for females). It also subtracts a standard elimination rate of approximately 0.015 g/dL per hour. The formula is widely used in forensic and research contexts, but it is an approximation. Real-world BAC can differ by 20–30% or more due to individual variation in metabolism, stomach contents, drinking pace, and other physiological factors.',
+          ko: 'Widmark 공식은 1932년 스웨덴 의사 Erik MP Widmark가 개발한 공식으로, 세 가지 변수를 사용합니다: 총 알코올 섭취량(그램), 체중, 그리고 성별에 따른 분포 계수(남성 r=0.68, 여성 r=0.55). 또한 시간당 약 0.015 g/dL의 표준 알코올 분해율을 적용합니다. 이 공식은 법의학 및 연구 분야에서 널리 사용되지만 어디까지나 추정치입니다. 실제 BAC는 개인의 대사 속도, 위장 내 음식물, 음주 속도, 기타 생리적 요인에 따라 20~30% 이상 차이가 날 수 있습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Why does biological sex affect BAC?',
+          ko: '생물학적 성별이 BAC에 영향을 미치는 이유는 무엇인가요?',
+        },
+        answer: {
+          en: 'Biological sex affects BAC through two main mechanisms. First, females typically have a lower total body water percentage than males of the same weight, which means alcohol is distributed in a smaller volume, resulting in a higher BAC. The Widmark formula accounts for this with different distribution factors (r): 0.68 for males and 0.55 for females. Second, females on average have lower levels of alcohol dehydrogenase (ADH), the enzyme responsible for breaking down alcohol in the stomach, which means more alcohol enters the bloodstream. These are average physiological differences — individual variation exists.',
+          ko: '생물학적 성별은 두 가지 주요 메커니즘을 통해 BAC에 영향을 미칩니다. 첫째, 같은 체중에서 여성은 남성보다 총 체수분 비율이 낮아 알코올이 더 작은 체적에 분포되므로 BAC가 더 높아집니다. Widmark 공식은 이를 분포 계수 r로 반영합니다(남성 0.68, 여성 0.55). 둘째, 여성은 평균적으로 위장에서 알코올을 분해하는 효소인 알코올 탈수소효소(ADH) 수치가 낮아 더 많은 알코올이 혈류로 흡수됩니다. 이는 평균적인 생리학적 차이이며 개인 간 편차가 존재합니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['homebrew-recipe-calculator'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/bac-calculator.png',
+    status: 'testing',
+    disclaimerType: 'medical',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-03',
+    popular: false,
+  },
+  {
     id: 'flight-delay-compensation',
     slug: 'flight-delay-compensation',
     category: 'travel',
