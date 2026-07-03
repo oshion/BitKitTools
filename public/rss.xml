@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 07:24:53 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 07:31:21 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JSON Formatter &amp; Validator</title>
@@ -34,6 +34,13 @@
       <description>Estimate your Blood Alcohol Concentration (BAC) using the Widmark formula. Enter your sex, weight, drinks consumed, and time elapsed to get an instant estimate — for informational reference only. Never use this to judge fitness to drive.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/beer/bac-calculator</guid>
+    </item>
+    <item>
+      <title>Homebrew Recipe &amp; ABV Calculator</title>
+      <link>https://bitkittools.com/beer/homebrew-recipe-calculator</link>
+      <description>Calculate estimated ABV from Original Gravity (OG) and Final Gravity (FG) using the standard homebrewing formula. Includes a dilution calculator to hit your target alcohol percentage. All calculations run in your browser — no login, no uploads.</description>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/beer/homebrew-recipe-calculator</guid>
     </item>
     <item>
       <title>Flight Delay Compensation Calculator</title>
