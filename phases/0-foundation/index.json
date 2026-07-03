@@ -15,7 +15,7 @@
       "name": "i18n-foundation",
       "status": "completed",
       "started_at": "2026-07-03T09:29:50+0900",
-      "completed_at": "2026-07-03T10:15:00+0900",
+      "completed_at": "2026-07-03T09:42:12+0900",
       "summary": "next-intl 4.x 설치 완료. src/i18n/routing.ts(as-needed prefix, locales:[en,ko]) + src/i18n/request.ts(getRequestConfig, 정적 메시지 로드) 생성. next.config.mjs에 createNextIntlPlugin 연동. app/[locale]/layout.tsx에 setRequestLocale+NextIntlClientProvider+generateStaticParams([en,ko]) 설정. messages/en.json·ko.json(disclaimer 문구 4종 포함) 생성. scripts/postbuild.mjs로 out/en/→out/ 복사해 EN 페이지를 루트 경로에 생성. middleware.ts 없음. out/index.html·out/ko/index.html 생성 확인. lint·test 통과."
     },
     {
