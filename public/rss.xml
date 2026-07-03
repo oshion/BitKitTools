@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 06:55:54 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 07:02:14 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JSON Formatter &amp; Validator</title>
@@ -20,6 +20,13 @@
       <description>Generate strong, secure passwords instantly. Customize length and character types — uppercase, lowercase, numbers, symbols. All generated in your browser using cryptographically secure randomness. Nothing is sent to any server.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/developer/password-generator</guid>
+    </item>
+    <item>
+      <title>Flight Delay Compensation Calculator</title>
+      <link>https://bitkittools.com/travel/flight-delay-compensation</link>
+      <description>Find out if your delayed flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, route distance, delay duration, and cause to get an instant estimate — no sign-up required.</description>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/travel/flight-delay-compensation</guid>
     </item>
   </channel>
 </rss>
