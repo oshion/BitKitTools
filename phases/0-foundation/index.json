@@ -39,7 +39,7 @@
       "name": "analytics-cmp-integration",
       "status": "completed",
       "started_at": "2026-07-03T10:02:30+0900",
-      "completed_at": "2026-07-03T10:30:00+0900",
+      "completed_at": "2026-07-03T10:10:34+0900",
       "summary": "CMP(ConsentManager: Consent Mode v2 defaults + CookieYes 스크립트)/GA4·Clarity(AnalyticsScripts: cookieyes-consent-update 이벤트 구독, consent 전 null 반환)/useAnalyticsEvent 훅(window.gtag 미존재 시 no-op) 추가. AdSlot에 IntersectionObserver 기반 LazyLoad 연동(NEXT_PUBLIC_ADSENSE_CLIENT_ID 미설정 시 skeleton 유지). .env.example 생성. 전 구성요소 NEXT_PUBLIC_* 미설정 상태에서 안전 동작. 67개 테스트 통과, build 성공."
     },
     {
