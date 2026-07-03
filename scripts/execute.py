@@ -22,6 +22,13 @@ from typing import Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# Windows consoles default to the locale codepage (e.g. cp949), which can't encode
+# the ✓/✗/⏸/↻/◐◓◑◒ symbols this script prints. Force UTF-8 on stdio so progress
+# output never crashes an otherwise-successful step.
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 
 @contextlib.contextmanager
 def progress_indicator(label: str):
