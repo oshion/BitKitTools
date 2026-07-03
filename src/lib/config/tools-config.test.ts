@@ -67,19 +67,33 @@ const mockTools: ToolConfig[] = [
   },
 ]
 
-// Helper: temporarily splice mock data into toolsConfig for a test
+// Helper: replace toolsConfig with mock data for the duration of the test,
+// then restore original entries. This avoids coupling tests to the real config.
 function withMockTools<T>(fn: () => T): T {
+  const original = toolsConfig.splice(0, toolsConfig.length)
   toolsConfig.push(...mockTools)
   try {
     return fn()
   } finally {
-    toolsConfig.splice(0, toolsConfig.length)
+    toolsConfig.splice(0, toolsConfig.length, ...original)
   }
 }
 
 describe('toolsConfig', () => {
-  it('starts as an empty array', () => {
-    expect(toolsConfig).toEqual([])
+  it('is an array', () => {
+    expect(Array.isArray(toolsConfig)).toBe(true)
+  })
+
+  it('every entry satisfies the ToolConfig schema', () => {
+    for (const tool of toolsConfig) {
+      expect(typeof tool.id).toBe('string')
+      expect(typeof tool.slug).toBe('string')
+      expect(['developer', 'travel', 'beer', 'baby']).toContain(tool.category)
+      expect(typeof tool.title.en).toBe('string')
+      expect(typeof tool.title.ko).toBe('string')
+      expect(Array.isArray(tool.adSlots)).toBe(true)
+      expect(Array.isArray(tool.faq)).toBe(true)
+    }
   })
 })
 
@@ -90,10 +104,6 @@ describe('TOOL_CATEGORIES', () => {
 })
 
 describe('getToolsByCategory', () => {
-  it('returns empty array when toolsConfig is empty', () => {
-    expect(getToolsByCategory('developer')).toEqual([])
-  })
-
   it('returns only tools matching the given category', () => {
     withMockTools(() => {
       const result = getToolsByCategory('developer')
@@ -110,10 +120,6 @@ describe('getToolsByCategory', () => {
 })
 
 describe('getToolBySlug', () => {
-  it('returns undefined when toolsConfig is empty', () => {
-    expect(getToolBySlug('developer', 'json-formatter')).toBeUndefined()
-  })
-
   it('returns the matching tool', () => {
     withMockTools(() => {
       const result = getToolBySlug('developer', 'json-formatter')
@@ -129,10 +135,6 @@ describe('getToolBySlug', () => {
 })
 
 describe('getPopularTools', () => {
-  it('returns empty array when toolsConfig is empty', () => {
-    expect(getPopularTools()).toEqual([])
-  })
-
   it('returns only popular tools', () => {
     withMockTools(() => {
       const result = getPopularTools()
@@ -143,10 +145,6 @@ describe('getPopularTools', () => {
 })
 
 describe('getRecentTools', () => {
-  it('returns empty array when toolsConfig is empty', () => {
-    expect(getRecentTools(3)).toEqual([])
-  })
-
   it('returns at most limit items', () => {
     withMockTools(() => {
       expect(getRecentTools(2)).toHaveLength(2)
@@ -173,10 +171,6 @@ describe('getRelatedTools', () => {
   it('returns empty array for non-existent toolId without throwing', () => {
     expect(() => getRelatedTools('nonexistent-id')).not.toThrow()
     expect(getRelatedTools('nonexistent-id')).toEqual([])
-  })
-
-  it('returns empty array when toolsConfig is empty', () => {
-    expect(getRelatedTools('json-formatter')).toEqual([])
   })
 
   it('resolves relatedToolIds to actual ToolConfig objects', () => {

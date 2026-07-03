@@ -22,14 +22,9 @@ const eslintConfig = defineConfig([
       parser: tsParser,
     },
     rules: {
-      // 1. tools/{slug} 간 상호 import 금지 (컴포넌트 격리)
+      // 2. lib/utils/에서 lib/api/ import 금지 (순수 함수 유지)
       "no-restricted-imports": ["error", {
         patterns: [
-          {
-            group: ["**/components/tools/*/*"],
-            message: "다른 tool 폴더를 직접 import 금지. 공통 로직은 components/ui/ 또는 lib/utils/로 추출하라.",
-          },
-          // 2. lib/utils/에서 lib/api/ import 금지 (순수 함수 유지)
           {
             group: ["**/lib/api/*"],
             message: "lib/utils/는 순수 함수여야 한다. 외부 fetch가 필요하면 컴포넌트에서 lib/api/를 직접 호출하라.",
@@ -42,6 +37,22 @@ const eslintConfig = defineConfig([
 
       // 4. 미사용 변수 금지
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    },
+  },
+  // 1. tools/{slug} 간 상호 import 금지 (컴포넌트 격리)
+  // Applied only to files inside components/tools/ so that pages can import
+  // their own tool component (app/.../page.tsx → components/tools/{slug}/).
+  {
+    files: ["src/components/tools/**/*"],
+    rules: {
+      "no-restricted-imports": ["error", {
+        patterns: [
+          {
+            group: ["**/components/tools/*/*"],
+            message: "다른 tool 폴더를 직접 import 금지. 공통 로직은 components/ui/ 또는 lib/utils/로 추출하라.",
+          },
+        ],
+      }],
     },
   },
 ]);
