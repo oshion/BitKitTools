@@ -169,6 +169,91 @@ export const toolsConfig: ToolConfig[] = [
     popular: false,
   },
   {
+    id: 'visa-requirement-checker',
+    slug: 'visa-requirement-checker',
+    category: 'travel',
+    title: {
+      en: 'Visa Requirement Checker',
+      ko: '비자 요건 확인기',
+    },
+    description: {
+      en: 'Check visa requirements for your passport and destination country instantly. Find out whether you need a visa, an e-Visa/ETA, or can enter visa-free — plus general travel insurance guidance. Based on a static reference snapshot; always verify with the official consulate before travel.',
+      ko: '여권 국가와 목적지를 선택하면 비자 요건(무비자/e-Visa·ETA/사전 비자)을 즉시 확인할 수 있습니다. 일반 여행자보험 안내도 함께 제공합니다. 정적 참조 데이터 기반이므로 출국 전 반드시 공식 영사관에서 재확인하세요.',
+    },
+    keywords: {
+      en: [
+        'visa requirement checker',
+        'do I need a visa',
+        'visa free countries',
+        'e-visa requirements',
+        'travel visa calculator',
+        'passport visa check',
+        'entry requirements by country',
+        'visa on arrival',
+        'ESTA requirements',
+        'ETA requirements',
+      ],
+      ko: [
+        '비자 요건 확인',
+        '무비자 국가',
+        'e-비자 확인',
+        '여행 비자 계산기',
+        '여권별 비자',
+        '입국 요건',
+        '비자 온 어라이벌',
+        'ESTA 요건',
+        '전자여행허가',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'What is the difference between visa-free entry and an e-Visa or ETA?',
+          ko: '무비자 입국과 e-Visa, ETA의 차이는 무엇인가요?',
+        },
+        answer: {
+          en: 'Visa-free entry means you can board a plane and enter a country without any pre-approval — just a valid passport. An e-Visa (electronic visa) or ETA (Electronic Travel Authorization, also called ESTA in the US context) requires you to apply online and receive approval before you travel, though the process is usually quick and inexpensive. Visa-required means you must submit a full visa application at the destination country\'s embassy or consulate, typically requiring an appointment, supporting documents, and processing time of several days or weeks.',
+          ko: '무비자 입국은 사전 승인 없이 유효한 여권만으로 탑승하고 입국할 수 있다는 뜻입니다. e-Visa(전자 비자) 또는 ETA(전자여행허가, 미국의 ESTA 포함)는 출발 전 온라인으로 신청하고 승인을 받아야 하지만, 절차가 간단하고 빠릅니다. 비자 필요(visa-required)는 목적지 국가의 대사관이나 영사관에 정식 비자 신청서를 제출해야 하며 예약, 서류 준비, 수일~수주의 처리 기간이 필요합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'How often do visa requirements change?',
+          ko: '비자 요건은 얼마나 자주 바뀌나요?',
+        },
+        answer: {
+          en: 'Visa policies can change at any time — sometimes with very little notice. Changes are often triggered by diplomatic agreements, reciprocity decisions, security concerns, or new electronic authorization systems (such as ETIAS for the EU, the UK ETA, or the US ESTA). This tool uses a static reference snapshot and may not reflect the most recent changes. Always verify the current requirements on the official website of the destination country\'s embassy or consulate before booking flights or making accommodation arrangements.',
+          ko: '비자 정책은 언제든지 바뀔 수 있으며, 예고가 짧은 경우도 많습니다. 외교 협정 변경, 상호주의 원칙 적용, 보안상의 이유, 또는 EU의 ETIAS·영국 ETA·미국 ESTA 같은 새로운 전자 입국 허가 시스템 도입 등이 주요 원인입니다. 이 툴은 정적 스냅샷 데이터를 사용하므로 최신 변경 사항이 반영되지 않을 수 있습니다. 항공권 예매나 숙박 예약 전에 반드시 목적지 국가의 대사관·영사관 공식 사이트에서 현재 요건을 확인하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'Is travel insurance required to enter a country?',
+          ko: '여행자보험은 필수인가요?',
+        },
+        answer: {
+          en: 'It depends on your destination. EU and Schengen visa applicants are typically required to provide proof of travel medical insurance covering at least €30,000 as part of the visa application. Some other countries (Cuba, Ecuador, and a few others) also mandate travel insurance for entry. Even where it is not legally required, comprehensive travel insurance is strongly recommended to cover medical emergencies, trip cancellation, baggage loss, and travel delays — unexpected costs that can be significant when travelling internationally.',
+          ko: '목적지에 따라 다릅니다. EU 및 솅겐 비자 신청 시에는 최소 €30,000을 보장하는 여행 의료보험 증명서를 제출해야 하는 경우가 일반적입니다. 쿠바, 에콰도르 등 일부 국가도 입국 시 여행자보험을 의무화하고 있습니다. 법적 의무가 없더라도 의료 응급 상황, 여행 취소, 수하물 분실, 항공 지연 등 예상치 못한 비용에 대비해 종합 여행자보험 가입을 강력히 권장합니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['flight-delay-compensation'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/visa-requirement-checker.png',
+    status: 'testing',
+    disclaimerType: 'legal',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-03',
+    popular: false,
+  },
+  {
     id: 'flight-delay-compensation',
     slug: 'flight-delay-compensation',
     category: 'travel',
