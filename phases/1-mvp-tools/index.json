@@ -48,7 +48,7 @@
       "status": "completed",
       "started_at": "2026-07-03T16:24:59+0900",
       "summary": "Homebrew Recipe & ABV/Dilution Calculator 툴 완성. lib/utils/homebrewCalculator.ts(calculateAbv/calculateDilution 순수 함수, ABV ≈ (OG−FG)×131.25, C₁V₁=C₂V₂ 희석 공식), lib/utils/homebrewCalculator.test.ts(21개 테스트 통과), components/tools/homebrew-recipe-calculator/HomebrewRecipeCalculatorTool.tsx(배치 사이즈 L/gal 전환, OG/FG 입력, ABV 결과, 희석 섹션 토글, useLocalStorage 재방문 자동 채움, copy_result 이벤트), tools-config.ts에 homebrew-recipe-calculator 항목 추가(disclaimerType: general, relatedToolIds: bac-calculator), bac-calculator relatedToolIds 기존 확인(homebrew-recipe-calculator 포함), app/[locale]/beer/homebrew-recipe-calculator/page.tsx(EN/KO 정적 빌드 완료). 전체 199개 테스트 통과, lint/build 성공.",
-      "completed_at": "2026-07-03T16:40:00+0900"
+      "completed_at": "2026-07-03T16:31:28+0900"
     },
     {
       "step": 6,
