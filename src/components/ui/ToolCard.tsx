@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { localeHref } from '@/lib/utils/locale-href'
 import type { ToolConfig } from '@/types/tool'
 
 type ToolCardProps = {
@@ -7,10 +8,7 @@ type ToolCardProps = {
 }
 
 export default function ToolCard({ tool, locale }: ToolCardProps) {
-  const href =
-    locale === 'ko'
-      ? `/ko/${tool.category}/${tool.slug}`
-      : `/${tool.category}/${tool.slug}`
+  const href = localeHref(locale, `/${tool.category}/${tool.slug}`)
 
   return (
     <Link

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import { TOOL_CATEGORIES } from '@/lib/config/tools-config'
+import { localeHref } from '@/lib/utils/locale-href'
 import type { ToolCategory } from '@/types/tool'
 
 export default function Footer() {
@@ -10,11 +11,9 @@ export default function Footer() {
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
 
-  const categoryHref = (category: ToolCategory): string =>
-    locale === 'ko' ? `/ko/${category}` : `/${category}`
+  const categoryHref = (category: ToolCategory): string => localeHref(locale, `/${category}`)
 
-  const legalHref = (path: string): string =>
-    locale === 'ko' ? `/ko/${path}` : `/${path}`
+  const legalHref = (path: string): string => localeHref(locale, `/${path}`)
 
   const year = new Date().getFullYear()
 

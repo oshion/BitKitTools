@@ -3,6 +3,7 @@ import Nav from './Nav'
 
 // 'mock' prefix allows Jest to use this variable inside the hoisted jest.mock factory.
 let mockLocale = 'en'
+let mockPathname = '/'
 
 jest.mock('next-intl', () => ({
   useTranslations: () => (key: string) => key,
@@ -10,7 +11,7 @@ jest.mock('next-intl', () => ({
 }))
 
 jest.mock('next/navigation', () => ({
-  usePathname: jest.fn(() => '/'),
+  usePathname: jest.fn(() => mockPathname),
 }))
 
 jest.mock('next/link', () => {
@@ -33,6 +34,7 @@ jest.mock('next/link', () => {
 
 beforeEach(() => {
   mockLocale = 'en'
+  mockPathname = '/'
 })
 
 describe('Nav', () => {
@@ -68,5 +70,19 @@ describe('Nav', () => {
     render(<Nav />)
     const switchLink = screen.getByText('languageSwitch').closest('a')
     expect(switchLink).toHaveAttribute('href', '/ko/')
+  })
+
+  it('strips a dev-mode /en prefix when switching to KO (regression: was producing /ko/en)', () => {
+    mockPathname = '/en'
+    render(<Nav />)
+    const switchLink = screen.getByText('languageSwitch').closest('a')
+    expect(switchLink).toHaveAttribute('href', '/ko')
+  })
+
+  it('strips a dev-mode /en prefix on a category page when switching to KO', () => {
+    mockPathname = '/en/developer'
+    render(<Nav />)
+    const switchLink = screen.getByText('languageSwitch').closest('a')
+    expect(switchLink).toHaveAttribute('href', '/ko/developer')
   })
 })

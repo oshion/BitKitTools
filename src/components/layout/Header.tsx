@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import Nav from './Nav'
+import { localeHref } from '@/lib/utils/locale-href'
 
 type HeaderProps = {
   locale: 'en' | 'ko'
 }
 
 export default function Header({ locale }: HeaderProps) {
-  const homeHref = locale === 'ko' ? '/ko' : '/'
+  const homeHref = localeHref(locale)
 
   return (
     <header className="border-b border-neutral-800 bg-[#0a0a0a]">
