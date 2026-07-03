@@ -31,7 +31,7 @@
       "name": "shared-components",
       "status": "completed",
       "started_at": "2026-07-03T09:44:27+0900",
-      "completed_at": "2026-07-03T11:30:00+0900",
+      "completed_at": "2026-07-03T10:02:29+0900",
       "summary": "AdSlot/DisclaimerBanner/ToolCard/ToolCardGrid/SchemaWebApplication/SchemaFaqPage/SchemaBreadcrumb/Header/Nav/Footer 생성 완료. next-intl ESM 이슈로 jest.config.ts를 async 형태로 전환 및 transformIgnorePatterns 확장, 테스트에서는 next-intl을 jest.mock factory로 대체. 61개 테스트 통과, build 성공."
     },
     {
