@@ -5,8 +5,14 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 01:28:55 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 06:44:34 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
-
+    <item>
+      <title>JSON Formatter &amp; Validator</title>
+      <link>https://bitkittools.com/developer/json-formatter</link>
+      <description>Instantly format, pretty-print, or minify JSON. Catches syntax errors and highlights the exact line — no login, no uploads, all in your browser.</description>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/developer/json-formatter</guid>
+    </item>
   </channel>
 </rss>
