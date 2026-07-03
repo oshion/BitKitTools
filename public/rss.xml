@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 07:18:01 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 07:24:53 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JSON Formatter &amp; Validator</title>
@@ -27,6 +27,13 @@
       <description>Check visa requirements for your passport and destination country instantly. Find out whether you need a visa, an e-Visa/ETA, or can enter visa-free — plus general travel insurance guidance. Based on a static reference snapshot; always verify with the official consulate before travel.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/travel/visa-requirement-checker</guid>
+    </item>
+    <item>
+      <title>BAC Calculator (Blood Alcohol Concentration)</title>
+      <link>https://bitkittools.com/beer/bac-calculator</link>
+      <description>Estimate your Blood Alcohol Concentration (BAC) using the Widmark formula. Enter your sex, weight, drinks consumed, and time elapsed to get an instant estimate — for informational reference only. Never use this to judge fitness to drive.</description>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/beer/bac-calculator</guid>
     </item>
     <item>
       <title>Flight Delay Compensation Calculator</title>
