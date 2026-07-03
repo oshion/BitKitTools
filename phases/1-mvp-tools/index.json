@@ -15,7 +15,7 @@
       "name": "tool-password-generator",
       "status": "completed",
       "started_at": "2026-07-03T15:44:40+0900",
-      "completed_at": "2026-07-03T16:30:00+0900",
+      "completed_at": "2026-07-03T15:56:00+0900",
       "summary": "Password Generator 툴 완성. lib/utils/passwordGenerator.ts(crypto.getRandomValues 기반 CSPRNG, Fisher-Yates shuffle, 타입-안전 구현), lib/utils/passwordGenerator.test.ts(26개 테스트 전부 통과), components/tools/password-generator/PasswordGeneratorTool.tsx(길이 슬라이더/문자 조합 체크박스/유사문자 제외/강도 게이지 애니메이션/즉시 복사), tools-config.ts에 password-generator 항목 추가(json-formatter relatedToolIds 복구 포함), app/[locale]/developer/password-generator/page.tsx(EN/KO 정적 빌드 완료, 5개 AdSlot/DisclaimerBanner/RelatedTools 렌더링). 전체 119개 테스트 통과, lint/build 성공."
     },
     {
