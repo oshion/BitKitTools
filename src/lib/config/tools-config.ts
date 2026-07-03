@@ -85,6 +85,89 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-03',
     popular: false,
   },
+  {
+    id: 'password-generator',
+    slug: 'password-generator',
+    category: 'developer',
+    title: {
+      en: 'Password Generator',
+      ko: '비밀번호 생성기',
+    },
+    description: {
+      en: 'Generate strong, secure passwords instantly. Customize length and character types — uppercase, lowercase, numbers, symbols. All generated in your browser using cryptographically secure randomness. Nothing is sent to any server.',
+      ko: '강력하고 안전한 비밀번호를 즉시 생성합니다. 길이와 문자 조합(대문자, 소문자, 숫자, 특수문자)을 자유롭게 설정하세요. 모든 생성은 브라우저에서 암호학적으로 안전한 난수를 이용하며, 어떤 서버에도 전송되지 않습니다.',
+    },
+    keywords: {
+      en: [
+        'password generator',
+        'secure password generator',
+        'random password generator',
+        'strong password generator',
+        'password creator',
+        'password maker',
+        'generate password online',
+        'password strength',
+        'crypto random password',
+        'free password generator',
+      ],
+      ko: [
+        '비밀번호 생성기',
+        '안전한 비밀번호 생성',
+        '랜덤 비밀번호',
+        '강력한 비밀번호',
+        '비밀번호 만들기',
+        '온라인 비밀번호 생성기',
+        '비밀번호 강도',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Is the generated password stored or sent to a server?',
+          ko: '생성된 비밀번호가 서버에 저장되거나 전송되나요?',
+        },
+        answer: {
+          en: 'No. Passwords are generated entirely in your browser using the Web Crypto API (crypto.getRandomValues). Nothing is sent to any server, logged, or stored anywhere — not even in your browser\'s local storage. Once you close or refresh the page, the password is gone.',
+          ko: '아닙니다. 비밀번호는 Web Crypto API(crypto.getRandomValues)를 사용해 브라우저에서만 생성됩니다. 어떤 서버에도 전송되지 않고, 로그나 브라우저 저장소 어디에도 기록되지 않습니다. 페이지를 닫거나 새로고침하면 비밀번호는 사라집니다.',
+        },
+      },
+      {
+        question: {
+          en: 'How long should a secure password be?',
+          ko: '안전한 비밀번호 길이는 얼마인가요?',
+        },
+        answer: {
+          en: 'Security experts recommend at least 16 characters for most accounts, and 20 or more for high-value accounts like email, banking, or password managers. Longer passwords with mixed character types are exponentially harder to crack. A 16-character password using all character types has over 96 bits of entropy — considered very strong by modern standards.',
+          ko: '보안 전문가들은 대부분의 계정에 최소 16자, 이메일·뱅킹·비밀번호 관리자 같은 중요한 계정에는 20자 이상을 권장합니다. 다양한 문자 조합을 포함한 긴 비밀번호는 크래킹이 기하급수적으로 어려워집니다. 모든 문자 유형을 포함한 16자 비밀번호는 96비트 이상의 엔트로피를 가져 현대 기준으로 매우 강력한 수준입니다.',
+        },
+      },
+      {
+        question: {
+          en: 'When should I use the "Exclude Ambiguous Characters" option?',
+          ko: '"유사 문자 제외" 옵션은 언제 사용하나요?',
+        },
+        answer: {
+          en: 'Enable this option when you need to type the password manually or read it aloud — for example, when setting up a device or account without copy-paste access. Ambiguous characters like 0 (zero) vs O (uppercase O), 1 (one) vs l (lowercase L) vs I (uppercase i) look nearly identical in many fonts and can cause frustrating login failures. If you\'ll always paste the password from a password manager, leaving this option off gives you a slightly larger character pool and higher entropy.',
+          ko: '비밀번호를 직접 타이핑하거나 읽어야 할 때, 예를 들어 복사-붙여넣기가 불가능한 기기나 계정 설정 시 유용합니다. 0(숫자)과 O(대문자 오), 1(숫자)과 l(소문자 엘)과 I(대문자 아이) 같은 유사 문자는 많은 폰트에서 거의 구분이 안 돼 로그인 실패의 원인이 됩니다. 항상 비밀번호 관리자로 붙여넣는다면 이 옵션을 끄면 더 넓은 문자 풀로 더 높은 엔트로피를 얻을 수 있습니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['json-formatter'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/password-generator.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-03',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
