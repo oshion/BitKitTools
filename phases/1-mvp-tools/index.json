@@ -29,7 +29,10 @@
     {
       "step": 3,
       "name": "tool-visa-requirement-checker",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-07-03T16:02:20+0900",
+      "completed_at": "2026-07-03T16:20:00+0900",
+      "summary": "Visa Requirement / Travel Insurance Checker 툴 완성. lib/config/visaRequirements.ts(24개국 ~130개 국가조합 정적 데이터, IATA/Henley 출처 주석), lib/utils/visaRequirementChecker.ts(checkVisaRequirement 순수 함수, 대소문자 무관), lib/utils/visaRequirementChecker.test.ts(21개 테스트 통과), hooks/useLocalStorage.ts(SSR-safe 지연 초기화, setState-in-effect 회피), hooks/useLocalStorage.test.ts(6개 테스트), components/tools/visa-requirement-checker/VisaRequirementCheckerTool.tsx(검색 가능 드롭다운, 결과 파생 계산, fade-in 애니메이션, maxStayDays 진행 바, 여행자보험 안내), tools-config.ts에 visa-requirement-checker 항목 추가(disclaimerType: legal, flight-delay-compensation 상호 relatedToolIds), app/[locale]/travel/visa-requirement-checker/page.tsx(EN/KO 정적 빌드 완료). globals.css에 animate-fade-in 추가. 전체 161개 테스트 통과, lint/build 성공."
     },
     {
       "step": 4,
