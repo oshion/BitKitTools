@@ -21,7 +21,10 @@
     {
       "step": 2,
       "name": "tool-flight-delay-compensation",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-07-03T15:56:00+0900",
+      "completed_at": "2026-07-03T16:30:00+0900",
+      "summary": "Flight Delay Compensation Calculator 툴 완성. lib/config/flightCompensationRules.ts(EU261/US DOT 정적 규정 테이블, 출처 주석 포함), lib/utils/flightDelayCompensation.ts(estimateCompensation 순수 함수), lib/utils/flightDelayCompensation.test.ts(16개 테스트 전부 통과), components/tools/flight-delay-compensation/FlightDelayCompensationTool.tsx(4단계 폼, '보상 지급 확정' 단정 표현 없음, 중립 배지 'Potentially eligible'), tools-config.ts에 flight-delay-compensation 항목 추가(disclaimerType: legal), app/[locale]/travel/flight-delay-compensation/page.tsx(EN/KO 정적 빌드 완료). 전체 135개 테스트 통과, lint/build 성공."
     },
     {
       "step": 3,
