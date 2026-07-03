@@ -1,0 +1,2 @@
+# TODO: Google AdSense 승인 후 발급받은 실제 publisher ID로 교체할 것
+# 형식 예: google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
