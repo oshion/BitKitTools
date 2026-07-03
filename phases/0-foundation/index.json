@@ -47,7 +47,7 @@
       "name": "home-and-seo",
       "status": "completed",
       "started_at": "2026-07-03T10:10:35+0900",
-      "completed_at": "2026-07-03T10:30:00+0900",
+      "completed_at": "2026-07-03T10:23:53+0900",
       "summary": "홈 페이지(app/[locale]/page.tsx) — tools-config 기반 카테고리 섹션, Popular/Recently Added 조건부 렌더링, generateMetadata(alternates.languages hreflang 포함) 구현. 레이아웃에 Header/Footer 추가(Nav가 useTranslations를 사용하므로 NextIntlClientProvider 내부에 배치). sitemap.ts(locale×slug 동적 생성, force-static), robots.ts(force-static), scripts/generate-rss.ts(tsx 실행, addedAt 내림차순 RSS 2.0) 생성. package.json build 스크립트에 tsx generate-rss.ts 연결. out/sitemap.xml, out/robots.txt, public/rss.xml 생성 확인. lint·test(67개) 통과."
     },
     {
