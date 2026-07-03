@@ -2,13 +2,48 @@
   "project": "BitKitTools.com",
   "phase": "1-mvp-tools",
   "steps": [
-    { "step": 0, "name": "tool-json-formatter", "status": "pending" },
-    { "step": 1, "name": "tool-password-generator", "status": "pending" },
-    { "step": 2, "name": "tool-flight-delay-compensation", "status": "pending" },
-    { "step": 3, "name": "tool-visa-requirement-checker", "status": "pending" },
-    { "step": 4, "name": "tool-bac-calculator", "status": "pending" },
-    { "step": 5, "name": "tool-homebrew-recipe-calculator", "status": "pending" },
-    { "step": 6, "name": "tool-baby-growth-percentile", "status": "pending" },
-    { "step": 7, "name": "tool-baby-sleep-schedule", "status": "pending" }
-  ]
+    {
+      "step": 0,
+      "name": "tool-json-formatter",
+      "status": "completed",
+      "started_at": "2026-07-03T15:36:59+0900",
+      "summary": "JSON Formatter/Validator 툴 완성. lib/utils/jsonFormatter.ts(formatJson/minifyJson 순수 함수 + 사용자 친화 에러 메시지), lib/utils/jsonFormatter.test.ts(93개 테스트 전부 통과), components/tools/json-formatter/JsonFormatterTool.tsx(실시간 charCount/lineCount, fade-in 애니메이션, 복사/다운로드), tools-config.ts에 json-formatter 항목 추가, app/[locale]/developer/json-formatter/page.tsx(EN/KO 양쪽 정적 빌드 완료). ESLint rule을 tool-to-tool import만 차단하도록 수정(페이지→툴 import 허용). relatedToolIds에 password-generator 포함(다음 step에서 실제 연결됨)."
+    },
+    {
+      "step": 1,
+      "name": "tool-password-generator",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "tool-flight-delay-compensation",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "tool-visa-requirement-checker",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "tool-bac-calculator",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "tool-homebrew-recipe-calculator",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "tool-baby-growth-percentile",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "tool-baby-sleep-schedule",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-07-03T15:36:59+0900"
 }
