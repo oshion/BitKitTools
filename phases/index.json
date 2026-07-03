@@ -1,6 +1,13 @@
 {
   "phases": [
-    { "dir": "0-foundation", "status": "pending" },
-    { "dir": "1-mvp-tools", "status": "pending" }
+    {
+      "dir": "0-foundation",
+      "status": "completed",
+      "completed_at": "2026-07-03T10:29:01+0900"
+    },
+    {
+      "dir": "1-mvp-tools",
+      "status": "pending"
+    }
   ]
 }

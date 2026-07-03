@@ -59,5 +59,6 @@
       "summary": "privacy-policy/terms/about/contact 4개 법적 페이지(EN/KO) 및 public/ads.txt 플레이스홀더 생성 완료. Footer 링크 연결 확인. lint·test(67개)·build 통과."
     }
   ],
-  "created_at": "2026-07-03T09:09:41+0900"
+  "created_at": "2026-07-03T09:09:41+0900",
+  "completed_at": "2026-07-03T10:29:01+0900"
 }
