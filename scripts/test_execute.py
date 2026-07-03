@@ -438,8 +438,10 @@ class TestInvokeClaude:
         assert "-p" in cmd
         assert "--dangerously-skip-permissions" in cmd
         assert "--output-format" in cmd
-        assert "PREAMBLE" in cmd[-1]
-        assert "UI를 구현하세요" in cmd[-1]
+
+        prompt_input = mock_run.call_args[1]["input"]
+        assert "PREAMBLE" in prompt_input
+        assert "UI를 구현하세요" in prompt_input
 
     def test_falls_back_to_bare_claude_when_which_fails(self, executor):
         mock_result = MagicMock(returncode=0, stdout="{}", stderr="")

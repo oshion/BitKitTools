@@ -237,8 +237,12 @@ class StepExecutor:
 
         prompt = preamble + step_file.read_text(encoding="utf-8")
         claude_exe = shutil.which("claude") or "claude"
+        # prompt is passed via stdin, not argv: Windows' CreateProcess path for launching
+        # .cmd shims (e.g. npm's claude.CMD) enforces a much shorter command-line length
+        # than a normal exe, and this prompt (guardrails + docs) regularly exceeds it.
         result = subprocess.run(
-            [claude_exe, "-p", "--dangerously-skip-permissions", "--output-format", "json", prompt],
+            [claude_exe, "-p", "--dangerously-skip-permissions", "--output-format", "json"],
+            input=prompt,
             cwd=self._root, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800,
         )
 
