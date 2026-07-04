@@ -55,7 +55,7 @@
       "name": "tool-baby-growth-percentile",
       "status": "completed",
       "started_at": "2026-07-04T20:25:45+0900",
-      "completed_at": "2026-07-04T20:55:00+0900",
+      "completed_at": "2026-07-04T20:39:15+0900",
       "summary": "Baby Growth Percentile Calculator 툴 완성. lib/config/growthStandards.ts(WHO/CDC LMS 파라미터, 출처 주석 포함), lib/utils/growthPercentile.ts(LMS 방법 + 선형 보간 + 표준정규 CDF 근사), lib/utils/growthPercentile.test.ts(22개 테스트 통과), components/tools/growth-percentile/GrowthPercentileTool.tsx(성별/나이/체중/키/기준표 입력, 게이지 바 시각화, opt-in LocalStorage, 상시 참고용 문구), tools-config.ts에 항목 추가(disclaimerType: medical, relatedToolIds: sleep-schedule), app/[locale]/baby/growth-percentile/page.tsx(EN/KO 정적 빌드 완료). 전체 221개 테스트 통과, lint/build 성공."
     },
     {
