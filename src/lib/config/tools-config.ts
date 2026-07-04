@@ -422,6 +422,91 @@ export const toolsConfig: ToolConfig[] = [
     popular: false,
   },
   {
+    id: 'growth-percentile',
+    slug: 'growth-percentile',
+    category: 'baby',
+    title: {
+      en: 'Baby Growth Percentile Calculator',
+      ko: '아기 성장 백분위 계산기',
+    },
+    description: {
+      en: 'Calculate your baby\'s weight and height/length percentiles (0–60 months) using WHO or CDC growth standards. Enter sex, age, weight, and height to instantly see where your child falls on the growth chart. For informational reference only — always consult a paediatrician for clinical assessment.',
+      ko: '아기의 체중과 신장(키) 백분위를 WHO 또는 CDC 성장 기준표에 따라 계산합니다(0~60개월). 성별, 나이, 체중, 키를 입력하면 성장 차트 위치를 즉시 확인할 수 있습니다. 참고용 정보이며 실제 평가는 소아과 전문의와 상담하세요.',
+    },
+    keywords: {
+      en: [
+        'baby growth percentile calculator',
+        'infant growth chart',
+        'WHO growth standards',
+        'CDC growth chart',
+        'baby weight percentile',
+        'baby height percentile',
+        'child growth calculator',
+        'percentile chart baby',
+        'baby development tracker',
+        'infant weight chart',
+      ],
+      ko: [
+        '아기 성장 백분위 계산기',
+        '영아 성장 차트',
+        'WHO 성장 기준',
+        'CDC 성장 차트',
+        '아기 체중 백분위',
+        '아기 키 백분위',
+        '소아 성장 계산기',
+        '아이 성장 추적',
+        '신생아 성장 기준표',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Is a low percentile (e.g., 10th) a sign that something is wrong?',
+          ko: '백분위가 낮으면(예: 10백분위) 문제가 있는 건가요?',
+        },
+        answer: {
+          en: 'No, not necessarily. Percentile simply shows how your child compares to a reference population — a child at the 10th percentile for weight is not unhealthy; it means 10% of children of the same age and sex weigh the same or less. A wide range from approximately the 3rd to the 97th percentile is considered typical. What matters most is whether your child\'s growth curve is following a consistent trend over time. If you have concerns about your child\'s growth pattern, please consult a qualified paediatrician.',
+          ko: '아니오, 반드시 그렇지는 않습니다. 백분위는 단순히 같은 나이와 성별의 기준 집단과 비교했을 때의 위치를 나타냅니다. 체중 10백분위는 건강하지 않다는 의미가 아니라, 같은 나이·성별 아이 중 10%가 같거나 더 적게 나간다는 뜻입니다. 대략 3백분위에서 97백분위 사이의 범위는 일반적으로 정상 범위로 봅니다. 가장 중요한 것은 시간이 지나면서 성장 곡선이 일관된 추세를 따르는지 여부입니다. 아이의 성장 패턴에 대해 걱정이 된다면 소아과 전문의와 상담하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'What is the difference between WHO and CDC growth standards?',
+          ko: 'WHO 기준과 CDC 기준의 차이는 무엇인가요?',
+        },
+        answer: {
+          en: 'The WHO Child Growth Standards (2006) describe how children should grow under optimal conditions (exclusive breastfeeding, non-smoking environment, good healthcare). The data was collected from six countries across diverse regions. The CDC Growth Charts (2000) are based on a US national reference population that includes both breastfed and formula-fed children. WHO standards are generally recommended for children under 2 years globally, while CDC charts are commonly used in US clinical settings for children 2 years and older.',
+          ko: 'WHO 아동 성장 기준(2006)은 이상적인 환경(완전 모유수유, 비흡연 환경, 적절한 의료)에서 아이가 어떻게 자라야 하는지를 기술하며 다양한 지역 6개국에서 수집한 데이터를 바탕으로 합니다. CDC 성장 차트(2000)는 모유수유 아동과 분유수유 아동을 모두 포함한 미국 국가 참조 집단을 기반으로 합니다. 일반적으로 WHO 기준은 전 세계 2세 미만 아동에게, CDC 기준은 미국의 2세 이상 아동 임상 환경에서 주로 사용됩니다.',
+        },
+      },
+      {
+        question: {
+          en: 'How accurate is this calculator?',
+          ko: '이 계산기는 얼마나 정확한가요?',
+        },
+        answer: {
+          en: 'This calculator uses the standard LMS (Lambda-Mu-Sigma) method with published WHO and CDC reference parameters, which is the same statistical method used in clinical growth chart software. Percentile values are interpolated linearly between published data points at monthly or 3-month intervals. The results are sufficiently accurate for reference purposes, but minor differences from other tools may occur due to interpolation. This tool is not a substitute for clinical assessment by a healthcare professional.',
+          ko: '이 계산기는 공인된 WHO 및 CDC 참조 파라미터를 사용하는 표준 LMS(람다-뮤-시그마) 방법을 사용하며, 이는 임상 성장 차트 소프트웨어에서 사용하는 것과 동일한 통계적 방법입니다. 백분위 값은 월 또는 3개월 간격의 공개 데이터 포인트 사이를 선형 보간하여 계산됩니다. 결과는 참고용으로 충분히 정확하지만 보간 방식으로 인해 다른 도구와 약간 차이가 날 수 있습니다. 이 도구는 의료 전문가의 임상 평가를 대체하지 않습니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['sleep-schedule'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/growth-percentile.png',
+    status: 'testing',
+    disclaimerType: 'medical',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-04',
+    popular: false,
+  },
+  {
     id: 'flight-delay-compensation',
     slug: 'flight-delay-compensation',
     category: 'travel',
