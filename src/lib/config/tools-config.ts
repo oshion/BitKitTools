@@ -507,6 +507,90 @@ export const toolsConfig: ToolConfig[] = [
     popular: false,
   },
   {
+    id: 'sleep-schedule',
+    slug: 'sleep-schedule',
+    category: 'baby',
+    title: {
+      en: 'Baby Sleep Schedule Calculator',
+      ko: '아기 수면 일정 계산기',
+    },
+    description: {
+      en: 'Enter your baby\'s age and today\'s wake-up time to get a recommended nap schedule and bedtime — based on age-appropriate wake windows and nap durations. For general reference only; always consult a paediatrician for individual sleep concerns.',
+      ko: '아기의 개월수와 오늘 기상 시각을 입력하면 연령에 맞는 낮잠 일정과 권장 취침 시각을 계산합니다. 일반적인 가이드라인이며 개별 수면 문제는 소아과 전문의와 상담하세요.',
+    },
+    keywords: {
+      en: [
+        'baby sleep schedule calculator',
+        'nap time calculator',
+        'baby wake window',
+        'infant sleep schedule',
+        'baby bedtime calculator',
+        'how many naps baby',
+        'newborn sleep schedule',
+        'baby nap schedule by age',
+        'wake window by age',
+        'baby sleep guide',
+      ],
+      ko: [
+        '아기 수면 일정 계산기',
+        '낮잠 시간 계산기',
+        '웨이크 윈도우',
+        '아기 수면 스케줄',
+        '아기 취침 시간 계산기',
+        '개월수별 낮잠 횟수',
+        '신생아 수면 일정',
+        '아기 낮잠 스케줄',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'What is a wake window?',
+          ko: 'Wake window(깨어있는 시간)란 무엇인가요?',
+        },
+        answer: {
+          en: 'A wake window is the amount of time a baby can comfortably stay awake between sleep periods before becoming overtired. Wake windows increase as babies grow — newborns can only manage around 60 minutes, while a 12-month-old may handle 3 hours. Keeping within age-appropriate wake windows helps babies fall asleep more easily and sleep more soundly, because overtired babies often become harder to settle and sleep more briefly.',
+          ko: '웨이크 윈도우(wake window)는 아기가 피로해지기 전까지 수면 사이에 깨어 있을 수 있는 시간을 말합니다. 성장하면서 점점 길어지는데, 신생아는 약 60분, 12개월 아기는 약 3시간 정도입니다. 연령에 맞는 웨이크 윈도우를 지키면 아기가 더 쉽게 잠들고 깊이 잘 수 있습니다. 지나치게 피로해진 아기는 오히려 잠들기 어렵고 짧게 자는 경우가 많습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'My baby refuses to nap — what should I do?',
+          ko: '아기가 낮잠을 자려고 하지 않아요. 어떻게 해야 하나요?',
+        },
+        answer: {
+          en: 'Occasional nap refusals are normal, especially during developmental leaps, illness, or when the schedule needs adjusting for a growth stage. Try these general tips: put baby down drowsy but awake; keep the sleep environment dark and quiet; use a consistent pre-nap routine (e.g. feed, change, a short song). If nap refusals are persistent or accompanied by signs of discomfort, it is worth discussing with a paediatrician, as ear infections or other health issues can affect sleep.',
+          ko: '발달 급성장기, 아픔, 또는 성장 단계에 맞춰 일정을 조정해야 할 때 낮잠 거부는 간헐적으로 나타날 수 있습니다. 일반적인 팁: 졸릴 때 눕히되 완전히 잠들기 전에 내려놓기, 어둡고 조용한 수면 환경 유지, 일관된 낮잠 전 루틴(수유 → 기저귀 교체 → 짧은 자장가 등)을 만들어 보세요. 낮잠 거부가 지속되거나 불편함의 징후가 동반된다면 중이염 등 건강 문제일 수 있으므로 소아과 상담을 권장합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'When should I adjust the schedule as my baby gets older?',
+          ko: '개월수가 바뀌면 언제 스케줄을 조정해야 하나요?',
+        },
+        answer: {
+          en: 'The main nap transition milestones to watch for are: around 3–4 months (5 naps → 4), around 6 months (4 → 3), around 9 months (3 → 2), and around 15–18 months (2 → 1). Signs that a transition is due include consistently fighting naps, taking much longer to fall asleep, or waking very early in the morning. Transitions often take 1–4 weeks to settle. During that time, an "emergency nap" capped at 20–30 minutes can bridge a bad day without disrupting the new schedule.',
+          ko: '주요 낮잠 전환 시기는 다음과 같습니다: 생후 3–4개월(5회→4회), 6개월(4회→3회), 9개월(3회→2회), 15–18개월(2회→1회). 전환 신호로는 지속적인 낮잠 거부, 잠드는 데 오래 걸림, 이른 새벽 기상 등이 있습니다. 전환 기간은 보통 1–4주이며, 힘든 날에는 20–30분짜리 "긴급 낮잠"으로 하루를 버티되 새 일정을 유지하는 것이 도움이 됩니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['growth-percentile'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/sleep-schedule.png',
+    status: 'testing',
+    disclaimerType: 'medical',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-04',
+    popular: false,
+  },
+  {
     id: 'flight-delay-compensation',
     slug: 'flight-delay-compensation',
     category: 'travel',
