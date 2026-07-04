@@ -5,8 +5,15 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 07:31:21 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2026 11:39:09 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Baby Growth Percentile Calculator</title>
+      <link>https://bitkittools.com/baby/growth-percentile</link>
+      <description>Calculate your baby&apos;s weight and height/length percentiles (0–60 months) using WHO or CDC growth standards. Enter sex, age, weight, and height to instantly see where your child falls on the growth chart. For informational reference only — always consult a paediatrician for clinical assessment.</description>
+      <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/baby/growth-percentile</guid>
+    </item>
     <item>
       <title>JSON Formatter &amp; Validator</title>
       <link>https://bitkittools.com/developer/json-formatter</link>
