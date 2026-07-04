@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Jul 2026 11:39:09 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2026 11:47:48 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Baby Growth Percentile Calculator</title>
@@ -13,6 +13,13 @@
       <description>Calculate your baby&apos;s weight and height/length percentiles (0–60 months) using WHO or CDC growth standards. Enter sex, age, weight, and height to instantly see where your child falls on the growth chart. For informational reference only — always consult a paediatrician for clinical assessment.</description>
       <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/baby/growth-percentile</guid>
+    </item>
+    <item>
+      <title>Baby Sleep Schedule Calculator</title>
+      <link>https://bitkittools.com/baby/sleep-schedule</link>
+      <description>Enter your baby&apos;s age and today&apos;s wake-up time to get a recommended nap schedule and bedtime — based on age-appropriate wake windows and nap durations. For general reference only; always consult a paediatrician for individual sleep concerns.</description>
+      <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/baby/sleep-schedule</guid>
     </item>
     <item>
       <title>JSON Formatter &amp; Validator</title>
