@@ -16,7 +16,6 @@ export default function JsonFormatterTool() {
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<Mode>('format')
   const [indent, setIndent] = useState<Indent>(2)
-  const [preserveComments, setPreserveComments] = useState(false)
   const [result, setResult] = useState<Result>({ type: 'idle' })
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
@@ -44,8 +43,7 @@ export default function JsonFormatterTool() {
   const lineCount = input === '' ? 0 : input.split('\n').length
 
   function run() {
-    const res =
-      mode === 'format' ? formatJson(input, indent, { preserveComments }) : minifyJson(input)
+    const res = mode === 'format' ? formatJson(input, indent) : minifyJson(input)
     if (res.success) {
       setResult({ type: 'success', output: res.output })
     } else {
@@ -125,21 +123,6 @@ export default function JsonFormatterTool() {
               ))}
             </div>
           </div>
-        )}
-
-        {/* Preserve comments toggle — format mode only; a minified single
-            line can't contain a // or -- or # comment without swallowing
-            the rest of that line, so this option doesn't apply to minify. */}
-        {mode === 'format' && (
-          <label className="flex items-center gap-2 text-sm text-neutral-500 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={preserveComments}
-              onChange={(e) => setPreserveComments(e.target.checked)}
-              className="accent-white"
-            />
-            Keep comments (//, --, #)
-          </label>
         )}
 
         {/* Run button */}
