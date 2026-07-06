@@ -1,5 +1,5 @@
 type FormatSuccess = { success: true; output: string }
-type FormatError = { success: false; error: string; line?: number }
+type FormatError = { success: false; error: string; line?: number; lineContent?: string }
 type FormatResult = FormatSuccess | FormatError
 
 /**
@@ -44,8 +44,78 @@ function humanizeError(raw: string): string {
 }
 
 /**
+ * Strips // and -- line comments so JSONC-ish input can be parsed as JSON.
+ * Comment markers found inside double-quoted strings are left untouched
+ * (e.g. a "https://..." URL or a "a -- b" string value must survive intact).
+ */
+function stripJsonComments(input: string): string {
+  let result = ''
+  let inString = false
+  let i = 0
+
+  while (i < input.length) {
+    const ch = input[i]
+
+    if (inString) {
+      result += ch
+      if (ch === '\\' && i + 1 < input.length) {
+        result += input[i + 1]
+        i += 2
+        continue
+      }
+      if (ch === '"') inString = false
+      i++
+      continue
+    }
+
+    if (ch === '"') {
+      inString = true
+      result += ch
+      i++
+      continue
+    }
+
+    if ((ch === '/' && input[i + 1] === '/') || (ch === '-' && input[i + 1] === '-')) {
+      const newlineIdx = input.indexOf('\n', i)
+      i = newlineIdx === -1 ? input.length : newlineIdx
+      continue
+    }
+
+    result += ch
+    i++
+  }
+
+  return result
+}
+
+type ParseOutcome = { success: true; value: unknown } | FormatError
+
+/**
+ * Parses a trimmed JSON(C-ish) string, tolerating // and -- line comments.
+ * On failure, resolves both the line number and the original source line
+ * text (comments included) so the caller can show the user exactly what to fix.
+ */
+function parseTolerant(trimmed: string): ParseOutcome {
+  const stripped = stripJsonComments(trimmed)
+
+  try {
+    const value: unknown = JSON.parse(stripped)
+    return { success: true, value }
+  } catch (err) {
+    const raw = err instanceof Error ? err.message : String(err)
+    const line = extractLineNumber(raw, stripped)
+    return {
+      success: false,
+      error: humanizeError(raw),
+      line,
+      lineContent: line !== undefined ? trimmed.split('\n')[line - 1] : undefined,
+    }
+  }
+}
+
+/**
  * Formats (pretty-prints) a JSON string with the specified indentation.
- * Returns a user-friendly error message and optional line number on failure.
+ * Returns a user-friendly error message and optional line number/content on failure.
  */
 export function formatJson(input: string, indent: 2 | 4): FormatResult {
   const trimmed = input.trim()
@@ -53,22 +123,14 @@ export function formatJson(input: string, indent: 2 | 4): FormatResult {
     return { success: false, error: 'Input is empty. Paste some JSON to format.' }
   }
 
-  try {
-    const parsed: unknown = JSON.parse(trimmed)
-    return { success: true, output: JSON.stringify(parsed, null, indent) }
-  } catch (err) {
-    const raw = err instanceof Error ? err.message : String(err)
-    return {
-      success: false,
-      error: humanizeError(raw),
-      line: extractLineNumber(raw, trimmed),
-    }
-  }
+  const outcome = parseTolerant(trimmed)
+  if (!outcome.success) return outcome
+  return { success: true, output: JSON.stringify(outcome.value, null, indent) }
 }
 
 /**
  * Minifies (compresses) a JSON string by removing all unnecessary whitespace.
- * Returns a user-friendly error message on failure.
+ * Returns a user-friendly error message and optional line number/content on failure.
  */
 export function minifyJson(input: string): FormatResult {
   const trimmed = input.trim()
@@ -76,15 +138,7 @@ export function minifyJson(input: string): FormatResult {
     return { success: false, error: 'Input is empty. Paste some JSON to minify.' }
   }
 
-  try {
-    const parsed: unknown = JSON.parse(trimmed)
-    return { success: true, output: JSON.stringify(parsed) }
-  } catch (err) {
-    const raw = err instanceof Error ? err.message : String(err)
-    return {
-      success: false,
-      error: humanizeError(raw),
-      line: extractLineNumber(raw, trimmed),
-    }
-  }
+  const outcome = parseTolerant(trimmed)
+  if (!outcome.success) return outcome
+  return { success: true, output: JSON.stringify(outcome.value) }
 }

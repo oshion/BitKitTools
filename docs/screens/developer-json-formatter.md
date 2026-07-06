@@ -7,7 +7,7 @@
 모든 툴 페이지는 Title → Tool → Description → How To Use → Example → FAQ → [Disclaimer] → Related Tools 순서를 따른다 (profile v2 Section 9). 이 화면은 `disclaimerType: general`이라 Disclaimer 섹션은 가벼운 일반 면책 수준으로 노출한다.
 
 ## 목적
-개발자가 JSON 텍스트를 붙여넣으면 즉시 정렬(pretty-print)/압축하고, 문법 오류가 있으면 위치를 짚어준다.
+개발자가 JSON 텍스트를 붙여넣으면 즉시 정렬(pretty-print)/압축하고, 문법 오류가 있으면 위치와 실제 원문 줄을 짚어준다. `//`, `--` 줄 주석이 섞여 있어도(문자열 값 내부는 제외) 관용적으로 파싱한다.
 
 ## 입력
 - 텍스트 영역 (JSON 원문 붙여넣기)
@@ -15,13 +15,15 @@
 - Format / Minify 모드 전환
 
 ## 출력/로직 (`lib/utils/jsonFormatter.ts`)
-- `formatJson(input: string, indent: 2 | 4): { success: true; output: string } | { success: false; error: string; line?: number }`
-- `minifyJson(input: string): { success: true; output: string } | { success: false; error: string }`
-- `JSON.parse` 실패 시 에러 메시지와 가능하면 줄 번호를 표시
+- `formatJson(input: string, indent: 2 | 4): { success: true; output: string } | { success: false; error: string; line?: number; lineContent?: string }`
+- `minifyJson(input: string): { success: true; output: string } | { success: false; error: string; line?: number; lineContent?: string }`
+- 파싱 전 `//`, `--` 줄 주석을 제거(문자열 리터럴 내부는 보존)한 뒤 `JSON.parse` 수행
+- `JSON.parse` 실패 시 에러 메시지, 가능하면 줄 번호, 그리고 해당 줄의 원문(`lineContent`, 주석 포함 원본 기준)을 표시
 
 ## UI 구성
 - 좌: 입력 텍스트 영역 / 우: 결과 (모바일은 위/아래 스택)
-- 에러 발생 시 결과 영역에 붉은색(`#ef4444`) 에러 카드로 대체
+- 에러 발생 시 결과 영역에 붉은색(`#ef4444`) 에러 카드로 대체, 메시지 아래에 실제 원문 줄(`lineContent`) 노출
+- 결과 영역(성공 시) 클릭 시 바로 복사 — 상단 "복사" 버튼과 동일하게 "Copied!" 피드백 공유
 - "복사"/"다운로드(.json)" 버튼
 - Format ↔ Minify 토글
 

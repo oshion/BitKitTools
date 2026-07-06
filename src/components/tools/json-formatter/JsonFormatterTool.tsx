@@ -10,7 +10,7 @@ type Indent = 2 | 4
 type Result =
   | { type: 'idle' }
   | { type: 'success'; output: string }
-  | { type: 'error'; message: string; line?: number }
+  | { type: 'error'; message: string; line?: number; lineContent?: string }
 
 export default function JsonFormatterTool() {
   const [input, setInput] = useState('')
@@ -47,7 +47,7 @@ export default function JsonFormatterTool() {
     if (res.success) {
       setResult({ type: 'success', output: res.output })
     } else {
-      setResult({ type: 'error', message: res.error, line: res.line })
+      setResult({ type: 'error', message: res.error, line: res.line, lineContent: res.lineContent })
     }
     sendEvent('calculate')
   }
@@ -192,11 +192,20 @@ export default function JsonFormatterTool() {
                   {result.line !== undefined ? ` — line ${result.line}` : ''}
                 </p>
                 <p className="text-sm text-red-300/80">{result.message}</p>
+                {result.lineContent !== undefined && (
+                  <pre className="mt-2 text-sm text-red-300/80 font-mono whitespace-pre-wrap break-all">
+                    {result.lineContent}
+                  </pre>
+                )}
               </div>
             )}
 
             {result.type === 'success' && (
-              <pre className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono leading-relaxed overflow-auto whitespace-pre-wrap break-all">
+              <pre
+                onClick={handleCopy}
+                title="Click to copy"
+                className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono leading-relaxed overflow-auto whitespace-pre-wrap break-all cursor-pointer hover:border-neutral-600 transition-colors"
+              >
                 {result.output}
               </pre>
             )}

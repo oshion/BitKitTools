@@ -72,6 +72,11 @@
 
 16. **버그 리포트 대응** — 사용자가 실제 에러 로그(브라우저 콘솔, 터미널, 빌드 출력 원문)를 붙여넣으면: (1) 원인이 명확하고 간단히 고칠 수 있으면 `/harness` step 설계 없이 바로 수정하고 `npm run lint && npm test && npm run build`로 검증한다. (2) 범위가 크거나 설계 논의가 필요해 지금 당장 고치지 않기로 하면, 반드시 `docs/tech-debt-tracker.md`의 "활성 부채"에 ID/영역/내용/심각도/발견일을 기록한다 — 대화로만 남기지 않는다.
 
+17. **기존 기능 수정 시 경로 판단** — 이미 완성된 툴/화면을 고쳐달라는 요청을 받으면 범위에 따라 둘 중 하나를 택한다:
+    - **자잘한 수정**(문구, 로직 한두 줄, UI 디테일 등 독립된 AC가 필요 없는 수준) → harness 거치지 않고 지금 세션에서 바로 논의 → 필요시 `docs/screens/{화면명}.md` 갱신 → TDD(테스트 먼저, rule 5) → Edit → `npm run lint && npm test && npm run build` 검증 → 커밋.
+    - **스펙이 실질적으로 바뀌는 확장**(새 입력/출력, 새 disclaimer 판단, 별도 AC로 검증할 만한 작업 단위) → `docs/screens/{화면명}.md`를 먼저 갱신 → `/harness`로 새 step 설계(기존 step을 pending으로 되돌리지 않고, 해당 phase에 새 step을 추가하거나 신규 phase 생성) → `execute.py`로 실행.
+    - 기존 step을 `pending`으로 되돌려 재실행하는 것은 **실패 복구 전용**이다 (step 파일에 원래 지시문이 그대로 남아있어 새 요구사항이 반영되지 않는다). 완성된 기능의 변경 요청에는 사용하지 않는다.
+
 > 아키텍처 상세 규칙 → [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 > 기술 선택 이유 → [ADR.md](docs/ADR.md)
 > 비즈니스/법적/SEO 요건 원본 → [BitKitTools-project-profile-v2.md](BitKitTools-project-profile-v2.md)
