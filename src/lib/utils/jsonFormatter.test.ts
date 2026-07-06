@@ -100,18 +100,28 @@ describe('formatJson', () => {
       }
     })
 
-    it('includes the offending source line content alongside the line number', () => {
+    it('includes a context window around the exact error position, not the whole line', () => {
       const input = '{\n  "totalBills": 0,\n  "grossSales": 0\n  "netSales": 0\n}'
       const result = formatJson(input, 2)
       expect(result.success).toBe(false)
       if (!result.success) {
         expect(result.line).toBe(4)
-        expect(result.lineContent).toBe('  "netSales": 0')
+        expect(result.errorContext).toBe('"grossSales": 0 "netSales": 0 }')
+      }
+    })
+
+    it('captures both sides of a broken junction (e.g. missing comma/quote glued across lines)', () => {
+      const input = '{"salesDate": "","storeCode": ""' + '"totalBills": 0}'
+      const result = formatJson(input, 2)
+      expect(result.success).toBe(false)
+      if (!result.success) {
+        expect(result.errorContext).toContain('storeCode')
+        expect(result.errorContext).toContain('totalBills')
       }
     })
   })
 
-  describe('comment tolerance (// and --)', () => {
+  describe('comment tolerance (//, --, #)', () => {
     it('strips // line comments before parsing', () => {
       const input = '{\n  "a": 1, // note\n  "b": 2\n}'
       const result = formatJson(input, 2)
@@ -149,6 +159,88 @@ describe('formatJson', () => {
     it('handles a trailing comment with no newline at end of input', () => {
       const result = formatJson('{"a": 1} // trailing', 2)
       expect(result.success).toBe(true)
+    })
+
+    it('strips # line comments before parsing', () => {
+      const input = '{\n  "a": 1, # note\n  "b": 2\n}'
+      const result = formatJson(input, 2)
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe('{\n  "a": 1,\n  "b": 2\n}')
+      }
+    })
+
+    it('does not treat # inside a string value as a comment', () => {
+      const result = formatJson('{"color": "#fff"}', 2)
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toContain('#fff')
+      }
+    })
+  })
+
+  describe('preserveComments option (format mode only)', () => {
+    it('defaults to stripping comments when the option is omitted', () => {
+      const input = '{\n  "a": 1, // note\n  "b": 2\n}'
+      const result = formatJson(input, 2)
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe('{\n  "a": 1,\n  "b": 2\n}')
+      }
+    })
+
+    it('keeps a trailing // comment attached to its line when enabled', () => {
+      const input = '{"salesDate": "",  // 테스트\n"storeCode": "","totalBills": 0}'
+      const result = formatJson(input, 2, { preserveComments: true })
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe(
+          '{\n  "salesDate": "",  // 테스트\n  "storeCode": "",\n  "totalBills": 0\n}'
+        )
+      }
+    })
+
+    it('keeps a trailing -- comment attached to its line when enabled', () => {
+      const input = '{"a": 1, -- note\n"b": 2}'
+      const result = formatJson(input, 2, { preserveComments: true })
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe('{\n  "a": 1,  -- note\n  "b": 2\n}')
+      }
+    })
+
+    it('keeps a trailing # comment attached to its line when enabled', () => {
+      const input = '{"a": 1, # note\n"b": 2}'
+      const result = formatJson(input, 2, { preserveComments: true })
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe('{\n  "a": 1,  # note\n  "b": 2\n}')
+      }
+    })
+
+    it('keeps a standalone comment on its own line when enabled', () => {
+      const input = '{\n// header\n"a": 1\n}'
+      const result = formatJson(input, 2, { preserveComments: true })
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe('{\n  // header\n  "a": 1\n}')
+      }
+    })
+
+    it('does not treat // inside a string value as a comment even when preserving comments', () => {
+      const result = formatJson('{"url": "https://example.com"}', 2, { preserveComments: true })
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toContain('https://example.com')
+      }
+    })
+
+    it('still formats an empty object correctly with the option enabled', () => {
+      const result = formatJson('{}', 2, { preserveComments: true })
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.output).toBe('{}')
+      }
     })
   })
 })

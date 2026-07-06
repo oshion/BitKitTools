@@ -10,12 +10,13 @@ type Indent = 2 | 4
 type Result =
   | { type: 'idle' }
   | { type: 'success'; output: string }
-  | { type: 'error'; message: string; line?: number; lineContent?: string }
+  | { type: 'error'; message: string; line?: number; errorContext?: string }
 
 export default function JsonFormatterTool() {
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<Mode>('format')
   const [indent, setIndent] = useState<Indent>(2)
+  const [preserveComments, setPreserveComments] = useState(false)
   const [result, setResult] = useState<Result>({ type: 'idle' })
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
@@ -43,11 +44,12 @@ export default function JsonFormatterTool() {
   const lineCount = input === '' ? 0 : input.split('\n').length
 
   function run() {
-    const res = mode === 'format' ? formatJson(input, indent) : minifyJson(input)
+    const res =
+      mode === 'format' ? formatJson(input, indent, { preserveComments }) : minifyJson(input)
     if (res.success) {
       setResult({ type: 'success', output: res.output })
     } else {
-      setResult({ type: 'error', message: res.error, line: res.line, lineContent: res.lineContent })
+      setResult({ type: 'error', message: res.error, line: res.line, errorContext: res.errorContext })
     }
     sendEvent('calculate')
   }
@@ -125,6 +127,21 @@ export default function JsonFormatterTool() {
           </div>
         )}
 
+        {/* Preserve comments toggle — format mode only; a minified single
+            line can't contain a // or -- or # comment without swallowing
+            the rest of that line, so this option doesn't apply to minify. */}
+        {mode === 'format' && (
+          <label className="flex items-center gap-2 text-sm text-neutral-500 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={preserveComments}
+              onChange={(e) => setPreserveComments(e.target.checked)}
+              className="accent-white"
+            />
+            Keep comments (//, --, #)
+          </label>
+        )}
+
         {/* Run button */}
         <button
           onClick={run}
@@ -192,9 +209,9 @@ export default function JsonFormatterTool() {
                   {result.line !== undefined ? ` — line ${result.line}` : ''}
                 </p>
                 <p className="text-sm text-red-300/80">{result.message}</p>
-                {result.lineContent !== undefined && (
+                {result.errorContext !== undefined && (
                   <pre className="mt-2 text-sm text-red-300/80 font-mono whitespace-pre-wrap break-all">
-                    {result.lineContent}
+                    {result.errorContext}
                   </pre>
                 )}
               </div>
