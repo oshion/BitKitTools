@@ -3,38 +3,36 @@
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
 
-type CookieYesConsentDetail = {
-  accepted?: string[]
-  rejected?: string[]
-}
-
-// Subscribes to CookieYes's `cookieyes_consent_update` event, dispatched on `document`
-// (not `window`) per https://www.cookieyes.com/documentation/events-on-cookie-banner-interactions/.
-// GA4 and Clarity scripts are inserted into the DOM ONLY after analytics consent is granted —
-// never before. This satisfies GDPR/Consent Mode v2 requirements for EEA/UK traffic.
+// Subscribes to Google's Funding Choices consent-mode callback queue (the CMP
+// configured in AdSense "Privacy & messaging"). GA4 and Clarity scripts are
+// inserted into the DOM ONLY after analytics consent is granted — never before.
+// This satisfies GDPR/Consent Mode v2 requirements for EEA/UK traffic.
+// https://developers.google.com/funding-choices/fc-api-docs
 export default function AnalyticsScripts() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
   const [analyticsConsented, setAnalyticsConsented] = useState(false)
 
   useEffect(() => {
-    function handleConsentUpdate(event: Event) {
-      const detail = (event as CustomEvent<CookieYesConsentDetail>).detail
-      if (detail?.accepted?.includes('analytics')) {
-        setAnalyticsConsented(true)
-        // Update Consent Mode v2 — GA4 will begin sending data from this point
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-          window.gtag('consent', 'update', {
-            analytics_storage: 'granted',
-          })
-        }
-      }
-    }
+    const fc = window.googlefc ?? { callbackQueue: [] }
+    fc.callbackQueue = fc.callbackQueue ?? []
+    window.googlefc = fc
 
-    document.addEventListener('cookieyes_consent_update', handleConsentUpdate)
-    return () => {
-      document.removeEventListener('cookieyes_consent_update', handleConsentUpdate)
-    }
+    fc.callbackQueue.push({
+      CONSENT_MODE_DATA_READY: () => {
+        const consentStatus = window.googlefc?.getGoogleConsentModeValues?.()
+        const granted = window.googlefc?.ConsentModePurposeStatusEnum?.GRANTED
+        if (consentStatus?.analyticsStoragePurposeConsentStatus === granted) {
+          setAnalyticsConsented(true)
+          // Update Consent Mode v2 — GA4 will begin sending data from this point
+          if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+              analytics_storage: 'granted',
+            })
+          }
+        }
+      },
+    })
   }, [])
 
   if (!analyticsConsented) return null

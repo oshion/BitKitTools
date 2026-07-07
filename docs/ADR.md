@@ -89,10 +89,11 @@
 
 ---
 
-### ADR-013: CMP(쿠키 동의)는 무료 서드파티 스크립트로 구현
+### ADR-013: CMP(쿠키 동의)는 무료 서드파티 스크립트로 구현 (ADR-015로 대체됨)
 **결정**: 자체 구현 대신 무료 서드파티 CMP(예: CookieYes 무료 티어)를 `<script>` 삽입 방식으로 연동해 Google Consent Mode v2를 적용한다.
 **이유**: GDPR 등 법규가 바뀔 때 벤더가 업데이트를 배포하므로 직접 유지보수 부담이 없다. Static Export 환경에서는 서버 사이드 연동이 필요 없는 스크립트 삽입형 벤더가 구조적으로 잘 맞는다.
 **트레이드오프**: 서드파티 스크립트가 추가되어 초기 로드 성능(Core Web Vitals)에 소폭 영향을 줄 수 있다 — Lazy Load 및 동의 배너 렌더링 우선순위 조정으로 완화한다.
+**⚠️ 대체됨**: 배포 직후 Google AdSense 가입 과정에서 ADR-015로 CookieYes를 걷어내고 Google 자체 CMP로 전환했다. 아래 ADR-015 참고.
 
 ---
 
@@ -100,3 +101,10 @@
 **결정**: BAC Calculator는 표준 `DisclaimerBanner` 외에 상시 노출 경고 배너, "안전/운전 가능" 암시 표현 금지 등을 `components/tools/bac-calculator/` 내부에 고정 로직으로 구현하고, `tools-config.ts`의 `disclaimerType` 값과 무관하게 항상 적용한다.
 **이유**: 음주운전 판단으로 오인될 경우 일반 medical disclaimer 수준을 넘어서는 실질적 법적/안전 리스크가 있다(하네스 재세팅 논의에서 확정, profile v2 Section 13-5). 설정 값 하나로 끌 수 있으면 실수로 비활성화될 위험이 있어 의도적으로 컴포넌트에 고정한다.
 **트레이드오프**: 다른 툴과 달리 "config만 바꾸면 끝"이라는 컴포넌트 격리 원칙(ADR-011)의 예외가 된다 — YMYL 안전 문제이므로 일관성보다 안전을 우선한 의도적 예외.
+
+---
+
+### ADR-015: CMP을 CookieYes에서 Google 자체 CMP(AdSense Privacy & messaging)로 전환
+**결정**: ADR-013에서 채택한 CookieYes를 걷어내고, AdSense "Privacy & messaging"에서 제공하는 Google 자체 CMP(2가지 선택: 동의/옵션 관리)로 전환한다. `ConsentManager.tsx`는 CookieYes 스크립트 대신 `fundingchoicesmessages.google.com` 메시지 스크립트를 로드하고, `AnalyticsScripts.tsx`는 CookieYes의 `cookieyes_consent_update` 커스텀 이벤트 대신 Google의 `window.googlefc.callbackQueue`(`CONSENT_MODE_DATA_READY` → `getGoogleConsentModeValues()`)로 동의 상태를 구독한다.
+**이유**: CookieYes 무료 티어는 월 5,000 pageviews 한도가 있어 트래픽이 늘면 유료 전환이 필요한데, Google 자체 CMP는 AdSense 계정에 이미 연결된 광고 태그를 배포 채널로 재사용하므로 별도 계정/한도 없이 완전 무료다. AdSense 가입 직후 이 트레이드오프를 인지하고 바로 전환을 결정했다.
+**트레이드오프**: Google 자체 CMP는 AdSense 계정에 종속적이라 AdSense 외 다른 광고 네트워크를 병행할 경우 유연성이 떨어진다. 또한 CookieYes처럼 배너 문구/레이아웃을 세밀하게 커스터마이징하는 자유도가 낮다 — 이 프로젝트는 AdSense 단일 수익원이라 이 제약이 당장 문제되지 않는다고 판단했다. `AdSlot.tsx`의 광고 스크립트는 뷰포트 근접 시에만 지연 로딩되므로, 동의 메시지 스크립트는 `AdSlot.tsx`에 얹지 않고 `ConsentManager.tsx`에서 페이지 로드 시 즉시(eager) 로드하도록 별도 배치했다 — 동의는 광고 노출 여부와 무관하게 최대한 빨리 받아야 하기 때문.

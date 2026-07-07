@@ -4,7 +4,7 @@
 
 > **v2.1 개정 사항** (하네스 재세팅 논의 중 확정된 결정 사항 반영)
 > 1. **URL locale 정책 확정**: v2 초안에서 Section 3(prefix 있음)과 Section 12(prefix 없음)가 불일치했음. Static Export는 middleware 기반 자동 언어 리다이렉트가 불가능하므로, **"as-needed" 방식**(기본 언어 EN은 prefix 없음, KO만 `/ko/` prefix)으로 통일. Section 3 URL 예시를 이에 맞춰 수정함.
-> 2. **CMP(쿠키 동의) 구현 방식 확정**: 무료 서드파티 CMP 스크립트(예: CookieYes 무료 티어)로 Google Consent Mode v2 연동 (Section 6-3).
+> 2. **CMP(쿠키 동의) 구현 방식 확정**: 무료 서드파티 CMP 스크립트(예: CookieYes 무료 티어)로 Google Consent Mode v2 연동 (Section 6-3). → *배포 후 AdSense 가입 과정에서 Google 자체 CMP로 전환(`docs/ADR.md` ADR-015), 아래 Section 6-3도 갱신됨.*
 > 3. **BAC Calculator 안전장치 강화**: 음주운전 판단으로 오인될 법적 리스크가 커서 일반 medical disclaimer보다 강한 UX 규칙을 추가함 (Section 13-5).
 
 ---
@@ -219,7 +219,7 @@ Tool 추가 시 기존 Tool과 타겟 키워드가 중복되지 않는지 사전
 
 * EEA/UK 트래픭 대상 Google Consent Mode v2 적용 필수
 * 미적용 시 EU 트래픽 광고가 비개인화로 전환되어 RPM 급락 및 법적 리스크 발생 가능
-* **구현 방식**: 무료 서드파티 CMP 스크립트(예: CookieYes 무료 티어)를 사용해 Google 인증된 방식으로 Consent Mode v2를 연동한다. 자체 구현 대신 서드파티를 쓰는 이유는 GDPR 등 법규 변경 시 벤더가 업데이트를 배포하므로 직접 유지보수 부담이 없기 때문. Static Export 환경이므로 `<script>` 태그 삽입만으로 동작하는 벤더를 선택한다 (서버 사이드 연동 불필요한 것).
+* **구현 방식**: AdSense "Privacy & messaging"에서 제공하는 Google 자체 CMP(동의/옵션 관리 2가지 선택 메시지)로 Consent Mode v2를 연동한다(`docs/ADR.md` ADR-015). 처음엔 무료 서드파티 CMP(CookieYes)로 구현했으나, AdSense 계정에 이미 연결된 광고 태그를 그대로 배포 채널로 재사용할 수 있어 별도 계정/pageview 한도 없이 완전 무료인 Google 자체 CMP로 전환했다.
 
 ## 6-4. 지역별 콘텐츠 제한 리스크
 

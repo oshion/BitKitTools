@@ -68,7 +68,7 @@ export default async function PrivacyPolicyPage({ params }: Props) {
             <li><strong className="text-neutral-200">Google Analytics 4 (GA4):</strong> 방문자 통계 분석 — Google LLC</li>
             <li><strong className="text-neutral-200">Google Search Console:</strong> 검색 성능 모니터링 — Google LLC</li>
             <li><strong className="text-neutral-200">Microsoft Clarity:</strong> 사용자 행동 분석(히트맵, 세션 녹화) — Microsoft Corporation</li>
-            <li><strong className="text-neutral-200">CookieYes(무료 티어):</strong> 쿠키 동의 관리(CMP) 및 Google Consent Mode v2 연동</li>
+            <li><strong className="text-neutral-200">Google 동의 관리 플랫폼(CMP):</strong> 쿠키 동의 관리 및 Google Consent Mode v2 연동 — Google LLC</li>
           </ul>
         </section>
 
@@ -126,7 +126,7 @@ export default async function PrivacyPolicyPage({ params }: Props) {
           <li><strong className="text-neutral-200">Google Analytics 4 (GA4):</strong> Visitor statistics and analytics — Google LLC</li>
           <li><strong className="text-neutral-200">Google Search Console:</strong> Search performance monitoring — Google LLC</li>
           <li><strong className="text-neutral-200">Microsoft Clarity:</strong> User behavior analysis (heatmaps, session recordings) — Microsoft Corporation</li>
-          <li><strong className="text-neutral-200">CookieYes (free tier):</strong> Cookie consent management (CMP) and Google Consent Mode v2 integration</li>
+          <li><strong className="text-neutral-200">Google Consent Management Platform (CMP):</strong> Cookie consent management and Google Consent Mode v2 integration — Google LLC</li>
         </ul>
       </section>
 

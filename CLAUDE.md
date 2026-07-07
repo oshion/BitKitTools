@@ -11,7 +11,7 @@
 | 문서 | 내용 |
 |------|------|
 | [BitKitTools-project-profile-v2.md](BitKitTools-project-profile-v2.md) | 비즈니스 요건 원본 (SEO/법적/광고 전략 포함) |
-| [SERVICE-SETUP.md](SERVICE-SETUP.md) | 외부 서비스(GA4/GSC/Clarity/CookieYes/AdSense/Route53) 설정 현황 — 왜 등록했는지, 모니터링은 어디서 하는지 |
+| [SERVICE-SETUP.md](SERVICE-SETUP.md) | 외부 서비스(GA4/GSC/Clarity/Google CMP/AdSense/Route53) 설정 현황 — 왜 등록했는지, 모니터링은 어디서 하는지 |
 | [docs/USAGE.md](docs/USAGE.md) | 템플릿 사용법 — 프로젝트 시작부터 실행까지 |
 | [docs/PRD.md](docs/PRD.md) | 전체 화면 목록 및 MVP 범위 |
 | [docs/screens/](docs/screens/) | 화면별 상세 스펙 |
@@ -30,7 +30,7 @@
 - **국제화**: next-intl, **as-needed locale prefix** (EN 기본=prefix 없음, KO만 `/ko/...`)
 - **상태관리**: Zustand — **사이트 전역 UI 상태(다크모드 등)에 한정.** 툴 간 데이터 공유 금지
 - **로컬 저장소**: LocalStorage (최근 사용 Tool, 즐겨찾기, 마지막 입력값 — 반드시 개인정보처리방침에 고지)
-- **CMP(쿠키 동의)**: 무료 서드파티 CMP 스크립트(예: CookieYes 무료 티어) + Google Consent Mode v2
+- **CMP(쿠키 동의)**: AdSense "Privacy & messaging"의 Google 자체 CMP + Google Consent Mode v2 (`docs/ADR.md` ADR-015 — 서드파티 CookieYes에서 전환)
 - **테스트**: Jest + React Testing Library
 - **패키지 매니저**: npm
 - **배포**: AWS EC2 + Nginx (정적 파일 서빙)
