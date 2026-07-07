@@ -8,7 +8,8 @@ type CookieYesConsentDetail = {
   rejected?: string[]
 }
 
-// Subscribes to the CookieYes consent-update event.
+// Subscribes to CookieYes's `cookieyes_consent_update` event, dispatched on `document`
+// (not `window`) per https://www.cookieyes.com/documentation/events-on-cookie-banner-interactions/.
 // GA4 and Clarity scripts are inserted into the DOM ONLY after analytics consent is granted —
 // never before. This satisfies GDPR/Consent Mode v2 requirements for EEA/UK traffic.
 export default function AnalyticsScripts() {
@@ -30,9 +31,9 @@ export default function AnalyticsScripts() {
       }
     }
 
-    window.addEventListener('cookieyes-consent-update', handleConsentUpdate)
+    document.addEventListener('cookieyes_consent_update', handleConsentUpdate)
     return () => {
-      window.removeEventListener('cookieyes-consent-update', handleConsentUpdate)
+      document.removeEventListener('cookieyes_consent_update', handleConsentUpdate)
     }
   }, [])
 
