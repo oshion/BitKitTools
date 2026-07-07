@@ -11,6 +11,7 @@
 | 문서 | 내용 |
 |------|------|
 | [BitKitTools-project-profile-v2.md](BitKitTools-project-profile-v2.md) | 비즈니스 요건 원본 (SEO/법적/광고 전략 포함) |
+| [SERVICE-SETUP.md](SERVICE-SETUP.md) | 외부 서비스(GA4/GSC/Clarity/CookieYes/AdSense/Route53) 설정 현황 — 왜 등록했는지, 모니터링은 어디서 하는지 |
 | [docs/USAGE.md](docs/USAGE.md) | 템플릿 사용법 — 프로젝트 시작부터 실행까지 |
 | [docs/PRD.md](docs/PRD.md) | 전체 화면 목록 및 MVP 범위 |
 | [docs/screens/](docs/screens/) | 화면별 상세 스펙 |
