@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jul 2026 03:05:52 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 03:10:17 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Child Height Predictor</title>
@@ -13,6 +13,13 @@
       <description>Estimate your child&apos;s predicted adult height using the Mid-Parental Height method (Tanner, Goldstein &amp; Whitehouse, 1970). Enter both parents&apos; heights to get an evidence-based prediction with a statistical range. For reference only — consult a paediatrician for clinical assessment.</description>
       <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/baby/height-predictor</guid>
+    </item>
+    <item>
+      <title>Baby Temperament Type Quiz</title>
+      <link>https://bitkittools.com/baby/temperament-quiz</link>
+      <description>Discover your baby&apos;s natural temperament type through 20 fun questions. Based on Thomas &amp; Chess&apos;s landmark temperament research, this quiz identifies which of 16 personality styles best fits your little one — with tailored parenting tips for each type. For entertainment and general reference only.</description>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/baby/temperament-quiz</guid>
     </item>
     <item>
       <title>Baby Growth Percentile Calculator</title>
