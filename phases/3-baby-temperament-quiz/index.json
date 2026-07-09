@@ -1,0 +1,10 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "3-baby-temperament-quiz",
+  "steps": [
+    { "step": 0, "name": "quiz-logic-data", "status": "pending" },
+    { "step": 1, "name": "quiz-component", "status": "pending" },
+    { "step": 2, "name": "tools-config-page", "status": "pending" },
+    { "step": 3, "name": "persona-og-images", "status": "pending" }
+  ]
+}
