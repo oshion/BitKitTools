@@ -35,5 +35,6 @@
       "summary": "결과 공유 랜딩 라우트 32개(16코드×2locale) + 페르소나별 OG 카드 이미지 32개 생성. page.tsx: generateStaticParams로 routing.locales×TEMPERAMENT_PERSONAS 전체 조합, generateMetadata에서 /og/temperament/{code}-{locale}.png 고정경로 참조, 결과 미리보기(이모지+이름+설명+팁)+면책조항+CTA 버튼. opengraph-image.tsx: colorHue 기반 어두운 HSL 배경+장식 원+이모지+이름. postbuild.mjs: out/en/baby/temperament-quiz/result/ 디렉토리를 readdir로 동적 발견 후 EN/KO opengraph-image → out/og/temperament/{code}-{en,ko}.png 복사. 빌드: 110 정적 페이지 생성, 32개 PNG 복사 확인, lint/test(369) 모두 통과."
     }
   ],
-  "created_at": "2026-07-09T11:51:09+0900"
+  "created_at": "2026-07-09T11:51:09+0900",
+  "completed_at": "2026-07-09T12:14:23+0900"
 }
