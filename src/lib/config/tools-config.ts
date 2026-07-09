@@ -491,7 +491,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['sleep-schedule'],
+    relatedToolIds: ['sleep-schedule', 'height-predictor'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -575,7 +575,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['growth-percentile'],
+    relatedToolIds: ['growth-percentile', 'height-predictor'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -588,6 +588,101 @@ export const toolsConfig: ToolConfig[] = [
     disclaimerType: 'medical',
     aiOverviewResistance: 'high',
     addedAt: '2026-07-04',
+    popular: false,
+  },
+  {
+    id: 'height-predictor',
+    slug: 'height-predictor',
+    category: 'baby',
+    title: {
+      en: 'Child Height Predictor',
+      ko: '자녀 키 예측기',
+    },
+    description: {
+      en: "Estimate your child's predicted adult height using the Mid-Parental Height method (Tanner, Goldstein & Whitehouse, 1970). Enter both parents' heights to get an evidence-based prediction with a statistical range. For reference only — consult a paediatrician for clinical assessment.",
+      ko: '중간부모키(Mid-Parental Height) 방법(Tanner, Goldstein & Whitehouse, 1970)을 사용해 자녀의 성인 예상 키를 추정합니다. 부모 두 분의 키를 입력하면 통계적 범위와 함께 근거 기반 예측값을 확인할 수 있습니다. 참고용이며 정확한 평가는 소아과 전문의와 상담하세요.',
+    },
+    keywords: {
+      en: [
+        'child height predictor',
+        'predicted adult height calculator',
+        'mid-parental height',
+        'how tall will my child be',
+        'baby height prediction',
+        'genetics height calculator',
+        'parent height child height',
+        'future height calculator',
+        'height prediction formula',
+        'Tanner height method',
+      ],
+      ko: [
+        '자녀 키 예측',
+        '성인 키 예측 계산기',
+        '중간부모키',
+        '아이 키 예측',
+        '부모 키로 자녀 키 계산',
+        '아이 미래 키',
+        '유전 키 계산기',
+        '예상 키 계산',
+        '키 예측 공식',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'How accurate is this height prediction?',
+          ko: '이 키 예측은 얼마나 정확한가요?',
+        },
+        answer: {
+          en: 'The prediction is based on the Mid-Parental Height method (Tanner, Goldstein & Whitehouse, 1970, Archives of Disease in Childhood). The ±8.5cm range represents the 3rd–97th percentile of expected adult height as defined in the original paper — not a 68% confidence interval. Later research has sometimes quoted ±9cm for girls or ±10cm for boys. The method gives a useful statistical estimate but cannot account for individual factors such as nutrition, sleep, chronic illness, or hormonal differences. It is a starting point, not a diagnosis.',
+          ko: '예측은 중간부모키(Mid-Parental Height) 방법(Tanner, Goldstein & Whitehouse, 1970, Archives of Disease in Childhood)을 기반으로 합니다. ±8.5cm 범위는 원 논문에서 정의한 예상 성인 키의 3~97 백분위 구간을 의미하며, 68% 신뢰구간이 아닙니다. 이후 연구에서는 여아 ±9cm, 남아 ±10cm로 세분화하기도 했습니다. 이 방법은 유용한 통계적 추정치를 제공하지만, 영양, 수면, 만성질환, 호르몬 차이 같은 개인적 요인은 반영하지 못합니다. 진단이 아닌 참고용 출발점입니다.',
+        },
+      },
+      {
+        question: {
+          en: 'How is this different from the Baby Growth Percentile Calculator?',
+          ko: '이 계산기와 아기 성장 백분위 계산기는 무엇이 다른가요?',
+        },
+        answer: {
+          en: "The Child Height Predictor estimates your child's predicted adult height based on both parents' heights using the Mid-Parental Height formula. The Baby Growth Percentile Calculator, on the other hand, shows how your baby's current measurements (weight and height) compare to age-matched peers using WHO or CDC growth reference charts. In short: this tool predicts future adult stature; the other tool evaluates current growth against a population standard.",
+          ko: '자녀 키 예측기는 중간부모키 공식을 사용해 부모 키를 기반으로 자녀의 예상 성인 키를 추정합니다. 반면 아기 성장 백분위 계산기는 WHO 또는 CDC 성장 기준표를 이용해 아기의 현재 체중과 키가 또래와 비교해 어느 위치에 있는지를 보여줍니다. 요약하면, 이 도구는 미래 성인 키를 예측하고, 다른 도구는 현재 성장을 집단 기준과 비교합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'What factors beyond genetics influence how tall a child grows?',
+          ko: '유전 외에 자녀의 키에 영향을 주는 요인은 무엇인가요?',
+        },
+        answer: {
+          en: "Genetics accounts for roughly 60–80% of adult height variation. The remaining 20–40% is influenced by environmental factors including nutrition (adequate protein, calcium, vitamin D, and zinc), sleep quality (growth hormone is released primarily during deep sleep), overall health (unmanaged chronic conditions such as coeliac disease, hypothyroidism, or growth hormone deficiency can impair growth), and psychosocial wellbeing. A paediatrician can evaluate whether a child is growing consistently with their genetic potential.",
+          ko: '유전은 성인 키 변동의 약 60~80%를 차지합니다. 나머지 20~40%는 영양(단백질, 칼슘, 비타민D, 아연 충분 섭취), 수면의 질(성장호르몬은 주로 깊은 수면 중 분비됨), 전반적인 건강 상태(셀리악병, 갑상선 기능저하, 성장호르몬 결핍 등 관리되지 않은 만성질환은 성장을 저해할 수 있음), 심리사회적 안녕 등 환경적 요인의 영향을 받습니다. 소아과 전문의는 아이가 유전적 잠재치에 맞게 성장하고 있는지 평가할 수 있습니다.',
+        },
+      },
+      {
+        question: {
+          en: "Can practising the checklist factors help my child grow taller than the predicted height?",
+          ko: '체크리스트 항목을 실천하면 예측 키보다 더 클 수 있나요?',
+        },
+        answer: {
+          en: 'No. The checklist is a general health reference to help children reach their genetic potential — not a method to exceed it. The Mid-Parental Height formula already estimates the genetic ceiling. Adequate sleep, nutrition, physical activity, and regular check-ups help children approach that ceiling, especially if there are manageable limiting factors, but they do not guarantee growth beyond the predicted range.',
+          ko: '아닙니다. 체크리스트는 아이가 유전적 잠재치에 가깝게 자라도록 돕는 일반적인 건강 정보이며, 그 한계를 초과하는 방법이 아닙니다. 중간부모키 공식은 이미 유전적 상한선을 추정합니다. 충분한 수면, 영양, 신체활동, 정기 검진은 관리 가능한 제한 요인이 있을 때 특히 아이가 그 상한선에 가깝게 도달하도록 돕지만, 예측 범위를 초과하는 성장을 보장하지는 않습니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['growth-percentile', 'sleep-schedule'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/height-predictor.png',
+    status: 'testing',
+    disclaimerType: 'medical',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-09',
     popular: false,
   },
   {
