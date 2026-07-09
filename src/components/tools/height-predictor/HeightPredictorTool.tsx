@@ -224,7 +224,7 @@ export default function HeightPredictorTool() {
 
   function handleSaveToggle(enabled: boolean) {
     setSaveEnabled(enabled)
-    if (enabled) {
+    if (enabled && (savedInputs.motherCm || savedInputs.fatherCm)) {
       setSex(savedInputs.sex)
       setUnit(savedInputs.unit)
       setMotherCm(savedInputs.motherCm)
