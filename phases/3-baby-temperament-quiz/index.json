@@ -7,7 +7,7 @@
       "name": "quiz-logic-data",
       "status": "completed",
       "started_at": "2026-07-09T11:51:09+0900",
-      "completed_at": "2026-07-09T12:30:00+0900",
+      "completed_at": "2026-07-09T12:01:04+0900",
       "summary": "Created 3 files + 2 test files. lib/config/temperamentQuestions.ts: 60 TemperamentQuestion items (3 age bands × 20 questions, 5 per axis), all EN/KO, both-positive tone. lib/config/temperamentPersonas.ts: 16 TemperamentPersona entries covering all 2⁴ combos — active/calm × social/shy × flexible/cautious × expressive/mellow — each with emoji, EN/KO name ('형용사+명사' pattern), 2–3 sentence description, 2–3 goodness-of-fit tips, and unique colorHue (index×22.5). Named examples from spec included: 🧭 Cheerful Adventurer (active-social-flexible-expressive), 🌙 Laid-back Observer (calm-shy-cautious-mellow), 🎨 Shy Artist (calm-shy-flexible-expressive), 🧩 Careful Leader (active-social-cautious-mellow). lib/utils/temperamentQuiz.ts: scoreQuiz() (majority-vote per axis, deterministic tiebreak, ignores invalid poles) + getPersonaCode() (activity-social-adaptability-reactivity format). Tests: 369 total passing (95 new), build clean."
     },
     {
