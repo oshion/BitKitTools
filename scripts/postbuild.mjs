@@ -6,7 +6,7 @@
  * This script copies the EN content to out/ so that / and /en/ both
  * serve English pages, matching the as-needed URL design.
  */
-import { cp, mkdir } from 'node:fs/promises'
+import { cp, mkdir, readdir } from 'node:fs/promises'
 import { join } from 'node:path'
 
 const OUT_DIR = join(process.cwd(), 'out')
@@ -38,6 +38,44 @@ async function main() {
     if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') {
       throw err
     }
+  }
+
+  // Temperament quiz result pages each have a persona-specific opengraph-image.
+  // Discover code slugs dynamically from the built output directory so this script
+  // doesn't need to be updated when personas change in temperamentPersonas.ts.
+  const resultEnDir = join(EN_DIR, 'baby', 'temperament-quiz', 'result')
+  try {
+    const codeSlugs = await readdir(resultEnDir)
+    await mkdir(join(OUT_DIR, 'og', 'temperament'), { recursive: true })
+
+    let copied = 0
+    for (const code of codeSlugs) {
+      const enSrc = join(resultEnDir, code, 'opengraph-image')
+      const koSrc = join(KO_DIR, 'baby', 'temperament-quiz', 'result', code, 'opengraph-image')
+      const enDest = join(OUT_DIR, 'og', 'temperament', `${code}-en.png`)
+      const koDest = join(OUT_DIR, 'og', 'temperament', `${code}-ko.png`)
+
+      try {
+        await cp(enSrc, enDest)
+        copied++
+      } catch (err) {
+        if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') throw err
+      }
+      try {
+        await cp(koSrc, koDest)
+        copied++
+      } catch (err) {
+        if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') throw err
+      }
+    }
+    console.log(
+      `[postbuild] Copied ${copied} temperament persona OG images → out/og/temperament/`
+    )
+  } catch (err) {
+    if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') {
+      throw err
+    }
+    // result directory doesn't exist — build may not include these routes yet
   }
 }
 
