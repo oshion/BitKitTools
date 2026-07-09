@@ -9,6 +9,15 @@
       "dir": "1-mvp-tools",
       "status": "completed",
       "completed_at": "2026-07-04T20:47:55+0900"
+    },
+    {
+      "dir": "2-baby-height-predictor",
+      "status": "completed",
+      "completed_at": "2026-07-09T10:30:00+0900"
+    },
+    {
+      "dir": "3-baby-temperament-quiz",
+      "status": "pending"
     }
   ]
 }

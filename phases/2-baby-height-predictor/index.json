@@ -1,0 +1,14 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "2-baby-height-predictor",
+  "steps": [
+    {
+      "step": 0,
+      "name": "tool-baby-height-predictor",
+      "status": "completed",
+      "started_at": "2026-07-09T10:09:55+0900",
+      "summary": "Child Height Predictor 툴 완성. lib/utils/heightPredictor.ts(calculateMidParentalHeight, cmToFeetInches/feetInchesToCm, Tanner et al. 1970 공식, ±8.5cm 범위) + heightPredictor.test.ts, components/tools/height-predictor/HeightPredictorTool.tsx(카운트업 애니메이션, 성장요인 체크리스트 4항목(정성적, cm 가산 없음, 운동-키 인과관계 명시적 부인), 체크개수 연동 나무 SVG 애니메이션(예측 키와 완전 분리), 공유(window.location.href만 사용, 부모 키 미노출), opt-in LocalStorage), tools-config.ts에 height-predictor 항목 추가(disclaimerType: medical, growth-percentile/sleep-schedule과 relatedToolIds 상호 연결), app/[locale]/baby/height-predictor/page.tsx(openGraph.images 사이트 전역 컨벤션 포함). lint 1건(let→const) 수동 수정. 전체 274개 테스트 통과, lint/build 성공."
+    }
+  ],
+  "created_at": "2026-07-09T10:09:55+0900"
+}
