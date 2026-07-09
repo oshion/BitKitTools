@@ -575,7 +575,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['growth-percentile', 'height-predictor'],
+    relatedToolIds: ['growth-percentile', 'height-predictor', 'temperament-quiz'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -670,7 +670,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['growth-percentile', 'sleep-schedule'],
+    relatedToolIds: ['growth-percentile', 'sleep-schedule', 'temperament-quiz'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -767,6 +767,101 @@ export const toolsConfig: ToolConfig[] = [
     disclaimerType: 'legal',
     aiOverviewResistance: 'high',
     addedAt: '2026-07-03',
+    popular: false,
+  },
+  {
+    id: 'temperament-quiz',
+    slug: 'temperament-quiz',
+    category: 'baby',
+    title: {
+      en: 'Baby Temperament Type Quiz',
+      ko: '아기 기질 유형 테스트',
+    },
+    description: {
+      en: "Discover your baby's natural temperament type through 20 fun questions. Based on Thomas & Chess's landmark temperament research, this quiz identifies which of 16 personality styles best fits your little one — with tailored parenting tips for each type. For entertainment and general reference only.",
+      ko: '20개의 재미있는 질문으로 아기의 타고난 기질 유형을 발견해보세요. Thomas & Chess의 기질 연구를 바탕으로, 16가지 성향 유형 중 우리 아이에게 가장 잘 맞는 유형을 찾고 맞춤형 육아 팁을 확인하세요. 재미 및 일반 참고용입니다.',
+    },
+    keywords: {
+      en: [
+        'baby temperament quiz',
+        'baby personality type',
+        'infant temperament test',
+        'toddler temperament quiz',
+        'Thomas Chess temperament',
+        'baby behavior quiz',
+        'child temperament types',
+        'parenting style quiz',
+        'baby personality quiz',
+        'temperament test for babies',
+      ],
+      ko: [
+        '아기 기질 테스트',
+        '아기 성격 유형',
+        '영아 기질 검사',
+        '유아 기질 테스트',
+        'Thomas Chess 기질',
+        '아기 행동 유형',
+        '아이 기질 유형',
+        '육아 스타일 테스트',
+        '아기 성향 테스트',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Is this quiz a real developmental screening test?',
+          ko: '이 테스트는 실제 발달 선별검사인가요?',
+        },
+        answer: {
+          en: "No. This quiz is designed for entertainment and general reflection, not clinical diagnosis. It is not equivalent to standardised developmental screening tools such as the ASQ (Ages and Stages Questionnaire) or similar validated instruments. The results give you a fun framework to think about your child's natural tendencies, but they cannot detect developmental delays or disorders. If you have concerns about your child's development, please consult a paediatrician.",
+          ko: '아닙니다. 이 테스트는 재미와 일반적인 관찰을 위해 만들어진 것이며 임상적 진단 도구가 아닙니다. ASQ(Ages and Stages Questionnaire) 같은 표준화된 발달선별검사와 동일하지 않습니다. 결과는 아이의 자연스러운 성향을 생각해볼 수 있는 재미있는 틀을 제공하지만, 발달 지연이나 장애를 감지할 수 없습니다. 아이의 발달에 대해 걱정되는 부분이 있으면 소아과 전문의와 상담하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'Can the results change over time?',
+          ko: '결과가 시간이 지나면 달라질 수 있나요?',
+        },
+        answer: {
+          en: "Yes, and that's completely normal. Temperament has a biological basis, but how it expresses itself can shift as your child grows, reaches new developmental milestones, or as their environment changes. Different caregivers may also answer the questions differently based on their own observations. Retaking the quiz every few months can be a fun way to see how your child's tendencies are evolving.",
+          ko: '네, 완전히 정상입니다. 기질에는 생물학적 기반이 있지만, 아이가 성장하고 새로운 발달 단계를 거치거나 환경이 바뀌면서 표현 방식이 달라질 수 있습니다. 양육자마다 각자의 관찰을 바탕으로 다르게 답할 수도 있어요. 몇 달마다 다시 테스트해보면 아이의 성향이 어떻게 발전하는지 확인하는 재미있는 방법이 됩니다.',
+        },
+      },
+      {
+        question: {
+          en: 'What is the Thomas & Chess temperament theory?',
+          ko: 'Thomas & Chess 기질 이론이 무엇인가요?',
+        },
+        answer: {
+          en: "Alexander Thomas and Stella Chess conducted the New York Longitudinal Study (NYLS) starting in 1956, following children from infancy into adulthood. They identified nine dimensions of temperament — including activity level, adaptability, approach/withdrawal, intensity of reaction, and mood quality — and found that these traits were relatively stable over time. Their 1977 book Temperament and Development is a landmark in developmental psychology. This quiz adapts four of those dimensions into a playful format. The original nine-dimension clinical framework has been simplified for entertainment purposes.",
+          ko: 'Alexander Thomas와 Stella Chess는 1956년부터 아동을 유아기부터 성인기까지 추적한 뉴욕종단연구(NYLS)를 진행했습니다. 이들은 활동 수준, 적응력, 접근-회피, 반응 강도, 기분의 질 등 9개의 기질 차원을 규명했으며, 이러한 특성이 시간이 지나도 비교적 안정적임을 발견했습니다. 1977년 저서 《Temperament and Development》는 발달심리학의 중요한 이정표입니다. 이 테스트는 그 중 4개 차원을 재미있는 형태로 재구성한 것입니다. 원래의 9차원 임상 프레임워크는 오락 목적으로 단순화되었습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'From what age can I use this quiz?',
+          ko: '몇 살부터 이 테스트를 할 수 있나요?',
+        },
+        answer: {
+          en: "This quiz supports three age bands: 4–12 months (infant), 13–36 months (toddler), and 37–84 months (3–7 years). We do not support the 0–3 month range because temperament differences are not yet clearly observable in the very early newborn period. If your baby is under 4 months old, come back after they have had a few more months to show their personality!",
+          ko: '이 테스트는 4–12개월(영아기), 13–36개월(유아기), 37–84개월(3–7세, 유치원기)의 세 가지 연령 구간을 지원합니다. 0–3개월은 아직 기질 차이가 뚜렷하게 나타나기 전이라 지원하지 않습니다. 아기가 생후 4개월이 안 됐다면, 조금 더 기다렸다가 해보세요!',
+        },
+      },
+    ],
+    relatedToolIds: ['growth-percentile', 'sleep-schedule'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/temperament-quiz.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-09',
     popular: false,
   },
 ]
