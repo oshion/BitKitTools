@@ -1,13 +1,17 @@
 import { calculateAbv, calculateDilution } from './homebrewCalculator'
 
-// ── calculateAbv ─────────────────────────────────────────────────────────────
+// ── calculateAbv (standard formula) ─────────────────────────────────────────
 
-describe('calculateAbv', () => {
+describe('calculateAbv — standard formula (default)', () => {
   // ── Standard cases ──────────────────────────────────────────────────────────
 
   it('calculates ABV for a standard session beer (OG 1.050, FG 1.010)', () => {
     // (1.050 - 1.010) * 131.25 = 0.040 * 131.25 = 5.25%
     expect(calculateAbv(1.05, 1.01)).toBe(5.25)
+  })
+
+  it('calculates ABV for a standard session beer with explicit formula', () => {
+    expect(calculateAbv(1.05, 1.01, 'standard')).toBe(5.25)
   })
 
   it('calculates ABV for a light lager (OG 1.040, FG 1.008)', () => {
@@ -59,6 +63,67 @@ describe('calculateAbv', () => {
     const abv1 = calculateAbv(1.05, 1.01)  // diff = 0.040
     const abv2 = calculateAbv(1.09, 1.01)  // diff = 0.080
     expect(abv2 / abv1).toBeCloseTo(2, 1)
+  })
+})
+
+// ── calculateAbv (high-gravity formula) ──────────────────────────────────────
+
+describe('calculateAbv — high-gravity formula', () => {
+  // ── Normal high-gravity cases ────────────────────────────────────────────────
+
+  it('calculates ABV for a high-gravity IPA (OG 1.075, FG 1.012)', () => {
+    // (76.08 * (1.075 - 1.012) / (1.775 - 1.075)) * (1.012 / 0.794)
+    const expected = (76.08 * 0.063 / 0.700) * (1.012 / 0.794)
+    expect(calculateAbv(1.075, 1.012, 'high-gravity')).toBeCloseTo(expected, 1)
+    // Should be around 8.7%
+    expect(calculateAbv(1.075, 1.012, 'high-gravity')).toBeGreaterThan(8)
+    expect(calculateAbv(1.075, 1.012, 'high-gravity')).toBeLessThan(10)
+  })
+
+  it('calculates ABV for a barleywine (OG 1.100, FG 1.020)', () => {
+    // (76.08 * 0.080 / 0.675) * (1.020 / 0.794) ≈ 11.58%
+    const expected = (76.08 * 0.080 / (1.775 - 1.100)) * (1.020 / 0.794)
+    expect(calculateAbv(1.100, 1.020, 'high-gravity')).toBeCloseTo(expected, 1)
+    expect(calculateAbv(1.100, 1.020, 'high-gravity')).toBeGreaterThan(11)
+  })
+
+  it('calculates ABV for an imperial stout (OG 1.090, FG 1.018)', () => {
+    const expected = (76.08 * (1.090 - 1.018) / (1.775 - 1.090)) * (1.018 / 0.794)
+    expect(calculateAbv(1.090, 1.018, 'high-gravity')).toBeCloseTo(expected, 1)
+    expect(calculateAbv(1.090, 1.018, 'high-gravity')).toBeGreaterThan(9)
+  })
+
+  // ── Edge cases — guard for og <= fg ─────────────────────────────────────────
+
+  it('returns 0 when OG equals FG with high-gravity formula', () => {
+    expect(calculateAbv(1.08, 1.08, 'high-gravity')).toBe(0)
+  })
+
+  it('returns 0 when FG > OG with high-gravity formula', () => {
+    expect(calculateAbv(1.07, 1.09, 'high-gravity')).toBe(0)
+  })
+
+  // ── Low-gravity: both formulas are close ────────────────────────────────────
+
+  it('at low OG (1.050), standard and high-gravity results are within 0.2%', () => {
+    const standard = calculateAbv(1.050, 1.010, 'standard')
+    const highGravity = calculateAbv(1.050, 1.010, 'high-gravity')
+    expect(Math.abs(standard - highGravity)).toBeLessThan(0.2)
+  })
+
+  it('at low OG (1.040), standard and high-gravity results are within 0.2%', () => {
+    const standard = calculateAbv(1.040, 1.008, 'standard')
+    const highGravity = calculateAbv(1.040, 1.008, 'high-gravity')
+    expect(Math.abs(standard - highGravity)).toBeLessThan(0.2)
+  })
+
+  // ── High-gravity yields higher result than standard at OG >= 1.070 ────────
+
+  it('high-gravity formula yields higher ABV than standard at OG 1.080', () => {
+    const standard = calculateAbv(1.080, 1.015, 'standard')
+    const highGravity = calculateAbv(1.080, 1.015, 'high-gravity')
+    // High-gravity is generally higher than standard for high OG beers
+    expect(highGravity).toBeGreaterThan(standard)
   })
 })
 

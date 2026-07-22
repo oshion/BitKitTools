@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { calculateAbv, calculateDilution } from '@/lib/utils/homebrewCalculator'
+import Link from 'next/link'
+import { calculateAbv, calculateDilution, type AbvFormula } from '@/lib/utils/homebrewCalculator'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 
@@ -52,6 +53,9 @@ export default function HomebrewRecipeCalculatorTool() {
   const [ogInput, setOgInput] = useState(savedRecipe.og)
   const [fgInput, setFgInput] = useState(savedRecipe.fg)
 
+  // Formula toggle state — user must explicitly switch; auto-suggest only
+  const [formula, setFormula] = useState<AbvFormula>('standard')
+
   // Dilution section state
   const [showDilution, setShowDilution] = useState(false)
   const [targetAbvInput, setTargetAbvInput] = useState('')
@@ -77,7 +81,10 @@ export default function HomebrewRecipeCalculatorTool() {
   const fgValid = !isNaN(fg) && fg >= 1.0 && fg <= 1.15
   const gravityValid = ogValid && fgValid
 
-  const abv = gravityValid ? calculateAbv(og, fg) : null
+  // Suggest high-gravity formula when OG >= 1.070 (no auto-switch)
+  const suggestHighGravity = ogValid && og >= 1.070 && formula === 'standard'
+
+  const abv = gravityValid ? calculateAbv(og, fg, formula) : null
   const batchSizeLitres = toLitres(batchSizeValue, batchSizeUnit)
 
   const targetAbv = parseFloat(targetAbvInput)
@@ -95,10 +102,11 @@ export default function HomebrewRecipeCalculatorTool() {
 
   async function handleCopyResult() {
     if (abv === null) return
+    const formulaLabel = formula === 'high-gravity' ? 'high-gravity non-linear' : 'standard linear'
     const lines = [
       `Batch size: ${batchSizeValue} ${batchSizeUnit}`,
       `OG: ${ogInput}  FG: ${fgInput}`,
-      `Estimated ABV: ${abv.toFixed(2)}%`,
+      `Estimated ABV: ${abv.toFixed(2)}% (${formulaLabel} formula)`,
     ]
     if (dilutionResult && targetAbvValid) {
       lines.push(
@@ -228,10 +236,48 @@ export default function HomebrewRecipeCalculatorTool() {
           </div>
         </div>
 
-        <p className="text-xs text-neutral-600">
+        {/* Hydrometer temperature correction link */}
+        <p className="text-xs text-neutral-500 leading-relaxed">
           Measure gravity with a hydrometer or refractometer. OG is measured before
-          fermentation; FG after fermentation is complete.
+          fermentation; FG after fermentation is complete.{' '}
+          <Link
+            href="/beer/hydrometer-temperature-correction"
+            className="text-neutral-400 underline underline-offset-2 hover:text-neutral-300 transition-colors"
+          >
+            Need temperature correction? →
+          </Link>
         </p>
+
+        {/* Formula toggle */}
+        <div className="space-y-1.5">
+          <span className="block text-sm text-neutral-400">ABV Formula</span>
+          <div className="flex rounded-lg border border-neutral-800 overflow-hidden w-fit">
+            {(['standard', 'high-gravity'] as AbvFormula[]).map((f) => (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setFormula(f)}
+                className={`px-4 py-2 text-sm transition-colors ${
+                  formula === f
+                    ? 'bg-neutral-700 text-white'
+                    : 'bg-neutral-900 text-neutral-400 hover:bg-neutral-800'
+                }`}
+              >
+                {f === 'standard' ? 'Standard (linear)' : 'High-gravity (non-linear)'}
+              </button>
+            ))}
+          </div>
+          {suggestHighGravity && (
+            <p className="text-xs text-amber-400">
+              OG ≥ 1.070 detected — consider switching to the high-gravity formula for better accuracy.
+            </p>
+          )}
+          <p className="text-xs text-neutral-600">
+            {formula === 'standard'
+              ? 'ABV ≈ (OG − FG) × 131.25 — best for most beers (OG below 1.070).'
+              : 'ABV = (76.08 × (OG − FG) / (1.775 − OG)) × (FG / 0.794) — better for barleywine, imperial stout, etc.'}
+          </p>
+        </div>
       </section>
 
       {/* ── Calculate button ──────────────────────────────────────────────── */}
@@ -254,7 +300,7 @@ export default function HomebrewRecipeCalculatorTool() {
             Estimated Alcohol By Volume
           </p>
           {abv !== null && gravityValid ? (
-            <p className="text-4xl font-bold text-[#f59e0b] tabular-nums">
+            <p className="text-5xl font-bold text-[#f59e0b] tabular-nums">
               {abv.toFixed(2)}
               <span className="text-xl font-normal text-neutral-400 ml-1">% ABV</span>
             </p>
@@ -283,9 +329,13 @@ export default function HomebrewRecipeCalculatorTool() {
                 </p>
               </div>
             </div>
-            <p className="text-xs text-neutral-600 leading-relaxed">
-              Formula: ABV ≈ (OG − FG) × 131.25. This is the standard homebrewing
-              approximation (Fix &amp; Fix, 1997). Actual ABV may vary ±0.1–0.3%.
+            <p className="text-xs text-neutral-500 leading-relaxed">
+              Formula used:{' '}
+              <span className="text-neutral-400">
+                {formula === 'standard'
+                  ? 'Standard linear — ABV ≈ (OG − FG) × 131.25 (Fix & Fix, 1997). Best for most beers below OG 1.070. Actual ABV may vary ±0.1–0.3%.'
+                  : 'High-gravity non-linear — ABV = (76.08 × (OG − FG) / (1.775 − OG)) × (FG / 0.794). A well-known correction formula for high-gravity beers (barleywine, imperial stout, etc.); widely used in the homebrewing community. Precise academic origin unclear — described honestly as a brewing community standard.'}
+              </span>
             </p>
           </div>
         )}

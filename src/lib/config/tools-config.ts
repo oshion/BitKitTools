@@ -371,6 +371,10 @@ export const toolsConfig: ToolConfig[] = [
         'homebrewing tools',
         'beer gravity calculator',
         'ABV from gravity',
+        'hydrometer',
+        'specific gravity',
+        'og fg calculator',
+        'original gravity final gravity',
       ],
       ko: [
         '홈브루 도수 계산기',
@@ -381,6 +385,8 @@ export const toolsConfig: ToolConfig[] = [
         '홈브루 희석 계산기',
         '초기 비중 최종 비중',
         '홈브루잉 계산기',
+        '비중계',
+        '비중 도수',
       ],
     },
     schemaType: 'WebApplication',
@@ -415,8 +421,18 @@ export const toolsConfig: ToolConfig[] = [
           ko: '네, 희석은 도수 외에도 많은 것을 변화시킵니다. 물을 추가하면 홉 쓴맛(IBU), 맥아 풍미 강도, 바디감, 색도가 비례적으로 줄어듭니다. 홉이 강하거나 풍미가 진한 맥주는 5~10% 희석만으로도 바디가 얇아지고 쓴맛이 부드러워지는 것을 느낄 수 있습니다. 고중력 맥주를 희석하는 양조 기법(하이 그래비티 브루잉)을 쓰는 양조장은 처음부터 홉과 맥아를 더 넣어 이를 보완합니다. 홈브루어라면 전체 배치를 희석하기 전에 소량으로 블렌딩 테스트를 해보는 것을 권장합니다.',
         },
       },
+      {
+        question: {
+          en: 'When should I use the standard formula vs. the high-gravity formula?',
+          ko: '표준 공식과 고비중 공식은 언제 다르게 써야 하나요?',
+        },
+        answer: {
+          en: 'For most homebrews with an Original Gravity (OG) below about 1.070, the two formulas give results within 0.1–0.2% of each other — either one is fine. Above OG 1.070 (barleywine, imperial stout, Belgian tripel, etc.), the standard linear formula (ABV ≈ (OG − FG) × 131.25) tends to underestimate ABV because it does not account for the non-linear relationship between gravity and alcohol at higher concentrations. The high-gravity non-linear formula compensates for this and is generally considered more accurate for strong beers. That said, both are still approximations — the only way to certify exact ABV is laboratory analysis.',
+          ko: 'OG(초기 비중)가 약 1.070 미만인 대부분의 홈브루에서는 두 공식의 결과 차이가 0.1~0.2% 수준이라 어느 쪽을 써도 크게 다르지 않습니다. OG 1.070 이상(배리와인, 임페리얼 스타우트, 벨기에 트리펠 등)인 고비중 맥주에서는 표준 선형 공식(ABV ≈ (OG − FG) × 131.25)이 고농도 구간의 비선형 관계를 반영하지 못해 도수를 과소 추정하는 경향이 있습니다. 고비중 비선형 보정 공식은 이 점을 보정하므로 강한 맥주에서 더 정확한 것으로 알려져 있습니다. 그러나 두 공식 모두 근사치이며, 정확한 도수를 확인하려면 실험실 분석이 필요합니다.',
+        },
+      },
     ],
-    relatedToolIds: ['bac-calculator'],
+    relatedToolIds: ['bac-calculator', 'hydrometer-temperature-correction'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
