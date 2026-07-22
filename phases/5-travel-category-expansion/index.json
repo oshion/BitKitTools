@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "tool-jetlag-recovery-calculator",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-07-22T10:30:33+0900",
+      "completed_at": "2026-07-22T11:15:00+0900",
+      "summary": "Created jetlag-recovery-calculator tool: jetlagCalculator.ts (calculateJetlag pure fn — shortest-path UTC-offset normalisation, eastward 1 day/zone, westward 1 day/1.5 zones, validated against Waterhouse et al. Lancet 2007), 15 unit tests pass (464 total), JetlagRecoveryCalculatorTool.tsx (UTC-offset dropdowns, result card with recovery days + direction badge + day-by-day guide for east/west), page.tsx (EN/KO SSG, openGraph images, source citation), tools-config.ts entry added (disclaimerType general + extra safety paragraph for sleep/mood disorders). Lint clean, build generates /en|ko/travel/jetlag-recovery-calculator."
     },
     {
       "step": 2,
