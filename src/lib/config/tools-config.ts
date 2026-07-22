@@ -864,6 +864,90 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-09',
     popular: false,
   },
+  {
+    id: 'hydrometer-temperature-correction',
+    slug: 'hydrometer-temperature-correction',
+    category: 'beer',
+    title: {
+      en: 'Hydrometer Temperature Correction Calculator',
+      ko: '비중계 온도 보정 계산기',
+    },
+    description: {
+      en: 'Correct your hydrometer reading for sample temperature. Enter your measured gravity, the actual sample temperature, and your hydrometer\'s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. All calculations run in your browser — no login, no uploads.',
+      ko: '비중계 측정값을 시료 온도에 맞게 보정합니다. 측정된 비중, 실제 시료 온도, 비중계의 기준온도를 입력하면 보정된 비중을 즉시 계산합니다. 59°F(15°C) 및 68°F(20°C) 기준온도 프리셋을 지원합니다. 모든 계산은 브라우저에서 처리되며 로그인이 필요 없습니다.',
+    },
+    keywords: {
+      en: [
+        'hydrometer temperature correction calculator',
+        'hydrometer calculator',
+        'specific gravity correction',
+        'gravity correction calculator',
+        'og calculator',
+        'hydrometer reading correction',
+        'specific gravity temperature adjustment',
+        'homebrewing hydrometer',
+        'gravity correction formula',
+        'temperature compensated hydrometer',
+      ],
+      ko: [
+        '비중계 온도 보정 계산기',
+        '비중계 보정',
+        '비중 온도 보정',
+        '홈브루 비중 보정',
+        '비중계 계산기',
+        '보정 비중 계산',
+        '시료 온도 보정',
+        '비중 보정 공식',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Why does temperature affect hydrometer readings?',
+          ko: '왜 온도가 비중계 수치에 영향을 미치나요?',
+        },
+        answer: {
+          en: 'A hydrometer measures the density of liquid relative to water. Water\'s density changes with temperature — it becomes less dense as it warms above 39°F (4°C). When you take a reading at a temperature different from the hydrometer\'s calibration temperature, the density of water itself has shifted, so the raw reading no longer reflects the true specific gravity of your wort or beer. The temperature correction formula accounts for this thermal expansion effect.',
+          ko: '비중계는 물에 대한 상대 밀도를 측정합니다. 물의 밀도는 온도에 따라 변하는데, 39°F(4°C) 이상에서 온도가 높아질수록 밀도가 낮아집니다. 비중계의 기준온도와 다른 온도에서 측정하면 물 자체의 밀도가 달라지므로 원시 수치가 실제 비중을 정확히 반영하지 않습니다. 온도 보정 공식은 이 열팽창 효과를 보정합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'How do I know which calibration temperature my hydrometer uses?',
+          ko: '내 비중계의 기준온도를 어떻게 알 수 있나요?',
+        },
+        answer: {
+          en: 'Check the label or stem of your hydrometer — the calibration temperature is usually printed directly on it. Most US-manufactured hydrometers are calibrated at 60°F (15.6°C) or 59°F (15°C), while many European hydrometers use 68°F (20°C). If you cannot find it, 59°F (15°C) is the most common and a safe default for US homebrew hydrometers.',
+          ko: '비중계의 라벨이나 몸체를 확인하세요 — 기준온도가 보통 직접 표시되어 있습니다. 미국 제조 비중계는 대부분 60°F(15.6°C) 또는 59°F(15°C)를 기준으로 하고, 유럽 비중계는 68°F(20°C)를 많이 사용합니다. 확인할 수 없다면 59°F(15°C)가 미국 홈브루 비중계에서 가장 일반적인 기본값입니다.',
+        },
+      },
+      {
+        question: {
+          en: 'What is the source of this correction formula?',
+          ko: '이 보정 공식의 출처는 무엇인가요?',
+        },
+        answer: {
+          en: 'The polynomial correction formula used here is the brewing industry\'s established standard — widely cited and used by authoritative references like Brewer\'s Friend, MoreBeer, and other professional homebrewing tools. Its derivation traces back to early research on water density vs. temperature. While pinpointing a single original academic publication is difficult (multiple researchers have independently derived similar approximations), the formula\'s accuracy within typical brewing temperature ranges has been verified by the homebrewing community for decades.',
+          ko: '여기서 사용하는 다항식 보정 공식은 브루잉 업계에서 확립된 표준입니다. Brewer\'s Friend, MoreBeer 등 권위 있는 홈브루잉 도구에서 널리 인용하고 사용합니다. 이 공식의 유도 과정은 물의 밀도와 온도의 관계에 관한 초기 연구로 거슬러 올라가며, 정확한 단일 원 논문을 특정하기는 어렵지만 전형적인 브루잉 온도 범위에서의 정확도는 홈브루잉 커뮤니티에 의해 수십 년간 검증되었습니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['homebrew-recipe-calculator'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-22',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
