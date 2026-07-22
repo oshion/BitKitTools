@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 01:30:23 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 01:41:12 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Hydrometer Temperature Correction Calculator</title>
@@ -27,6 +27,13 @@
       <description>Check whether your layover is long enough based on the official Minimum Connecting Time (MCT) for your airport and connection type. Covers 22 major hubs — plus general industry defaults for all other airports. Reference only; always confirm with your airline.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/travel/layover-connection-calculator</guid>
+    </item>
+    <item>
+      <title>Jet Lag Recovery Calculator</title>
+      <link>https://bitkittools.com/travel/jetlag-recovery-calculator</link>
+      <description>Estimate how many days it takes to recover from jet lag based on the number of time zones you cross and your direction of travel. Includes a day-by-day general adaptation guide for eastward and westward flights — no sign-up required.</description>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/travel/jetlag-recovery-calculator</guid>
     </item>
     <item>
       <title>Child Height Predictor</title>
