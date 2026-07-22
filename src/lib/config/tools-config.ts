@@ -1058,6 +1058,90 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-22',
     popular: false,
   },
+  {
+    id: 'layover-connection-calculator',
+    slug: 'layover-connection-calculator',
+    category: 'travel',
+    title: {
+      en: 'Layover & Connection Time Calculator',
+      ko: '환승 시간 계산기',
+    },
+    description: {
+      en: 'Check whether your layover is long enough based on the official Minimum Connecting Time (MCT) for your airport and connection type. Covers 22 major hubs — plus general industry defaults for all other airports. Reference only; always confirm with your airline.',
+      ko: '공항별 공식 최소환승시간(MCT)을 기준으로 보유한 환승 시간이 충분한지 확인하세요. 22개 주요 허브 공항 데이터와 그 외 공항을 위한 업계 일반 기준을 제공합니다. 참고용이며 실제 여부는 항공사에 확인하세요.',
+    },
+    keywords: {
+      en: [
+        'layover calculator',
+        'connection time calculator',
+        'minimum connection time calculator',
+        'mct calculator',
+        'layover time enough',
+        'is my layover long enough',
+        'airport minimum connecting time',
+        'transit time calculator',
+        'connecting flight time calculator',
+        'IATA MCT',
+      ],
+      ko: [
+        '환승 시간 계산기',
+        '최소 환승 시간',
+        'MCT 계산기',
+        '환승 시간 충분한가',
+        '공항 환승 최소시간',
+        '레이오버 계산기',
+        '경유 시간 계산',
+        '환승 가능 시간',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'What is MCT (Minimum Connecting Time)?',
+          ko: 'MCT(최소환승시간)란 무엇인가요?',
+        },
+        answer: {
+          en: 'MCT stands for Minimum Connecting Time — the shortest interval between the scheduled arrival of one flight and the scheduled departure of a connecting flight that allows a passenger (and their checked baggage) to make the connection under normal conditions. MCT values are defined by IATA Recommended Practice 1670 and individually by each airport. They vary by connection type (domestic-to-domestic, international-to-international, etc.) and are built into airline booking systems to prevent the sale of itineraries that are too tight.',
+          ko: 'MCT(Minimum Connecting Time)는 환승 시 허용되는 최소 시간을 의미합니다. 즉, 도착 항공편이 착륙한 후 출발 항공편이 뜨기까지, 승객과 위탁수하물이 정상 조건에서 연결편을 탈 수 있는 가장 짧은 시간 간격입니다. MCT는 IATA 권고 규정(RP 1670)과 각 공항이 자체적으로 정하며, 연결 유형(국내-국내, 국제-국제 등)에 따라 다릅니다. 항공사 예약 시스템에 내장되어 지나치게 촉박한 일정 판매를 방지합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'My airport is not in the database. What happens?',
+          ko: '제 공항이 데이터베이스에 없습니다. 어떻게 되나요?',
+        },
+        answer: {
+          en: 'If your airport is not in our database, the calculator applies general industry-recommended minimum times derived from IATA guidance: 45 min (domestic-to-domestic), 60 min (domestic-to-international), 90 min (international-to-domestic), 90 min (international-to-international). These are conservative defaults — actual MCT may be shorter at efficient single-terminal airports or longer at large multi-terminal hubs. Always verify with your airline before booking.',
+          ko: '데이터베이스에 없는 공항은 IATA 가이드라인에서 파생된 업계 일반 권장값을 사용합니다: 국내→국내 45분, 국내→국제 60분, 국제→국내 90분, 국제→국제 90분. 이는 보수적인 기본값으로, 효율적인 단일 터미널 공항에서는 더 짧을 수 있고 대형 복합 터미널에서는 더 길 수 있습니다. 항공편 예매 전 반드시 항공사에 확인하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'Can I always make the connection if my layover exceeds the MCT?',
+          ko: '환승 시간이 MCT를 초과하면 항상 연결편을 탈 수 있나요?',
+        },
+        answer: {
+          en: 'Not necessarily. MCT represents the minimum under normal conditions — it does not account for long immigration queues, security screening delays, gate changes, aircraft arriving late, or extreme terminal distances. The MCT is the floor, not a guarantee. A "Comfortable" result (≥ 1.5× MCT) gives you a meaningful buffer, but real-world factors can still cause a miss. For important trips, choosing a layover significantly longer than the MCT is always the safer strategy.',
+          ko: '반드시 그렇지는 않습니다. MCT는 정상 조건에서의 최솟값으로, 긴 입국심사 줄, 보안검색 지연, 게이트 변경, 도착 지연, 터미널 간 먼 거리 등을 반영하지 않습니다. MCT는 최솟값이지 보장이 아닙니다. "여유로움(Comfortable)" 결과(MCT의 1.5배 이상)는 의미 있는 여유를 제공하지만, 실제 상황에 따라 놓칠 수도 있습니다. 중요한 여행이라면 MCT보다 훨씬 긴 환승 시간을 선택하는 것이 더 안전합니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['flight-delay-compensation', 'visa-requirement-checker'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-22',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
