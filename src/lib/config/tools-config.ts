@@ -948,6 +948,90 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-22',
     popular: false,
   },
+  {
+    id: 'standard-drinks-calculator',
+    slug: 'standard-drinks-calculator',
+    category: 'beer',
+    title: {
+      en: 'Standard Drinks / Alcohol Units Calculator',
+      ko: '표준잔 / 알코올 유닛 계산기',
+    },
+    description: {
+      en: 'Convert any drink\'s volume and ABV into standard drinks (US, UK, AU/SG, Canada) and pure alcohol grams. See how many units your drink contains according to your country\'s health guidelines — for reference only. All calculations run in your browser.',
+      ko: '음료의 용량과 도수(ABV%)를 표준잔(미국·영국·호주·캐나다 기준) 및 순수 알코올 그램으로 환산합니다. 각국 보건 가이드라인 기준의 알코올 유닛 수를 참고용으로 확인하세요. 모든 계산은 브라우저에서 처리됩니다.',
+    },
+    keywords: {
+      en: [
+        'standard drinks calculator',
+        'alcohol units calculator',
+        'how many units in a drink',
+        'standard drink converter',
+        'alcohol content calculator',
+        'units of alcohol',
+        'pure alcohol grams calculator',
+        'drink units UK',
+        'standard drinks Australia',
+        'how many standard drinks',
+      ],
+      ko: [
+        '표준잔 계산기',
+        '알코올 유닛 계산기',
+        '표준잔 변환',
+        '알코올 함량 계산기',
+        '순수 알코올량 계산',
+        '음주 단위 계산',
+        '표준잔 수 확인',
+        '알코올 유닛',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'What is a "standard drink"?',
+          ko: '"표준잔(standard drink)"이란 무엇인가요?',
+        },
+        answer: {
+          en: 'A standard drink is a unit used by health authorities to measure alcohol consumption. It represents a specific amount of pure alcohol — but the exact amount differs by country: the US defines it as 14 g of pure alcohol (NIAAA), the UK as 8 g (one "unit", NHS), Australia and Singapore as 10 g, and Canada as 13.45 g (CCSA). Because these definitions differ, a single glass of wine may count as 1 standard drink in one country and more than 1 in another.',
+          ko: '표준잔은 보건당국이 알코올 섭취량을 측정하는 데 사용하는 단위입니다. 순수 알코올의 특정 양을 의미하는데, 국가마다 정의가 다릅니다. 미국은 14g(NIAAA), 영국은 8g(NHS "유닛"), 호주·싱가포르는 10g, 캐나다는 13.45g(CCSA)입니다. 이 정의가 다르기 때문에 와인 한 잔이 어떤 나라에서는 표준잔 1개, 다른 나라에서는 1개 이상이 될 수 있습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Can I use this calculator to find out if I am safe to drive?',
+          ko: '이 계산기로 운전 가능 여부를 알 수 있나요?',
+        },
+        answer: {
+          en: 'No. This tool converts alcohol volume and ABV into standard drinks and pure alcohol grams — it does not estimate blood alcohol concentration (BAC) or assess fitness to drive. Standard drink counts are a health reference tool; they are not a measure of intoxication. If you need an estimated BAC figure, use the BAC Calculator. Regardless of any calculation, the only safe BAC for driving is 0.000%.',
+          ko: '아닙니다. 이 도구는 알코올 용량과 도수를 표준잔과 순수 알코올 그램으로 환산하는 것일 뿐, 혈중 알코올 농도(BAC)를 추정하거나 운전 가능 여부를 판단하는 도구가 아닙니다. 표준잔 수치는 건강 참고 지표이며 음주 취함 수준을 의미하지 않습니다. BAC 추정이 필요하다면 BAC 계산기를 이용하세요. 어떤 계산 결과와 관계없이 운전 시 안전한 BAC는 오직 0.000%입니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Why do different countries define standard drinks differently?',
+          ko: '왜 나라마다 표준잔 기준이 다른가요?',
+        },
+        answer: {
+          en: 'Each country\'s health authority independently set their own definition when developing national alcohol guidelines and public health messaging. There is no international consensus. The amounts range from 8 g (UK) to 14 g (US), reflecting different policy decisions about what constitutes a meaningful and communicable unit of measurement for their populations. When comparing guidelines across countries, always check which definition was used.',
+          ko: '각국의 보건당국이 국가별 알코올 가이드라인과 공중보건 메시지를 개발하면서 각자 독립적으로 정의를 정했습니다. 국제적으로 통일된 기준은 없습니다. 영국(8g)부터 미국(14g)까지 다양한데, 이는 각 국가가 자국 인구에 맞는 의미 있는 측정 단위를 정한 결과입니다. 국가 간 가이드라인을 비교할 때는 어떤 정의가 사용되었는지 반드시 확인하세요.',
+        },
+      },
+    ],
+    relatedToolIds: ['bac-calculator'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'medical',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-22',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
