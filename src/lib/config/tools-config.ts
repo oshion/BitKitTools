@@ -720,8 +720,8 @@ export const toolsConfig: ToolConfig[] = [
       ko: '항공편 지연 보상 계산기',
     },
     description: {
-      en: 'Find out if your delayed flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, route distance, delay duration, and cause to get an instant estimate — no sign-up required.',
-      ko: 'EU 규정 261/2004 또는 미국 DOT 규정에 따라 지연된 항공편에 대한 보상을 받을 수 있는지 확인하세요. 규정, 노선 거리, 지연 시간, 지연 원인을 선택하면 즉시 추정 보상액을 확인할 수 있습니다 — 가입 불필요.',
+      en: 'Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.',
+      ko: 'EU 규정 261/2004 또는 미국 DOT 규정에 따라 지연, 취소 또는 탑승거부된 항공편에 대한 보상을 받을 수 있는지 확인하세요. 규정, 혼란 유형, 노선 거리, 지연 시간을 선택하면 즉시 추정 보상액을 확인할 수 있습니다 — 가입 불필요.',
     },
     keywords: {
       en: [
@@ -735,6 +735,12 @@ export const toolsConfig: ToolConfig[] = [
         'flight compensation claim',
         'delayed flight payout',
         'airline delay refund calculator',
+        'flight cancellation compensation calculator',
+        'delayed flight compensation',
+        'eu261 compensation table',
+        'denied boarding compensation',
+        'involuntary bumping compensation',
+        'overbooking compensation calculator',
       ],
       ko: [
         '항공 지연 보상',
@@ -745,6 +751,9 @@ export const toolsConfig: ToolConfig[] = [
         '승객 권리',
         '항공 지연 청구',
         '항공 지연 환불 계산기',
+        '항공편 취소 보상',
+        '탑승거부 보상',
+        '오버부킹 보상',
       ],
     },
     schemaType: 'WebApplication',
@@ -775,12 +784,32 @@ export const toolsConfig: ToolConfig[] = [
           ko: '미국 항공편에는 어떤 규정이 적용되나요?',
         },
         answer: {
-          en: "Unlike the EU, the United States does not have a federal law mandating fixed cash compensation for flight delays. Airlines set their own delay compensation policies under their customer service plans, which are required to be published under US DOT 14 CFR Part 259. The US does have a tarmac delay rule: domestic flights must allow passengers to deplane after 3 hours on the tarmac, and international flights after 4 hours. Always check your airline's customer service plan to understand what compensation, if any, is offered for your delay.",
-          ko: "EU와 달리 미국에는 항공편 지연에 대한 법적 고정 보상금을 의무화하는 연방법이 없습니다. 항공사는 미국 DOT 14 CFR Part 259에 따라 공개해야 하는 고객 서비스 플랜에서 지연 보상 정책을 자체적으로 정합니다. 단, 미국은 계류장 지연 규정이 있어 국내선은 3시간, 국제선은 4시간 이후 탑승객의 하기를 허용해야 합니다. 지연에 대해 어떤 보상이 제공되는지는 항공사의 고객 서비스 플랜을 확인하세요.",
+          en: "Unlike the EU, the United States does not have a federal law mandating fixed cash compensation for flight delays or cancellations. Airlines set their own delay compensation policies under their customer service plans (14 CFR Part 259). However, the US does mandate compensation for involuntary denied boarding (overbooking) under 14 CFR § 250.5 — use the Denied Boarding option in this calculator to estimate that amount.",
+          ko: "EU와 달리 미국에는 항공편 지연이나 취소에 대한 법적 고정 보상금을 의무화하는 연방법이 없습니다. 항공사는 14 CFR Part 259에 따라 고객 서비스 플랜을 자체적으로 정합니다. 단, 미국은 비자발적 탑승거부(오버부킹)에 대해서는 14 CFR § 250.5에 따른 보상을 의무화하고 있습니다 — 이 계산기의 '탑승거부' 옵션을 선택해 예상 보상액을 확인하세요.",
+        },
+      },
+      {
+        question: {
+          en: 'Can I get compensation for a cancelled flight?',
+          ko: '취소된 항공편도 보상받을 수 있나요?',
+        },
+        answer: {
+          en: 'Under EU261, cancelled flights are covered by the same distance-based compensation table as delays (€250 / €400 / €600 depending on route distance), provided the cancellation was due to airline fault rather than extraordinary circumstances. US DOT does not mandate fixed compensation for cancellations — contact your airline for their voluntary policy.',
+          ko: 'EU261에 따르면 취소된 항공편은 지연과 동일한 거리 기반 보상표(노선 거리에 따라 €250 / €400 / €600)가 적용됩니다. 단, 취소 원인이 불가항력이 아닌 항공사 귀책이어야 합니다. 미국 DOT는 취소에 대한 법적 고정 보상금을 의무화하지 않으므로 항공사에 자체 정책을 확인하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'Can I check denied boarding (overbooking) compensation with this calculator?',
+          ko: '탑승거부(오버부킹)도 이 계산기로 확인할 수 있나요?',
+        },
+        answer: {
+          en: 'Yes. Select "Denied Boarding" as the disruption type. Under EU261, involuntary bumping uses the same distance-based compensation as delays and cancellations — and importantly, airlines cannot use force majeure as a defence for overbooking. Under US DOT (14 CFR § 250.5), denied boarding compensation is completely different: it is based on your one-way fare (200% or 400%, capped at $1,075 or $2,150), not on flight distance. The calculator handles both regulations separately.',
+          ko: '네. 혼란 유형에서 "탑승거부"를 선택하세요. EU261에서는 비자발적 탑승거부가 지연·취소와 동일한 거리 기반 보상을 적용받으며, 항공사는 오버부킹에 불가항력을 항변으로 사용할 수 없습니다. 미국 DOT(14 CFR § 250.5)에서는 탑승거부 보상이 완전히 다릅니다: 비행 거리가 아닌 편도 운임의 200% 또는 400%(각각 $1,075 또는 $2,150 상한)로 계산됩니다. 이 계산기는 두 규정을 별도로 처리합니다.',
         },
       },
     ],
-    relatedToolIds: ['visa-requirement-checker'],
+    relatedToolIds: ['visa-requirement-checker', 'layover-connection-calculator', 'jetlag-recovery-calculator'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },

@@ -248,3 +248,97 @@ export const FLIGHT_COMPENSATION_RULES: Record<RegulationType, RegulationConfig>
   EU261,
   US_DOT,
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// US DOT — Denied Boarding (Involuntary Bumping) Compensation
+// 14 CFR § 250.5
+// Source: https://www.law.cornell.edu/cfr/text/14/250.5
+// Verified: 2026-07-22
+//
+// Unlike delays/cancellations, the US DOT DOES mandate fixed compensation for
+// involuntary denied boarding (overbooking). Compensation is a percentage of
+// the one-way fare, subject to dollar caps.
+// ────────────────────────────────────────────────────────────────────────────
+
+export type UsDeniedBoardingRule = {
+  /** Minimum alternate-arrival delay in hours for this tier to apply (exclusive) */
+  minDelayHoursExclusive: number
+  /** Maximum alternate-arrival delay in hours for this tier (inclusive; null = no upper limit) */
+  maxDelayHoursInclusive: number | null
+  /** Compensation as a percentage of the one-way fare (e.g. 200 = 200%) */
+  farePercentage: number
+  /** Dollar cap for this tier (USD) — verified from 14 CFR § 250.5 on 2026-07-22 */
+  capUsd: number
+  note: { en: string; ko: string }
+}
+
+export const US_DENIED_BOARDING_RULES: {
+  /**
+   * Domestic interstate air transportation (§ 250.5(a))
+   * Thresholds are based on how late the offered alternate transportation
+   * arrives compared to the original scheduled arrival.
+   *   0–1 h late  → no compensation
+   *   1–2 h late  → 200% of one-way fare (cap $1,075)
+   *   2 h+ late   → 400% of one-way fare (cap $2,150)
+   */
+  domestic: UsDeniedBoardingRule[]
+  /**
+   * Foreign air transportation (international flights to/from US airports) (§ 250.5(b))
+   *   0–1 h late  → no compensation
+   *   1–4 h late  → 200% of one-way fare (cap $1,075)
+   *   4 h+ late   → 400% of one-way fare (cap $2,150)
+   */
+  international: UsDeniedBoardingRule[]
+  sourceName: string
+  sourceUrl: string
+  /** ISO date when caps were verified against the primary source */
+  verifiedAt: string
+} = {
+  domestic: [
+    {
+      minDelayHoursExclusive: 1,
+      maxDelayHoursInclusive: 2,
+      farePercentage: 200,
+      capUsd: 1075,
+      note: {
+        en: 'Alternate transportation arrives more than 1 hour but less than 2 hours after original arrival: 200% of one-way fare, up to $1,075.',
+        ko: '대체편이 원래 도착 시각보다 1시간 초과 2시간 미만 늦게 도착하는 경우: 편도 운임의 200%, 최대 $1,075.',
+      },
+    },
+    {
+      minDelayHoursExclusive: 2,
+      maxDelayHoursInclusive: null,
+      farePercentage: 400,
+      capUsd: 2150,
+      note: {
+        en: 'Alternate transportation arrives 2 or more hours after original arrival (or no alternate offered): 400% of one-way fare, up to $2,150.',
+        ko: '대체편이 원래 도착 시각보다 2시간 이상 늦게 도착하는 경우(또는 대체편 미제공): 편도 운임의 400%, 최대 $2,150.',
+      },
+    },
+  ],
+  international: [
+    {
+      minDelayHoursExclusive: 1,
+      maxDelayHoursInclusive: 4,
+      farePercentage: 200,
+      capUsd: 1075,
+      note: {
+        en: 'Alternate transportation arrives more than 1 hour but less than 4 hours after original arrival: 200% of one-way fare, up to $1,075.',
+        ko: '대체편이 원래 도착 시각보다 1시간 초과 4시간 미만 늦게 도착하는 경우: 편도 운임의 200%, 최대 $1,075.',
+      },
+    },
+    {
+      minDelayHoursExclusive: 4,
+      maxDelayHoursInclusive: null,
+      farePercentage: 400,
+      capUsd: 2150,
+      note: {
+        en: 'Alternate transportation arrives 4 or more hours after original arrival (or no alternate offered): 400% of one-way fare, up to $2,150.',
+        ko: '대체편이 원래 도착 시각보다 4시간 이상 늦게 도착하는 경우(또는 대체편 미제공): 편도 운임의 400%, 최대 $2,150.',
+      },
+    },
+  ],
+  sourceName: '14 CFR § 250.5 — US DOT Denied Boarding Compensation',
+  sourceUrl: 'https://www.law.cornell.edu/cfr/text/14/250.5',
+  verifiedAt: '2026-07-22',
+}
