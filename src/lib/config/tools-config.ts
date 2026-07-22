@@ -1142,6 +1142,90 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-22',
     popular: false,
   },
+  {
+    id: 'jetlag-recovery-calculator',
+    slug: 'jetlag-recovery-calculator',
+    category: 'travel',
+    title: {
+      en: 'Jet Lag Recovery Calculator',
+      ko: '시차 적응 회복 계산기',
+    },
+    description: {
+      en: 'Estimate how many days it takes to recover from jet lag based on the number of time zones you cross and your direction of travel. Includes a day-by-day general adaptation guide for eastward and westward flights — no sign-up required.',
+      ko: '넘어가는 시간대 수와 이동 방향에 따라 시차 적응에 며칠이 걸릴지 추정합니다. 동쪽/서쪽 이동별 일자별 일반 적응 가이드를 제공합니다 — 가입 불필요.',
+    },
+    keywords: {
+      en: [
+        'jet lag calculator',
+        'jet lag recovery time',
+        'how long to recover from jet lag',
+        'jet lag days calculator',
+        'time zone change calculator',
+        'jet lag eastward westward',
+        'circadian rhythm recovery',
+        'jet lag tips',
+        'jet lag cure calculator',
+        'international travel jet lag',
+      ],
+      ko: [
+        '시차 계산기',
+        '시차 적응 기간',
+        '시차 적응 며칠',
+        '시차 회복 기간',
+        '시차 적응 방법',
+        '장거리 비행 시차',
+        '일주기 리듬 회복',
+        '시차 극복 계산기',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Why is eastward travel generally harder than westward for jet lag?',
+          ko: '왜 동쪽으로 이동하는 것이 서쪽 이동보다 시차 적응이 더 어려운가요?',
+        },
+        answer: {
+          en: "The human circadian clock has an intrinsic period slightly longer than 24 hours (approximately 24.2 hours on average). This means it is naturally easier for the body clock to run a bit longer each day — which is what westward travel requires (phase delay). Eastward travel demands the opposite: advancing the clock, which goes against its natural tendency. This asymmetry is documented in sleep medicine literature, including Waterhouse et al., The Lancet 2007. The estimated recovery difference is roughly 50% more days for eastward versus westward travel at the same time-zone count.",
+          ko: '인간의 일주기 시계는 24시간보다 약간 긴 고유 주기(평균 약 24.2시간)를 가집니다. 이는 체내시계가 매일 조금씩 늦춰지는 것이 자연스럽다는 의미로, 이것이 서쪽 이동(위상 지연)에 적합합니다. 반면 동쪽 이동은 시계를 앞당겨야 하는데, 이는 체내시계의 자연적 경향에 반합니다. 이 비대칭성은 Waterhouse 외, The Lancet 2007 등 수면의학 문헌에 기록되어 있습니다. 같은 시간대 수에서 동쪽 이동은 서쪽 이동보다 약 50% 더 많은 회복일이 필요한 것으로 추정됩니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Does following this guide guarantee I will recover in the estimated number of days?',
+          ko: '이 가이드를 따르면 예상 일수 안에 회복이 보장되나요?',
+        },
+        answer: {
+          en: 'No. The estimated recovery days are a statistical approximation — actual recovery varies considerably by individual factors such as age (older adults typically adapt more slowly), chronotype (night owls may adapt slightly differently to eastward travel), sleep quality during the flight, use of melatonin, and how diligently you follow light-exposure strategies. The day-by-day tips are general principles from circadian science, not a personalised protocol.',
+          ko: '아닙니다. 예상 회복일수는 통계적 근사치로, 실제 회복은 연령(고령자는 일반적으로 더 느리게 적응), 일주기 유형(올빼미형은 동쪽 이동에 다소 다르게 반응할 수 있음), 비행 중 수면의 질, 멜라토닌 사용 여부, 빛 노출 전략 실천 정도 등 개인별 요인에 따라 크게 다릅니다. 일자별 가이드는 일주기 과학의 일반 원칙이지 개인 맞춤 처방이 아닙니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Why does the tool show a "westward" direction for some routes that seem eastward on a map?',
+          ko: '지도에서 동쪽으로 가는 것 같은 경로가 "서쪽 이동"으로 표시되는 이유는 무엇인가요?',
+        },
+        answer: {
+          en: 'The tool always calculates the shortest path across time zones, not the actual flight routing. For example, flying from New York (UTC-5) to Tokyo (UTC+9) can go eastward via the Atlantic and Europe (14 time zones) or westward across the Pacific (10 time zones). The shorter 10-zone westward path is what this tool uses, which matches how most airlines route such flights. This is a simplification — real flight paths also depend on jet streams and geography.',
+          ko: '이 계산기는 실제 비행 경로가 아닌 최단 시간대 경로를 기준으로 계산합니다. 예를 들어 뉴욕(UTC-5)에서 도쿄(UTC+9)로 가는 경우, 대서양·유럽을 거쳐 동쪽으로 14개 시간대를 건너거나 태평양을 건너 서쪽으로 10개 시간대를 건널 수 있습니다. 이 계산기는 더 짧은 10개 시간대 서쪽 경로를 사용하며, 대부분의 항공사 운항 경로와 일치합니다. 이는 단순화된 접근 방식으로, 실제 비행 경로는 제트기류와 지형에 따라 다릅니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['flight-delay-compensation', 'layover-connection-calculator'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-22',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
