@@ -27,5 +27,6 @@
       "summary": "Extended flight-delay-compensation tool with disruption type support (delay/cancellation/denied-boarding). Added US_DENIED_BOARDING_RULES to flightCompensationRules.ts with 14 CFR § 250.5 caps ($1,075 / $2,150) verified at law.cornell.edu on 2026-07-22. New DisruptionType union + estimateDeniedBoardingCompensationUs() in flightDelayCompensation.ts (fare-based, capped). estimateCompensation() updated: EU261 denied-boarding skips force-majeure exemption; US_DOT delay/cancellation unchanged. FlightDelayCompensationTool.tsx: step 2 disruption-type selector, conditional fare input (US_DOT+denied-boarding), relabelled delay slider, cause step hidden for denied-boarding, result amount text-5xl, share URL extended. tools-config: description/keywords/FAQ updated (2 new FAQs on cancellation + denied boarding), relatedToolIds now links all 3 travel tools. 35 flight-delay tests (19 new), 483 total pass. Lint clean, build generates /en|ko/travel/flight-delay-compensation."
     }
   ],
-  "created_at": "2026-07-22T10:17:15+0900"
+  "created_at": "2026-07-22T10:17:15+0900",
+  "completed_at": "2026-07-22T14:43:47+0900"
 }
