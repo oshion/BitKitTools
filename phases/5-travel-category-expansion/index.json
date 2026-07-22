@@ -1,0 +1,9 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "5-travel-category-expansion",
+  "steps": [
+    { "step": 0, "name": "tool-layover-connection-calculator", "status": "pending" },
+    { "step": 1, "name": "tool-jetlag-recovery-calculator", "status": "pending" },
+    { "step": 2, "name": "flight-delay-compensation-enhancements", "status": "pending" }
+  ]
+}

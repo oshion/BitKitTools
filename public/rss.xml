@@ -5,8 +5,15 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jul 2026 03:14:15 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 00:42:35 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Hydrometer Temperature Correction Calculator</title>
+      <link>https://bitkittools.com/beer/hydrometer-temperature-correction</link>
+      <description>Correct your hydrometer reading for sample temperature. Enter your measured gravity, the actual sample temperature, and your hydrometer&apos;s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. All calculations run in your browser — no login, no uploads.</description>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/beer/hydrometer-temperature-correction</guid>
+    </item>
     <item>
       <title>Child Height Predictor</title>
       <link>https://bitkittools.com/baby/height-predictor</link>

@@ -29,10 +29,12 @@
 - 결과 영역(성공 시) 클릭 시 바로 복사 — 상단 "복사" 버튼과 동일하게 "Copied!" 피드백 공유
 - "복사"/"다운로드(.json)" 버튼
 - Format ↔ Minify 토글
+- **"Convert to SQL" 버튼(신규)**: 포맷 성공 시 결과 영역에 노출. 클릭하면 결과 JSON을 `sessionStorage`(URL 쿼리 아님 — 민감한 값이 포함될 수 있음)에 담아 신규 툴 `/developer/json-to-sql`로 이동. 자세한 연동 방식은 `docs/screens/developer-json-to-sql.md`의 "JSON Formatter 연동" 참고.
 
 ## tools-config 항목
 - `category: 'developer'`, `disclaimerType: 'general'`, `aiOverviewResistance: 'high'`
 - `schemaType: 'WebApplication'`, FAQ 예: "JSON이 유효하지 않다는 건 무슨 뜻인가요?", "포맷팅과 압축의 차이는?"
+- `relatedToolIds`에 신규 툴 `json-to-sql` 추가
 
 ## 상태
 - 컴포넌트 로컬 `useState`만. 입력값은 LocalStorage에 저장하지 않는다 — 민감한 JSON(토큰/개인정보 포함 응답)이 붙여넣어질 수 있음.

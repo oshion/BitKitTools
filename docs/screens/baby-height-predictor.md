@@ -91,6 +91,16 @@ function handleShare() {
 ## Analytics 이벤트
 `Tool Open`, `Calculate`, `Share`
 
+## 향후 확장 후보: Khamis-Roche 정밀 모드 (별도 스코프, 이번 작업에 포함하지 않음)
+경쟁사 리서치 결과, 상위 경쟁사 대부분이 Mid-Parental Height를 보조 방식으로 두고 **Khamis-Roche 방법(Khamis HJ, Roche AF, 1994, *Pediatrics* — Fels Longitudinal Study 기반)을 기본으로 쓰고 있어** 업계 표준이 되어 있다. 다만 이 방법은 Mid-Parental Height처럼 깔끔한 단일 공식이 아니라 **연령(6개월 단위)×성별별로 다른 회귀계수를 쓰는 테이블 기반 방법**이라 `growthStandards.ts`(WHO/CDC LMS 파라미터)급의 데이터 소싱 작업이 별도로 필요하다. **이번 beer/travel/developer 확장 작업과 같은 묶음으로 진행하지 않는다** — 별도 논의와 별도 harness phase로 다룰 것을 권장한다.
+
+진행하게 될 경우 반영할 내용:
+- 추가 입력: 자녀 현재 나이(만 4~17.5세 범위, 그 미만은 "이 방법은 지원 범위 밖" 안내), 현재 키, 현재 체중
+- 결과: 기존 Mid-Parental Height 결과와 나란히 "정밀 모드(Khamis-Roche)" 결과를 함께 보여주는 방식 추천 — 두 방법 중 하나로 대체하지 않고 비교 제공(Mid-Parental Height는 이미 출처가 명확하고 검증된 기존 기능이므로 유지)
+- 회귀계수 테이블은 **원 논문(Khamis & Roche, 1994, Pediatrics 94(4):504-507) 또는 이를 충실히 재현한 신뢰 가능한 2차 출처에서 직접 확인**해야 하며, 이 문서를 포함해 지금까지 어떤 문서에도 실제 계수를 임의로 만들어 넣지 않았다 — 향후 진행 시 정확한 데이터 확보가 선행 조건이다.
+- 오차범위(SE)는 Mid-Parental Height의 고정 `±8.5cm`와 달리 방법·연령·성별에 따라 다른 값을 쓴다(경쟁사 InfantChart가 남아 `±5.6cm`/여아 `±4.3cm`로 제시 — 이 수치도 원 출처 재확인 필요).
+- 사춘기 단계(Tanner stage) 기반 예측은 검색 수요는 있으나 민감한 의료 입력(신체 발달 단계 자가 판정)이라 이번 확장 범위에서 제외한다.
+
 ## 금지사항
 - 예측치를 확정된 성인 키처럼 단정적으로 표현하지 않는다 — 항상 "예상 범위"로 표현하고 통계적 추정임을 명시한다.
 - Mid-Parental Height 공식 출처 없이 임의의 계수를 사용하지 않는다.

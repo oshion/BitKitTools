@@ -1,0 +1,9 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "6-developer-category-expansion",
+  "steps": [
+    { "step": 0, "name": "tool-jwt-decoder", "status": "pending" },
+    { "step": 1, "name": "tool-json-to-sql", "status": "pending" },
+    { "step": 2, "name": "json-formatter-enhancements", "status": "pending" }
+  ]
+}
