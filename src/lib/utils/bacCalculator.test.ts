@@ -188,6 +188,70 @@ describe('calculateBac', () => {
     const decimals = str.includes('.') ? str.split('.')[1]?.length ?? 0 : 0
     expect(decimals).toBeLessThanOrEqual(3)
   })
+
+  // ── hoursUntilZeroPercent ───────────────────────────────────────────────────
+
+  it('returns hoursUntilZeroPercent of 0 when BAC is already 0', () => {
+    const result = calculateBac({
+      gender: 'male',
+      weightKg: 80,
+      drinks: [],
+      hoursElapsed: 0,
+    })
+    expect(result.hoursUntilZeroPercent).toBe(0)
+  })
+
+  it('returns positive hoursUntilZeroPercent when BAC is above 0', () => {
+    const result = calculateBac({
+      gender: 'male',
+      weightKg: 80,
+      drinks: [{ abvPercent: 5, volumeMl: 355 }],
+      hoursElapsed: 0,
+    })
+    expect(result.hoursUntilZeroPercent).toBeGreaterThan(0)
+  })
+
+  it('hoursUntilZeroPercent equals bacPercent / 0.015 (rounded to 1 decimal)', () => {
+    const result = calculateBac({
+      gender: 'male',
+      weightKg: 80,
+      drinks: [{ abvPercent: 5, volumeMl: 355 }],
+      hoursElapsed: 0,
+    })
+    const expected = Math.round((result.bacPercent / 0.015) * 10) / 10
+    expect(result.hoursUntilZeroPercent).toBe(expected)
+  })
+
+  it('hoursUntilZeroPercent is 0 when bacPercent is clamped to 0', () => {
+    const result = calculateBac({
+      gender: 'male',
+      weightKg: 80,
+      drinks: [{ abvPercent: 5, volumeMl: 355 }],
+      hoursElapsed: 10, // fully metabolized
+    })
+    expect(result.bacPercent).toBe(0)
+    expect(result.hoursUntilZeroPercent).toBe(0)
+  })
+
+  it('hoursUntilZeroPercent scales with more drinks consumed', () => {
+    const oneDrink = calculateBac({
+      gender: 'male',
+      weightKg: 80,
+      drinks: [{ abvPercent: 5, volumeMl: 355 }],
+      hoursElapsed: 0,
+    })
+    const threeDrinks = calculateBac({
+      gender: 'male',
+      weightKg: 80,
+      drinks: [
+        { abvPercent: 5, volumeMl: 355 },
+        { abvPercent: 5, volumeMl: 355 },
+        { abvPercent: 5, volumeMl: 355 },
+      ],
+      hoursElapsed: 0,
+    })
+    expect(threeDrinks.hoursUntilZeroPercent).toBeGreaterThan(oneDrink.hoursUntilZeroPercent)
+  })
 })
 
 // ── Unit conversion helpers ─────────────────────────────────────────────────

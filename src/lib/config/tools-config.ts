@@ -321,8 +321,18 @@ export const toolsConfig: ToolConfig[] = [
           ko: '생물학적 성별은 두 가지 주요 메커니즘을 통해 BAC에 영향을 미칩니다. 첫째, 같은 체중에서 여성은 남성보다 총 체수분 비율이 낮아 알코올이 더 작은 체적에 분포되므로 BAC가 더 높아집니다. Widmark 공식은 이를 분포 계수 r로 반영합니다(남성 0.68, 여성 0.55). 둘째, 여성은 평균적으로 위장에서 알코올을 분해하는 효소인 알코올 탈수소효소(ADH) 수치가 낮아 더 많은 알코올이 혈류로 흡수됩니다. 이는 평균적인 생리학적 차이이며 개인 간 편차가 존재합니다.',
         },
       },
+      {
+        question: {
+          en: 'Once the estimated time until 0% has passed, is it safe to drive?',
+          ko: '예상 0% 도달 시간이 지나면 운전해도 되나요?',
+        },
+        answer: {
+          en: 'No. The "estimated hours until 0%" is a rough metabolic calculation based on a fixed elimination rate (0.015 g/dL per hour). Individual alcohol metabolism varies widely depending on food intake, hydration, fatigue, medications, liver health, and genetics — actual clearance time can differ significantly. More importantly, the recovery of cognitive function and reaction time does not always align with reaching 0% BAC. This figure should never be used to decide when it is safe to drive. After drinking any amount of alcohol, the only safe decision is not to drive.',
+          ko: '아닙니다. "예상 0% 도달까지 남은 시간"은 고정된 대사율(시간당 0.015 g/dL)을 기반으로 한 대략적인 계산입니다. 실제 알코올 대사 속도는 음식 섭취, 수분 상태, 피로도, 약물 복용, 간 건강, 유전적 요인에 따라 개인차가 매우 크며, 실제 완전 대사 시간은 크게 다를 수 있습니다. 더 중요하게는, 인지 기능과 반응 속도의 회복이 BAC 0% 도달과 반드시 일치하지 않습니다. 이 수치는 운전 가능 여부를 판단하는 기준으로 절대 사용해서는 안 됩니다. 음주 후에는 얼마를 마셨든 운전하지 않는 것이 유일하게 안전한 선택입니다.',
+        },
+      },
     ],
-    relatedToolIds: ['homebrew-recipe-calculator'],
+    relatedToolIds: ['homebrew-recipe-calculator', 'standard-drinks-calculator'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },

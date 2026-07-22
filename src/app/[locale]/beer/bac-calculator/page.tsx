@@ -125,20 +125,45 @@ export default async function BacCalculatorPage({ params }: Props) {
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
-            계산에 사용되는 Widmark 공식은 1932년 스웨덴 의사 Erik MP Widmark가 발표한
-            공식입니다. 법의학 및 연구 분야에서 표준적으로 활용되지만 어디까지나 추정치이며,
-            실제 혈중 알코올 농도는 음식 섭취 여부·복용 약물·피로도·유전적 요인에 따라
-            크게 달라질 수 있습니다.
-          </p>
+          <>
+            <p className="text-sm text-neutral-300 leading-relaxed">
+              계산에 사용되는 Widmark 공식은 1932년 스웨덴 의사 Erik MP Widmark가 발표한
+              공식입니다. 법의학 및 연구 분야에서 표준적으로 활용되지만 어디까지나 추정치이며,
+              실제 혈중 알코올 농도는 음식 섭취 여부·복용 약물·피로도·유전적 요인에 따라
+              크게 달라질 수 있습니다.
+            </p>
+            <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 space-y-1">
+              <p className="text-xs text-neutral-500 uppercase tracking-wide">Widmark 공식</p>
+              <p className="font-mono text-sm text-neutral-300">
+                BAC (%) = [A × 100 / (W × r)] − (β × t)
+              </p>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                A = 알코올(g), W = 체중(g), r = 0.68 (남성) / 0.55 (여성),
+                β = 0.015 g/dL/시간, t = 경과 시간(시간)
+              </p>
+            </div>
+          </>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
-            The calculation uses the{' '}
-            <strong className="text-neutral-200">Widmark formula</strong> (Widmark EMP, 1932), a
-            standard method used in forensic and research contexts. It is an approximation — actual
-            BAC is affected by food intake, medications, fatigue, genetic factors, and liver
-            function, and may differ significantly from the calculated estimate.
-          </p>
+          <>
+            <p className="text-sm text-neutral-300 leading-relaxed">
+              The calculation uses the{' '}
+              <strong className="text-neutral-200">Widmark formula</strong> (Widmark EMP, 1932), a
+              standard method used in forensic and research contexts. It is an approximation — actual
+              BAC is affected by food intake, medications, fatigue, genetic factors, and liver
+              function, and may differ significantly from the calculated estimate.
+            </p>
+            <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 space-y-1">
+              <p className="text-xs text-neutral-500 uppercase tracking-wide">Widmark Formula</p>
+              <p className="font-mono text-sm text-neutral-300">
+                BAC (%) = [A × 100 / (W × r)] − (β × t)
+              </p>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                A = alcohol consumed (g), W = body weight (g), r = 0.68 (male) / 0.55 (female),
+                β = 0.015 g/dL/hr, t = hours elapsed.{' '}
+                <em>Source: Widmark EMP, 1932.</em>
+              </p>
+            </div>
+          </>
         )}
       </section>
 

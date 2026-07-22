@@ -33,7 +33,11 @@ export type BacInput = {
  *   β  = elimination rate (0.015 g/dL per hour)
  *   t  = hours elapsed since drinking started
  */
-export function calculateBac(input: BacInput): { bacPercent: number; isEstimateOnly: true } {
+export function calculateBac(input: BacInput): {
+  bacPercent: number
+  hoursUntilZeroPercent: number
+  isEstimateOnly: true
+} {
   const ETHANOL_DENSITY = 0.789 // g/mL
   const ELIMINATION_RATE = 0.015 // g/dL per hour
   const WIDMARK_FACTOR = input.gender === 'male' ? 0.68 : 0.55
@@ -43,7 +47,7 @@ export function calculateBac(input: BacInput): { bacPercent: number; isEstimateO
   }, 0)
 
   if (totalAlcoholG === 0 || input.weightKg <= 0) {
-    return { bacPercent: 0, isEstimateOnly: true }
+    return { bacPercent: 0, hoursUntilZeroPercent: 0, isEstimateOnly: true }
   }
 
   const weightG = input.weightKg * 1000
@@ -55,8 +59,18 @@ export function calculateBac(input: BacInput): { bacPercent: number; isEstimateO
   const bacPercent = Math.max(0, rawBac - ELIMINATION_RATE * input.hoursElapsed)
 
   // Round to 3 decimal places for display
+  const bacPercentRounded = Math.round(bacPercent * 1000) / 1000
+
+  // Hours until BAC reaches 0% at standard elimination rate (0.015 g/dL per hour).
+  // This is ONLY the time to complete metabolism (0%), never a legal-limit countdown.
+  const hoursUntilZeroPercent =
+    bacPercentRounded === 0
+      ? 0
+      : Math.round((bacPercentRounded / ELIMINATION_RATE) * 10) / 10
+
   return {
-    bacPercent: Math.round(bacPercent * 1000) / 1000,
+    bacPercent: bacPercentRounded,
+    hoursUntilZeroPercent,
     isEstimateOnly: true,
   }
 }

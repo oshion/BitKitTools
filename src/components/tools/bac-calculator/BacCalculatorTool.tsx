@@ -6,6 +6,105 @@ import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import BacSafetyWarning from './BacSafetyWarning'
 
+// ── BAC Reference Table ───────────────────────────────────────────────────────
+// Purely educational content — no "safe/OK to drive" judgments (ADR-014, screen spec)
+// Sources: NIAAA (niaaa.nih.gov), CDC alcohol resources
+
+type BacRange = {
+  min: number
+  max: number
+  label: string
+  effects: string
+}
+
+const BAC_RANGES: BacRange[] = [
+  {
+    min: 0.01,
+    max: 0.029,
+    label: '0.01–0.02%',
+    effects:
+      'Subtle effects: mild warmth, slight mood lift. Most people feel little to no impairment.',
+  },
+  {
+    min: 0.03,
+    max: 0.059,
+    label: '0.03–0.05%',
+    effects:
+      'Mild euphoria, reduced inhibitions, slight impairment of judgment and fine motor skills.',
+  },
+  {
+    min: 0.06,
+    max: 0.099,
+    label: '0.06–0.09%',
+    effects:
+      'Noticeable impairment of balance, speech, vision, and reaction time. Judgment and self-control are reduced.',
+  },
+  {
+    min: 0.1,
+    max: 0.149,
+    label: '0.10–0.14%',
+    effects:
+      'Significant coordination impairment, slurred speech, slower reaction time, impaired thinking and memory.',
+  },
+  {
+    min: 0.15,
+    max: 0.199,
+    label: '0.15–0.19%',
+    effects:
+      'Gross motor impairment, nausea possible. Significantly reduced balance and judgment.',
+  },
+  {
+    min: 0.2,
+    max: 0.299,
+    label: '0.20–0.29%',
+    effects:
+      'Severe impairment of all physical and mental functions. Nausea, vomiting, memory blackouts may occur.',
+  },
+  {
+    min: 0.3,
+    max: 1.0,
+    label: '0.30%+',
+    effects:
+      'Potentially life-threatening. Risk of loss of consciousness, respiratory depression, and alcohol poisoning. Seek immediate medical help.',
+  },
+]
+
+function BacReferenceTable({ currentBac }: { currentBac: number }) {
+  const activeIndex = BAC_RANGES.findIndex(
+    (range) => currentBac >= range.min && currentBac <= range.max,
+  )
+
+  return (
+    <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-3">
+      <div className="space-y-0.5">
+        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+          BAC Level Reference
+        </h2>
+        <p className="text-xs text-neutral-600">
+          General physical effects at various BAC levels. For reference only —
+          no threshold indicates safe driving.{' '}
+          <span className="italic">Source: NIAAA, CDC.</span>
+        </p>
+      </div>
+      <div className="space-y-2">
+        {BAC_RANGES.map((range, i) => (
+          <div
+            key={range.label}
+            className={`rounded-lg px-3 py-2.5 text-xs leading-relaxed transition-colors ${
+              i === activeIndex
+                ? 'border border-neutral-500 bg-neutral-800 text-neutral-200 font-medium'
+                : 'border border-neutral-800 bg-neutral-900/40 text-neutral-500'
+            }`}
+          >
+            <span className="font-mono font-semibold mr-2 text-neutral-300">{range.label}</span>
+            {range.effects}
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 type WeightUnit = 'kg' | 'lbs'
@@ -410,9 +509,9 @@ export default function BacCalculatorTool() {
             Estimated BAC (Blood Alcohol Concentration)
           </p>
           {/* Neutral number display only — NO color coding, NO pass/fail indicators (ADR-014) */}
-          <p className="text-4xl font-bold text-[#f59e0b] tabular-nums">
+          <p className="text-5xl font-bold text-[#f59e0b] tabular-nums">
             {bacResult.bacPercent.toFixed(3)}
-            <span className="text-xl font-normal text-neutral-400 ml-1">%</span>
+            <span className="text-2xl font-normal text-neutral-400 ml-1">%</span>
           </p>
           <p className="text-xs text-neutral-500">
             = {(bacResult.bacPercent * 10).toFixed(2)} g/L &nbsp;·&nbsp;{' '}
@@ -420,13 +519,33 @@ export default function BacCalculatorTool() {
           </p>
         </div>
 
-        {/* Widmark formula source citation — required (screen spec) */}
-        <p className="text-xs text-neutral-600 leading-relaxed border-t border-neutral-800 pt-3">
-          Calculated using the{' '}
-          <strong className="text-neutral-500">Widmark formula</strong> (Widmark EMP, 1932).
-          Ethanol density: 0.789 g/mL. Elimination rate: 0.015 g/dL/hr. Distribution
-          factors: male r = 0.68, female r = 0.55. Individual results may vary significantly.
-        </p>
+        {/* hoursUntilZeroPercent — secondary info, clearly labelled as metabolism estimate only */}
+        <div className="border-t border-neutral-800 pt-3 space-y-0.5">
+          <p className="text-xs text-neutral-500 uppercase tracking-wide">
+            Estimated hours until 0%
+          </p>
+          <p className="text-2xl font-semibold text-neutral-300 tabular-nums">
+            {bacResult.hoursUntilZeroPercent.toFixed(1)}
+            <span className="text-sm font-normal text-neutral-500 ml-1">hrs</span>
+          </p>
+          <p className="text-xs text-neutral-600 leading-relaxed">
+            Time for BAC to reach 0% at the standard elimination rate of 0.015 g/dL/hr.
+            This is a rough metabolic estimate only — not a clearance time for driving.
+          </p>
+        </div>
+
+        {/* Widmark formula display — E-E-A-T trust signal (screen spec) */}
+        <div className="border-t border-neutral-800 pt-3 space-y-1">
+          <p className="text-xs text-neutral-500 uppercase tracking-wide">Widmark Formula</p>
+          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
+            BAC (%) = [A × 100 / (W × r)] − (β × t)
+          </p>
+          <p className="text-xs text-neutral-600 leading-relaxed">
+            A = alcohol (g), W = body weight (g), r = 0.68 (male) / 0.55 (female),
+            β = 0.015 g/dL/hr, t = hours elapsed.{' '}
+            <span className="italic">Source: Widmark EMP, 1932.</span>
+          </p>
+        </div>
 
         {/* Mandatory safety reminder — always shown, never conditional on BAC value (ADR-014) */}
         <div className="rounded-lg border border-red-900/50 bg-red-950/20 px-3 py-2.5 text-xs text-red-300 leading-relaxed">
@@ -434,6 +553,9 @@ export default function BacCalculatorTool() {
           after consuming alcohol. The only safe BAC for driving is 0.000%.
         </div>
       </section>
+
+      {/* ── BAC level reference table ─────────────────────────────────────── */}
+      <BacReferenceTable currentBac={bacResult.bacPercent} />
 
       {/* Standard medical disclaimer (separate from, and in addition to, BacSafetyWarning) */}
       <DisclaimerBanner disclaimerType="medical" />
