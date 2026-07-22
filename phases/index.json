@@ -22,7 +22,8 @@
     },
     {
       "dir": "4-beer-category-expansion",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-07-22T10:02:46+0900"
     },
     {
       "dir": "5-travel-category-expansion",

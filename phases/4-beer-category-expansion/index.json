@@ -35,5 +35,6 @@
       "summary": "Added AbvFormula type ('standard'|'high-gravity') to homebrewCalculator.ts; updated calculateAbv signature with formula param (default 'standard', backward-compatible); added high-gravity non-linear formula (76.08×(OG-FG)/(1.775-OG))×(FG/0.794); added 9 new tests (30 total in suite, 426 total pass); updated HomebrewRecipeCalculatorTool.tsx: formula segment-control toggle, OG≥1.070 suggestion banner (no auto-switch), text-5xl ABV display, hydrometer temp-correction link, honest formula attribution; updated tools-config.ts: relatedToolIds homebrew↔hydrometer mutual link, 4 new EN keywords, 2 new KO keywords, new FAQ 'standard vs high-gravity formula'. lint pass, 426 tests pass, static export builds both locales."
     }
   ],
-  "created_at": "2026-07-22T09:32:53+0900"
+  "created_at": "2026-07-22T09:32:53+0900",
+  "completed_at": "2026-07-22T10:02:46+0900"
 }
