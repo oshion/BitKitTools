@@ -7,7 +7,7 @@
       "name": "tool-jwt-decoder",
       "status": "completed",
       "started_at": "2026-07-23T08:45:42+0900",
-      "completed_at": "2026-07-23T09:30:00+0900",
+      "completed_at": "2026-07-23T08:53:06+0900",
       "summary": "Created jwtDecoder.ts (decodeJwt + explainStandardClaims, 19 unit tests), JwtDecoderTool.tsx (client component, no localStorage/sessionStorage, token not in analytics payload), page.tsx for /developer/jwt-decoder (EN/KO), and tools-config entry (disclaimerType: none, relatedToolIds: [], addedAt: 2026-07-23). Build, lint, and all 502 tests pass."
     },
     {
