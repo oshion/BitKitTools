@@ -23,7 +23,7 @@
       "name": "bac-calculator-enhancements",
       "status": "completed",
       "started_at": "2026-07-22T09:50:35+0900",
-      "completed_at": "2026-07-22T10:10:00+0900",
+      "completed_at": "2026-07-22T09:57:02+0900",
       "summary": "Extended calculateBac to return hoursUntilZeroPercent (bacPercent/0.015, rounded to 1dp, 0 when BAC=0) with 5 new tests (417 total pass); upgraded BAC display to text-5xl; added hoursUntilZeroPercent secondary display with neutral label; added Widmark formula display block in result card and page.tsx description; added BacReferenceTable (7 BAC ranges from NIAAA/CDC, highlights current range with no safe/unsafe framing); updated tools-config.ts bac-calculator relatedToolIds to include standard-drinks-calculator; added new FAQ entry 'Once 0% time passes, is it safe to drive?' with 'No' answer. lint pass, 417 tests pass, static export builds both locales."
     },
     {
