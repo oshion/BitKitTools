@@ -7,7 +7,7 @@
       "name": "tool-hydrometer-temperature-correction",
       "status": "completed",
       "started_at": "2026-07-22T09:32:53+0900",
-      "completed_at": "2026-07-22T10:00:00+0900",
+      "completed_at": "2026-07-22T09:42:43+0900",
       "summary": "Created lib/utils/hydrometerCorrection.ts (correctGravity, fahrenheitFromCelsius, celsiusFromFahrenheit) with 25 passing tests; added HydrometerCorrectionTool.tsx client component with °F/°C toggle, 59°F/68°F calibration presets, opt-in localStorage for calibration temp; added tools-config.ts entry (disclaimerType: general, aiOverviewResistance: high, relatedToolIds: [homebrew-recipe-calculator]); created /beer/hydrometer-temperature-correction page (EN+KO, og:image: /og/default-{en,ko}.png). Build: lint pass, 394 tests pass, static export builds both locales."
     },
     {
