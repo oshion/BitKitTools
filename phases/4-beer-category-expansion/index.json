@@ -15,7 +15,7 @@
       "name": "tool-standard-drinks-calculator",
       "status": "completed",
       "started_at": "2026-07-22T09:42:44+0900",
-      "completed_at": "2026-07-22T10:10:00+0900",
+      "completed_at": "2026-07-22T09:50:34+0900",
       "summary": "Created lib/utils/standardDrinksCalculator.ts (calculateStandardDrinks, GRAMS_PER_STANDARD_DRINK for us/uk/au-sg/canada) with 18 passing tests; added StandardDrinksCalculatorTool.tsx client component with drink-type presets, mL/fl oz toggle, 4-country standard selector, weekly recommended limits, BAC link; added tools-config.ts entry (disclaimerType: medical, aiOverviewResistance: high, relatedToolIds: [bac-calculator]); created /beer/standard-drinks-calculator page (EN+KO) with confirmed 5-element disclaimer paragraph, og:image /og/default-{en,ko}.png. lint pass, 412 tests pass, static export builds both locales."
     },
     {
