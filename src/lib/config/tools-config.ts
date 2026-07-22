@@ -169,6 +169,89 @@ export const toolsConfig: ToolConfig[] = [
     popular: false,
   },
   {
+    id: 'jwt-decoder',
+    slug: 'jwt-decoder',
+    category: 'developer',
+    title: {
+      en: 'JWT Decoder',
+      ko: 'JWT 디코더',
+    },
+    description: {
+      en: 'Instantly decode JWT tokens and inspect Header, Payload, and standard claims — exp, iat, sub, iss, aud and more — with human-readable explanations. Everything runs in your browser; your token never leaves your device.',
+      ko: 'JWT 토큰을 즉시 디코딩해 Header, Payload, 표준 클레임(exp, iat, sub, iss, aud 등)을 사람이 읽을 수 있는 설명과 함께 확인하세요. 모든 처리는 브라우저에서 진행되며 토큰은 외부로 전송되지 않습니다.',
+    },
+    keywords: {
+      en: [
+        'jwt decoder',
+        'jwt token decoder',
+        'decode jwt online',
+        'jwt claims viewer',
+        'jwt parser',
+        'json web token decoder',
+        'jwt inspector',
+        'decode jwt token',
+        'jwt payload decoder',
+        'jwt header decoder',
+      ],
+      ko: [
+        'JWT 디코더',
+        'JWT 토큰 디코더',
+        'JWT 클레임 확인',
+        'JWT 파서',
+        'JSON 웹 토큰 디코더',
+        'JWT 검사기',
+        'JWT 페이로드 디코딩',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Can I verify whether this token is actually valid (i.e. check the signature)?',
+          ko: '이 토큰이 실제로 유효한지(서명이 올바른지) 확인할 수 있나요?',
+        },
+        answer: {
+          en: 'No — this tool only decodes the token (reads the Header and Payload), it does not verify the cryptographic signature. Signature verification requires the secret key or public key used to sign the token, which this tool does not and should not handle. Use your backend or a trusted library (e.g. jsonwebtoken for Node.js) to verify signatures.',
+          ko: '아닙니다 — 이 도구는 토큰을 디코딩(Header와 Payload를 읽음)할 뿐이며, 암호학적 서명을 검증하지 않습니다. 서명 검증에는 토큰 서명에 사용된 비밀키 또는 공개키가 필요하며, 이 도구는 이를 처리하지 않습니다. 서명 검증은 백엔드 또는 신뢰할 수 있는 라이브러리(예: Node.js의 jsonwebtoken)를 사용하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'Is my token sent to any server?',
+          ko: '제 토큰이 서버로 전송되나요?',
+        },
+        answer: {
+          en: 'No. The entire decoding process runs in your browser using JavaScript. Your token is never sent to any server, logged, or stored anywhere — not even in browser storage. This is especially important because JWT tokens often contain sensitive authentication data.',
+          ko: '아닙니다. 모든 디코딩 처리는 브라우저에서 JavaScript로 실행됩니다. 토큰은 어떤 서버에도 전송되지 않고, 로그나 브라우저 저장소 어디에도 기록되지 않습니다. JWT 토큰은 민감한 인증 정보를 포함하는 경우가 많으므로 이 점이 특히 중요합니다.',
+        },
+      },
+      {
+        question: {
+          en: 'The "exp" claim shows it has passed — does that mean the token is invalid?',
+          ko: '"exp" 클레임이 지난 시각으로 나오는데, 토큰이 무효라는 뜻인가요?',
+        },
+        answer: {
+          en: 'It means the declared expiry timestamp in the Payload is in the past. However, this is just a time comparison — it is not the same as verifying the signature. A token can have a past exp and still technically have a valid signature, and vice versa. Whether the token is truly accepted or rejected is always determined by the server that validates it.',
+          ko: 'Payload에 선언된 만료 시각이 현재 시각보다 과거라는 의미입니다. 그러나 이것은 단순한 시간 비교이며, 서명 검증과 다릅니다. exp가 지난 토큰이라도 서명 자체는 유효할 수 있고, 반대의 경우도 마찬가지입니다. 토큰이 실제로 허용되거나 거부되는지는 항상 이를 검증하는 서버가 결정합니다.',
+        },
+      },
+    ],
+    relatedToolIds: [],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'none',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-23',
+    popular: false,
+  },
+  {
     id: 'visa-requirement-checker',
     slug: 'visa-requirement-checker',
     category: 'travel',
