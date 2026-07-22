@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 01:41:12 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 05:41:55 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Hydrometer Temperature Correction Calculator</title>
@@ -101,7 +101,7 @@
     <item>
       <title>Flight Delay Compensation Calculator</title>
       <link>https://bitkittools.com/travel/flight-delay-compensation</link>
-      <description>Find out if your delayed flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, route distance, delay duration, and cause to get an instant estimate — no sign-up required.</description>
+      <description>Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/travel/flight-delay-compensation</guid>
     </item>
