@@ -23,7 +23,7 @@
       "name": "json-formatter-enhancements",
       "status": "completed",
       "started_at": "2026-07-23T09:04:20+0900",
-      "completed_at": "2026-07-23T09:20:00+0900",
+      "completed_at": "2026-07-23T09:07:49+0900",
       "summary": "Added 'Convert to SQL →' button to JsonFormatterTool.tsx (writes sessionStorage key 'json-formatter-to-sql:payload', navigates to /developer/json-to-sql with locale awareness, uses existing 'calculate' event, no cross-import). Added 'json-to-sql' to json-formatter relatedToolIds in tools-config.ts (json-to-sql already had json-formatter). Lint, 545 tests, and build pass."
     }
   ],
