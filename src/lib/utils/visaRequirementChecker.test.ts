@@ -166,6 +166,82 @@ describe('case-insensitive lookup', () => {
 // Symmetry — different from↔to combos can have different results
 // ────────────────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────────────────
+// 2026-07-23 country expansion (AT, BR, CH, CZ, EG, HK, IE, IL, NZ, PL, TW, ZA)
+// ────────────────────────────────────────────────────────────────────────────
+
+describe('country expansion — new destinations', () => {
+  test('KR → CH: Schengen visa-free', () => {
+    const result = checkVisaRequirement('KR', 'CH')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBe(90)
+  })
+
+  test('US → TW: 90-day visa-free', () => {
+    const result = checkVisaRequirement('US', 'TW')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBe(90)
+  })
+
+  test('GB → IE: Common Travel Area, no fixed max stay', () => {
+    const result = checkVisaRequirement('GB', 'IE')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBeUndefined()
+  })
+
+  test('KR → NZ: NZeTA required (e-visa)', () => {
+    const result = checkVisaRequirement('KR', 'NZ')
+    expect(result.requirementType).toBe('e-visa')
+    expect(result.maxStayDays).toBe(90)
+  })
+
+  test('US → EG: e-visa/visa-on-arrival, 30 days', () => {
+    const result = checkVisaRequirement('US', 'EG')
+    expect(result.requirementType).toBe('e-visa')
+    expect(result.maxStayDays).toBe(30)
+  })
+
+  test('GB → IL: ETA-IL required (e-visa)', () => {
+    const result = checkVisaRequirement('GB', 'IL')
+    expect(result.requirementType).toBe('e-visa')
+    expect(result.maxStayDays).toBe(90)
+  })
+
+  test('KR → ZA: visa-free, 30 days', () => {
+    const result = checkVisaRequirement('KR', 'ZA')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBe(30)
+  })
+
+  test('US → BR: visa-free, 90 days', () => {
+    const result = checkVisaRequirement('US', 'BR')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBe(90)
+  })
+
+  test('GB → HK: 180-day visa-free allowance', () => {
+    const result = checkVisaRequirement('GB', 'HK')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBe(180)
+  })
+
+  test('DE → AT: free movement within Schengen', () => {
+    const result = checkVisaRequirement('DE', 'AT')
+    expect(result.requirementType).toBe('visa-free')
+  })
+
+  test('DE → PL: free movement within Schengen', () => {
+    const result = checkVisaRequirement('DE', 'PL')
+    expect(result.requirementType).toBe('visa-free')
+  })
+
+  test('KR → IE: visa-free, 90 days (non-Schengen)', () => {
+    const result = checkVisaRequirement('KR', 'IE')
+    expect(result.requirementType).toBe('visa-free')
+    expect(result.maxStayDays).toBe(90)
+  })
+})
+
 describe('asymmetric requirements', () => {
   test('IN→US and US→IN can have different requirements', () => {
     const inToUs = checkVisaRequirement('IN', 'US')

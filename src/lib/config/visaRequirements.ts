@@ -14,6 +14,12 @@
  *   - EU ETIAS (https://travel-europe.europa.eu/etias_en)
  *   - US State Department (https://travel.state.gov/)
  *   - Australian DFAT (https://smartraveller.gov.au/)
+ *   - Wikipedia "Visa policy of ___" articles (used as a secondary aggregator for the
+ *     2026-07-23 country-list expansion below; these articles cite official government
+ *     sources per-entry — always verify current policy directly before travel)
+ *
+ * Country list last expanded: 2026-07-23 (added AT, BR, CH, CZ, EG, HK, IE, IL, NZ, PL, TW, ZA
+ * plus KR/US/GB-origin entries for each, and DE-origin Schengen entries for CH/AT/PL/CZ).
  */
 
 export type VisaRequirementType = 'visa-free' | 'e-visa' | 'visa-required'
@@ -37,15 +43,23 @@ export type Country = {
 /** Supported countries available in the dropdowns (sorted by EN name) */
 export const COUNTRIES: Country[] = [
   { code: 'AE', name: { en: 'United Arab Emirates', ko: '아랍에미리트' } },
+  { code: 'AT', name: { en: 'Austria', ko: '오스트리아' } },
   { code: 'AU', name: { en: 'Australia', ko: '호주' } },
+  { code: 'BR', name: { en: 'Brazil', ko: '브라질' } },
   { code: 'CA', name: { en: 'Canada', ko: '캐나다' } },
+  { code: 'CH', name: { en: 'Switzerland', ko: '스위스' } },
   { code: 'CN', name: { en: 'China', ko: '중국' } },
+  { code: 'CZ', name: { en: 'Czech Republic', ko: '체코' } },
   { code: 'DE', name: { en: 'Germany', ko: '독일' } },
+  { code: 'EG', name: { en: 'Egypt', ko: '이집트' } },
   { code: 'ES', name: { en: 'Spain', ko: '스페인' } },
   { code: 'FR', name: { en: 'France', ko: '프랑스' } },
   { code: 'GB', name: { en: 'United Kingdom', ko: '영국' } },
   { code: 'GR', name: { en: 'Greece', ko: '그리스' } },
+  { code: 'HK', name: { en: 'Hong Kong', ko: '홍콩' } },
   { code: 'ID', name: { en: 'Indonesia', ko: '인도네시아' } },
+  { code: 'IE', name: { en: 'Ireland', ko: '아일랜드' } },
+  { code: 'IL', name: { en: 'Israel', ko: '이스라엘' } },
   { code: 'IN', name: { en: 'India', ko: '인도' } },
   { code: 'IT', name: { en: 'Italy', ko: '이탈리아' } },
   { code: 'JP', name: { en: 'Japan', ko: '일본' } },
@@ -53,13 +67,17 @@ export const COUNTRIES: Country[] = [
   { code: 'MX', name: { en: 'Mexico', ko: '멕시코' } },
   { code: 'MY', name: { en: 'Malaysia', ko: '말레이시아' } },
   { code: 'NL', name: { en: 'Netherlands', ko: '네덜란드' } },
+  { code: 'NZ', name: { en: 'New Zealand', ko: '뉴질랜드' } },
   { code: 'PH', name: { en: 'Philippines', ko: '필리핀' } },
+  { code: 'PL', name: { en: 'Poland', ko: '폴란드' } },
   { code: 'PT', name: { en: 'Portugal', ko: '포르투갈' } },
   { code: 'SG', name: { en: 'Singapore', ko: '싱가포르' } },
   { code: 'TH', name: { en: 'Thailand', ko: '태국' } },
   { code: 'TR', name: { en: 'Turkey (Türkiye)', ko: '튀르키예' } },
+  { code: 'TW', name: { en: 'Taiwan', ko: '대만' } },
   { code: 'US', name: { en: 'United States', ko: '미국' } },
   { code: 'VN', name: { en: 'Vietnam', ko: '베트남' } },
+  { code: 'ZA', name: { en: 'South Africa', ko: '남아프리카공화국' } },
 ]
 
 /**
@@ -184,6 +202,66 @@ export const VISA_REQUIREMENTS: Record<string, VisaRequirementEntry> = {
     maxStayDays: 180,
     note: 'No visa required for stays up to 180 days as a tourist.',
   },
+  'KR:CH': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS authorization may be required from 2026; verify before travel.',
+  },
+  'KR:AT': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS authorization may be required from 2026; verify before travel.',
+  },
+  'KR:PL': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS authorization may be required from 2026; verify before travel.',
+  },
+  'KR:CZ': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS authorization may be required from 2026; verify before travel.',
+  },
+  'KR:IE': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days for tourism. Ireland is not part of the Schengen Area, so this is a separate allowance from any Schengen visit.',
+  },
+  'KR:NZ': {
+    requirementType: 'e-visa',
+    maxStayDays: 90,
+    note: 'NZeTA (New Zealand Electronic Travel Authority) required before travel — apply online. Valid for 2 years, allows stays up to 3 months per visit. International Visitor Conservation and Tourism Levy (IVL, NZ$100) also applies.',
+  },
+  'KR:TW': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days for tourism.',
+  },
+  'KR:HK': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days for tourism or business.',
+  },
+  'KR:EG': {
+    requirementType: 'e-visa',
+    maxStayDays: 30,
+    note: 'e-Visa or visa-on-arrival available for tourism, valid for up to 30 days. Passport must be valid for at least 6 months from arrival.',
+  },
+  'KR:IL': {
+    requirementType: 'e-visa',
+    maxStayDays: 90,
+    note: 'ETA-IL (Electronic Travel Authorization) required before travel, effective from January 2025. Valid for 2 years or until passport expiry. Allows stays up to 90 days for tourism.',
+  },
+  'KR:ZA': {
+    requirementType: 'visa-free',
+    maxStayDays: 30,
+    note: 'Visa-exempt for up to 30 days; a Port of Entry Visa is issued on arrival. Passport must be valid for at least 1 month after departure with one blank page.',
+  },
+  'KR:BR': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for tourism for up to 90 days. Combined stays within any 12-month period may not exceed 180 days.',
+  },
 
   // ── US passport (US) ────────────────────────────────────────────────────
   'US:JP': {
@@ -300,6 +378,66 @@ export const VISA_REQUIREMENTS: Record<string, VisaRequirementEntry> = {
     requirementType: 'visa-free',
     maxStayDays: 90,
     note: 'Visa-free on arrival for up to 90 days for tourism.',
+  },
+  'US:CH': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'US:AT': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'US:PL': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'US:CZ': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'US:IE': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days for tourism. Ireland is not part of the Schengen Area.',
+  },
+  'US:NZ': {
+    requirementType: 'e-visa',
+    maxStayDays: 90,
+    note: 'NZeTA required before travel — apply online. Valid for 2 years, allows stays up to 3 months per visit. IVL levy (NZ$100) also applies.',
+  },
+  'US:TW': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days. Passport need only be valid for the duration of the stay (not the usual 6-month rule).',
+  },
+  'US:HK': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days for tourism or business. Does not apply to holders of US diplomatic passports.',
+  },
+  'US:EG': {
+    requirementType: 'e-visa',
+    maxStayDays: 30,
+    note: 'e-Visa or visa-on-arrival available for tourism, valid for up to 30 days. Passport must be valid for at least 6 months from arrival.',
+  },
+  'US:IL': {
+    requirementType: 'e-visa',
+    maxStayDays: 90,
+    note: 'ETA-IL required before travel, effective from January 2025. Valid for 2 years or until passport expiry. Allows stays up to 90 days for tourism.',
+  },
+  'US:ZA': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-exempt for up to 90 days; a Port of Entry Visa is issued on arrival. Passport must be valid for at least 1 month after departure with one blank page.',
+  },
+  'US:BR': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for tourism for up to 90 days (an e-Visa remains available as an alternative for all visitor categories). Combined stays within any 12-month period may not exceed 180 days.',
   },
 
   // ── Japanese passport (JP) ──────────────────────────────────────────────
@@ -484,6 +622,65 @@ export const VISA_REQUIREMENTS: Record<string, VisaRequirementEntry> = {
     requirementType: 'visa-free',
     maxStayDays: 90,
     note: 'Visa-free on arrival for up to 90 days.',
+  },
+  'GB:CH': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period (post-Brexit). ETIAS may be required from 2026; verify before travel.',
+  },
+  'GB:AT': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'GB:PL': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'GB:CZ': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-free within the Schengen Area — up to 90 days in any 180-day period. ETIAS may be required from 2026.',
+  },
+  'GB:IE': {
+    requirementType: 'visa-free',
+    note: 'No visa required under the UK–Ireland Common Travel Area (CTA, established 1923), which permits British and Irish citizens freedom of movement with minimal or no identity documents. No fixed maximum-stay limit applies under the CTA.',
+  },
+  'GB:NZ': {
+    requirementType: 'e-visa',
+    maxStayDays: 90,
+    note: 'NZeTA required before travel — apply online. Valid for 2 years, allows stays up to 3 months per visit. IVL levy (NZ$100) also applies.',
+  },
+  'GB:TW': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for stays up to 90 days for tourism. UK citizens may extend their initial 90-day stay to 180 days for free after arrival.',
+  },
+  'GB:HK': {
+    requirementType: 'visa-free',
+    maxStayDays: 180,
+    note: 'Visa-free for up to 180 days for British citizens only (other UK passport types may have shorter allowances — verify passport type before travel).',
+  },
+  'GB:EG': {
+    requirementType: 'e-visa',
+    maxStayDays: 30,
+    note: 'e-Visa or visa-on-arrival available for tourism, valid for up to 30 days. Passport must be valid for at least 6 months from arrival.',
+  },
+  'GB:IL': {
+    requirementType: 'e-visa',
+    maxStayDays: 90,
+    note: 'ETA-IL required before travel, effective from January 2025. Valid for 2 years or until passport expiry. Allows stays up to 90 days for tourism.',
+  },
+  'GB:ZA': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'Visa-exempt for up to 90 days for holders of ordinary passports only; a Port of Entry Visa is issued on arrival.',
+  },
+  'GB:BR': {
+    requirementType: 'visa-free',
+    maxStayDays: 90,
+    note: 'No visa required for tourism for up to 90 days. Combined stays within any 12-month period may not exceed 180 days.',
   },
 
   // ── Canadian passport (CA) ───────────────────────────────────────────────
@@ -722,6 +919,22 @@ export const VISA_REQUIREMENTS: Record<string, VisaRequirementEntry> = {
     note: 'Free movement within the Schengen Area.',
   },
   'DE:PT': {
+    requirementType: 'visa-free',
+    note: 'Free movement within the Schengen Area.',
+  },
+  'DE:CH': {
+    requirementType: 'visa-free',
+    note: 'Free movement within the Schengen Area (Switzerland is a Schengen member though not an EU member).',
+  },
+  'DE:AT': {
+    requirementType: 'visa-free',
+    note: 'Free movement within the Schengen Area.',
+  },
+  'DE:PL': {
+    requirementType: 'visa-free',
+    note: 'Free movement within the Schengen Area.',
+  },
+  'DE:CZ': {
     requirementType: 'visa-free',
     note: 'Free movement within the Schengen Area.',
   },
