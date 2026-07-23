@@ -15,7 +15,7 @@
       "name": "tool-json-to-sql",
       "status": "completed",
       "started_at": "2026-07-23T08:53:07+0900",
-      "completed_at": "2026-07-23T09:30:00+0900",
+      "completed_at": "2026-07-23T09:04:19+0900",
       "summary": "Created jsonToSql.ts (convertJsonToSql with 4-dialect support, 43 unit tests), JsonToSqlTool.tsx (client component, sessionStorage read via lazy useState initializer, Link for JSON Formatter nav, sessionStorage key='json-formatter-to-sql:payload'), page.tsx for /developer/json-to-sql (EN/KO, OG image=default-{locale}.png), tools-config entry (disclaimerType: none, relatedToolIds: ['json-formatter'], addedAt: 2026-07-23). Lint, all 545 tests, and build pass."
     },
     {
