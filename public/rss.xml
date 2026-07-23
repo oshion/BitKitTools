@@ -5,7 +5,7 @@
     <link>https://bitkittools.com</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 23:52:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 00:04:10 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JWT Decoder</title>
@@ -13,6 +13,13 @@
       <description>Instantly decode JWT tokens and inspect Header, Payload, and standard claims — exp, iat, sub, iss, aud and more — with human-readable explanations. Everything runs in your browser; your token never leaves your device.</description>
       <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/developer/jwt-decoder</guid>
+    </item>
+    <item>
+      <title>JSON to SQL Converter</title>
+      <link>https://bitkittools.com/developer/json-to-sql</link>
+      <description>Convert JSON objects or arrays into SQL INSERT statements — supports MySQL, PostgreSQL, Oracle, and MSSQL. Generates CREATE TABLE and batch INSERTs with dialect-correct quoting and type inference. All processing happens in your browser; nothing is sent to any server.</description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/developer/json-to-sql</guid>
     </item>
     <item>
       <title>Hydrometer Temperature Correction Calculator</title>
