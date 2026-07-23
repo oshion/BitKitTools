@@ -1338,6 +1338,89 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-22',
     popular: false,
   },
+  {
+    id: 'json-to-sql',
+    slug: 'json-to-sql',
+    category: 'developer',
+    title: {
+      en: 'JSON to SQL Converter',
+      ko: 'JSON → SQL 변환기',
+    },
+    description: {
+      en: 'Convert JSON objects or arrays into SQL INSERT statements — supports MySQL, PostgreSQL, Oracle, and MSSQL. Generates CREATE TABLE and batch INSERTs with dialect-correct quoting and type inference. All processing happens in your browser; nothing is sent to any server.',
+      ko: 'JSON 객체나 배열을 SQL INSERT문으로 즉시 변환합니다. MySQL, PostgreSQL, Oracle, MSSQL 4가지 방언을 지원하며 CREATE TABLE 생성과 배치 INSERT도 가능합니다. 모든 처리는 브라우저에서 이루어지며 서버로 전송되지 않습니다.',
+    },
+    keywords: {
+      en: [
+        'json to sql converter',
+        'json to sql insert generator',
+        'json to mysql',
+        'json to postgresql',
+        'json to oracle sql',
+        'json to mssql',
+        'convert json to sql',
+        'json to insert statement',
+        'json sql generator',
+        'json to create table',
+      ],
+      ko: [
+        'JSON SQL 변환기',
+        'JSON INSERT 생성기',
+        'JSON MySQL 변환',
+        'JSON PostgreSQL 변환',
+        'JSON Oracle SQL',
+        'JSON MSSQL 변환',
+        'JSON SQL 자동 변환',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'Is my JSON data sent to a server?',
+          ko: 'JSON 데이터가 서버로 전송되나요?',
+        },
+        answer: {
+          en: 'No. All conversion happens entirely in your browser using JavaScript. Your JSON never leaves your device — nothing is uploaded, logged, or stored anywhere.',
+          ko: '아닙니다. 모든 변환은 브라우저 내 JavaScript로 처리됩니다. JSON 데이터는 기기 밖으로 나가지 않으며 어디에도 업로드, 기록, 저장되지 않습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'How are nested objects and arrays handled?',
+          ko: '중첩된 객체나 배열은 어떻게 처리되나요?',
+        },
+        answer: {
+          en: 'Nested objects and arrays are not flattened into separate columns. Instead, they are stored as a serialized JSON string in a single column using the appropriate JSON storage type for each dialect: JSONB (PostgreSQL), JSON (MySQL), CLOB (Oracle), or NVARCHAR(MAX) (MSSQL).',
+          ko: '중첩 객체와 배열은 별도 컬럼으로 분리되지 않습니다. 대신 각 방언에 맞는 JSON 저장 타입(PostgreSQL: JSONB, MySQL: JSON, Oracle: CLOB, MSSQL: NVARCHAR(MAX))의 단일 컬럼에 JSON 문자열로 저장됩니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Why does Oracle use a different batch INSERT syntax?',
+          ko: 'Oracle은 왜 다른 배치 INSERT 구문을 사용하나요?',
+        },
+        answer: {
+          en: 'Oracle does not support the standard multi-row VALUES syntax used by MySQL, PostgreSQL, and MSSQL (INSERT INTO t VALUES (...), (...)). Instead, Oracle uses INSERT ALL with multiple INTO clauses followed by SELECT * FROM dual, which is the Oracle-standard way to insert multiple rows in a single statement.',
+          ko: 'Oracle은 MySQL, PostgreSQL, MSSQL이 지원하는 표준 다중행 VALUES 구문(INSERT INTO t VALUES (...), (...))을 지원하지 않습니다. 대신 INSERT ALL과 여러 INTO 절, 그리고 마지막에 SELECT * FROM dual을 붙이는 Oracle 표준 방식을 사용합니다.',
+        },
+      },
+    ],
+    relatedToolIds: ['json-formatter'],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'none',
+    aiOverviewResistance: 'high',
+    addedAt: '2026-07-23',
+    popular: false,
+  },
 ]
 
 export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
