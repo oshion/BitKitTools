@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useLocale } from 'next-intl'
 import { calculateAbv, calculateDilution, type AbvFormula } from '@/lib/utils/homebrewCalculator'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { localeHref } from '@/lib/utils/locale-href'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -39,6 +41,7 @@ function clamp(v: number, min: number, max: number): number {
 
 export default function HomebrewRecipeCalculatorTool() {
   const { sendEvent } = useAnalyticsEvent()
+  const locale = useLocale() as 'en' | 'ko'
   const hasFiredOpenRef = useRef(false)
 
   // Persisted recipe inputs
@@ -241,7 +244,7 @@ export default function HomebrewRecipeCalculatorTool() {
           Measure gravity with a hydrometer or refractometer. OG is measured before
           fermentation; FG after fermentation is complete.{' '}
           <Link
-            href="/beer/hydrometer-temperature-correction"
+            href={localeHref(locale, '/beer/hydrometer-temperature-correction')}
             className="text-neutral-400 underline underline-offset-2 hover:text-neutral-300 transition-colors"
           >
             Need temperature correction? →

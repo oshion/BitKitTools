@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import { formatJson, minifyJson } from '@/lib/utils/jsonFormatter'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+import { localeHref } from '@/lib/utils/locale-href'
 
 // sessionStorage key shared by convention with JsonToSqlTool (same string literal,
 // no cross-import — rule 8). This component writes this key; JsonToSqlTool reads it.
@@ -25,7 +27,7 @@ export default function JsonFormatterTool() {
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
   const { sendEvent } = useAnalyticsEvent()
-  const pathname = usePathname()
+  const locale = useLocale() as 'en' | 'ko'
   const router = useRouter()
 
   // Fire tool_open once on mount
@@ -79,9 +81,7 @@ export default function JsonFormatterTool() {
       // sessionStorage unavailable (private mode, etc.); navigate without pre-fill
     }
     sendEvent('calculate')
-    const isKo = pathname.startsWith('/ko/') || pathname === '/ko'
-    const target = isKo ? '/ko/developer/json-to-sql' : '/developer/json-to-sql'
-    router.push(target)
+    router.push(localeHref(locale, '/developer/json-to-sql'))
   }
 
   function handleDownload() {

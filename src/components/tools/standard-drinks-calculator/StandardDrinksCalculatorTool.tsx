@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useLocale } from 'next-intl'
 import {
   calculateStandardDrinks,
   GRAMS_PER_STANDARD_DRINK,
   type DrinkStandard,
 } from '@/lib/utils/standardDrinksCalculator'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+import { localeHref } from '@/lib/utils/locale-href'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -83,6 +85,7 @@ function mlToFlOz(ml: number): number {
 
 export default function StandardDrinksCalculatorTool() {
   const { sendEvent } = useAnalyticsEvent()
+  const locale = useLocale() as 'en' | 'ko'
   const hasFiredOpenRef = useRef(false)
 
   const [presetKey, setPresetKey] = useState<string>(DEFAULT_PRESET_KEY)
@@ -325,7 +328,7 @@ export default function StandardDrinksCalculatorTool() {
         This tool converts alcohol content to standard drinks only — it does not estimate blood
         alcohol concentration (BAC).{' '}
         <Link
-          href="/beer/bac-calculator"
+          href={localeHref(locale, '/beer/bac-calculator')}
           className="text-neutral-300 underline underline-offset-2 hover:text-white transition-colors"
         >
           Use the BAC Calculator

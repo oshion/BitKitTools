@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useLocale } from 'next-intl'
 import { convertJsonToSql } from '@/lib/utils/jsonToSql'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+import { localeHref } from '@/lib/utils/locale-href'
 import type { SqlDialect, OutputMode } from '@/lib/utils/jsonToSql'
 
 // sessionStorage key shared by convention with JsonFormatterTool (same string literal,
@@ -51,6 +53,7 @@ export default function JsonToSqlTool() {
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
   const { sendEvent } = useAnalyticsEvent()
+  const locale = useLocale() as 'en' | 'ko'
 
   // Fire tool_open once on mount
   useEffect(() => {
@@ -249,7 +252,7 @@ export default function JsonToSqlTool() {
                 <p className="text-xs text-neutral-400">
                   Need to clean up your JSON first?{' '}
                   <Link
-                    href="/developer/json-formatter"
+                    href={localeHref(locale, '/developer/json-formatter')}
                     className="text-neutral-300 underline underline-offset-2 hover:text-white"
                   >
                     Open JSON Formatter
