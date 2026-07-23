@@ -1,8 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { formatJson, minifyJson } from '@/lib/utils/jsonFormatter'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+
+// sessionStorage key shared by convention with JsonToSqlTool (same string literal,
+// no cross-import — rule 8). This component writes this key; JsonToSqlTool reads it.
+const SESSION_KEY = 'json-formatter-to-sql:payload'
 
 type Mode = 'format' | 'minify'
 type Indent = 2 | 4
@@ -20,6 +25,8 @@ export default function JsonFormatterTool() {
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
   const { sendEvent } = useAnalyticsEvent()
+  const pathname = usePathname()
+  const router = useRouter()
 
   // Fire tool_open once on mount
   useEffect(() => {
@@ -62,6 +69,19 @@ export default function JsonFormatterTool() {
     } catch {
       // Clipboard API unavailable (insecure context); silent fail
     }
+  }
+
+  function handleConvertToSql() {
+    if (result.type !== 'success') return
+    try {
+      sessionStorage.setItem(SESSION_KEY, result.output)
+    } catch {
+      // sessionStorage unavailable (private mode, etc.); navigate without pre-fill
+    }
+    sendEvent('calculate')
+    const isKo = pathname.startsWith('/ko/') || pathname === '/ko'
+    const target = isKo ? '/ko/developer/json-to-sql' : '/developer/json-to-sql'
+    router.push(target)
   }
 
   function handleDownload() {
@@ -171,6 +191,12 @@ export default function JsonFormatterTool() {
                   className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
                 >
                   Download .json
+                </button>
+                <button
+                  onClick={handleConvertToSql}
+                  className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+                >
+                  Convert to SQL →
                 </button>
               </div>
             )}

@@ -70,7 +70,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['password-generator'],
+    relatedToolIds: ['password-generator', 'json-to-sql'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
