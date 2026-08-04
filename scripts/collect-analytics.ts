@@ -1,23 +1,32 @@
 /**
  * Analytics Data Collection Script
  *
- * Collects GA4 and Search Console data and saves raw responses to:
+ * Collects GA4, Search Console, and Microsoft Clarity data and saves raw
+ * responses to:
  *   data/raw/ga4-{YYYY-MM-DD}.json
  *   data/raw/gsc-{YYYY-MM-DD}.json
+ *   data/raw/clarity-{YYYY-MM-DD}.json
  *
  * GA4 reports yesterday's data; GSC reports 2 days ago (accounts for
  * the typical 2–3 day data freshness lag in Search Console).
+ * Clarity reports the last 24 hours of rolling aggregates (the API does not
+ * support specific calendar-date queries).
  *
- * GA4 and GSC calls are independent — one failure does not abort the other.
- * The script exits with code 1 only when both APIs fail to produce data.
+ * GA4, GSC, and Clarity calls are all independent — one failure does not abort
+ * the others. The script exits with code 1 only when both GA4 AND GSC fail.
+ * A Clarity failure alone never causes a non-zero exit.
  *
  * Required environment variables:
  *   - GOOGLE_SERVICE_ACCOUNT_JSON  Service account key JSON (full string)
  *   - GA4_PROPERTY_ID              GA4 numeric property ID (e.g. "123456789")
  *
+ * Optional environment variables:
+ *   - CLARITY_API_KEY              Clarity Data Export API token (project admin)
+ *
  * References:
- *   GA4  https://developers.google.com/analytics/devguides/reporting/data/v1
- *   GSC  https://developers.google.com/webmaster-tools/search-console-api-original/v1/searchanalytics/query
+ *   GA4      https://developers.google.com/analytics/devguides/reporting/data/v1
+ *   GSC      https://developers.google.com/webmaster-tools/search-console-api-original/v1/searchanalytics/query
+ *   Clarity  https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-data-export-api
  */
 
 import { mkdirSync, writeFileSync } from 'fs'
@@ -172,6 +181,84 @@ async function collectGsc(date: string): Promise<void> {
   console.log(`[GSC] Saved → ${outputPath}`)
 }
 
+// ── Microsoft Clarity ────────────────────────────────────────────────────────
+
+const CLARITY_API_BASE = 'https://www.clarity.ms/export-data/api/v1'
+
+/**
+ * Clarity Data Export API: project-live-insights
+ *
+ * NOTE: The API does not accept a specific calendar date. numOfDays must be
+ * 1, 2, or 3 and represents the last 24/48/72 hours of rolling aggregates.
+ *
+ * Reference:
+ *   https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-data-export-api
+ */
+async function fetchClarityInsights(
+  apiKey: string,
+  numOfDays: 1 | 2 | 3,
+  dimension1?: string,
+  dimension2?: string,
+  dimension3?: string
+): Promise<unknown> {
+  const params = new URLSearchParams({ numOfDays: String(numOfDays) })
+  if (dimension1) params.append('dimension1', dimension1)
+  if (dimension2) params.append('dimension2', dimension2)
+  if (dimension3) params.append('dimension3', dimension3)
+
+  const url = `${CLARITY_API_BASE}/project-live-insights?${params.toString()}`
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+  })
+
+  if (!response.ok) {
+    const text = await response.text().catch(() => '')
+    throw new Error(
+      `[Clarity] API returned HTTP ${response.status}. Response: ${text}`
+    )
+  }
+
+  return response.json()
+}
+
+async function collectClarity(date: string): Promise<void> {
+  const apiKey = process.env.CLARITY_API_KEY
+  if (!apiKey) {
+    throw new Error(
+      '[Clarity] CLARITY_API_KEY environment variable is not set.'
+    )
+  }
+
+  console.log('[Clarity] Fetching live insights (numOfDays=1, dimension1=URL, dimension2=Country/Region)...')
+
+  // The API returns aggregated data for the last 24 hours (numOfDays=1).
+  // URL + Country/Region breakdown gives page-level traffic by country,
+  // the most useful analogue to GA4's pagePath dimension.
+  const data = await fetchClarityInsights(apiKey, 1, 'URL', 'Country/Region')
+
+  const output = {
+    collectedAt: new Date().toISOString(),
+    // collectionDate is the date label used for the filename (GA4 "yesterday"),
+    // not the exact calendar date the Clarity data covers. The API reports the
+    // last 24 rolling hours, which closely corresponds to "yesterday" in UTC.
+    collectionDate: date,
+    note: 'Clarity Data Export API returns rolling last-24h aggregates; specific calendar-date queries are not supported by the API.',
+    data,
+  }
+
+  const outputDir = resolve(process.cwd(), 'data', 'raw')
+  ensureDataDir(outputDir)
+
+  const outputPath = resolve(outputDir, `clarity-${date}.json`)
+  writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf-8')
+
+  console.log(`[Clarity] Saved → ${outputPath}`)
+}
+
 // ── Entry point ──────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
@@ -214,6 +301,14 @@ async function main(): Promise<void> {
     gscSuccess = true
   } catch (err: unknown) {
     console.error(`[GSC] Collection failed: ${String(err)}`)
+  }
+
+  // Clarity — fully independent; failure never triggers process.exit(1).
+  // CLARITY_API_KEY is optional; if absent, collectClarity throws and we log.
+  try {
+    await collectClarity(yesterdayDate)
+  } catch (err: unknown) {
+    console.error(`[Clarity] Collection failed: ${String(err)}`)
   }
 
   if (!ga4Success && !gscSuccess) {

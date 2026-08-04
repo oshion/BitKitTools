@@ -21,7 +21,10 @@
     {
       "step": 2,
       "name": "clarity-collection",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-04T17:02:57+0900",
+      "completed_at": "2026-08-04T17:12:00+0900",
+      "summary": "collect-analytics.ts에 collectClarity() 추가: GET https://www.clarity.ms/export-data/api/v1/project-live-insights, numOfDays=1, dimension1=URL, dimension2=Country/Region, Bearer 인증. 응답을 data/raw/clarity-YYYY-MM-DD.json에 저장. Clarity 실패는 GA4/GSC에 영향 없음(독립 try/catch, Clarity만 실패 시 exit(1) 안 함)."
     },
     {
       "step": 3,
