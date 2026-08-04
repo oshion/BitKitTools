@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "instrument-developer-tools",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-04T16:01:12+0900",
+      "completed_at": "2026-08-04T16:15:00+0900",
+      "summary": "4개 developer tool(PasswordGeneratorTool, JwtDecoderTool, JsonToSqlTool, JsonFormatterTool)에 input_enter 이벤트 계측 추가 — useRef 가드로 컴포넌트당 정확히 1회만 발생 보장, 각 tool 전용 테스트 2개씩(총 8개) 추가 — 566개 테스트 전부 통과"
     },
     {
       "step": 2,
