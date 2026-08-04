@@ -42,7 +42,8 @@
     },
     {
       "dir": "8-indexnow-notify",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-08-04T14:52:04+0900"
     }
   ]
 }
