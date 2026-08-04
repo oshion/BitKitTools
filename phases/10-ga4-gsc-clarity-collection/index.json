@@ -29,7 +29,10 @@
     {
       "step": 3,
       "name": "collect-data-workflow",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-04T17:06:48+0900",
+      "completed_at": "2026-08-04T17:18:00+0900",
+      "summary": ".github/workflows/collect-data.yml 생성(매일 UTC 03:00 + workflow_dispatch, permissions: contents: write, npx tsx scripts/collect-analytics.ts 실행 후 data/raw/*.json 변경분만 커밋+푸시, 빈 커밋 방지). deploy.yml 트리거에 paths-ignore(data/**, phases/**, *.md) 추가해 데이터 수집 커밋이 불필요한 재배포를 유발하지 않도록 수정."
     }
   ],
   "created_at": "2026-08-04T16:56:58+0900"
