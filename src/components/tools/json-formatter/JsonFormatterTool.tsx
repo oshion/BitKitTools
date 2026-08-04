@@ -26,6 +26,7 @@ export default function JsonFormatterTool() {
   const [result, setResult] = useState<Result>({ type: 'idle' })
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
+  const inputEnteredRef = useRef(false)
   const { sendEvent } = useAnalyticsEvent()
   const locale = useLocale() as 'en' | 'ko'
   const router = useRouter()
@@ -167,7 +168,13 @@ export default function JsonFormatterTool() {
           </div>
           <textarea
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              if (!inputEnteredRef.current) {
+                inputEnteredRef.current = true
+                sendEvent('input_enter')
+              }
+              setInput(e.target.value)
+            }}
             placeholder='Paste JSON here, e.g. {"name":"Alice","age":30}'
             spellCheck={false}
             className="w-full h-64 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono leading-relaxed resize-y focus:outline-none focus:border-neutral-600 placeholder-neutral-600"

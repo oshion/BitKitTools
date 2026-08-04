@@ -31,6 +31,7 @@ export default function PasswordGeneratorTool() {
   const [copied, setCopied] = useState(false)
   const passwordRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
+  const inputEnteredRef = useRef(false)
   const { sendEvent } = useAnalyticsEvent()
 
   const regenerate = useCallback(
@@ -62,6 +63,10 @@ export default function PasswordGeneratorTool() {
   }, [password])
 
   function updateOption<K extends keyof PasswordOptions>(key: K, value: PasswordOptions[K]) {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
     const next = { ...options, [key]: value }
     setOptions(next)
     regenerate(next)

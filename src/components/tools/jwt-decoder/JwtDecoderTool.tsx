@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { decodeJwt, explainStandardClaims } from '@/lib/utils/jwtDecoder'
 import type { ClaimExplanation } from '@/lib/utils/jwtDecoder'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
@@ -28,6 +28,7 @@ export default function JwtDecoderTool({ locale }: Props) {
   const [state, setState] = useState<DecodeState>({ status: 'idle' })
   const [headerCopied, setHeaderCopied] = useState(false)
   const [payloadCopied, setPayloadCopied] = useState(false)
+  const inputEnteredRef = useRef(false)
   const { sendEvent } = useAnalyticsEvent()
 
   useEffect(() => {
@@ -91,7 +92,13 @@ export default function JwtDecoderTool({ locale }: Props) {
               : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.xxxxx'
           }
           value={token}
-          onChange={(e) => setToken(e.target.value)}
+          onChange={(e) => {
+            if (!inputEnteredRef.current) {
+              inputEnteredRef.current = true
+              sendEvent('input_enter')
+            }
+            setToken(e.target.value)
+          }}
           spellCheck={false}
           autoComplete="off"
         />

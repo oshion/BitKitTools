@@ -52,6 +52,7 @@ export default function JsonToSqlTool() {
   const [result, setResult] = useState<ConvertResult>({ type: 'idle' })
   const [copied, setCopied] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
+  const inputEnteredRef = useRef(false)
   const { sendEvent } = useAnalyticsEvent()
   const locale = useLocale() as 'en' | 'ko'
 
@@ -135,7 +136,13 @@ export default function JsonToSqlTool() {
         <textarea
           id="json-input"
           value={inputJson}
-          onChange={(e) => setInputJson(e.target.value)}
+          onChange={(e) => {
+            if (!inputEnteredRef.current) {
+              inputEnteredRef.current = true
+              sendEvent('input_enter')
+            }
+            setInputJson(e.target.value)
+          }}
           placeholder={'Paste JSON here…\n\nExample:\n{"id": 1, "name": "Alice", "active": true}'}
           rows={8}
           spellCheck={false}
