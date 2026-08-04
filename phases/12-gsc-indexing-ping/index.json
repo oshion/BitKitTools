@@ -15,7 +15,7 @@
       "name": "gsc-sitemap-notify",
       "status": "completed",
       "started_at": "2026-08-05T08:55:55+0900",
-      "completed_at": "2026-08-05T09:10:00+0900",
+      "completed_at": "2026-08-05T08:59:42+0900",
       "summary": "scripts/notify-gsc-reindex.ts: uses Search Console Sitemaps API (PUT /webmasters/v3/sites/.../sitemaps/...) instead of deprecated ping endpoint (retired June 2023); deploy.yml gets 'Notify GSC' step after IndexNow; collect-data.yml gets 'Check GSC indexing status' step between analytics collection and processing, with data/indexing-status.json added to commit"
     }
   ],
