@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "gsc-collection",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-04T17:00:13+0900",
+      "completed_at": "2026-08-04T17:15:00+0900",
+      "summary": "collect-analytics.ts에 collectGsc() 추가: sc-domain:bitkittools.com 도메인 속성, dimensions=[query,page,country,device], 2일 전 날짜, rowLimit 25000. GA4/GSC 독립 try/catch, 둘 다 실패 시만 exit(1). data/raw/gsc-YYYY-MM-DD.json 저장."
     },
     {
       "step": 2,
