@@ -62,7 +62,8 @@
     },
     {
       "dir": "12-gsc-indexing-ping",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-08-05T08:59:43+0900"
     }
   ]
 }
