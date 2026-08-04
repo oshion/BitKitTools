@@ -43,5 +43,6 @@
       "summary": "4개 baby tool(GrowthPercentileTool, HeightPredictorTool, SleepScheduleTool, TemperamentQuizTool)에 input_enter 이벤트 계측 추가 — useRef 가드로 컴포넌트당 정확히 1회만 발생 보장, TemperamentQuizTool은 첫 번째 질문 응답 시점에 발생(연령 구간 선택 시점 아님), 각 tool 전용 테스트 추가(총 12개 신규) — 596개 테스트 전부 통과"
     }
   ],
-  "created_at": "2026-08-04T15:58:56+0900"
+  "created_at": "2026-08-04T15:58:56+0900",
+  "completed_at": "2026-08-04T16:30:15+0900"
 }

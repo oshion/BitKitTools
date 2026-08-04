@@ -47,7 +47,8 @@
     },
     {
       "dir": "9-ga4-input-enter-event",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-08-04T16:30:15+0900"
     }
   ]
 }
