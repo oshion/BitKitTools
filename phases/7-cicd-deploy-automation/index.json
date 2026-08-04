@@ -7,7 +7,7 @@
       "name": "deploy-workflow",
       "status": "completed",
       "started_at": "2026-08-04T11:25:25+0900",
-      "completed_at": "2026-08-04T11:40:00+0900",
+      "completed_at": "2026-08-04T11:27:46+0900",
       "summary": ".github/workflows/deploy.yml 생성 — main push 시 npm run build 후 burnett01/rsync-deployments로 EC2에 out/ 배포, --delete로 잔여파일 제거, 5개 Secrets 참조(EC2_HOST/USER/SSH_PORT/SSH_KEY/TARGET_DIR)"
     },
     {
