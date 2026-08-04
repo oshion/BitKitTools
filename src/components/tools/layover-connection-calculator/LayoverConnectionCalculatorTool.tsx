@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { AIRPORT_MCT_DATA } from '@/lib/config/airportMctData'
 import type { ConnectionType } from '@/lib/config/airportMctData'
 import {
@@ -84,10 +84,18 @@ export default function LayoverConnectionCalculatorTool() {
   const [showDropdown, setShowDropdown] = useState(false)
   const [result, setResult] = useState<LayoverEvaluationResult | null>(null)
   const { sendEvent } = useAnalyticsEvent()
+  const inputEnteredRef = useRef<boolean>(false)
 
   useEffect(() => {
     sendEvent('tool_open')
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
 
   // Filter airports by search query
   const filteredAirports = useMemo(() => {
@@ -103,6 +111,7 @@ export default function LayoverConnectionCalculatorTool() {
   const selectedAirport = AIRPORT_MCT_DATA.find((a) => a.code === form.airportCode)
 
   function handleAirportSelect(code: string) {
+    fireInputEnterOnce()
     setForm((prev) => ({ ...prev, airportCode: code }))
     const airport = AIRPORT_MCT_DATA.find((a) => a.code === code)
     setQuery(airport ? `${airport.code} — ${airport.name.en}` : code)
@@ -111,6 +120,7 @@ export default function LayoverConnectionCalculatorTool() {
   }
 
   function handleManualInput(value: string) {
+    fireInputEnterOnce()
     // Allow free text entry for airports not in the database
     setQuery(value)
     // Extract potential IATA code (uppercase letters, 3 chars)
@@ -195,6 +205,7 @@ export default function LayoverConnectionCalculatorTool() {
             <button
               key={ct.id}
               onClick={() => {
+                fireInputEnterOnce()
                 setForm((prev) => ({ ...prev, connectionType: ct.id }))
                 setResult(null)
               }}
@@ -225,6 +236,7 @@ export default function LayoverConnectionCalculatorTool() {
               max={24}
               value={form.hours}
               onChange={(e) => {
+                fireInputEnterOnce()
                 setForm((prev) => ({ ...prev, hours: Math.max(0, Math.min(24, Number(e.target.value))) }))
                 setResult(null)
               }}
@@ -241,6 +253,7 @@ export default function LayoverConnectionCalculatorTool() {
               max={59}
               value={form.minutes}
               onChange={(e) => {
+                fireInputEnterOnce()
                 setForm((prev) => ({ ...prev, minutes: Math.max(0, Math.min(59, Number(e.target.value))) }))
                 setResult(null)
               }}

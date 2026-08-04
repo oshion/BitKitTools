@@ -153,6 +153,7 @@ export default function VisaRequirementCheckerTool() {
 
   // Track previous countries to fire analytics only on actual changes
   const prevCountriesRef = useRef<SavedCountries>({ from: '', to: '' })
+  const inputEnteredRef = useRef<boolean>(false)
 
   useEffect(() => {
     sendEvent('tool_open')
@@ -174,11 +175,20 @@ export default function VisaRequirementCheckerTool() {
   const fromCountry = COUNTRIES.find((c) => c.code === countries.from)
   const toCountry = COUNTRIES.find((c) => c.code === countries.to)
 
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   function handleFromChange(code: string) {
+    fireInputEnterOnce()
     setCountries((prev) => ({ ...prev, from: code }))
   }
 
   function handleToChange(code: string) {
+    fireInputEnterOnce()
     setCountries((prev) => ({ ...prev, to: code }))
   }
 

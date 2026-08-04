@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { calculateJetlag, type JetlagDirection } from '@/lib/utils/jetlagCalculator'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
 
@@ -112,13 +112,22 @@ export default function JetlagRecoveryCalculatorTool() {
 
   const [form, setForm] = useState<FormState>(DEFAULT_FORM)
   const [hasCalculated, setHasCalculated] = useState(false)
+  const inputEnteredRef = useRef<boolean>(false)
 
   const result = calculateJetlag({
     originUtcOffsetHours: form.originOffset,
     destinationUtcOffsetHours: form.destinationOffset,
   })
 
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   function handleChange(field: keyof FormState, value: number) {
+    fireInputEnterOnce()
     setForm((prev) => ({ ...prev, [field]: value }))
     setHasCalculated(false)
   }

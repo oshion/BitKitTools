@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   estimateCompensation,
   estimateDeniedBoardingCompensationUs,
@@ -88,13 +88,22 @@ export default function FlightDelayCompensationTool() {
   const [form, setForm] = useState<FormState>(DEFAULT_STATE)
   const [result, setResult] = useState<CompensationEstimate | null>(null)
   const { sendEvent } = useAnalyticsEvent()
+  const inputEnteredRef = useRef<boolean>(false)
 
   useEffect(() => {
     sendEvent('tool_open')
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   // Reset result whenever form inputs change
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
+    fireInputEnterOnce()
     setForm((prev) => ({ ...prev, [key]: value }))
     setResult(null)
   }
