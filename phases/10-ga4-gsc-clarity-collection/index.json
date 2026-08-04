@@ -1,0 +1,30 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "10-ga4-gsc-clarity-collection",
+  "steps": [
+    {
+      "step": 0,
+      "name": "analytics-auth-and-ga4",
+      "status": "completed",
+      "started_at": "2026-08-04T16:56:58+0900",
+      "completed_at": "2026-08-04T17:10:00+0900",
+      "summary": "google-auth-library 설치, scripts/lib/googleAuth.ts(서비스 계정 JWT 인증), scripts/collect-analytics.ts(GA4 어제 날짜 pagePath×eventName 리포트 → data/raw/ga4-YYYY-MM-DD.json 저장) 구현. 필수 env var 누락 시 exit 1 동작 확인."
+    },
+    {
+      "step": 1,
+      "name": "gsc-collection",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "clarity-collection",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "collect-data-workflow",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-08-04T16:56:58+0900"
+}
