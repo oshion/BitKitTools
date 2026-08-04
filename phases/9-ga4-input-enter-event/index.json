@@ -21,7 +21,10 @@
     {
       "step": 2,
       "name": "instrument-beer-tools",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-04T16:06:36+0900",
+      "completed_at": "2026-08-04T16:30:00+0900",
+      "summary": "4개 beer tool(StandardDrinksCalculatorTool, HydrometerCorrectionTool, HomebrewRecipeCalculatorTool, BacCalculatorTool)에 input_enter 이벤트 계측 추가 — useRef 가드로 컴포넌트당 정확히 1회만 발생 보장, BacCalculatorTool 안전장치(경고 배너) 영향 없음, 각 tool 전용 테스트 추가(총 9개 신규) — 575개 테스트 전부 통과"
     },
     {
       "step": 3,
