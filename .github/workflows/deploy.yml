@@ -53,3 +53,8 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: npx tsx scripts/notify-indexnow.ts
+
+      - name: Notify GSC (submit sitemap)
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: npx tsx scripts/notify-gsc-reindex.ts

@@ -32,6 +32,11 @@ jobs:
           CLARITY_API_KEY: ${{ secrets.CLARITY_API_KEY }}
         run: npx tsx scripts/collect-analytics.ts
 
+      - name: Check GSC indexing status
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: npx tsx scripts/check-indexing-status.ts
+
       - name: Process analytics data
         run: npx tsx scripts/process-analytics.ts
 
@@ -42,7 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/raw data/processed
+          git add data/raw data/processed data/indexing-status.json
           if git diff --quiet --staged; then
             echo "No new data files to commit. Skipping commit."
           else
