@@ -81,7 +81,7 @@
 4. **GA4 커스텀 이벤트 설정 (중요)**: `tool_open`, `input_enter`, `convert_click`, `download_click` 등 tool별 사용 퍼널 이벤트를 추가 — 현재 `src/types/analytics.ts` 의 `AnalyticsEventName` 은 4개 값으로 고정돼 있어 확장이 필요함
 5. 매일 1회 실행되는 GitHub Actions 크론 작업 작성 → 데이터를 JSON으로 수집
 6. **데이터 저장 구조 분리 + 용량 관리**: 원본(raw)과 가공본(processed) 분리. raw는 최근 60일만 유지 후 자동 삭제, 오래된 기간은 주간/월간 집계 요약만 processed에 남김. SQLite 등 바이너리 DB 파일은 Git에 커밋하지 않는다 — 필요 시 Turso 같은 외부 무료 티어 검토
-7. **액션 로그 기록**: PR/Commit/Merge/Deploy 이력은 Git 히스토리에 이미 있으므로 재저장하지 않음. `/data/action-log.json`에는 Git에 없는 메타데이터만: AI가 이 액션을 추천한 이유, CTR 개선 목표, 실험 ID, 대상 쿼리/키워드, 참조 커밋 SHA
+7. **액션 로그 기록**: PR/Commit/Merge/Deploy 이력은 Git 히스토리에 이미 있으므로 재저장하지 않음. `/data/action-log-{연도}.json`(연도별로 파일 분리 — 리포트/전략재검토 프롬프트가 최근 몇 개월치만 읽으면 되므로, 파일을 나눠두면 히스토리가 몇 년 쌓여도 매번 읽는 양이 늘지 않는다)에는 Git에 없는 메타데이터만: AI가 이 액션을 추천한 이유, CTR 개선 목표, 실험 ID, 대상 쿼리/키워드, 참조 커밋 SHA
 8. 인증 정보는 전부 GitHub Secrets에 저장 (repo에 직접 커밋 금지)
 
 **산출물**: `scripts/collect-analytics.ts`, `scripts/process-analytics.ts`, `scripts/log-action.ts`, `scripts/check-indexing-status.ts`, `scripts/notify-gsc-reindex.ts`, `.github/workflows/collect-data.yml`, `/data/raw/*.json`, `/data/processed/*.json`, `/data/action-log.json`
@@ -96,8 +96,9 @@
 4. **검색 의도(Intent) 분류 (규칙 기반 우선 + AI는 애매한 경우만)**: GSC 쿼리별로 tool/tutorial/comparison/problem-solving 분류 → "tool을 새로 만들지, 기존 페이지를 개선할지" 자동 판단. "convert", "compress", "calculator", "how to", "vs" 같은 명확한 패턴은 규칙으로 1차 분류, 애매한 것만 AI
 5. **순위 추이**: GSC 쿼리별 일별 평균 순위(position)를 시계열로 비교해 7일/30일 변화 추적
 6. **추가 아이디어 제안 필수화**: 발견된 문제뿐 아니라 새로운 아이디어(신규 콘텐츠 방향, 놓치고 있는 키워드, 벤치마킹할 경쟁 사례)도 매번 함께 제안
-7. Slack Webhook 또는 이메일(Gmail App Password)로 발송
-8. 이 단계에서는 코드/콘텐츠를 건드리지 않음 — 사람이 읽고 판단
+7. Slack Webhook 또는 이메일(Gmail App Password)로 발송, 원본은 `/data/reports/{연도}/{날짜}.md`로 보관(텍스트라 용량 부담은 적지만, 연도별 폴더로 나눠 탐색 편의성 확보)
+8. **압축 히스토리 기록 (`/data/history.md`)**: 리포트 생성 시 "YYYY년 MM월 N주차: 핵심 지표 / 특이사항 / 시도한 개선 / 결과"를 3~5줄로 요약해 `/data/history.md` 끝에 append한다. 원본 리포트(7번)는 상세하지만 매번 전체를 프롬프트에 넣기엔 무겁고, `action-log`/`proposals.json`은 구조화 데이터라 "왜 그랬는지" 맥락이 약하다 — 이 파일은 주당 몇 줄만 쌓이므로 몇 년치가 쌓여도 수십 KB 수준이라 **매번 전체를 프롬프트에 그대로 넣을 수 있다**. 다음 주 리포트/spec 생성 시 이 파일 전체를 함께 입력해, "이미 시도했던 개선과 그 결과"를 AI가 참고하고 같은 진단·같은 제안을 반복하지 않도록 한다. 21일 쿨다운이 끝난 액션의 결과도 해당 주 항목에 갱신한다.
+9. 이 단계에서는 코드/콘텐츠를 건드리지 않음 — 사람이 읽고 판단
 
 **산출물**: `scripts/generate-report.ts`, `scripts/classify-intent.ts`, `.github/workflows/weekly-report.yml`
 
@@ -147,6 +148,10 @@
 
 > **모든 제안에 근거 명시 필수**: 이 phase가 생성하는 모든 spec(개선/신규 tool/신규 카테고리/Programmatic SEO)은 "무엇을 만들지"뿐 아니라 **"왜 이게 필요하다고 판단했는지"**를 반드시 함께 담는다 — 어떤 GSC 쿼리/트렌드 데이터/CTR/이탈률/키워드 검색량을 근거로 했는지 구체적으로 명시한다. 근거를 명시할 수 없는 제안은 애초에 spec으로 만들지 않고 리포트에서 제외한다.
 
+> **중복 제안 방지 — `/data/proposals.json` 대조 필수**: spec을 새로 생성하기 전에 반드시 `/data/proposals.json`(제안 ID별 최초 제안일/상태)을 먼저 확인한다. 같은 문제(같은 페이지·같은 유형)에 대해 `pending` 상태인 제안이 이미 있으면 spec을 다시 만들지 않고, 주간 리포트에는 "N주째 대기 중" 한 줄 리마인더만 표시한다 — 그렇지 않으면 사람이 아직 검토도 안 했는데 매주 같은 내용을 새로 생성해서 AI 비용과 리포트 분량만 늘어난다. 새 제안이면 spec 생성 후 `proposals.json`에 `pending`으로 기록하고, 사람이 harness로 실제 구현하면 다음 리포트 주기에 `implemented`로 갱신한다. 명시적 "거절" 처리는 v1에서는 자동화하지 않는다 — 사람이 계속 무시하면 리마인더로만 남는 정도로 충분하다.
+
+> **`/data/history.md` 참고 필수**: `proposals.json`이 "정확히 같은 제안"을 막는 기계적 대조라면, `history.md`(Phase 2 8번 참고 — 주차별 압축 요약)는 "이미 시도해봤던 접근과 그 결과"까지 감안하도록 spec 생성 프롬프트에 전체 내용을 함께 입력한다. 예: 지난달 이미 FAQ 보강을 시도했는데 CTR 개선이 없었다면, 이번 주 spec은 같은 방향을 반복 제안하지 않고 다른 원인(제목/스니펫 등)을 우선 검토하도록 한다.
+
 1. Phase 2 리포트 기반으로 CTR/이탈률이 나쁜 페이지 후보를 추출
 2. AI가 **개선 spec**을 작성: 무엇을 어떻게 바꿀지, 근거 데이터(어떤 쿼리/CTR/이탈률 때문인지), title/description/콘텐츠 구조 제안(한/영 모두)
 3. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 코드가 아니라 `docs/screens/{화면명}.md` 초안 형태의 **신규 tool spec**을 생성
@@ -156,7 +161,7 @@
 7. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
 8. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
 
-**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`
+**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/check-proposal-duplicate.ts`, `/data/proposals.json`
 
 ---
 
@@ -282,6 +287,7 @@ GitHub Repo (bitkittools)
  │   ├─ generate-improvement-spec.ts    # 기존 페이지 개선 spec 생성 (코드 아님)
  │   ├─ generate-tool-research-spec.ts  # 신규 tool spec 생성 (코드 아님)
  │   ├─ check-page-similarity.ts    # Programmatic SEO 70% 유사도 가드레일
+ │   ├─ check-proposal-duplicate.ts # spec 생성 전 proposals.json 대조 — 이미 pending인 제안은 재생성하지 않음
  │   ├─ check-broken-links.ts       # 깨진 링크/리다이렉트 체커
  │   ├─ find-pruning-candidates.ts  # 트래픽 낮은 페이지 탐지
  │   └─ run-smoke-tests.ts          # 배포 직후 핵심 tool URL 응답 확인 (fetch 기반, 브라우저 자동화 없음)
@@ -292,8 +298,10 @@ GitHub Repo (bitkittools)
  ├─ data/
  │   ├─ raw/                       # 원본 API 응답 (최근 60일만 유지, 자동 삭제)
  │   ├─ processed/                 # AI 분석 입력용 가공 데이터 + 장기 집계 요약 (trend.json 등)
- │   ├─ reports/                   # 생성된 주간/전략 리포트, 개선/신규 spec
- │   └─ action-log.json            # AI 결정 메타데이터만 기록 (이유/목표/실험ID/대상 쿼리 + 참조 커밋 SHA)
+ │   ├─ reports/{연도}/{날짜}.md   # 생성된 주간/전략 리포트, 개선/신규 spec — 연도별 폴더로 분리
+ │   ├─ proposals.json             # 제안 ID별 최초 제안일/상태(pending/implemented) — 중복 spec 생성 방지
+ │   ├─ history.md                 # 주차별 3~5줄 압축 요약(지표/특이사항/시도한 개선/결과) — 매주 append, 용량 작아 항상 전체를 프롬프트에 포함
+ │   └─ action-log-{연도}.json     # AI 결정 메타데이터만 기록 (이유/목표/실험ID/대상 쿼리 + 참조 커밋 SHA), 연도별 분리
  │
  ├─ content/
  │   └─ glossary/

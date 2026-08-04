@@ -44,6 +44,10 @@
       "dir": "8-indexnow-notify",
       "status": "completed",
       "completed_at": "2026-08-04T14:52:04+0900"
+    },
+    {
+      "dir": "9-ga4-input-enter-event",
+      "status": "pending"
     }
   ]
 }
