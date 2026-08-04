@@ -1,4 +1,4 @@
-export type AnalyticsEventName = 'tool_open' | 'calculate' | 'copy_result' | 'share'
+export type AnalyticsEventName = 'tool_open' | 'calculate' | 'copy_result' | 'share' | 'input_enter'
 
 type GoogleFcQueueItem = Record<string, () => void>
 

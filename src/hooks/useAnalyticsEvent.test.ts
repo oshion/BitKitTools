@@ -66,6 +66,22 @@ describe('useAnalyticsEvent', () => {
     expect(mockGtag).toHaveBeenCalledWith('event', 'tool_open', {})
   })
 
+  it('calls window.gtag with input_enter event when gtag is available', () => {
+    const mockGtag = jest.fn()
+    Object.defineProperty(window, 'gtag', {
+      value: mockGtag,
+      writable: true,
+      configurable: true,
+    })
+
+    const { result } = renderHook(() => useAnalyticsEvent())
+    act(() => {
+      result.current.sendEvent('input_enter', { tool: 'json-formatter' })
+    })
+
+    expect(mockGtag).toHaveBeenCalledWith('event', 'input_enter', { tool: 'json-formatter' })
+  })
+
   it('does not include personal data in payload (smoke test)', () => {
     const mockGtag = jest.fn()
     Object.defineProperty(window, 'gtag', {
