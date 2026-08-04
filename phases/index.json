@@ -49,6 +49,10 @@
       "dir": "9-ga4-input-enter-event",
       "status": "completed",
       "completed_at": "2026-08-04T16:30:15+0900"
+    },
+    {
+      "dir": "10-ga4-gsc-clarity-collection",
+      "status": "pending"
     }
   ]
 }
