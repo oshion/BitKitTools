@@ -87,6 +87,7 @@ export default function StandardDrinksCalculatorTool() {
   const { sendEvent } = useAnalyticsEvent()
   const locale = useLocale() as 'en' | 'ko'
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef(false)
 
   const [presetKey, setPresetKey] = useState<string>(DEFAULT_PRESET_KEY)
   const [abvPercent, setAbvPercent] = useState<number>(
@@ -110,7 +111,15 @@ export default function StandardDrinksCalculatorTool() {
 
   const result = calculateStandardDrinks({ volumeMl, abvPercent, standard })
 
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   function handlePresetChange(key: string) {
+    fireInputEnterOnce()
     setPresetKey(key)
     if (key !== 'custom') {
       const preset = DRINK_PRESETS[key]!
@@ -124,16 +133,19 @@ export default function StandardDrinksCalculatorTool() {
   }
 
   function handleAbvChange(value: number) {
+    fireInputEnterOnce()
     setAbvPercent(value)
     setPresetKey('custom')
   }
 
   function handleVolumeChange(value: number) {
+    fireInputEnterOnce()
     setVolumeValue(value)
     setPresetKey('custom')
   }
 
   function handleVolumeUnitToggle(newUnit: VolumeUnit) {
+    fireInputEnterOnce()
     if (newUnit === volumeUnit) return
     // Convert current volume value to new unit
     const converted =
@@ -242,7 +254,7 @@ export default function StandardDrinksCalculatorTool() {
               <button
                 key={s}
                 type="button"
-                onClick={() => setStandard(s)}
+                onClick={() => { fireInputEnterOnce(); setStandard(s) }}
                 className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors text-center ${
                   standard === s
                     ? 'bg-neutral-700 border-neutral-500 text-white'

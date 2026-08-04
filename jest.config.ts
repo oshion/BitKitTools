@@ -19,9 +19,9 @@ export default async function jestConfig(): Promise<Config> {
   const nextJestConfig = await createJestConfig(customConfig)()
   return {
     ...nextJestConfig,
-    // next-intl, use-intl, and @formatjs/* ship ESM only — must be transformed.
+    // next-intl, use-intl, @formatjs/*, and intl-messageformat ship ESM only — must be transformed.
     transformIgnorePatterns: [
-      '/node_modules/(?!(next-intl|use-intl|@formatjs/))',
+      '/node_modules/(?!(next-intl|use-intl|@formatjs/|intl-messageformat))',
     ],
   }
 }

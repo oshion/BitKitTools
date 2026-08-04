@@ -43,6 +43,7 @@ export default function HomebrewRecipeCalculatorTool() {
   const { sendEvent } = useAnalyticsEvent()
   const locale = useLocale() as 'en' | 'ko'
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef(false)
 
   // Persisted recipe inputs
   const [savedRecipe, setSavedRecipe] = useLocalStorage<SavedRecipe>(
@@ -99,6 +100,13 @@ export default function HomebrewRecipeCalculatorTool() {
 
   // ── Handlers ─────────────────────────────────────────────────────────────────
 
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   function handleCalculate() {
     sendEvent('calculate')
   }
@@ -153,7 +161,7 @@ export default function HomebrewRecipeCalculatorTool() {
               value={batchSizeValue}
               onChange={(e) => {
                 const v = parseFloat(e.target.value)
-                if (!isNaN(v)) setBatchSizeValue(clamp(v, 0.1, 1000))
+                if (!isNaN(v)) { fireInputEnterOnce(); setBatchSizeValue(clamp(v, 0.1, 1000)) }
               }}
               className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
             />
@@ -164,6 +172,7 @@ export default function HomebrewRecipeCalculatorTool() {
                   type="button"
                   onClick={() => {
                     if (unit === batchSizeUnit) return
+                    fireInputEnterOnce()
                     // Convert displayed value to new unit
                     const litres = toLitres(batchSizeValue, batchSizeUnit)
                     setBatchSizeValue(
@@ -197,7 +206,7 @@ export default function HomebrewRecipeCalculatorTool() {
               max={1.2}
               step={0.001}
               value={ogInput}
-              onChange={(e) => setOgInput(e.target.value)}
+              onChange={(e) => { fireInputEnterOnce(); setOgInput(e.target.value) }}
               onBlur={() => {
                 const v = parseFloat(ogInput)
                 if (!isNaN(v)) setOgInput(clamp(v, 1.0, 1.2).toFixed(3))
@@ -223,7 +232,7 @@ export default function HomebrewRecipeCalculatorTool() {
               max={1.15}
               step={0.001}
               value={fgInput}
-              onChange={(e) => setFgInput(e.target.value)}
+              onChange={(e) => { fireInputEnterOnce(); setFgInput(e.target.value) }}
               onBlur={() => {
                 const v = parseFloat(fgInput)
                 if (!isNaN(v)) setFgInput(clamp(v, 1.0, 1.15).toFixed(3))
@@ -259,7 +268,7 @@ export default function HomebrewRecipeCalculatorTool() {
               <button
                 key={f}
                 type="button"
-                onClick={() => setFormula(f)}
+                onClick={() => { fireInputEnterOnce(); setFormula(f) }}
                 className={`px-4 py-2 text-sm transition-colors ${
                   formula === f
                     ? 'bg-neutral-700 text-white'

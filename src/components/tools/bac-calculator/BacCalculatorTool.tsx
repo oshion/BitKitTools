@@ -249,6 +249,7 @@ export default function BacCalculatorTool() {
   const { sendEvent } = useAnalyticsEvent()
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef(false)
 
   useEffect(() => {
     if (!hasFiredOpenRef.current) {
@@ -268,6 +269,13 @@ export default function BacCalculatorTool() {
     drinks: state.drinks,
     hoursElapsed: state.hoursElapsed,
   })
+
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
 
   function handleCalculate() {
     // Fire analytics without personal data payload (ADR-014, screen spec)
@@ -293,7 +301,7 @@ export default function BacCalculatorTool() {
               <button
                 key={g}
                 type="button"
-                onClick={() => dispatch({ type: 'SET_GENDER', value: g })}
+                onClick={() => { fireInputEnterOnce(); dispatch({ type: 'SET_GENDER', value: g }) }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
                   state.gender === g
                     ? 'bg-neutral-700 border-neutral-500 text-white'
@@ -325,6 +333,7 @@ export default function BacCalculatorTool() {
               onChange={(e) => {
                 const v = parseFloat(e.target.value)
                 if (!isNaN(v)) {
+                  fireInputEnterOnce()
                   dispatch({
                     type: 'SET_WEIGHT_VALUE',
                     value: clamp(v, 30, 300),
@@ -338,7 +347,7 @@ export default function BacCalculatorTool() {
                 <button
                   key={unit}
                   type="button"
-                  onClick={() => dispatch({ type: 'SET_WEIGHT_UNIT', value: unit })}
+                  onClick={() => { fireInputEnterOnce(); dispatch({ type: 'SET_WEIGHT_UNIT', value: unit }) }}
                   className={`px-3 py-2 text-sm transition-colors ${
                     state.weightUnit === unit
                       ? 'bg-neutral-700 text-white'
@@ -365,9 +374,10 @@ export default function BacCalculatorTool() {
               max={12}
               step={0.5}
               value={state.hoursElapsed}
-              onChange={(e) =>
+              onChange={(e) => {
+                fireInputEnterOnce()
                 dispatch({ type: 'SET_HOURS', value: parseFloat(e.target.value) })
-              }
+              }}
               className="flex-1 accent-[#f59e0b]"
             />
             <span className="w-16 text-right text-sm font-semibold text-[#f59e0b] tabular-nums">
@@ -398,7 +408,7 @@ export default function BacCalculatorTool() {
                 {state.drinks.length > 1 && (
                   <button
                     type="button"
-                    onClick={() => dispatch({ type: 'REMOVE_DRINK', id: drink.id })}
+                    onClick={() => { fireInputEnterOnce(); dispatch({ type: 'REMOVE_DRINK', id: drink.id }) }}
                     className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors"
                     aria-label={`Remove drink ${index + 1}`}
                   >
@@ -412,14 +422,15 @@ export default function BacCalculatorTool() {
                 <label className="block text-xs text-neutral-500">Type</label>
                 <select
                   value={drink.presetKey}
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    fireInputEnterOnce()
                     dispatch({
                       type: 'UPDATE_DRINK',
                       id: drink.id,
                       field: 'presetKey',
                       value: e.target.value,
                     })
-                  }
+                  }}
                   className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white focus:border-neutral-600 outline-none transition-colors"
                 >
                   {Object.entries(DRINK_PRESETS).map(([key, preset]) => (
@@ -443,6 +454,7 @@ export default function BacCalculatorTool() {
                     onChange={(e) => {
                       const v = parseFloat(e.target.value)
                       if (!isNaN(v)) {
+                        fireInputEnterOnce()
                         dispatch({
                           type: 'UPDATE_DRINK',
                           id: drink.id,
@@ -465,6 +477,7 @@ export default function BacCalculatorTool() {
                     onChange={(e) => {
                       const v = parseFloat(e.target.value)
                       if (!isNaN(v)) {
+                        fireInputEnterOnce()
                         dispatch({
                           type: 'UPDATE_DRINK',
                           id: drink.id,
@@ -483,7 +496,7 @@ export default function BacCalculatorTool() {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: 'ADD_DRINK' })}
+          onClick={() => { fireInputEnterOnce(); dispatch({ type: 'ADD_DRINK' }) }}
           className="w-full rounded-lg border border-dashed border-neutral-700 py-2.5 text-sm text-neutral-500 hover:border-neutral-600 hover:text-neutral-400 transition-colors"
         >
           + Add another drink

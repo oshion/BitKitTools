@@ -39,6 +39,7 @@ const CALIB_PRESETS: { label: string; fahrenheit: number }[] = [
 export default function HydrometerCorrectionTool() {
   const { sendEvent } = useAnalyticsEvent()
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef(false)
 
   // Opt-in localStorage: persist calibration temp (in °F) when user checks the box
   const [savedCalibF, setSavedCalibF] = useLocalStorage<number | null>(
@@ -76,8 +77,16 @@ export default function HydrometerCorrectionTool() {
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   // ── Unit toggle handler ─────────────────────────────────────────────────────
   function handleUnitToggle(unit: TempUnit) {
+    fireInputEnterOnce()
     if (unit === tempUnit) return
 
     // Convert existing sample temperature value
@@ -96,6 +105,7 @@ export default function HydrometerCorrectionTool() {
 
   // ── Calibration temp: sync internal °F state from display input ─────────────
   function handleCalibInputChange(raw: string) {
+    fireInputEnterOnce()
     setCalibTempInput(raw)
     const v = parseFloat(raw)
     if (!isNaN(v)) {
@@ -107,6 +117,7 @@ export default function HydrometerCorrectionTool() {
 
   // ── Preset button handler ───────────────────────────────────────────────────
   function handlePreset(fahrenheit: number) {
+    fireInputEnterOnce()
     setCalibTempF(fahrenheit)
     const displayValue =
       tempUnit === '°F' ? fahrenheit : round(celsiusFromFahrenheit(fahrenheit), 1)
@@ -198,7 +209,7 @@ export default function HydrometerCorrectionTool() {
             max={1.2}
             step={0.001}
             value={measuredInput}
-            onChange={(e) => setMeasuredInput(e.target.value)}
+            onChange={(e) => { fireInputEnterOnce(); setMeasuredInput(e.target.value) }}
             onBlur={() => {
               const v = parseFloat(measuredInput)
               if (!isNaN(v)) setMeasuredInput(Math.min(Math.max(v, 0.99), 1.2).toFixed(3))
@@ -225,7 +236,7 @@ export default function HydrometerCorrectionTool() {
               type="number"
               step={0.1}
               value={sampleTempInput}
-              onChange={(e) => setSampleTempInput(e.target.value)}
+              onChange={(e) => { fireInputEnterOnce(); setSampleTempInput(e.target.value) }}
               placeholder={tempUnit === '°F' ? 'e.g. 75' : 'e.g. 24'}
               className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 sampleTempInput && !sampleValid ? 'border-red-800' : 'border-neutral-800'
