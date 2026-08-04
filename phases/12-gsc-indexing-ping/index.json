@@ -7,7 +7,7 @@
       "name": "gsc-url-inspection",
       "status": "completed",
       "started_at": "2026-08-04T18:45:06+0900",
-      "completed_at": "2026-08-04T19:15:00+0900",
+      "completed_at": "2026-08-04T18:50:36+0900",
       "summary": "scripts/check-indexing-status.ts: quota-efficient URL Inspection API script that checks only recently-added tools (30-day window, EN+KO) and previously not-indexed URLs, merging results into /data/indexing-status.json; googleAuth.ts updated with optional scopes param for webmasters (non-readonly) scope"
     },
     {
