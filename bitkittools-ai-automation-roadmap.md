@@ -145,13 +145,16 @@
 
 > AI는 코드를 직접 생성하지 않는다. 데이터 기반으로 "무엇을, 왜 바꿔야 하는지"에 대한 **상세 spec 문서**까지만 만들고, 실제 구현은 사람이 harness 세션에서 진행한다(CLAUDE.md rule 17과 동일 원칙).
 
+> **모든 제안에 근거 명시 필수**: 이 phase가 생성하는 모든 spec(개선/신규 tool/신규 카테고리/Programmatic SEO)은 "무엇을 만들지"뿐 아니라 **"왜 이게 필요하다고 판단했는지"**를 반드시 함께 담는다 — 어떤 GSC 쿼리/트렌드 데이터/CTR/이탈률/키워드 검색량을 근거로 했는지 구체적으로 명시한다. 근거를 명시할 수 없는 제안은 애초에 spec으로 만들지 않고 리포트에서 제외한다.
+
 1. Phase 2 리포트 기반으로 CTR/이탈률이 나쁜 페이지 후보를 추출
 2. AI가 **개선 spec**을 작성: 무엇을 어떻게 바꿀지, 근거 데이터(어떤 쿼리/CTR/이탈률 때문인지), title/description/콘텐츠 구조 제안(한/영 모두)
 3. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 코드가 아니라 `docs/screens/{화면명}.md` 초안 형태의 **신규 tool spec**을 생성
-4. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
-5. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack/이메일로 전달
-6. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
-7. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
+4. **신규 카테고리 제안 (트렌드 기반)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)로 볼 때 뚜렷한 기회가 보이면, tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
+5. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
+6. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack/이메일로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
+7. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
+8. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
 
 **산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`
 

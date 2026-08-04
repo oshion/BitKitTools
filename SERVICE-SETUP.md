@@ -51,6 +51,13 @@ BitKitTools.com 운영에 필요한 외부 서비스 계정을 왜 만들었는�
 - **왜**: `bitkittools.com` 도메인 등록 및 DNS 관리 (서버 IP 연결용 A 레코드, GSC 인증용 TXT 레코드 등).
 - **모니터링**: AWS Console → Route53 → Hosted zones
 
+## 7. Bing Webmaster Tools / IndexNow
+
+- **왜**: 배포마다 변경된 URL을 Bing/Yandex 등에 즉시 알려 크롤러가 돌 때까지 기다리지 않고 빠르게 재색인되도록 함. Google은 IndexNow를 지원하지 않아(JobPosting/BroadcastEvent 전용 Indexing API만 지원) 별도 채널로 운영 — Google 쪽은 GSC sitemap 재제출(ping)로 대응(2번 항목 참고, Phase 1 예정).
+- **값**: `INDEXNOW_KEY` (GitHub Secrets, `.github/workflows/deploy.yml`에서 참조). 같은 값이 `public/{key}.txt` 파일명·내용으로도 존재해야 함(IndexNow 소유권 검증 방식) — 이 파일은 공개 검증 파일이라 민감하지 않지만, 값 자체는 관례상 이 문서에는 적지 않는다.
+- **모니터링**: https://www.bing.com/webmasters → `bitkittools.com` 사이트 선택 → IndexNow 섹션에서 제출 이력 확인
+- **상태**: Google Search Console 계정 연동(Import)으로 사이트 소유권 인증 완료. 키 발급 및 `public/{key}.txt` 배포, GitHub Secrets 등록 완료. 실제 배포 워크플로우 연동은 진행 중(harness `7-cicd-deploy-automation` 확장 phase).
+
 ---
 
 ## env 파일 우선순위 주의
@@ -68,3 +75,4 @@ Next.js 로딩 우선순위: `.env.local` > `.env.production` > `.env`. **로컬
 - [ ] Google AdSense 심사 결과 대기
 - [ ] 승인 후 실제 광고 노출 확인, RPM 모니터링 시작
 - [ ] (선택) Auto ads 도입 여부는 승인 후 별도 검토
+- [ ] IndexNow 실제 배포 알림 스크립트(`notify-indexnow.ts`) 구현 및 `deploy.yml` 연동 (harness 진행 중)
