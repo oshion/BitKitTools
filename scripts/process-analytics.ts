@@ -300,7 +300,7 @@ function main(): void {
 
   for (const file of rawFiles) {
     const match = /^(?:ga4|gsc|clarity)-(\d{4}-\d{2}-\d{2})\.json$/.exec(file)
-    if (match) {
+    if (match?.[1]) {
       dateSet.add(match[1])
     }
   }
