@@ -44,3 +44,8 @@ jobs:
           remote_port: ${{ secrets.EC2_SSH_PORT }}
           remote_user: ${{ secrets.EC2_USER }}
           remote_key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Notify IndexNow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: npx tsx scripts/notify-indexnow.ts
