@@ -15,7 +15,7 @@
       "name": "data-retention-and-rollup",
       "status": "completed",
       "started_at": "2026-08-04T18:07:04+0900",
-      "completed_at": "2026-08-04T18:30:00+0900",
+      "completed_at": "2026-08-04T18:18:58+0900",
       "summary": "scripts/manage-data-retention.ts 작성 완료 — deleteOldRawFiles(raw 60일 초과 파일 삭제), rollupOldProcessedFiles(processed 90일 초과 파일을 ISO 주차별 weekly/{year}-Www.json으로 롤업 후 원본 삭제); 멱등성(이미 롤업된 주 건너뜀), 삭제/롤업 대상 없을 때 정상 종료; 유닛 테스트 24개 작성(tmpdir 기반, 날짜 경계/멱등성/롤업 구조/null 처리 검증); process-analytics.ts의 noUncheckedIndexedAccess 기존 빌드 오류 함께 수정"
     },
     {
