@@ -32,15 +32,21 @@ jobs:
           CLARITY_API_KEY: ${{ secrets.CLARITY_API_KEY }}
         run: npx tsx scripts/collect-analytics.ts
 
+      - name: Process analytics data
+        run: npx tsx scripts/process-analytics.ts
+
+      - name: Manage data retention
+        run: npx tsx scripts/manage-data-retention.ts
+
       - name: Commit collected data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/raw/*.json
+          git add data/raw data/processed
           if git diff --quiet --staged; then
             echo "No new data files to commit. Skipping commit."
           else
             DATE=$(date -u +%Y-%m-%d)
-            git commit -m "chore(collect-data): daily analytics collection ${DATE}"
+            git commit -m "chore(collect-data): daily analytics collection, processing & retention ${DATE}"
             git push
           fi
