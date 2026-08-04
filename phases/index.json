@@ -34,6 +34,10 @@
       "dir": "6-developer-category-expansion",
       "status": "completed",
       "completed_at": "2026-07-23T09:07:50+0900"
+    },
+    {
+      "dir": "7-cicd-deploy-automation",
+      "status": "pending"
     }
   ]
 }
