@@ -34,7 +34,7 @@ jobs:
         # EC2_TARGET_DIR에 반드시 실제 배포 경로(예: /var/www/bitkittools)를 정확히 등록할 것.
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avz --delete
+          switches: -avz --delete --omit-dir-times
           path: out/
           remote_path: ${{ secrets.EC2_TARGET_DIR }}
           remote_host: ${{ secrets.EC2_HOST }}
