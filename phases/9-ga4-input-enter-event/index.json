@@ -7,7 +7,7 @@
       "name": "event-type-and-hook-test",
       "status": "completed",
       "started_at": "2026-08-04T15:58:56+0900",
-      "completed_at": "2026-08-04T16:05:00+0900",
+      "completed_at": "2026-08-04T16:01:11+0900",
       "summary": "AnalyticsEventName에 'input_enter' 추가, useAnalyticsEvent.test.ts에 input_enter 이벤트 발행 검증 테스트 1개 추가 — 기존 558개 테스트 전부 통과"
     },
     {
