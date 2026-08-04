@@ -54,6 +54,10 @@
       "dir": "10-ga4-gsc-clarity-collection",
       "status": "completed",
       "completed_at": "2026-08-04T17:08:48+0900"
+    },
+    {
+      "dir": "11-analytics-processing",
+      "status": "pending"
     }
   ]
 }
