@@ -59,6 +59,10 @@
       "dir": "11-analytics-processing",
       "status": "completed",
       "completed_at": "2026-08-04T18:21:07+0900"
+    },
+    {
+      "dir": "12-gsc-indexing-ping",
+      "status": "pending"
     }
   ]
 }
