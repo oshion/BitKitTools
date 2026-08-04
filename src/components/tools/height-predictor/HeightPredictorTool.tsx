@@ -174,7 +174,15 @@ function HeightInputField({
 export default function HeightPredictorTool() {
   const { sendEvent } = useAnalyticsEvent()
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef<boolean>(false)
   const animationRef = useRef<number | null>(null)
+
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
 
   // ── LocalStorage opt-in ───────────────────────────────────────────────────
   const [saveEnabled, setSaveEnabled] = useState(false)
@@ -492,9 +500,9 @@ export default function HeightPredictorTool() {
           cmValue={motherCm}
           ftValue={motherFt}
           inValue={motherIn}
-          onCmChange={(v) => { setMotherCm(v); resetResult() }}
-          onFtChange={(v) => { setMotherFt(v); resetResult() }}
-          onInChange={(v) => { setMotherIn(v); resetResult() }}
+          onCmChange={(v) => { fireInputEnterOnce(); setMotherCm(v); resetResult() }}
+          onFtChange={(v) => { fireInputEnterOnce(); setMotherFt(v); resetResult() }}
+          onInChange={(v) => { fireInputEnterOnce(); setMotherIn(v); resetResult() }}
           errorMsg={hasMotherInput && !motherValid ? 'Enter a height between 100–230cm (3\'4"–7\'7")' : undefined}
         />
 
@@ -505,9 +513,9 @@ export default function HeightPredictorTool() {
           cmValue={fatherCm}
           ftValue={fatherFt}
           inValue={fatherIn}
-          onCmChange={(v) => { setFatherCm(v); resetResult() }}
-          onFtChange={(v) => { setFatherFt(v); resetResult() }}
-          onInChange={(v) => { setFatherIn(v); resetResult() }}
+          onCmChange={(v) => { fireInputEnterOnce(); setFatherCm(v); resetResult() }}
+          onFtChange={(v) => { fireInputEnterOnce(); setFatherFt(v); resetResult() }}
+          onInChange={(v) => { fireInputEnterOnce(); setFatherIn(v); resetResult() }}
           errorMsg={hasFatherInput && !fatherValid ? 'Enter a height between 100–230cm (3\'4"–7\'7")' : undefined}
         />
 

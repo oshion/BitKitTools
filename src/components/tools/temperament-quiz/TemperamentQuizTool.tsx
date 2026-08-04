@@ -192,6 +192,7 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
 export default function TemperamentQuizTool({ locale = 'en' }: Props) {
   const { sendEvent } = useAnalyticsEvent()
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef<boolean>(false)
 
   const prefersReducedMotion =
     typeof window !== 'undefined'
@@ -239,6 +240,11 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
   function handleAnswer(pole: string) {
     if (!currentQuestion) return
     if (!questionVisible) return // prevent double-tap
+
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
 
     const newAnswer: QuizAnswer = { axis: currentQuestion.axis, pole }
     const newAnswers = [...answers, newAnswer]

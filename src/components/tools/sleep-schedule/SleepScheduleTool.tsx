@@ -117,6 +117,14 @@ function TimelineBar({ naps, bedtime, wakeUpTime }: TimelineBarProps) {
 export default function SleepScheduleTool() {
   const { sendEvent } = useAnalyticsEvent()
   const hasFiredOpenRef = useRef(false)
+  const inputEnteredRef = useRef<boolean>(false)
+
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
 
   // ── LocalStorage opt-in ───────────────────────────────────────────────────
   const [saveEnabled, setSaveEnabled] = useState(false)
@@ -216,6 +224,7 @@ export default function SleepScheduleTool() {
               step={1}
               value={ageInput}
               onChange={(e) => {
+                fireInputEnterOnce()
                 setAgeInput(e.target.value)
                 setResult(null)
                 setHasCalculated(false)
@@ -247,6 +256,7 @@ export default function SleepScheduleTool() {
             type="time"
             value={wakeUpTime}
             onChange={(e) => {
+              fireInputEnterOnce()
               setWakeUpTime(e.target.value)
               setResult(null)
               setHasCalculated(false)

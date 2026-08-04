@@ -83,6 +83,16 @@ export default function GrowthPercentileTool() {
   const [result, setResult] = useState<GrowthPercentileResult | null>(null)
   const [hasCalculated, setHasCalculated] = useState(false)
 
+  // ── input_enter guard ─────────────────────────────────────────────────────
+  const inputEnteredRef = useRef<boolean>(false)
+
+  function fireInputEnterOnce() {
+    if (!inputEnteredRef.current) {
+      inputEnteredRef.current = true
+      sendEvent('input_enter')
+    }
+  }
+
   // ── Fire tool_open once ───────────────────────────────────────────────────
   useEffect(() => {
     if (!hasFiredOpenRef.current) {
@@ -184,6 +194,7 @@ export default function GrowthPercentileTool() {
             step={1}
             value={ageInput}
             onChange={(e) => {
+              fireInputEnterOnce()
               setAgeInput(e.target.value)
               setResult(null)
               setHasCalculated(false)
@@ -212,6 +223,7 @@ export default function GrowthPercentileTool() {
               step={0.1}
               value={weightInput}
               onChange={(e) => {
+                fireInputEnterOnce()
                 setWeightInput(e.target.value)
                 setResult(null)
                 setHasCalculated(false)
@@ -238,6 +250,7 @@ export default function GrowthPercentileTool() {
               step={0.1}
               value={heightInput}
               onChange={(e) => {
+                fireInputEnterOnce()
                 setHeightInput(e.target.value)
                 setResult(null)
                 setHasCalculated(false)
