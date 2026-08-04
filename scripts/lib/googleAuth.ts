@@ -4,19 +4,23 @@
  * Issues access tokens for GA4 Data API and Search Console API
  * using a service account key stored in GOOGLE_SERVICE_ACCOUNT_JSON env var.
  *
- * Scopes covered:
+ * Default scopes:
  *   - https://www.googleapis.com/auth/analytics.readonly (GA4 Data API)
- *   - https://www.googleapis.com/auth/webmasters.readonly (Search Console API)
+ *   - https://www.googleapis.com/auth/webmasters.readonly (Search Console Search Analytics API)
+ *
+ * Use the optional `scopes` parameter to override for APIs that require
+ * different scopes (e.g. URL Inspection API requires `webmasters` not
+ * `webmasters.readonly`).
  */
 
 import { GoogleAuth } from 'google-auth-library'
 
-const SCOPES = [
+const DEFAULT_SCOPES = [
   'https://www.googleapis.com/auth/analytics.readonly',
   'https://www.googleapis.com/auth/webmasters.readonly',
 ]
 
-export async function getGoogleAccessToken(): Promise<string> {
+export async function getGoogleAccessToken(scopes?: string[]): Promise<string> {
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON
   if (!raw) {
     throw new Error(
@@ -35,7 +39,7 @@ export async function getGoogleAccessToken(): Promise<string> {
 
   const auth = new GoogleAuth({
     credentials,
-    scopes: SCOPES,
+    scopes: scopes ?? DEFAULT_SCOPES,
   })
 
   const client = await auth.getClient()
