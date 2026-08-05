@@ -45,7 +45,10 @@
     {
       "step": 5,
       "name": "strategy-review-generation",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-05T14:04:15+0900",
+      "completed_at": "2026-08-05T14:09:30+0900",
+      "summary": "scripts/generate-strategy-review.ts 작성 — isStagnant 체크 우선(정체 아니면 no-op exit 0), ANTHROPIC_API_KEY 검사(정체 시에만), filterCooldownComplete로 21일 쿨다운 통과 액션 필터링, 액션 로그 없을 경우 프롬프트에 명시, Anthropic API(claude-sonnet-4-6, raw fetch) 호출 실패 시 exit(1), data/reports/{year}/{date}.md 파일 없으면 exit(1), 존재 시 ## 전략 재검토 섹션 append; lint/build 통과, 4주 미만 데이터 상태에서 no-op exit(0) 검증 완료"
     },
     {
       "step": 6,
