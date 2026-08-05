@@ -74,6 +74,12 @@ function runLhciCollect(): void {
   const args = [
     'lhci',
     'collect',
+    // Prevent lhci from auto-loading the repo-root .lighthouserc.json (used by
+    // test-gate.yml for staticDistDir-based PR audits). Without this flag, its
+    // staticDistDir setting causes lhci to spin up an unrelated local static
+    // server and merge that server's port into our production URLs
+    // (observed as requests to "https://bitkittools.com:PORT/" that never load).
+    '--no-lighthouserc',
     ...urlArgs,
     '--numberOfRuns=1',
     '--settings.onlyCategories=performance,accessibility,best-practices,seo',
