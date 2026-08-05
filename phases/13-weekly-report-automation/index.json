@@ -53,7 +53,10 @@
     {
       "step": 6,
       "name": "slack-delivery",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-05T14:07:53+0900",
+      "completed_at": "2026-08-05T14:15:00+0900",
+      "summary": "scripts/lib/formatSlackBlocks.ts 순수 함수 분리(markdownToMrkdwn/**→*/치환, splitLongText/3000자 분할, 45블록 초과 시 안내 섹션), scripts/lib/__tests__/formatSlackBlocks.test.ts 16개 단위 테스트, scripts/post-slack-report.ts CLI 작성(리포트 파일 없음·SLACK_WEBHOOK_URL 없음·네트워크/4xx/5xx 모두 exit 0); lint/build/746테스트 통과"
     },
     {
       "step": 7,
