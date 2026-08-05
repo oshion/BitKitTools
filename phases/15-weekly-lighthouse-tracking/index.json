@@ -1,0 +1,20 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "15-weekly-lighthouse-tracking",
+  "steps": [
+    {
+      "step": 0,
+      "name": "collect-lighthouse",
+      "status": "completed",
+      "started_at": "2026-08-05T22:07:49+0900",
+      "completed_at": "2026-08-05T22:30:00+0900",
+      "summary": "lighthouseThreshold.ts (findScoresBelowThreshold pure fn + 16 tests), collect-lighthouse.ts CLI (lhci collect → .lighthouseci/lhr-*.json → data/processed/lighthouse-{date}.json)"
+    },
+    {
+      "step": 1,
+      "name": "report-integration",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-08-05T22:07:49+0900"
+}
