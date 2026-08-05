@@ -7,7 +7,7 @@
       "name": "broken-link-checker",
       "status": "completed",
       "started_at": "2026-08-05T17:06:42+0900",
-      "completed_at": "2026-08-05T17:30:00+0900",
+      "completed_at": "2026-08-05T17:10:53+0900",
       "summary": "scripts/check-broken-links.ts CLI + scripts/lib/checkBrokenLinks.ts pure-function core + 44 unit tests; wired into test-gate.yml post-build; confirmed 0 broken links in current out/"
     },
     {
