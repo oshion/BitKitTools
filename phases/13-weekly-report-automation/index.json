@@ -7,7 +7,7 @@
       "name": "ga4-bounce-rate-collection",
       "status": "completed",
       "started_at": "2026-08-05T13:39:18+0900",
-      "completed_at": "2026-08-05T14:10:00+0900",
+      "completed_at": "2026-08-05T13:44:22+0900",
       "summary": "collectGa4Bounce 추가(ga4-bounce-{date}.json 별도 저장, 실패해도 ga4Success 무영향), ProcessedPage에 bounceRate:number|null 필드 추가 및 mergeBounceIntoPages 구현, ProcessedDay/ProcessedPage/ProcessedQuery export, manage-data-retention 정규식에 ga4-bounce 파일 패턴 추가"
     },
     {
