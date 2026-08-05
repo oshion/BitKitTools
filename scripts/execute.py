@@ -2,8 +2,11 @@
 """
 Harness Step Executor — phase 내 step을 순차 실행하고 자가 교정한다.
 
+모든 step 완료 후 브랜치를 push하고 master 대상 PR을 생성한 뒤 auto-merge를
+건다(gh CLI 필요) — test-gate.yml을 통과하면 자동으로 merge된다.
+
 Usage:
-    python3 scripts/execute.py <phase-dir> [--push]
+    python3 scripts/execute.py <phase-dir>
 """
 
 import argparse
@@ -66,13 +69,12 @@ class StepExecutor:
     CHORE_MSG = "chore({phase}): step {num} output"
     TZ = timezone(timedelta(hours=9))
 
-    def __init__(self, phase_dir_name: str, *, auto_push: bool = False):
+    def __init__(self, phase_dir_name: str):
         self._root = str(ROOT)
         self._phases_dir = ROOT / "phases"
         self._phase_dir = self._phases_dir / phase_dir_name
         self._phase_dir_name = phase_dir_name
         self._top_index_file = self._phases_dir / "index.json"
-        self._auto_push = auto_push
 
         if not self._phase_dir.is_dir():
             print(f"ERROR: {self._phase_dir} not found")
@@ -275,8 +277,6 @@ class StepExecutor:
         print(f"\n{'='*60}")
         print(f"  Harness Step Executor")
         print(f"  Phase: {self._phase_name} | Steps: {self._total}")
-        if self._auto_push:
-            print(f"  Auto-push: enabled")
         print(f"{'='*60}")
 
     def _check_blockers(self):
@@ -404,26 +404,86 @@ class StepExecutor:
             if r.returncode == 0:
                 print(f"  ✓ {msg}")
 
-        if self._auto_push:
-            branch = f"feat-{self._phase_name}"
-            r = self._run_git("push", "-u", "origin", branch)
-            if r.returncode != 0:
-                print(f"\n  ERROR: git push 실패: {r.stderr.strip()}")
-                sys.exit(1)
-            print(f"  ✓ Pushed to origin/{branch}")
+        branch = f"feat-{self._phase_name}"
+        r = self._run_git("push", "-u", "origin", branch)
+        if r.returncode != 0:
+            print(f"\n  ERROR: git push 실패: {r.stderr.strip()}")
+            sys.exit(1)
+        print(f"  ✓ Pushed to origin/{branch}")
+
+        self._open_pr_and_enable_automerge(branch, index)
 
         print(f"\n{'='*60}")
         print(f"  Phase '{self._phase_name}' completed!")
         print(f"{'='*60}")
 
+    # --- PR / auto-merge ---
+
+    def _build_pr_body(self, index: dict) -> str:
+        lines = [
+            f"Automated harness phase: **{self._phase_name}**",
+            "",
+            "All steps completed and locally verified (lint/test/build).",
+        ]
+        step_lines = [
+            f"- Step {s['step']} ({s['name']}): {s.get('summary', '')}"
+            for s in index.get("steps", [])
+            if s.get("status") == "completed" and s.get("summary")
+        ]
+        if step_lines:
+            lines += ["", "## Steps", *step_lines]
+        lines += [
+            "",
+            "Auto-merge enabled — will merge automatically once `test-gate.yml` passes.",
+        ]
+        return "\n".join(lines)
+
+    def _open_pr_and_enable_automerge(self, branch: str, index: dict):
+        gh = shutil.which("gh")
+        if not gh:
+            print(
+                "  WARN: gh CLI not found — skipping PR creation. "
+                "Open a PR manually and enable auto-merge."
+            )
+            return
+
+        def _run_gh(*args) -> subprocess.CompletedProcess:
+            return subprocess.run(
+                [gh, *args], cwd=self._root, capture_output=True, text=True,
+                encoding="utf-8", errors="replace",
+            )
+
+        body = self._build_pr_body(index)
+        r = _run_gh(
+            "pr", "create", "--base", "master", "--head", branch,
+            "--title", self._phase_name, "--body", body,
+        )
+
+        if r.returncode == 0:
+            pr_url = r.stdout.strip().splitlines()[-1] if r.stdout.strip() else branch
+            print(f"  ✓ PR created: {pr_url}")
+        else:
+            # PR may already exist from a prior finalize attempt — look it up instead of failing.
+            view = _run_gh("pr", "view", branch, "--json", "url", "-q", ".url")
+            if view.returncode != 0 or not view.stdout.strip():
+                print(f"  WARN: gh pr create failed and no existing PR found: {r.stderr.strip()}")
+                return
+            pr_url = view.stdout.strip()
+            print(f"  ✓ Reusing existing PR: {pr_url}")
+
+        merge = _run_gh("pr", "merge", pr_url, "--auto", "--merge")
+        if merge.returncode != 0:
+            print(f"  WARN: gh pr merge --auto failed: {merge.stderr.strip()}")
+        else:
+            print("  ✓ Auto-merge enabled — will merge once test-gate.yml passes.")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Harness Step Executor")
     parser.add_argument("phase_dir", help="Phase directory name (e.g. 0-mvp)")
-    parser.add_argument("--push", action="store_true", help="Push branch after completion")
     args = parser.parse_args()
 
-    StepExecutor(args.phase_dir, auto_push=args.push).run()
+    StepExecutor(args.phase_dir).run()
 
 
 if __name__ == "__main__":
