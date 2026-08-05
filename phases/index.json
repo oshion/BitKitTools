@@ -77,7 +77,8 @@
     },
     {
       "dir": "15-weekly-lighthouse-tracking",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-08-05T22:17:56+0900"
     }
   ]
 }
