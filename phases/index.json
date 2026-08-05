@@ -74,6 +74,10 @@
       "dir": "14-lighthouse-and-broken-links",
       "status": "completed",
       "completed_at": "2026-08-05T17:30:57+0900"
+    },
+    {
+      "dir": "15-weekly-lighthouse-tracking",
+      "status": "pending"
     }
   ]
 }
