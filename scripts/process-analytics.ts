@@ -21,6 +21,18 @@ import { resolve } from 'path'
 const RAW_DIR = resolve(process.cwd(), 'data', 'raw')
 const PROCESSED_DIR = resolve(process.cwd(), 'data', 'processed')
 
+/**
+ * GSC raw data for a date arrives up to ~1 day later than GA4/Clarity for
+ * the same date (GA4 pulls "yesterday", GSC pulls "2 days ago" — see
+ * collect-analytics.ts). If a date is processed the moment GA4 data shows
+ * up, naive skip-if-already-processed idempotency would permanently lock
+ * that date's processed file without GSC data once it later arrives. Dates
+ * within this window are reprocessed (overwritten) on every run so
+ * late-arriving GSC data gets picked up; older dates are trusted as settled
+ * and left alone to avoid needless daily rewrites of years of history.
+ */
+export const REPROCESS_WINDOW_DAYS = 5
+
 const SITE_ORIGIN = 'https://bitkittools.com'
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -336,6 +348,31 @@ function processDate(date: string): void {
   console.log(`[process-analytics] Processed ${date} → ${outPath}`)
 }
 
+// ── Date Selection ───────────────────────────────────────────────────────────
+
+/** Whole-day difference between `today` and `dateStr` (YYYY-MM-DD), UTC-based. */
+function daysSince(dateStr: string, today: Date): number {
+  const target = new Date(`${dateStr}T00:00:00Z`)
+  const diffMs = today.getTime() - target.getTime()
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24))
+}
+
+/**
+ * Pure decision function: should this date be (re)processed?
+ * - Never processed before → always yes.
+ * - Already processed → only if still within the GSC-lag reprocess window
+ *   (see REPROCESS_WINDOW_DAYS), so late-arriving GSC data gets merged in.
+ */
+export function shouldProcessDate(
+  date: string,
+  alreadyProcessed: boolean,
+  today: Date,
+  reprocessWindowDays: number = REPROCESS_WINDOW_DAYS
+): boolean {
+  if (!alreadyProcessed) return true
+  return daysSince(date, today) <= reprocessWindowDays
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 function main(): void {
@@ -360,13 +397,18 @@ function main(): void {
     return
   }
 
+  const today = new Date()
   const datesToProcess = Array.from(dateSet).filter((date) => {
-    const processedPath = resolve(PROCESSED_DIR, `${date}.json`)
-    if (existsSync(processedPath)) {
-      console.log(`[process-analytics] Skipping ${date} — already processed.`)
-      return false
+    const alreadyProcessed = existsSync(resolve(PROCESSED_DIR, `${date}.json`))
+    const shouldProcess = shouldProcessDate(date, alreadyProcessed, today)
+
+    if (!shouldProcess) {
+      console.log(`[process-analytics] Skipping ${date} — already processed and settled.`)
+    } else if (alreadyProcessed) {
+      console.log(`[process-analytics] Reprocessing ${date} — within GSC lag window.`)
     }
-    return true
+
+    return shouldProcess
   })
 
   if (datesToProcess.length === 0) {
@@ -381,4 +423,7 @@ function main(): void {
   console.log('[process-analytics] Done.')
 }
 
-main()
+// Execute only when run as a script, not when imported by tests
+if (process.env['NODE_ENV'] !== 'test') {
+  main()
+}

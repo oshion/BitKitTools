@@ -7,7 +7,8 @@
       "events": {},
       "gscImpressions": 1,
       "gscClicks": 0,
-      "gscAvgPosition": 92
+      "gscAvgPosition": 92,
+      "bounceRate": null
     },
     {
       "path": "/beer/homebrew-recipe-calculator/",
@@ -15,7 +16,8 @@
       "events": {},
       "gscImpressions": 5,
       "gscClicks": 0,
-      "gscAvgPosition": 76.8
+      "gscAvgPosition": 76.8,
+      "bounceRate": null
     },
     {
       "path": "/developer/jwt-decoder/",
@@ -23,7 +25,8 @@
       "events": {},
       "gscImpressions": 1,
       "gscClicks": 0,
-      "gscAvgPosition": 84
+      "gscAvgPosition": 84,
+      "bounceRate": null
     },
     {
       "path": "/travel/layover-connection-calculator/",
@@ -31,7 +34,8 @@
       "events": {},
       "gscImpressions": 1,
       "gscClicks": 0,
-      "gscAvgPosition": 79
+      "gscAvgPosition": 79,
+      "bounceRate": null
     }
   ],
   "queries": [
