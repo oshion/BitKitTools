@@ -25,7 +25,7 @@ const REPORTS_DIR = resolve(process.cwd(), 'data', 'reports')
 
 const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages'
 const ANTHROPIC_API_VERSION = '2023-06-01'
-const MODEL = 'claude-sonnet-4-6'
+const MODEL = 'claude-sonnet-5'
 
 // ── Date Helper ───────────────────────────────────────────────────────────────
 

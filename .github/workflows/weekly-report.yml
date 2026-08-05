@@ -44,7 +44,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/reports data/history.md data/processed/trend.json data/action-log.json
+          for f in data/reports data/history.md data/processed/trend.json data/action-log.json; do
+            if [ -e "$f" ]; then
+              git add "$f"
+            fi
+          done
           if git diff --quiet --staged; then
             echo "No new report data to commit. Skipping commit."
           else
