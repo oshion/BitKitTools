@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Collect Lighthouse scores
+        run: npx tsx scripts/collect-lighthouse.ts
+
       - name: Run report generation
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -44,7 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in data/reports data/history.md data/processed/trend.json data/action-log.json; do
+          for f in data/reports data/history.md data/processed/trend.json data/action-log.json data/processed/lighthouse-*.json; do
             if [ -e "$f" ]; then
               git add "$f"
             fi
