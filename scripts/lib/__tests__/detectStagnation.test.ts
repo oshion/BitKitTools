@@ -289,6 +289,29 @@ describe('appendTrendPoint', () => {
     appendTrendPoint(trend, makeTrendPoint({ weekStart: '2026-01-12' }))
     expect(trend.weeks).toHaveLength(originalLength)
   })
+
+  test('replaces an existing point with the same weekStart instead of duplicating it', () => {
+    const existing = makeTrendPoint({ weekStart: '2026-08-02', organicSessions: 0, organicClicks: 0 })
+    const trend: TrendData = { weeks: [existing] }
+    const rerun = makeTrendPoint({ weekStart: '2026-08-02', organicSessions: 3, organicClicks: 1 })
+    const result = appendTrendPoint(trend, rerun)
+    expect(result.weeks).toHaveLength(1)
+    expect(result.weeks[0]).toEqual(rerun)
+  })
+
+  test('replacing a weekStart in the middle of the list keeps other weeks and order intact', () => {
+    const weeks: WeeklyTrendPoint[] = [
+      makeTrendPoint({ weekStart: '2026-07-19' }),
+      makeTrendPoint({ weekStart: '2026-07-26', organicSessions: 5 }),
+      makeTrendPoint({ weekStart: '2026-08-02' }),
+    ]
+    const trend: TrendData = { weeks }
+    const rerun = makeTrendPoint({ weekStart: '2026-07-26', organicSessions: 99 })
+    const result = appendTrendPoint(trend, rerun)
+    expect(result.weeks).toHaveLength(3)
+    expect(result.weeks.map((w) => w.weekStart)).toEqual(['2026-07-19', '2026-07-26', '2026-08-02'])
+    expect(result.weeks[1]!.organicSessions).toBe(99)
+  })
 })
 
 // ── isCooldownComplete / filterCooldownComplete ───────────────────────────────

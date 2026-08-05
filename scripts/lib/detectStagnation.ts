@@ -69,8 +69,21 @@ export function readTrend(filePath: string = DEFAULT_TREND_PATH): TrendData {
 /**
  * Pure function: append a new trend point and trim to MAX_TREND_WEEKS.
  * Oldest entry is removed when the limit is exceeded.
+ *
+ * If a point with the same `weekStart` already exists (e.g. a manual
+ * workflow re-run on the same day), it is replaced in place rather than
+ * appended again — otherwise a re-run would silently duplicate a week and
+ * skew the "last 4 weeks" stagnation window.
  */
 export function appendTrendPoint(trend: TrendData, point: WeeklyTrendPoint): TrendData {
+  const existingIndex = trend.weeks.findIndex((w) => w.weekStart === point.weekStart)
+
+  if (existingIndex !== -1) {
+    const weeks = [...trend.weeks]
+    weeks[existingIndex] = point
+    return { weeks }
+  }
+
   const weeks = [...trend.weeks, point]
   const trimmed =
     weeks.length > MAX_TREND_WEEKS ? weeks.slice(weeks.length - MAX_TREND_WEEKS) : weeks
