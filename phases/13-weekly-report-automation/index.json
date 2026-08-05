@@ -37,7 +37,10 @@
     {
       "step": 4,
       "name": "report-generation",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-05T13:59:11+0900",
+      "completed_at": "2026-08-05T14:30:00+0900",
+      "summary": "scripts/generate-report.ts 작성 — 최근 7일 processed 데이터 읽기, aggregateWeeklyReport/classifyIntent(규칙+AI폴백)/getCleanupCandidates(90일+세션5미만)/trend 업데이트/history.md 읽기, Anthropic API(claude-sonnet-4-6, raw fetch) 호출, ===REPORT===/===HISTORY===/===END=== 구분자 파싱(실패 시 원문 저장 fail-soft), data/reports/{year}/{date}.md 저장 및 history.md append; ANTHROPIC_API_KEY 없으면 exit(1), 데이터 없으면 exit(0); lint/build 통과"
     },
     {
       "step": 5,
