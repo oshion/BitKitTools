@@ -31,7 +31,7 @@
       "name": "stagnation-detection",
       "status": "completed",
       "started_at": "2026-08-05T13:53:18+0900",
-      "completed_at": "2026-08-05T14:05:00+0900",
+      "completed_at": "2026-08-05T13:59:11+0900",
       "summary": "detectStagnation.ts 작성 — readTrend/appendTrendPoint(최대12개)/writeTrend/isStagnant(4주 미만=false, 클릭순감소=true, 세션·클릭 모두+5%미만 3회 연속=true, 분모0=보수적false), readActionLog/isCooldownComplete(asOf인자)/filterCooldownComplete 구현; 39개 단위 테스트 작성 및 전체 730개 테스트 통과"
     },
     {
