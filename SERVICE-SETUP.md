@@ -18,7 +18,7 @@ BitKitTools.com 운영에 필요한 외부 서비스 계정을 왜 만들었는�
 - **왜**: 검색 노출수/클릭수, 색인 상태 확인. AI Overview 영향 감지(노출 유지+클릭 하락 패턴), sitemap 제출.
 - **값**: 없음 — Route53 DNS TXT 레코드로 **도메인 속성** 인증 완료. `NEXT_PUBLIC_GSC_VERIFICATION`(HTML 태그 방식용 env var)은 사용하지 않음.
 - **모니터링**: https://search.google.com/search-console → `bitkittools.com` 도메인 속성
-- **상태**: sitemap.xml 제출 완료.
+- **상태**: sitemap.xml 제출 완료. 배포마다 Sitemaps API로 자동 재제출(`scripts/notify-gsc-reindex.ts`, `deploy.yml`), 매일 URL Inspection API로 색인 상태 추적(`scripts/check-indexing-status.ts` → `data/indexing-status.json`, `collect-data.yml`) 연동 완료.
 
 ## 3. Microsoft Clarity
 
@@ -56,7 +56,16 @@ BitKitTools.com 운영에 필요한 외부 서비스 계정을 왜 만들었는�
 - **왜**: 배포마다 변경된 URL을 Bing/Yandex 등에 즉시 알려 크롤러가 돌 때까지 기다리지 않고 빠르게 재색인되도록 함. Google은 IndexNow를 지원하지 않아(JobPosting/BroadcastEvent 전용 Indexing API만 지원) 별도 채널로 운영 — Google 쪽은 GSC sitemap 재제출(ping)로 대응(2번 항목 참고, Phase 1 예정).
 - **값**: `INDEXNOW_KEY` (GitHub Secrets, `.github/workflows/deploy.yml`에서 참조). 같은 값이 `public/{key}.txt` 파일명·내용으로도 존재해야 함(IndexNow 소유권 검증 방식) — 이 파일은 공개 검증 파일이라 민감하지 않지만, 값 자체는 관례상 이 문서에는 적지 않는다.
 - **모니터링**: https://www.bing.com/webmasters → `bitkittools.com` 사이트 선택 → IndexNow 섹션에서 제출 이력 확인
-- **상태**: Google Search Console 계정 연동(Import)으로 사이트 소유권 인증 완료. 키 발급 및 `public/{key}.txt` 배포, GitHub Secrets 등록 완료. 실제 배포 워크플로우 연동은 진행 중(harness `7-cicd-deploy-automation` 확장 phase).
+- **상태**: Google Search Console 계정 연동(Import)으로 사이트 소유권 인증 완료. 키 발급 및 `public/{key}.txt` 배포, GitHub Secrets 등록, 배포 워크플로우 연동(`scripts/notify-indexnow.ts` → `deploy.yml`) 전부 완료 및 실전 검증됨.
+
+## 8. Slack (주간 리포트 알림)
+
+- **왜**: Phase 2(주간 리포트 자동화)가 생성하는 인사이트 리포트를 사람이 바로 확인할 수 있도록 발송하는 채널. 원본은 항상 `data/reports/{연도}/{날짜}.md`로 git에 영구 보관되고, Slack은 "새 리포트 도착" 알림 + 요약 게시 용도로만 사용.
+- **값**: `SLACK_WEBHOOK_URL` (GitHub Secrets, Incoming Webhook URL) — 특정 채널(`#weekly-report`)에 고정 연결되어 있어 URL 자체에 채널 정보가 포함됨.
+- **설정 방법**: [api.slack.com/apps](https://api.slack.com/apps) → Create New App → Blank app → Incoming Webhooks 활성화 → 채널 선택 후 웹훅 URL 발급.
+- **모바일 알림**: Slack 앱에서 해당 채널 알림 설정을 "모든 새 메시지"로 지정해야 웹훅으로 오는 봇 메시지도 푸시 알림이 옴(기본값 "멘션만"으로는 알림 안 옴).
+- **주의**: 무료 플랜은 90일 이전 메시지를 조회할 수 없음 — Slack은 최신 리포트 확인용일 뿐, 과거 리포트 열람은 항상 `data/reports/` git 이력을 참고할 것.
+- **상태**: 워크스페이스/채널/웹훅 생성 및 GitHub Secrets 등록 완료. 실제 발송 스크립트(`scripts/generate-report.ts`) 연동은 harness `Phase 2` 진행 예정.
 
 ---
 
@@ -75,4 +84,4 @@ Next.js 로딩 우선순위: `.env.local` > `.env.production` > `.env`. **로컬
 - [ ] Google AdSense 심사 결과 대기
 - [ ] 승인 후 실제 광고 노출 확인, RPM 모니터링 시작
 - [ ] (선택) Auto ads 도입 여부는 승인 후 별도 검토
-- [ ] IndexNow 실제 배포 알림 스크립트(`notify-indexnow.ts`) 구현 및 `deploy.yml` 연동 (harness 진행 중)
+- [ ] Slack 발송 스크립트(`generate-report.ts`) 구현 및 주간 리포트 워크플로우 연동 (harness Phase 2 진행 예정)

@@ -81,37 +81,40 @@
 4. **GA4 커스텀 이벤트 설정 (중요)**: `tool_open`, `input_enter`, `convert_click`, `download_click` 등 tool별 사용 퍼널 이벤트를 추가 — 현재 `src/types/analytics.ts` 의 `AnalyticsEventName` 은 4개 값으로 고정돼 있어 확장이 필요함
 5. 매일 1회 실행되는 GitHub Actions 크론 작업 작성 → 데이터를 JSON으로 수집
 6. **데이터 저장 구조 분리 + 용량 관리**: 원본(raw)과 가공본(processed) 분리. raw는 최근 60일만 유지 후 자동 삭제, 오래된 기간은 주간/월간 집계 요약만 processed에 남김. SQLite 등 바이너리 DB 파일은 Git에 커밋하지 않는다 — 필요 시 Turso 같은 외부 무료 티어 검토
-7. **액션 로그 기록**: PR/Commit/Merge/Deploy 이력은 Git 히스토리에 이미 있으므로 재저장하지 않음. `/data/action-log-{연도}.json`(연도별로 파일 분리 — 리포트/전략재검토 프롬프트가 최근 몇 개월치만 읽으면 되므로, 파일을 나눠두면 히스토리가 몇 년 쌓여도 매번 읽는 양이 늘지 않는다)에는 Git에 없는 메타데이터만: AI가 이 액션을 추천한 이유, CTR 개선 목표, 실험 ID, 대상 쿼리/키워드, 참조 커밋 SHA
+7. **액션 로그 기록** — 계획만 하고 Phase 1 실행 시점에는 실제로 만들지 않음. 아직 자동 실행되는 액션이 없어(2-2 타이틀 A/B 테스트부터 실제 기록 시작) 당장 필요가 없었기 때문 → **`/data/action-log.json` 생성은 Phase 2-1(아래)로 이연**. 스키마도 최초엔 최소 형태(`id`/`type`/`page`/`deployedAt`/`description`)로 시작하고, 실제 기록이 쌓이기 시작하는 시점(2-2)에 필요하면 AI 추천 이유·CTR 목표·실험 ID 같은 필드나 연도별 파일 분리를 추가 검토한다. PR/Commit/Merge/Deploy 이력 자체는 Git 히스토리에 이미 있으므로 재저장하지 않는다.
 8. 인증 정보는 전부 GitHub Secrets에 저장 (repo에 직접 커밋 금지)
 
-**산출물**: `scripts/collect-analytics.ts`, `scripts/process-analytics.ts`, `scripts/log-action.ts`, `scripts/check-indexing-status.ts`, `scripts/notify-gsc-reindex.ts`, `.github/workflows/collect-data.yml`, `/data/raw/*.json`, `/data/processed/*.json`, `/data/action-log.json`
+**산출물**: `scripts/collect-analytics.ts`, `scripts/process-analytics.ts`, `scripts/check-indexing-status.ts`, `scripts/notify-gsc-reindex.ts`, `.github/workflows/collect-data.yml`, `/data/raw/*.json`, `/data/processed/*.json`
 
 ---
 
 ### Phase 2 — 리포팅 자동화
 
-1. 주 1회 크론이 `/data/processed` 최근 데이터를 모아 **Claude Sonnet 5**에 전달 (전략적 분석은 Sonnet, 반복적 생성 작업은 Haiku로 역할 분리)
-2. "CTR 0인 페이지 Top10", "이탈률 높은 페이지", "인기 검색 쿼리인데 랭킹 낮은 것" 등 인사이트 리포트 생성
-3. **국가/기기별 CTR 편차 분석**: 타겟 국가(US/UK 등)와 비타겟 국가의 CTR을 분리 분석, 모바일 vs 데스크톱 CTR 편차 tool 식별
-4. **검색 의도(Intent) 분류 (규칙 기반 우선 + AI는 애매한 경우만)**: GSC 쿼리별로 tool/tutorial/comparison/problem-solving 분류 → "tool을 새로 만들지, 기존 페이지를 개선할지" 자동 판단. "convert", "compress", "calculator", "how to", "vs" 같은 명확한 패턴은 규칙으로 1차 분류, 애매한 것만 AI
-5. **순위 추이**: GSC 쿼리별 일별 평균 순위(position)를 시계열로 비교해 7일/30일 변화 추적
-6. **추가 아이디어 제안 필수화**: 발견된 문제뿐 아니라 새로운 아이디어(신규 콘텐츠 방향, 놓치고 있는 키워드, 벤치마킹할 경쟁 사례)도 매번 함께 제안
-7. Slack Webhook 또는 이메일(Gmail App Password)로 발송, 원본은 `/data/reports/{연도}/{날짜}.md`로 보관(텍스트라 용량 부담은 적지만, 연도별 폴더로 나눠 탐색 편의성 확보)
-8. **압축 히스토리 기록 (`/data/history.md`)**: 리포트 생성 시 "YYYY년 MM월 N주차: 핵심 지표 / 특이사항 / 시도한 개선 / 결과"를 3~5줄로 요약해 `/data/history.md` 끝에 append한다. 원본 리포트(7번)는 상세하지만 매번 전체를 프롬프트에 넣기엔 무겁고, `action-log`/`proposals.json`은 구조화 데이터라 "왜 그랬는지" 맥락이 약하다 — 이 파일은 주당 몇 줄만 쌓이므로 몇 년치가 쌓여도 수십 KB 수준이라 **매번 전체를 프롬프트에 그대로 넣을 수 있다**. 다음 주 리포트/spec 생성 시 이 파일 전체를 함께 입력해, "이미 시도했던 개선과 그 결과"를 AI가 참고하고 같은 진단·같은 제안을 반복하지 않도록 한다. 21일 쿨다운이 끝난 액션의 결과도 해당 주 항목에 갱신한다.
-9. 이 단계에서는 코드/콘텐츠를 건드리지 않음 — 사람이 읽고 판단
+> 아래 세부 기준(임계값)은 harness `13-weekly-report-automation` phase의 step 설계 시 확정된 값. 실제로 리포트를 받아본 뒤 필요하면 조정한다.
 
-**산출물**: `scripts/generate-report.ts`, `scripts/classify-intent.ts`, `.github/workflows/weekly-report.yml`
+1. 매주 월요일 09:00 KST 크론이 `/data/processed` 최근 7일 데이터를 모아 **Claude Sonnet 5**에 전달 (전략적 분석은 Sonnet, 반복적 생성 작업은 Haiku로 역할 분리)
+2. "CTR 0인 페이지 Top10"(노출>0·클릭=0, 노출 많은 순), "이탈률 높은 페이지"(**세션 5 이상**인 페이지만 대상 — 표본 부족 노이즈 방지), "인기 검색 쿼리인데 랭킹 낮은 것" 등 인사이트 리포트 생성
+3. **국가/기기별 CTR 편차 분석**: 세그먼트당 **노출 10 이상**인 경우만 대상, 페이지 전체 CTR 대비 **2배 이상 차이**나는 세그먼트만 표시(미미한 차이는 노이즈로 제외)
+4. **검색 의도(Intent) 분류 (규칙 기반 우선 + AI는 애매한 경우만)**: 노출수 상위 30개 쿼리 대상. GSC 쿼리별로 tool/tutorial/comparison/problem-solving 분류 → "tool을 새로 만들지, 기존 페이지를 개선할지" 자동 판단. "convert", "compress", "calculator", "how to", "vs", "fix" 같은 명확한 패턴(한/영 모두)은 규칙으로 1차 분류, 애매한 것만 AI에 **배치로 한 번에** 질의(쿼리당 개별 호출 금지 — 비용 낭비)
+5. **순위 추이**: 최근 7일 중 첫날·마지막날 양쪽에 모두 존재하는 쿼리만 비교 대상(하루만 나타난 쿼리는 추이 계산 불가로 제외)으로 impressions 가중 평균 position 변화 추적, 상승/하락 각 Top10
+6. **추가 아이디어 제안 필수화**: 발견된 문제뿐 아니라 새로운 아이디어(신규 콘텐츠 방향, 놓치고 있는 키워드, 벤치마킹할 경쟁 사례)도 매번 최소 1개 이상 함께 제안
+7. **정리 후보 (경량 버전)**: Section 6의 정식 cut-off 플로우와 별개로, 이 리포트 안에서 게시 90일 이상 + 최근 7일 세션 5 미만인 tool을 가볍게 나열만 한다(삭제/리다이렉트 실행 없음 — 사람이 읽고 판단하는 정도)
+8. **Slack Webhook**으로 발송(세팅 완료 — 이메일 채널은 채택하지 않음), Block Kit으로 헤더/섹션/구분선 포맷팅. 원본은 `/data/reports/{연도}/{날짜}.md`로 보관(텍스트라 용량 부담은 적지만, 연도별 폴더로 나눠 탐색 편의성 확보). Slack 무료 플랜은 90일 지난 메시지를 조회할 수 없으므로 과거 리포트는 항상 git의 `data/reports/`를 참고
+9. **압축 히스토리 기록 (`/data/history.md`)**: 리포트 생성 시 "YYYY년 MM월 N주차: 핵심 지표 / 특이사항 / 시도한 개선 / 결과"를 3~5줄로 요약해 `/data/history.md` 끝에 append한다. 원본 리포트(8번)는 상세하지만 매번 전체를 프롬프트에 넣기엔 무겁고, `action-log`/`proposals.json`은 구조화 데이터라 "왜 그랬는지" 맥락이 약하다 — 이 파일은 주당 몇 줄만 쌓이므로 몇 년치가 쌓여도 수십 KB 수준이라 **매번 전체를 프롬프트에 그대로 넣을 수 있다**. 다음 주 리포트/spec 생성 시 이 파일 전체를 함께 입력해, "이미 시도했던 개선과 그 결과"를 AI가 참고하고 같은 진단·같은 제안을 반복하지 않도록 한다. 21일 쿨다운이 끝난 액션의 결과도 해당 주 항목에 갱신한다.
+10. 이 단계에서는 코드/콘텐츠를 건드리지 않음 — 사람이 읽고 판단
+
+**산출물**: `scripts/generate-report.ts`, `scripts/lib/aggregateWeeklyReport.ts`, `scripts/lib/classifyIntent.ts`, `.github/workflows/weekly-report.yml`
 
 #### 2-1. 트래픽 정체 감지 & 전략 재검토
 
-1. **정체 감지**: 매주 최근 4주 오가닉 세션/클릭 추이를 계산해 `/data/processed/trend.json`에 누적. "4주 연속 전주 대비 +5% 미만" 또는 "클릭수 하락 추세"가 감지되면 정체 상태로 플래그
-2. **SEO 반영 시차 쿨다운 (필수)**: `action-log.json`의 각 액션에 대해 **실행 후 21일이 지나지 않은 변경은 "아직 효과 미반영"으로 간주**하고 실패로 판단하지 않음 — 이 21일 쿨다운 규칙은 아래 2-2(타이틀 A/B 테스트)에서도 그대로 재사용됨
-3. **전략 재검토 리포트 (정체 감지 시에만 자동 트리거)**: `action-log.json`(21일 쿨다운 지난 것만) + 트래픽 추이를 Sonnet에 전달해 "무엇을 했는데도 왜 안 늘었는지" 분석
+1. **정체 감지**: 매주 최근 4주 오가닉 세션/클릭 추이를 계산해 `/data/processed/trend.json`에 누적(최대 12주 롤링 보관). **트렌드 데이터가 4주 미만이면 무조건 "정체 아님"으로 판단**(신생 사이트 오탐 방지) — 4주 이상 쌓였을 때만 "3주 연속 전주 대비 세션·클릭 성장률 +5% 미만" 또는 "클릭수 순감소 추세"를 정체로 플래그
+2. **SEO 반영 시차 쿨다운 (필수)**: `action-log.json`의 각 액션에 대해 **실행 후 21일이 지나지 않은 변경은 "아직 효과 미반영"으로 간주**하고 실패로 판단하지 않음 — 이 21일 쿨다운 규칙은 아래 2-2(타이틀 A/B 테스트)에서도 그대로 재사용됨. `action-log.json`은 이 단계에서 스키마만 만들고 빈 상태로 시작(실제 액션 기록은 2-2부터)
+3. **전략 재검토 리포트 (정체 감지 시에만 자동 트리거, 아니면 API 호출 없이 즉시 종료)**: `action-log.json`(21일 쿨다운 지난 것만) + 트래픽 추이를 Sonnet에 전달해 "무엇을 했는데도 왜 안 늘었는지" 분석. 액션 로그가 비어있으면 "아직 실행한 개선책이 없는 상태에서의 정체"로 분석 방향을 조정
 4. 원인을 구조적으로 나눠 제시: 콘텐츠 문제 / 키워드 선정 문제 / 기술적 문제(색인 누락, CWV) / 경쟁 심화 / 시즌성
 5. 대안 전략까지 함께 제안 (예: "기존 tool 개선에 집중", "타겟 키워드 재설정")
-6. 자동 실행 없이 사람에게 전달
+6. 자동 실행 없이 사람에게 전달, 같은 주 리포트(`data/reports/{연도}/{날짜}.md`)에 별도 섹션으로 이어붙임 — 별도 워크플로우/파일로 분리하지 않고 `weekly-report.yml` 안에서 순차 실행
 
-**산출물**: `scripts/detect-stagnation.ts`, `scripts/generate-strategy-review.ts`, `.github/workflows/strategy-review.yml`
+**산출물**: `scripts/lib/detectStagnation.ts`, `scripts/generate-strategy-review.ts` (동일한 `weekly-report.yml`에 통합 — 별도 `strategy-review.yml` 없음)
 
 #### 2-2. 타이틀/설명 순차 A/B 테스트 자동화 (완전 자동화)
 
@@ -125,7 +128,7 @@
 6. 페이지당 최대 3회 시도 — 그래도 개선이 없으면 자동 시도를 멈추고 사람에게 플래그
 7. 승인 절차 없이 진행하되, 매주 리포트에 "진행 중인 타이틀 실험" 섹션으로 사후 가시성 확보
 
-**산출물**: `scripts/generate-title-variant.ts`, `scripts/run-title-experiment.ts` (2-1의 `detect-stagnation.ts` 쿨다운 로직 재사용)
+**산출물**: `scripts/generate-title-variant.ts`, `scripts/run-title-experiment.ts` (2-1의 `scripts/lib/detectStagnation.ts` 쿨다운 로직 재사용)
 
 ---
 
@@ -157,7 +160,7 @@
 3. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 코드가 아니라 `docs/screens/{화면명}.md` 초안 형태의 **신규 tool spec**을 생성
 4. **신규 카테고리 제안 (트렌드 기반)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)로 볼 때 뚜렷한 기회가 보이면, tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
 5. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
-6. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack/이메일로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
+6. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack으로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
 7. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
 8. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
 
@@ -253,9 +256,7 @@ Phase 1(원인 분석)에 아래 항목들을 추가로 포함한다.
 
 ```
 GitHub Repo (bitkittools)
- ├─ prompts/
- │   ├─ report.md                    # Phase 2 주간 리포트용 Sonnet 프롬프트
- │   ├─ strategy-review.md            # 2-1 전략 재검토용 Sonnet 프롬프트 (21일 쿨다운 규칙 포함)
+ ├─ prompts/                          # (Phase 2 실제 구현은 별도 파일 대신 스크립트 안에 프롬프트를 인라인으로 둠 — 아래 title-variant.md부터는 아직 미착수라 방식 미확정)
  │   ├─ title-variant.md              # 2-2 타이틀 A/B 후보 생성 프롬프트 (가드레일 포함)
  │   ├─ glossary-entry.md             # 용어사전 항목 생성 프롬프트
  │   ├─ improvement-spec.md           # 기존 페이지 개선 spec 생성 프롬프트
@@ -276,11 +277,13 @@ GitHub Repo (bitkittools)
  │   ├─ check-indexing-status.ts    # GSC urlInspection으로 색인 여부 추적
  │   ├─ collect-analytics.ts        # GA4/GSC(4차원)/Clarity API 호출
  │   ├─ process-analytics.ts        # raw → processed 가공
- │   ├─ log-action.ts               # 파이프라인 액션 기록
- │   ├─ classify-intent.ts          # GSC 쿼리 검색 의도 분류
- │   ├─ detect-stagnation.ts        # 트래픽 정체 감지 + 21일 쿨다운 판정 (title 실험도 재사용)
- │   ├─ generate-strategy-review.ts # 정체 시 전략 재검토 리포트 생성
+ │   ├─ lib/aggregateWeeklyReport.ts # 최근 7일 processed 데이터 → 리포트용 집계(순수 함수)
+ │   ├─ lib/classifyIntent.ts       # GSC 쿼리 검색 의도 분류 (규칙 기반 + AI 배치 폴백)
+ │   ├─ lib/detectStagnation.ts     # 트래픽 정체 감지 + action-log.json 21일 쿨다운 판정 (title 실험도 재사용)
+ │   ├─ lib/formatSlackBlocks.ts    # 리포트 마크다운 → Slack Block Kit 변환(순수 함수)
+ │   ├─ generate-strategy-review.ts # 정체 시에만 전략 재검토 섹션 생성(아니면 API 호출 없이 즉시 종료)
  │   ├─ generate-report.ts          # Claude Sonnet으로 인사이트 + 아이디어 제안 생성
+ │   ├─ post-slack-report.ts        # 생성된 리포트를 Slack Webhook으로 발송(실패해도 워크플로우 안 막음)
  │   ├─ generate-title-variant.ts   # 타이틀/설명 후보 생성 (가드레일 적용)
  │   ├─ run-title-experiment.ts     # 배포 → 21일 대기 → 비교 → 교체/유지 자동화
  │   ├─ generate-glossary-entry.ts  # 용어사전 항목 생성 (evergreen, DefinedTerm 스키마)
@@ -301,7 +304,7 @@ GitHub Repo (bitkittools)
  │   ├─ reports/{연도}/{날짜}.md   # 생성된 주간/전략 리포트, 개선/신규 spec — 연도별 폴더로 분리
  │   ├─ proposals.json             # 제안 ID별 최초 제안일/상태(pending/implemented) — 중복 spec 생성 방지
  │   ├─ history.md                 # 주차별 3~5줄 압축 요약(지표/특이사항/시도한 개선/결과) — 매주 append, 용량 작아 항상 전체를 프롬프트에 포함
- │   └─ action-log-{연도}.json     # AI 결정 메타데이터만 기록 (이유/목표/실험ID/대상 쿼리 + 참조 커밋 SHA), 연도별 분리
+ │   └─ action-log.json            # 실행된 액션 기록(id/type/page/deployedAt/description). Phase 2-1에서 빈 스키마로 최초 생성, 실제 기록은 2-2부터. 나중에 규모가 커지면 연도별 분리·메타데이터 확장 재검토
  │
  ├─ content/
  │   └─ glossary/

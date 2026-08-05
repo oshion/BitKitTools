@@ -64,6 +64,10 @@
       "dir": "12-gsc-indexing-ping",
       "status": "completed",
       "completed_at": "2026-08-05T08:59:43+0900"
+    },
+    {
+      "dir": "13-weekly-report-automation",
+      "status": "pending"
     }
   ]
 }
