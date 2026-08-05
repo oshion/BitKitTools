@@ -20,6 +20,8 @@ import {
 import { appendTrendPoint, readTrend, writeTrend } from './lib/detectStagnation'
 import { extractAnthropicText } from './lib/anthropicResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
+import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
+import type { PageLighthouseScore } from './lib/lighthouseThreshold'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -193,6 +195,45 @@ function todayIso(): string {
   return new Date().toISOString().slice(0, 10)
 }
 
+// ── Lighthouse Snapshot ───────────────────────────────────────────────────────
+
+interface LighthouseSnapshot {
+  date: string
+  scores: PageLighthouseScore[]
+}
+
+/**
+ * Reads data/processed/lighthouse-{today}.json.
+ * Returns null (without throwing) if the file doesn't exist or is malformed —
+ * report generation continues without the performance section in that case.
+ */
+function readTodayLighthouseSnapshot(): LighthouseSnapshot | null {
+  const date = todayIso()
+  const filePath = join(PROCESSED_DIR, `lighthouse-${date}.json`)
+  if (!existsSync(filePath)) return null
+  try {
+    const raw = readFileSync(filePath, 'utf-8')
+    return JSON.parse(raw) as LighthouseSnapshot
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Deterministically builds the `## ⚠️ 성능 경고` section from a snapshot.
+ * Returns null when there are no flagged scores (no section needed).
+ * This is NOT delegated to AI — the section is built in code to guarantee it
+ * appears whenever there are scores below threshold.
+ */
+function buildPerformanceWarningSection(snapshot: LighthouseSnapshot | null): string | null {
+  if (!snapshot) return null
+  const flagged = findScoresBelowThreshold(snapshot.scores, 90)
+  if (flagged.length === 0) return null
+
+  const lines = flagged.map(({ url, category, score }) => `- ${url}: ${category} ${score}점`)
+  return `## ⚠️ 성능 경고\n\n다음 페이지가 Lighthouse 90점 미만입니다:\n${lines.join('\n')}`
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
@@ -204,6 +245,19 @@ async function main(): Promise<void> {
         'Set it before running: ANTHROPIC_API_KEY=sk-... npx tsx scripts/generate-report.ts'
     )
     process.exit(1)
+  }
+
+  // ── 0. Read today's Lighthouse snapshot (optional — missing is not an error) ─
+
+  const lighthouseSnapshot = readTodayLighthouseSnapshot()
+  if (lighthouseSnapshot) {
+    console.log(
+      `[generate-report] Loaded Lighthouse snapshot for ${lighthouseSnapshot.date} (${lighthouseSnapshot.scores.length} page(s)).`
+    )
+  } else {
+    console.log(
+      '[generate-report] No Lighthouse snapshot found for today — performance section will be omitted.'
+    )
   }
 
   // ── 1. Read recent 7 days of processed data ─────────────────────────────────
@@ -307,6 +361,10 @@ async function main(): Promise<void> {
           .map((c) => `- slug: ${c.slug}, addedAt: ${c.addedAt}, 최근7일 세션: ${c.sessions}`)
           .join('\n')
 
+  const lighthouseSection = lighthouseSnapshot
+    ? `## Lighthouse 점수 (${lighthouseSnapshot.date} 기준)\n\n\`\`\`json\n${JSON.stringify(lighthouseSnapshot.scores, null, 2)}\n\`\`\``
+    : '## Lighthouse 점수\n\n(오늘 스냅샷 없음 — collect-lighthouse.ts가 실행되지 않았거나 실패했을 수 있음)'
+
   const prompt = `당신은 BitKitTools.com의 SEO/콘텐츠 분석가입니다. 아래 주간 데이터를 바탕으로 한국어 마크다운 리포트를 작성하세요.
 
 ## 이번 주 집계 데이터 (${weeklyData.periodStart} ~ ${weeklyData.periodEnd})
@@ -331,6 +389,8 @@ ${cleanupSection}
 
 ${history || '(아직 이력 없음)'}
 
+${lighthouseSection}
+
 ---
 
 위 데이터를 분석하고 다음 항목을 포함한 주간 리포트를 작성하세요:
@@ -343,6 +403,7 @@ ${history || '(아직 이력 없음)'}
 6. **순위 변동 쿼리**: risingQueries/fallingQueries 주요 항목 해설(순위가 오른 쿼리도 "잘 되고 있는 것"의 연장선으로 긍정적으로 조명)
 7. **정리 후보**: 위에 제공된 데이터를 그대로 요약 (해당 없으면 "현재 해당 없음" 명시)
 8. **추가 아이디어 제안** (필수 — 최소 1개): 신규 콘텐츠 방향, 놓치고 있는 키워드, 경쟁사 벤치마킹 아이디어 등. 위에서 발견된 문제와 별개로 반드시 포함한다. **과거 이력(history.md)에 이미 시도했던 접근은 반복 제안하지 말 것.**
+9. **Lighthouse 성능 분석** (Lighthouse 점수 데이터가 있을 때만): 점수가 낮은 페이지의 원인 후보(무거운 JS, 이미지 최적화 부족, 서드파티 스크립트 영향 등)를 짧게 언급하고 개선 방향을 제안. 데이터가 없으면 이 항목은 생략한다.
 
 응답은 반드시 아래 형식을 그대로 사용하세요 (구분자 줄을 정확히 일치시켜야 합니다):
 ===REPORT===
@@ -392,7 +453,16 @@ ${history || '(아직 이력 없음)'}
 
   // ── 8. Parse response ────────────────────────────────────────────────────────
 
-  const { report, historyEntry } = parseApiResponse(apiResponseText)
+  const { report: aiReport, historyEntry } = parseApiResponse(apiResponseText)
+
+  // ── 8b. Deterministically append performance warning section ─────────────────
+  // This is NOT delegated to AI — we guarantee the section appears whenever
+  // there are scores below threshold, regardless of AI prompt compliance.
+
+  const performanceWarning = buildPerformanceWarningSection(lighthouseSnapshot)
+  const report = performanceWarning
+    ? `${aiReport}\n\n${performanceWarning}`
+    : aiReport
 
   // ── 9. Save report ───────────────────────────────────────────────────────────
 

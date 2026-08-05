@@ -1,0 +1,24 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "15-weekly-lighthouse-tracking",
+  "steps": [
+    {
+      "step": 0,
+      "name": "collect-lighthouse",
+      "status": "completed",
+      "started_at": "2026-08-05T22:07:49+0900",
+      "completed_at": "2026-08-05T22:12:55+0900",
+      "summary": "lighthouseThreshold.ts (findScoresBelowThreshold pure fn + 16 tests), collect-lighthouse.ts CLI (lhci collect → .lighthouseci/lhr-*.json → data/processed/lighthouse-{date}.json)"
+    },
+    {
+      "step": 1,
+      "name": "report-integration",
+      "status": "completed",
+      "started_at": "2026-08-05T22:12:56+0900",
+      "completed_at": "2026-08-05T22:17:55+0900",
+      "summary": "generate-report.ts에 Lighthouse 스냅샷 읽기(readTodayLighthouseSnapshot) + 결정론적 ⚠️ 성능 경고 섹션 삽입(buildPerformanceWarningSection) + AI 프롬프트에 점수 데이터 포함 추가; weekly-report.yml에 Collect Lighthouse scores 스텝 추가(Run report generation 이전) 및 git add 대상에 lighthouse-*.json 포함"
+    }
+  ],
+  "created_at": "2026-08-05T22:07:49+0900",
+  "completed_at": "2026-08-05T22:17:56+0900"
+}
