@@ -157,14 +157,15 @@
 
 1. Phase 2 리포트 기반으로 CTR/이탈률이 나쁜 페이지 후보를 추출
 2. AI가 **개선 spec**을 작성: 무엇을 어떻게 바꿀지, 근거 데이터(어떤 쿼리/CTR/이탈률 때문인지), title/description/콘텐츠 구조 제안(한/영 모두)
-3. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 코드가 아니라 `docs/screens/{화면명}.md` 초안 형태의 **신규 tool spec**을 생성
-4. **신규 카테고리 제안 (트렌드 기반)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)로 볼 때 뚜렷한 기회가 보이면, tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
-5. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
-6. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack으로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
-7. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
-8. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
+3. **고성과 페이지 확장 spec ("잘 되는 걸 더 잘 되게")**: Phase 2 리포트의 `topPerformingPages`(실제 클릭이 발생 중인 페이지)를 근거로, 문제 수정이 아니라 이미 검증된 성과를 증폭하는 방향의 spec도 생성한다 — 관련 서브 키워드 전용 페이지 분리, 내부링크 강화, 콘텐츠/FAQ 보강 등. **최소 2~3주 이상 연속으로 클릭이 발생한 페이지만 대상으로 한다** — 1~2회성 클릭은 노이즈이므로 이걸 근거로 투자 판단을 내리지 않는다(2026-08 세션에서 트래픽이 극히 적은 초기 상태를 근거로 논의하며 확정한 가드레일). 판단 데이터는 `trend.json`이 아니라 주간 리포트가 매주 계산하는 `topPerformingPages`를 여러 주 누적 관찰해서 사람이 우선 감지하고, spec 생성은 그 신호가 확인된 이후에 트리거한다.
+4. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 코드가 아니라 `docs/screens/{화면명}.md` 초안 형태의 **신규 tool spec**을 생성
+5. **신규 카테고리 제안 (트렌드 기반)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)로 볼 때 뚜렷한 기회가 보이면, tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
+6. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
+7. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack으로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
+8. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
+9. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
 
-**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/check-proposal-duplicate.ts`, `/data/proposals.json`
+**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-growth-spec.ts`(고성과 페이지 확장), `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/check-proposal-duplicate.ts`, `/data/proposals.json`
 
 ---
 
