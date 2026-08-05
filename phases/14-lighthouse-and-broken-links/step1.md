@@ -46,17 +46,28 @@
 ```
 `continue-on-error: true`를 명시해, 이 스텝 자체가 실패(예: 일시적 네트워크 문제로 업로드 실패)해도 PR 전체를 막지 않도록 한다 — 정보성 리포트라는 설계 의도와 일치시킨다.
 
+### 5. `.gitignore`
+
+`lhci`/`lhci autorun`은 실행 시 `.lighthouseci/`에 리포트 아티팩트를 생성한다. `.gitignore`에 `.lighthouseci/`를 추가해 실수로 커밋되지 않게 하라.
+
 ## Acceptance Criteria
 
 ```bash
 npm run build
-npx lhci autorun
+node -e "JSON.parse(require('fs').readFileSync('.lighthouserc.json','utf-8'))"
+npx lhci --version
 npm run lint
 npm test
 npm run build
 ```
 
-로컬에서 `npx lhci autorun`이 실제로 실행되어 감사 결과(및 가능하다면 리포트 URL)를 출력하는지 확인한다. 완전한 CI 환경 재현은 로컬에서 어려울 수 있으므로, 최소한 설정 파일 문법 오류 없이 lhci가 실행을 시도하고 각 대표 페이지에 대해 결과를 리턴하는지까지 확인하면 충분하다.
+**중요 — 로컬에서 `npx lhci autorun`을 실제로 실행하지 마라.** 이 개발 환경(Windows, 회사 보안 정책 적용 PC)은 headless Chrome 프로세스 실행 자체가 내부 보안 정책(EDR/백신)에 의해 차단된다 — 이전 두 번의 시도에서 `.lighthouseci/flags-*.json`만 생성되고 실제 감사 결과(`lhr-*.json`)가 전혀 생성되지 않는 것으로 이미 확인됨(Chrome 실행 시점에서 막힘, 코드 문제 아님). `npx lhci autorun`을 실행하면 응답 없이 멈추거나 보안 소프트웨어가 프로세스를 차단해 이 step이 다시 멈춘다.
+
+대신 다음으로 검증을 대체한다:
+- `.lighthouserc.json`이 유효한 JSON인지(`node -e "JSON.parse(require('fs').readFileSync('.lighthouserc.json','utf-8'))"` 등으로) 확인
+- `.github/workflows/test-gate.yml`이 유효한 YAML 문법인지 확인
+- `npx lhci --version` 또는 `npx lhci --help` 같이 Chrome을 실행하지 않는 가벼운 명령으로 CLI 자체가 정상 설치·실행 가능한지만 확인(이건 Chrome을 띄우지 않으므로 안전함)
+- 실제 Lighthouse 감사(Chrome 실행)는 GitHub Actions(ubuntu-latest, 이런 로컬 보안 제약이 없는 클린 러너)에서 PR을 열어 라이브로 검증한다 — 이 step에서는 하지 않는다.
 
 ## 검증 절차
 

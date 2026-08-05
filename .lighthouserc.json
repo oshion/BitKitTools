@@ -1,0 +1,22 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./out",
+      "numberOfRuns": 1,
+      "url": [
+        "http://localhost/",
+        "http://localhost/developer/json-formatter/",
+        "http://localhost/travel/flight-delay-compensation/",
+        "http://localhost/beer/bac-calculator/",
+        "http://localhost/baby/growth-percentile/"
+      ],
+      "settings": {
+        "onlyCategories": ["performance", "accessibility", "best-practices", "seo"],
+        "chromeFlags": "--no-sandbox --disable-gpu --disable-dev-shm-usage"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
