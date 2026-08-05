@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "weekly-data-aggregation",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-05T13:44:23+0900",
+      "completed_at": "2026-08-05T14:10:00+0900",
+      "summary": "aggregateWeeklyReport 순수 함수 작성(scripts/lib/aggregateWeeklyReport.ts) — zeroCtrPages(impressions>0/clicks=0, 상위10), highBouncePages(sessions>=5 노이즈 필터, 상위10), ctrDeviations(노출>=10/편차 0.5 미만 or 2.0 이상), risingQueries/fallingQueries(최초·최종일 공통 쿼리만, impressions 가중평균 포지션, 상위10); 27개 단위 테스트 작성 및 전체 647개 테스트 통과"
     },
     {
       "step": 2,
