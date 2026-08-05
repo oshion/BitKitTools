@@ -120,6 +120,36 @@ function getCleanupCandidates(days: ProcessedDay[]): CleanupCandidate[] {
   return candidates
 }
 
+// ── Week-over-Week Comparison ────────────────────────────────────────────────
+
+/**
+ * Builds a plain-text WoW summary for sessions/clicks. Returns a message
+ * saying no comparison is possible when there's no previous week, and
+ * avoids dividing by zero when the previous week's value was 0.
+ */
+function buildWowComparison(
+  totals: { sessions: number; clicks: number },
+  previousWeek: { organicSessions: number; organicClicks: number } | undefined
+): string {
+  if (!previousWeek) {
+    return '지난 주 데이터 없음 — 비교 불가(이번이 첫 리포트이거나 트렌드 기록이 아직 없음)'
+  }
+
+  const formatChange = (current: number, previous: number, label: string): string => {
+    if (previous === 0) {
+      return `${label}: ${previous} → ${current} (지난 주 0이라 증감률 계산 불가)`
+    }
+    const pct = ((current - previous) / previous) * 100
+    const sign = pct >= 0 ? '+' : ''
+    return `${label}: ${previous} → ${current} (${sign}${pct.toFixed(1)}%)`
+  }
+
+  return [
+    formatChange(totals.sessions, previousWeek.organicSessions, '세션'),
+    formatChange(totals.clicks, previousWeek.organicClicks, '클릭'),
+  ].join(' / ')
+}
+
 // ── Response Parsing ──────────────────────────────────────────────────────────
 
 interface ParsedResponse {
@@ -240,6 +270,16 @@ async function main(): Promise<void> {
   // ── 5. Update stagnation trend ───────────────────────────────────────────────
 
   const trend = readTrend()
+
+  // Find last week's point before we add/replace this week's entry, so we can
+  // report week-over-week movement. If the last entry already has this week's
+  // weekStart (a same-day re-run), fall back one further.
+  const lastEntry = trend.weeks[trend.weeks.length - 1]
+  const previousWeek =
+    lastEntry?.weekStart === weeklyData.periodStart
+      ? trend.weeks[trend.weeks.length - 2]
+      : lastEntry
+
   const updatedTrend = appendTrendPoint(trend, {
     weekStart: weeklyData.periodStart,
     organicSessions: weeklyData.totals.sessions,
@@ -253,6 +293,8 @@ async function main(): Promise<void> {
   const history = readHistory()
 
   // ── 7. Build prompt & call Anthropic API ────────────────────────────────────
+
+  const wowComparison = buildWowComparison(weeklyData.totals, previousWeek)
 
   const intentLines = Object.entries(intentClassifications)
     .map(([q, intent]) => `- "${q}": ${intent}`)
@@ -273,6 +315,10 @@ async function main(): Promise<void> {
 ${JSON.stringify(weeklyData, null, 2)}
 \`\`\`
 
+## 지난 주 대비 변화 (Week-over-Week)
+
+${wowComparison}
+
 ## 검색 의도 분류 결과 (상위 쿼리 최대 ${TOP_QUERIES_LIMIT}개)
 
 ${intentLines || '분류할 쿼리 없음'}
@@ -289,13 +335,14 @@ ${history || '(아직 이력 없음)'}
 
 위 데이터를 분석하고 다음 항목을 포함한 주간 리포트를 작성하세요:
 
-1. **CTR 0 페이지 분석**: zeroCtrPages의 페이지들이 클릭을 받지 못하는 원인 해설 (제목·스니펫·검색 의도 불일치 등)
-2. **이탈률 높은 페이지 분석**: highBouncePages 주요 항목 분석 및 개선 방향
-3. **국가/기기별 CTR 편차**: ctrDeviations 주요 항목 해설
-4. **검색 의도 분류 요약**: 분류 결과에서 발견되는 패턴과 콘텐츠 전략 시사점
-5. **순위 변동 쿼리**: risingQueries/fallingQueries 주요 항목 해설
-6. **정리 후보**: 위에 제공된 데이터를 그대로 요약 (해당 없으면 "현재 해당 없음" 명시)
-7. **추가 아이디어 제안** (필수 — 최소 1개): 신규 콘텐츠 방향, 놓치고 있는 키워드, 경쟁사 벤치마킹 아이디어 등. 위에서 발견된 문제와 별개로 반드시 포함한다. **과거 이력(history.md)에 이미 시도했던 접근은 반복 제안하지 말 것.**
+1. **잘 되고 있는 것**: topPerformingPages(클릭이 실제로 발생한 페이지)와 지난 주 대비 변화(Week-over-Week)를 근거로 이번 주 긍정적인 신호를 요약. 데이터가 부족해 뚜렷한 성과가 없으면 억지로 만들어내지 말고 "아직 판단할 만한 데이터가 부족함"이라고 명시.
+2. **CTR 0 페이지 분석**: zeroCtrPages의 페이지들이 클릭을 받지 못하는 원인 해설 (제목·스니펫·검색 의도 불일치 등)
+3. **이탈률 높은 페이지 분석**: highBouncePages 주요 항목 분석 및 개선 방향
+4. **국가/기기별 CTR 편차**: ctrDeviations 주요 항목 해설
+5. **검색 의도 분류 요약**: 분류 결과에서 발견되는 패턴과 콘텐츠 전략 시사점
+6. **순위 변동 쿼리**: risingQueries/fallingQueries 주요 항목 해설(순위가 오른 쿼리도 "잘 되고 있는 것"의 연장선으로 긍정적으로 조명)
+7. **정리 후보**: 위에 제공된 데이터를 그대로 요약 (해당 없으면 "현재 해당 없음" 명시)
+8. **추가 아이디어 제안** (필수 — 최소 1개): 신규 콘텐츠 방향, 놓치고 있는 키워드, 경쟁사 벤치마킹 아이디어 등. 위에서 발견된 문제와 별개로 반드시 포함한다. **과거 이력(history.md)에 이미 시도했던 접근은 반복 제안하지 말 것.**
 
 응답은 반드시 아래 형식을 그대로 사용하세요 (구분자 줄을 정확히 일치시켜야 합니다):
 ===REPORT===

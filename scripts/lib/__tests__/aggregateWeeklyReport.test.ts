@@ -52,6 +52,7 @@ describe('aggregateWeeklyReport — empty/edge inputs', () => {
     expect(result.periodStart).toBe('')
     expect(result.periodEnd).toBe('')
     expect(result.totals).toEqual({ impressions: 0, clicks: 0, sessions: 0 })
+    expect(result.topPerformingPages).toEqual([])
     expect(result.zeroCtrPages).toEqual([])
     expect(result.highBouncePages).toEqual([])
     expect(result.ctrDeviations).toEqual([])
@@ -82,6 +83,62 @@ describe('aggregateWeeklyReport — period boundaries', () => {
     const result = aggregateWeeklyReport(days)
     expect(result.periodStart).toBe('2026-08-01')
     expect(result.periodEnd).toBe('2026-08-03')
+  })
+})
+
+// ── topPerformingPages ───────────────────────────────────────────────────────
+
+describe('aggregateWeeklyReport — topPerformingPages', () => {
+  test('includes only pages with clicks > 0', () => {
+    const day = makeDay('2026-08-01', {
+      pages: [
+        makePage({ path: '/has-clicks/', gscImpressions: 100, gscClicks: 5 }),
+        makePage({ path: '/zero-clicks/', gscImpressions: 50, gscClicks: 0 }),
+      ],
+      queries: [],
+    })
+    const result = aggregateWeeklyReport([day])
+    expect(result.topPerformingPages).toHaveLength(1)
+    expect(result.topPerformingPages[0]!.path).toBe('/has-clicks/')
+  })
+
+  test('orders by clicks descending and computes ctr', () => {
+    const day = makeDay('2026-08-01', {
+      pages: [
+        makePage({ path: '/a/', gscImpressions: 100, gscClicks: 2 }),
+        makePage({ path: '/b/', gscImpressions: 100, gscClicks: 10 }),
+        makePage({ path: '/c/', gscImpressions: 100, gscClicks: 5 }),
+      ],
+      queries: [],
+    })
+    const result = aggregateWeeklyReport([day])
+    expect(result.topPerformingPages.map((p) => p.path)).toEqual(['/b/', '/c/', '/a/'])
+    expect(result.topPerformingPages[0]!.ctr).toBeCloseTo(0.1)
+  })
+
+  test('returns at most 5 entries', () => {
+    const pages = Array.from({ length: 8 }, (_, i) =>
+      makePage({ path: `/page-${i}/`, gscImpressions: 100, gscClicks: i + 1 })
+    )
+    const day = makeDay('2026-08-01', { pages, queries: [] })
+    const result = aggregateWeeklyReport([day])
+    expect(result.topPerformingPages).toHaveLength(5)
+  })
+
+  test('sums clicks across multiple days for the same page', () => {
+    const days = [
+      makeDay('2026-08-01', {
+        pages: [makePage({ path: '/beer/bac-calculator/', gscImpressions: 50, gscClicks: 2 })],
+        queries: [],
+      }),
+      makeDay('2026-08-02', {
+        pages: [makePage({ path: '/beer/bac-calculator/', gscImpressions: 50, gscClicks: 3 })],
+        queries: [],
+      }),
+    ]
+    const result = aggregateWeeklyReport(days)
+    expect(result.topPerformingPages[0]!.clicks).toBe(5)
+    expect(result.topPerformingPages[0]!.impressions).toBe(100)
   })
 })
 

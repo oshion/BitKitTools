@@ -31,6 +31,13 @@ export interface CtrDeviation {
   deviationRatio: number
 }
 
+export interface TopPerformingPage {
+  path: string
+  clicks: number
+  impressions: number
+  ctr: number
+}
+
 export interface QueryPositionChange {
   query: string
   page: string
@@ -46,6 +53,8 @@ export interface WeeklyReportData {
   /** YYYY-MM-DD, latest date in days */
   periodEnd: string
   totals: { impressions: number; clicks: number; sessions: number }
+  /** Pages with clicks > 0, top 5 by clicks desc — what's actually working */
+  topPerformingPages: TopPerformingPage[]
   /** Pages with impressions > 0 but clicks === 0, top 10 by impressions desc */
   zeroCtrPages: ZeroCtrPage[]
   /** Pages with sessions >= 5, top 10 by bounceRate desc */
@@ -69,6 +78,9 @@ const MIN_SEGMENT_IMPRESSIONS = 10
 /** Deviation ratio threshold — include only if ratio < 0.5 or >= 2.0 */
 const CTR_DEVIATION_LOWER = 0.5
 const CTR_DEVIATION_UPPER = 2.0
+
+/** How many top-performing pages to surface */
+const TOP_PERFORMING_LIMIT = 5
 
 // ── Main Function ─────────────────────────────────────────────────────────────
 
@@ -135,6 +147,18 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
       segmentClicks.set(deviceKey, (segmentClicks.get(deviceKey) ?? 0) + q.clicks)
     }
   }
+
+  // ── Top Performing Pages ───────────────────────────────────────────────────
+
+  const topPerformingPages: TopPerformingPage[] = []
+  for (const [path, clicks] of pageClicks) {
+    if (clicks <= 0) continue
+    const impressions = pageImpressions.get(path) ?? 0
+    const ctr = impressions > 0 ? clicks / impressions : 0
+    topPerformingPages.push({ path, clicks, impressions, ctr })
+  }
+  topPerformingPages.sort((a, b) => b.clicks - a.clicks)
+  const topPerformingTop5 = topPerformingPages.slice(0, TOP_PERFORMING_LIMIT)
 
   // ── Zero CTR Pages ─────────────────────────────────────────────────────────
 
@@ -288,6 +312,7 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
       clicks: totalClicks,
       sessions: totalSessions,
     },
+    topPerformingPages: topPerformingTop5,
     zeroCtrPages: zeroCtrTop10,
     highBouncePages: highBounceTop10,
     ctrDeviations,
