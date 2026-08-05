@@ -67,5 +67,6 @@
       "summary": ".github/workflows/weekly-report.yml 작성 — 매주 월요일 00:00 UTC(09:00 KST) 크론 + workflow_dispatch, generate-report/generate-strategy-review/post-slack-report 순차 실행, git bot 커밋 멱등성 보장(변경 없으면 스킵), deploy.yml paths-ignore의 data/** 패턴이 신규 데이터 경로 전부 커버 확인(수정 불필요); lint/build/746테스트 통과"
     }
   ],
-  "created_at": "2026-08-05T13:39:18+0900"
+  "created_at": "2026-08-05T13:39:18+0900",
+  "completed_at": "2026-08-05T14:14:47+0900"
 }
