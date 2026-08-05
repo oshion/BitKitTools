@@ -36,6 +36,18 @@ interface Ga4RawData {
   rows?: Ga4Row[]
 }
 
+// ga4-bounce-{date}.json: dimensions=[pagePath], metrics=[bounceRate, sessions]
+interface Ga4BounceRow {
+  dimensionValues: Array<{ value: string }>
+  metricValues: Array<{ value: string }>
+}
+
+interface Ga4BounceRawData {
+  dimensionHeaders?: Array<{ name: string }>
+  metricHeaders?: Array<{ name: string }>
+  rows?: Ga4BounceRow[]
+}
+
 interface GscRow {
   keys: [string, string, string, string] // [query, page, country, device]
   clicks: number
@@ -56,7 +68,7 @@ interface ClarityRawData {
   data?: unknown
 }
 
-interface ProcessedPage {
+export interface ProcessedPage {
   path: string
   sessions: number
   events: Record<string, number>
@@ -64,9 +76,11 @@ interface ProcessedPage {
   gscClicks: number
   /** Impressions-weighted average position across all GSC queries for this page. */
   gscAvgPosition: number | null
+  /** Bounce rate from GA4 (0–1 range). null when not available. */
+  bounceRate: number | null
 }
 
-interface ProcessedQuery {
+export interface ProcessedQuery {
   query: string
   page: string
   country: string
@@ -77,7 +91,7 @@ interface ProcessedQuery {
   position: number
 }
 
-interface ProcessedDay {
+export interface ProcessedDay {
   date: string
   pages: ProcessedPage[]
   queries: ProcessedQuery[]
@@ -151,6 +165,7 @@ function processGa4(raw: Ga4RawData): Map<string, ProcessedPage> {
         gscImpressions: 0,
         gscClicks: 0,
         gscAvgPosition: null,
+        bounceRate: null,
       })
     }
 
@@ -233,6 +248,7 @@ function mergeGscIntoPages(
         gscImpressions: 0,
         gscClicks: 0,
         gscAvgPosition: null,
+        bounceRate: null,
       })
     }
 
@@ -249,16 +265,45 @@ function mergeGscIntoPages(
   return queries
 }
 
+// ── GA4 Bounce processing ─────────────────────────────────────────────────────
+
+/**
+ * Merge bounce rate values from ga4-bounce-{date}.json into the existing pageMap.
+ * Only updates pages already present in the map; does not create new entries.
+ * Pages not found in the bounce report retain bounceRate: null.
+ */
+function mergeBounceIntoPages(
+  raw: Ga4BounceRawData,
+  pageMap: Map<string, ProcessedPage>
+): void {
+  if (!raw.rows || raw.rows.length === 0) return
+
+  for (const row of raw.rows) {
+    const rawPath = row.dimensionValues[0]?.value ?? ''
+    const bounceRateStr = row.metricValues[0]?.value ?? ''
+
+    const path = normalisePath(rawPath)
+    const bounceRate = parseFloat(bounceRateStr)
+
+    if (!isNaN(bounceRate) && pageMap.has(path)) {
+      const entry = pageMap.get(path)!
+      entry.bounceRate = bounceRate
+    }
+  }
+}
+
 // ── Per-date processing ───────────────────────────────────────────────────────
 
 function processDate(date: string): void {
   const ga4Path = resolve(RAW_DIR, `ga4-${date}.json`)
   const gscPath = resolve(RAW_DIR, `gsc-${date}.json`)
   const clarityPath = resolve(RAW_DIR, `clarity-${date}.json`)
+  const ga4BouncePath = resolve(RAW_DIR, `ga4-bounce-${date}.json`)
 
   const ga4Raw = readJsonFile<Ga4RawData>(ga4Path)
   const gscRaw = readJsonFile<GscRawData>(gscPath)
   const clarityRaw = readJsonFile<ClarityRawData>(clarityPath)
+  const ga4BounceRaw = readJsonFile<Ga4BounceRawData>(ga4BouncePath)
 
   // Build page map from GA4 first
   const pageMap: Map<string, ProcessedPage> =
@@ -267,6 +312,11 @@ function processDate(date: string): void {
   // Merge GSC data and collect query rows
   const queries: ProcessedQuery[] =
     gscRaw !== null ? mergeGscIntoPages(gscRaw, pageMap) : []
+
+  // Merge bounce rate data — best-effort, file may not exist
+  if (ga4BounceRaw !== null) {
+    mergeBounceIntoPages(ga4BounceRaw, pageMap)
+  }
 
   // Clarity: pass raw data.data through without transformation
   const clarity: unknown | null = clarityRaw?.data ?? null

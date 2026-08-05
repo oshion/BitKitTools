@@ -113,6 +113,47 @@ async function collectGa4(date: string): Promise<void> {
   console.log(`[GA4] Saved → ${outputPath}`)
 }
 
+/**
+ * Fetch per-page bounce rate from GA4 as a separate report.
+ *
+ * bounceRate is a session-level metric and must NOT be combined with the
+ * eventName dimension used in collectGa4() — mixing them distorts the values.
+ * The result is saved to ga4-bounce-{date}.json (separate from ga4-{date}.json)
+ * to preserve the existing file schema used by process-analytics.ts.
+ *
+ * Failure here does NOT affect ga4Success or the process exit code — it follows
+ * the same best-effort pattern as Clarity collection.
+ */
+async function collectGa4Bounce(date: string): Promise<void> {
+  const propertyId = process.env.GA4_PROPERTY_ID
+  if (!propertyId) {
+    throw new Error(
+      '[GA4-Bounce] GA4_PROPERTY_ID environment variable is not set.'
+    )
+  }
+
+  console.log(`[GA4-Bounce] Fetching bounce rate data for ${date}...`)
+
+  const accessToken = await getGoogleAccessToken()
+
+  const requestBody: Ga4ReportRequestBody = {
+    dateRanges: [{ startDate: 'yesterday', endDate: 'yesterday' }],
+    dimensions: [{ name: 'pagePath' }],
+    metrics: [{ name: 'bounceRate' }, { name: 'sessions' }],
+    keepEmptyRows: false,
+  }
+
+  const data = await fetchGa4Report(propertyId, accessToken, requestBody)
+
+  const outputDir = resolve(process.cwd(), 'data', 'raw')
+  ensureDataDir(outputDir)
+
+  const outputPath = resolve(outputDir, `ga4-bounce-${date}.json`)
+  writeFileSync(outputPath, JSON.stringify(data, null, 2), 'utf-8')
+
+  console.log(`[GA4-Bounce] Saved → ${outputPath}`)
+}
+
 // ── Google Search Console ────────────────────────────────────────────────────
 
 interface GscSearchAnalyticsRequestBody {
@@ -293,6 +334,14 @@ async function main(): Promise<void> {
     ga4Success = true
   } catch (err: unknown) {
     console.error(`[GA4] Collection failed: ${String(err)}`)
+  }
+
+  // GA4 Bounce — best-effort, separate report to avoid metric distortion.
+  // Failure does NOT affect ga4Success or the exit code.
+  try {
+    await collectGa4Bounce(yesterdayDate)
+  } catch (err: unknown) {
+    console.error(`[GA4-Bounce] Collection failed: ${String(err)}`)
   }
 
   // GSC — independent try/catch.

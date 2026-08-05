@@ -113,7 +113,7 @@ export function deleteOldRawFiles(rawDir: string, today: Date = new Date()): str
   const deleted: string[] = []
 
   for (const file of readdirSync(rawDir)) {
-    const match = /^(?:ga4|gsc|clarity)-(\d{4}-\d{2}-\d{2})\.json$/.exec(file)
+    const match = /^(?:ga4(?:-bounce)?|gsc|clarity)-(\d{4}-\d{2}-\d{2})\.json$/.exec(file)
     if (!match) continue
     const dateStr = match[1]
     if (!dateStr) continue

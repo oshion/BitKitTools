@@ -1,0 +1,50 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "13-weekly-report-automation",
+  "steps": [
+    {
+      "step": 0,
+      "name": "ga4-bounce-rate-collection",
+      "status": "completed",
+      "started_at": "2026-08-05T13:39:18+0900",
+      "completed_at": "2026-08-05T14:10:00+0900",
+      "summary": "collectGa4Bounce 추가(ga4-bounce-{date}.json 별도 저장, 실패해도 ga4Success 무영향), ProcessedPage에 bounceRate:number|null 필드 추가 및 mergeBounceIntoPages 구현, ProcessedDay/ProcessedPage/ProcessedQuery export, manage-data-retention 정규식에 ga4-bounce 파일 패턴 추가"
+    },
+    {
+      "step": 1,
+      "name": "weekly-data-aggregation",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "intent-classification",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "stagnation-detection",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "report-generation",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "strategy-review-generation",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "slack-delivery",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "weekly-report-workflow",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-08-05T13:39:18+0900"
+}
