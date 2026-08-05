@@ -7,6 +7,8 @@
  *      in a single call. Fails soft: any API / parse error returns 'ambiguous'.
  */
 
+import { extractAnthropicText } from './anthropicResponse'
+
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 export type SearchIntent = 'tool' | 'tutorial' | 'comparison' | 'problem-solving'
@@ -114,10 +116,8 @@ Example format: {"query text here": "tool", "another query": "tutorial"}`
       return buildAmbiguousMap(queries)
     }
 
-    const json = (await response.json()) as {
-      content?: Array<{ type: string; text?: string }>
-    }
-    rawText = json.content?.[0]?.text ?? ''
+    const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+    rawText = extractAnthropicText(json)
   } catch (err) {
     console.error('[classifyIntent] Network error calling Anthropic API:', err)
     return buildAmbiguousMap(queries)

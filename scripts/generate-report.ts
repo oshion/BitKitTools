@@ -18,6 +18,7 @@ import {
   type IntentClassification,
 } from './lib/classifyIntent'
 import { appendTrendPoint, readTrend, writeTrend } from './lib/detectStagnation'
+import { extractAnthropicText } from './lib/anthropicResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -327,10 +328,16 @@ ${history || '(아직 이력 없음)'}
       process.exit(1)
     }
 
-    const json = (await response.json()) as {
-      content?: Array<{ type: string; text?: string }>
+    const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+    apiResponseText = extractAnthropicText(json)
+
+    if (!apiResponseText.trim()) {
+      console.error(
+        '[generate-report] Anthropic API returned an empty response. Raw response:',
+        JSON.stringify(json)
+      )
+      process.exit(1)
     }
-    apiResponseText = json.content?.[0]?.text ?? ''
   } catch (err) {
     console.error('[generate-report] Network error calling Anthropic API:', err)
     process.exit(1)

@@ -18,6 +18,7 @@ import {
   readTrend,
   type ActionLogEntry,
 } from './lib/detectStagnation'
+import { extractAnthropicText } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -145,10 +146,8 @@ async function main(): Promise<void> {
       process.exit(1)
     }
 
-    const json = (await response.json()) as {
-      content?: Array<{ type: string; text?: string }>
-    }
-    strategyReview = json.content?.[0]?.text ?? ''
+    const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+    strategyReview = extractAnthropicText(json)
 
     if (!strategyReview) {
       console.error('[generate-strategy-review] Anthropic API returned empty response.')
