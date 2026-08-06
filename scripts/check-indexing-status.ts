@@ -9,7 +9,11 @@
  *   1. Tool pages whose addedAt is within the last 30 days → EN + KO both
  *   2. Any URL already in indexing-status.json whose verdict is NOT 'PASS'
  *      → re-check until it becomes indexed
- * URLs that are already indexed (verdict=PASS) and older than 30 days are skipped.
+ *   3. Pages that have a pending title-experiment reindex check
+ *      (action log entries with type='title-experiment' and no cooldownStartedAt)
+ *      → EN + KO both, until reindex is confirmed
+ * URLs that are already indexed (verdict=PASS) and older than 30 days are skipped,
+ * unless they are covered by Rule 3.
  *
  * Merge behaviour: existing entries for URLs NOT inspected in this run are
  * preserved unchanged (the file is read → merged → written, never fully replaced).
@@ -27,7 +31,13 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { toolsConfig } from '../src/lib/config/tools-config'
+import { readActionLog } from './lib/detectStagnation'
 import { getGoogleAccessToken } from './lib/googleAuth'
+import type { IndexingStatusMap } from './lib/titleExperimentReindex'
+
+// Re-export the shared type so consumers can import from this script's
+// canonical output path without knowing about the internal lib location.
+export type { IndexingStatusEntry, IndexingStatusMap } from './lib/titleExperimentReindex'
 
 // URL Inspection API requires the full `webmasters` scope, not `.readonly`.
 // Reference: https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect#auth
@@ -45,21 +55,15 @@ const STATUS_FILE = resolve(DATA_DIR, 'indexing-status.json')
 
 const DAYS_NEW_THRESHOLD = 30
 
-// ── Types ──────────────────────────────────────────────────────────────────────
-
-interface UrlIndexStatus {
-  verdict: string
-  coverageState: string
-  lastCheckedAt: string
-}
-
-type IndexingStatusMap = Record<string, UrlIndexStatus>
+// ── API response type ─────────────────────────────────────────────────────────
 
 interface UrlInspectionApiResponse {
   inspectionResult?: {
     indexStatusResult?: {
       verdict?: string
       coverageState?: string
+      /** ISO timestamp of the last time Google crawled this URL */
+      lastCrawlTime?: string
     }
   }
 }
@@ -124,6 +128,20 @@ function selectUrlsToCheck(existing: IndexingStatusMap): string[] {
     }
   }
 
+  // Rule 3: pages with a pending title-experiment reindex check.
+  // A "pending" entry is one with type='title-experiment' and no cooldownStartedAt —
+  // we keep checking until GSC reports a lastCrawlTime after deployedAt.
+  const actionLog = readActionLog()
+  for (const entry of actionLog.actions) {
+    if (entry.type === 'title-experiment' && entry.cooldownStartedAt === undefined) {
+      // Normalise path: strip trailing slash to match Rule 1's URL format
+      const rawPath = entry.page
+      const normPath = rawPath.endsWith('/') ? rawPath.slice(0, -1) : rawPath
+      selected.add(enUrl(normPath))
+      selected.add(koUrl(normPath))
+    }
+  }
+
   return Array.from(selected)
 }
 
@@ -132,6 +150,7 @@ function selectUrlsToCheck(existing: IndexingStatusMap): string[] {
 interface InspectResult {
   verdict: string
   coverageState: string
+  lastCrawlTime?: string
 }
 
 async function inspectUrl(
@@ -163,6 +182,7 @@ async function inspectUrl(
   return {
     verdict: indexStatus?.verdict ?? 'VERDICT_UNSPECIFIED',
     coverageState: indexStatus?.coverageState ?? 'Unknown',
+    lastCrawlTime: indexStatus?.lastCrawlTime,
   }
 }
 
@@ -206,9 +226,10 @@ async function main(): Promise<void> {
         verdict: result.verdict,
         coverageState: result.coverageState,
         lastCheckedAt: new Date().toISOString(),
+        ...(result.lastCrawlTime !== undefined && { lastCrawlTime: result.lastCrawlTime }),
       }
       console.log(
-        `[check-indexing] ✓ ${url} — verdict: ${result.verdict}, coverageState: ${result.coverageState}`
+        `[check-indexing] ✓ ${url} — verdict: ${result.verdict}, coverageState: ${result.coverageState}${result.lastCrawlTime ? `, lastCrawlTime: ${result.lastCrawlTime}` : ''}`
       )
       successCount++
     } catch (err: unknown) {

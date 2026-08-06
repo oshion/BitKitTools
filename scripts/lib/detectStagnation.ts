@@ -34,6 +34,8 @@ export interface ActionLogEntry {
   /** ISO timestamp */
   deployedAt: string
   description: string
+  /** ISO timestamp; set once reindex after deployment is confirmed via GSC lastCrawlTime */
+  cooldownStartedAt?: string
 }
 
 export interface ActionLog {
