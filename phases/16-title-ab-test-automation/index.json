@@ -1,0 +1,35 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "16-title-ab-test-automation",
+  "steps": [
+    {
+      "step": 0,
+      "name": "ctr-benchmark-detection",
+      "status": "completed",
+      "started_at": "2026-08-06T10:51:49+0900",
+      "completed_at": "2026-08-06T11:00:00+0900",
+      "summary": "data/reference/ctr-benchmark.json(포지션별 CTR 참조표) + scripts/lib/detectCtrAnomalies.ts(filterByMinImpressions/detectBenchmarkAnomalies/detectPercentileAnomalies/detectCtrAnomalies 순수 함수) + 38개 단위 테스트 작성 및 전체 856개 테스트/빌드 통과"
+    },
+    {
+      "step": 1,
+      "name": "title-variant-generation",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "reindex-tracking",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "title-experiment-orchestration",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "weekly-report-integration",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-08-06T10:51:49+0900"
+}
