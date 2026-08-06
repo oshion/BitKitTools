@@ -51,5 +51,6 @@
       "summary": "generate-weekly-specs.ts(8단계 오케스트레이션, safeRunStep 격리) + weeklySpecsReport.ts(WeeklySpecsResult 타입+buildWeeklySpecsSection) 구현, weekly-report.yml에 Generate weekly specs 스텝 추가+data 파일 3개 커밋 경로 추가, require.main 가드로 테스트 import 충돌 수정, 테스트 23개 신규 작성 및 전체 1195개 통과"
     }
   ],
-  "created_at": "2026-08-06T14:35:04+0900"
+  "created_at": "2026-08-06T14:35:04+0900",
+  "completed_at": "2026-08-07T08:48:01+0900"
 }
