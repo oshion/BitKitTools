@@ -51,6 +51,12 @@ jobs:
         run: npx tsx scripts/run-title-experiment.ts
         continue-on-error: true
 
+      - name: Generate weekly specs
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npx tsx scripts/generate-weekly-specs.ts
+        continue-on-error: true
+
       - name: Post to Slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -60,7 +66,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in data/reports data/history.md data/processed/trend.json data/action-log.json data/processed/lighthouse-*.json; do
+          for f in data/reports data/history.md data/processed/trend.json data/action-log.json data/processed/lighthouse-*.json data/proposals.json data/processed/top-pages-history.json data/processed/unmatched-query-history.json; do
             if [ -e "$f" ]; then
               git add "$f"
             fi

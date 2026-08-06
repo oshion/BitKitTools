@@ -458,7 +458,9 @@ async function main(): Promise<void> {
   console.log(`[generate-weekly-specs] Appended spec section to data/reports/${yearStr}/${today}.md`)
 }
 
-main().catch((err: unknown) => {
-  console.error('[generate-weekly-specs] Unexpected error:', err)
-  process.exit(1)
-})
+if (require.main === module) {
+  main().catch((err: unknown) => {
+    console.error('[generate-weekly-specs] Unexpected error:', err)
+    process.exit(1)
+  })
+}
