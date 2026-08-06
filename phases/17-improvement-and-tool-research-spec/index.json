@@ -15,7 +15,7 @@
       "name": "improvement-spec-generation",
       "status": "completed",
       "started_at": "2026-08-06T14:39:43+0900",
-      "completed_at": "2026-08-06T15:15:00+0900",
+      "completed_at": "2026-08-06T14:47:52+0900",
       "summary": "aggregateQueriesByPageAndQuery(ProcessedQuery→PageCtrSample 집계, 국가/기기 합산+impression-weighted avgPosition) + generate-improvement-spec.ts(ImprovementSpecCandidate, MAX=3 상수, selectImprovementCandidates, buildImprovementSpecPrompt, generateImprovementSpec) 구현, 테스트 22개 신규 작성 및 전체 1036개 통과"
     },
     {
