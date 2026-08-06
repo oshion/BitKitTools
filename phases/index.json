@@ -82,7 +82,8 @@
     },
     {
       "dir": "16-title-ab-test-automation",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-08-06T14:09:42+0900"
     }
   ]
 }
