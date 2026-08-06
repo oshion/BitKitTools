@@ -10,8 +10,10 @@ import {
   appendTopPagesPoint,
   findConsecutiveTopPerformers,
   readTopPagesHistory,
+  recordWeeklyTopPages,
   writeTopPagesHistory,
 } from '../topPagesHistory'
+import type { TopPerformingPage } from '../aggregateWeeklyReport'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -141,6 +143,67 @@ describe('appendTopPagesPoint', () => {
     const point = makePoint('2026-01-05', [{ page: '/test', clicks: 10 }])
     appendTopPagesPoint(history, point)
     expect(history.weeks).toHaveLength(0)
+  })
+})
+
+// ── recordWeeklyTopPages ──────────────────────────────────────────────────────
+
+describe('recordWeeklyTopPages', () => {
+  function makeTopPage(path: string, clicks: number): TopPerformingPage {
+    return { path, clicks, impressions: clicks * 10, ctr: 0.1 }
+  }
+
+  it('writes a new point and returns updated history', () => {
+    const filePath = makeTempFile()
+    const pages = [makeTopPage('/beer/bac-calculator/', 100)]
+    const result = recordWeeklyTopPages(pages, '2026-08-04', filePath)
+    expect(result.weeks).toHaveLength(1)
+    expect(result.weeks[0]!.weekStart).toBe('2026-08-04')
+    expect(result.weeks[0]!.pages[0]).toEqual({ page: '/beer/bac-calculator/', clicks: 100 })
+  })
+
+  it('persists to disk — read back matches returned value', () => {
+    const filePath = makeTempFile()
+    const pages = [makeTopPage('/developer/json-formatter/', 50)]
+    recordWeeklyTopPages(pages, '2026-08-04', filePath)
+    const onDisk = readTopPagesHistory(filePath)
+    expect(onDisk.weeks).toHaveLength(1)
+    expect(onDisk.weeks[0]!.pages[0]).toEqual({ page: '/developer/json-formatter/', clicks: 50 })
+  })
+
+  it('does not duplicate when re-run on the same weekStart', () => {
+    const filePath = makeTempFile()
+    const pages = [makeTopPage('/beer/bac-calculator/', 100)]
+    recordWeeklyTopPages(pages, '2026-08-04', filePath)
+    recordWeeklyTopPages(pages, '2026-08-04', filePath)
+    const onDisk = readTopPagesHistory(filePath)
+    expect(onDisk.weeks).toHaveLength(1)
+  })
+
+  it('replaces existing entry on same weekStart with new data', () => {
+    const filePath = makeTempFile()
+    recordWeeklyTopPages([makeTopPage('/beer/bac-calculator/', 100)], '2026-08-04', filePath)
+    recordWeeklyTopPages([makeTopPage('/beer/bac-calculator/', 200)], '2026-08-04', filePath)
+    const onDisk = readTopPagesHistory(filePath)
+    expect(onDisk.weeks).toHaveLength(1)
+    expect(onDisk.weeks[0]!.pages[0]!.clicks).toBe(200)
+  })
+
+  it('converts TopPerformingPage.path to WeeklyTopPage.page correctly', () => {
+    const filePath = makeTempFile()
+    const pages: TopPerformingPage[] = [
+      { path: '/travel/flight-delay-compensation/', clicks: 80, impressions: 800, ctr: 0.1 },
+    ]
+    const result = recordWeeklyTopPages(pages, '2026-08-04', filePath)
+    expect(result.weeks[0]!.pages[0]!.page).toBe('/travel/flight-delay-compensation/')
+    expect(result.weeks[0]!.pages[0]!.clicks).toBe(80)
+  })
+
+  it('handles empty topPerformingPages gracefully', () => {
+    const filePath = makeTempFile()
+    const result = recordWeeklyTopPages([], '2026-08-04', filePath)
+    expect(result.weeks).toHaveLength(1)
+    expect(result.weeks[0]!.pages).toHaveLength(0)
   })
 })
 

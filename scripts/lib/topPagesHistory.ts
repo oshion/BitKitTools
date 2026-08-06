@@ -8,6 +8,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { dirname, resolve } from 'path'
+import type { TopPerformingPage } from './aggregateWeeklyReport'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -88,6 +89,35 @@ export function appendTopPagesPoint(
     weeks.length > MAX_HISTORY_WEEKS ? weeks.slice(weeks.length - MAX_HISTORY_WEEKS) : weeks
   return { weeks: trimmed }
 }
+
+// ── High-Level Wrapper ────────────────────────────────────────────────────────
+
+/**
+ * Records the current week's top-performing pages into the rolling history file.
+ *
+ * Converts `TopPerformingPage[]` (from WeeklyReportData) into `WeeklyTopPage[]`,
+ * appends the new data point (replacing any existing entry for the same weekStart),
+ * persists the updated history, and returns it.
+ *
+ * Idempotent: re-running on the same weekStart replaces the previous entry —
+ * no duplicate weeks accumulate (relies on `appendTopPagesPoint`'s upsert logic).
+ */
+export function recordWeeklyTopPages(
+  topPerformingPages: TopPerformingPage[],
+  weekStart: string,
+  historyFilePath?: string
+): TopPagesHistory {
+  const history = readTopPagesHistory(historyFilePath)
+  const point: WeeklyTopPagesPoint = {
+    weekStart,
+    pages: topPerformingPages.map((p) => ({ page: p.path, clicks: p.clicks })),
+  }
+  const updated = appendTopPagesPoint(history, point)
+  writeTopPagesHistory(updated, historyFilePath)
+  return updated
+}
+
+// ── Consecutive Detection ─────────────────────────────────────────────────────
 
 /**
  * Returns pages that appeared in the top performers list for at least
