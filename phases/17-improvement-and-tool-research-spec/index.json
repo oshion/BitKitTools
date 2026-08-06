@@ -39,7 +39,7 @@
       "name": "programmatic-seo-spec",
       "status": "completed",
       "started_at": "2026-08-06T15:05:28+0900",
-      "completed_at": "2026-08-06T15:30:00+0900",
+      "completed_at": "2026-08-06T15:17:32+0900",
       "summary": "checkPageSimilarity.ts(Jaccard 유사도+guardrail 순수 함수, 구두점 정규화 포함) + generate-programmatic-seo-spec.ts(findNearMissQueries, selectProgrammaticSeoCandidates, draftProgrammaticSeoVariant, draftAndValidateVariant 1회 재시도 후 null, generateProgrammaticSeoSpec) 구현, 테스트 45개 신규 작성 및 전체 1172개 통과"
     },
     {
