@@ -1,0 +1,17 @@
+{
+  "source": "업계에 통상적으로 알려진 근사 곡선 — 특정 단일 연구를 인용한 것이 아니며 정확도가 검증된 값이 아니다. 포지션이 낮아질수록 CTR이 감소한다는 방향성만 신뢰하고, 실제 자체 데이터가 쌓이면 이 값 대신 자체 데이터 기반 판단(2차 필터)의 비중을 높여간다.",
+  "collectedAt": "2026-08-06",
+  "byPosition": [
+    { "position": 1, "expectedCtr": 0.28 },
+    { "position": 2, "expectedCtr": 0.15 },
+    { "position": 3, "expectedCtr": 0.11 },
+    { "position": 4, "expectedCtr": 0.08 },
+    { "position": 5, "expectedCtr": 0.07 },
+    { "position": 6, "expectedCtr": 0.05 },
+    { "position": 7, "expectedCtr": 0.04 },
+    { "position": 8, "expectedCtr": 0.03 },
+    { "position": 9, "expectedCtr": 0.03 },
+    { "position": 10, "expectedCtr": 0.02 }
+  ],
+  "defaultExpectedCtrBeyondPosition10": 0.01
+}

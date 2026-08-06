@@ -9,6 +9,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { dirname, resolve } from 'path'
+import type { LocalizedText } from '../../src/types/tool'
 
 // ── Trend Types ───────────────────────────────────────────────────────────────
 
@@ -34,6 +35,19 @@ export interface ActionLogEntry {
   /** ISO timestamp */
   deployedAt: string
   description: string
+  /** ISO timestamp; set once reindex after deployment is confirmed via GSC lastCrawlTime */
+  cooldownStartedAt?: string
+  // ── title-experiment specific optional fields ──────────────────────────────
+  /** Which attempt this is for the page (1–3). Only set for type='title-experiment'. */
+  attemptNumber?: number
+  /** The original title before any experiments started. Used for rollback. */
+  originalTitle?: LocalizedText
+  /** The original description before any experiments started. Used for rollback. */
+  originalDescription?: LocalizedText
+  /** CTR measured at experiment start time — baseline for outcome comparison. */
+  baselineCtr?: number
+  /** Lifecycle state of this title experiment. */
+  status?: 'in-progress' | 'kept' | 'rolled-back'
 }
 
 export interface ActionLog {
@@ -166,6 +180,12 @@ export function readActionLog(filePath: string = DEFAULT_ACTION_LOG_PATH): Actio
   } catch {
     return { actions: [] }
   }
+}
+
+/** Write action log to `data/action-log.json` (creates directory if needed). */
+export function writeActionLog(log: ActionLog, filePath: string = DEFAULT_ACTION_LOG_PATH): void {
+  mkdirSync(dirname(filePath), { recursive: true })
+  writeFileSync(filePath, JSON.stringify(log, null, 2), 'utf-8')
 }
 
 // ── Cooldown Helpers ──────────────────────────────────────────────────────────

@@ -79,6 +79,11 @@
       "dir": "15-weekly-lighthouse-tracking",
       "status": "completed",
       "completed_at": "2026-08-05T22:17:56+0900"
+    },
+    {
+      "dir": "16-title-ab-test-automation",
+      "status": "completed",
+      "completed_at": "2026-08-06T14:09:42+0900"
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "16-title-ab-test-automation",
+  "steps": [
+    {
+      "step": 0,
+      "name": "ctr-benchmark-detection",
+      "status": "completed",
+      "started_at": "2026-08-06T10:51:49+0900",
+      "completed_at": "2026-08-06T10:57:08+0900",
+      "summary": "data/reference/ctr-benchmark.json(포지션별 CTR 참조표) + scripts/lib/detectCtrAnomalies.ts(filterByMinImpressions/detectBenchmarkAnomalies/detectPercentileAnomalies/detectCtrAnomalies 순수 함수) + 38개 단위 테스트 작성 및 전체 856개 테스트/빌드 통과"
+    },
+    {
+      "step": 1,
+      "name": "title-variant-generation",
+      "status": "completed",
+      "started_at": "2026-08-06T10:57:08+0900",
+      "completed_at": "2026-08-06T11:06:55+0900",
+      "summary": "scripts/lib/validateTitleVariant.ts(길이/금지표현/필수키워드 3종 가드레일 코드 검증, BANNED_PATTERNS 13개) + scripts/generate-title-variant.ts(parseVariantsFromResponse 순수 파서 분리, generateTitleVariants 최대 2회 재시도 로직) + 51개 단위 테스트(validateTitleVariant 33개 + parseVariantsFromResponse 18개) 작성 및 전체 907개 테스트/빌드 통과"
+    },
+    {
+      "step": 2,
+      "name": "reindex-tracking",
+      "status": "completed",
+      "started_at": "2026-08-06T11:06:56+0900",
+      "completed_at": "2026-08-06T11:14:06+0900",
+      "summary": "ActionLogEntry에 cooldownStartedAt? 추가(detectStagnation.ts) + scripts/lib/titleExperimentReindex.ts 신규(IndexingStatusEntry/IndexingStatusMap 타입 + findReindexedExperiments 순수 함수) + check-indexing-status.ts에 lastCrawlTime 필드 추출·저장 및 Rule 3(title-experiment pending 항목) 추가 + 19개 단위 테스트 작성, 전체 926개 테스트/빌드 통과"
+    },
+    {
+      "step": 3,
+      "name": "title-experiment-orchestration",
+      "status": "completed",
+      "started_at": "2026-08-06T11:14:06+0900",
+      "completed_at": "2026-08-06T11:38:34+0900",
+      "summary": "scripts/lib/titleExperimentOrchestrator.ts 신규(isYmylTool/countInProgressExperiments/isExperimentReadyForEvaluation/evaluateExperimentOutcome/selectCandidatePages/getPageCtr/getRequiredKeywordsForTool/findToolByPage/updateToolTitleDescription 순수 함수 + deployTitleVariant injectable spawnSyncFn) + scripts/run-title-experiment.ts 신규(Phase B 기존 실험 평가·rollback·new-attempt + Phase C 신규 실험 배포, GH_TOKEN/ANTHROPIC_API_KEY 필요) + 38개 단위 테스트(YMYL=true → gh pr merge --auto 미호출 AC 포함) 작성, 전체 964개 테스트/빌드 통과"
+    },
+    {
+      "step": 4,
+      "name": "weekly-report-integration",
+      "status": "completed",
+      "started_at": "2026-08-06T14:04:06+0900",
+      "completed_at": "2026-08-06T14:09:41+0900",
+      "summary": "weekly-report.yml에 'Run title experiment' 스텝(continue-on-error: true, GH_TOKEN/ANTHROPIC_API_KEY) 추가 + aggregateWeeklyReport.ts에 buildTitleExperimentSection 순수 함수 신규(status별 라벨: 재색인 대기 중/쿨다운 진행 중 N일 경과/kept/rolled-back) + generate-report.ts에서 readActionLog 호출 후 리포트 말미에 결정론적으로 이어붙이기 + 11개 단위 테스트 작성, 전체 975개 테스트/빌드 통과"
+    }
+  ],
+  "created_at": "2026-08-06T10:51:49+0900",
+  "completed_at": "2026-08-06T14:09:42+0900"
+}

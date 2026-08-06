@@ -37,7 +37,7 @@
 | 경량 피드백 위젯(Upstash Redis) | **제외** | "백엔드/DB 없음" 정체성(CLAUDE.md, ADR-005/008)과 정면 충돌. 정적 사이트에서 클라이언트가 Upstash REST API를 직접 호출하려면 읽기+쓰기 토큰을 `NEXT_PUBLIC_` 로 노출해야 해서 스팸/조작 위험도 있음 |
 | 공유 가능한 결과카드 컴포넌트 | **제외** | 기술적으로는 프론트엔드 전용이라 깨끗하지만, 실제 공유→트래픽 전환이 검증되지 않았고 전체 tool 적용 시 디자인/구현 공수가 작지 않음 |
 | 월간 Pruning 자동화 | **유지** (로드맵대로) | 사용자 판단 |
-| 순차 타이틀/설명 A/B 테스트 | **완전 자동화로 격상** (생성+배포+비교까지) | title/description은 텍스트 메타데이터라 코드 생성과 리스크 성격이 다름 — 되돌리기 쉽고 버그 위험 없음. Phase 2-1의 21일 쿨다운 메커니즘을 그대로 재사용해 비교까지 자동화 가능. 단 과장 표현 금지 등 가드레일 필요 (Phase 2-2 참고) |
+| 순차 타이틀/설명 A/B 테스트 | **완전 자동화로 격상** (생성+배포+비교까지) | title/description은 텍스트 메타데이터라 코드 생성보다 리스크 성격이 가볍고 되돌리기 쉬움 — 단 `tools-config.ts` 자체는 빌드되는 코드 파일이라 PR+test-gate.yml 검증은 그대로 거친다(직접 push 아님). Phase 2-1의 21일 쿨다운 메커니즘을 그대로 재사용해 비교까지 자동화 가능. 과장 표현 금지 등 가드레일, YMYL 예외 등 상세는 Phase 2-2 참고 |
 
 ---
 
@@ -118,17 +118,24 @@
 
 #### 2-2. 타이틀/설명 순차 A/B 테스트 자동화 (완전 자동화)
 
-텍스트 메타데이터 변경이라 코드 생성보다 리스크가 훨씬 낮아, 생성부터 배포·비교까지 전 과정을 자동화한다.
+텍스트 메타데이터 변경이라 코드 생성보다 리스크가 낮지만, `tools-config.ts` 자체는 코드 파일이라 빌드를 깨뜨릴 수 있다는 점을 감안해 아래 게이트를 둔다.
 
-1. 매주 리포트에서 CTR 최하위 N개 페이지를 자동 선정
-2. Claude가 title/description 여러 버전을 생성. **가드레일**: 핵심 키워드/tool명 유지, 과장·단정적 표현("1위", "최고", "100% 정확") 금지, SERP 노출 길이 제한 준수
-3. 후보 중 하나를 골라 커밋 → Phase 0 CI/CD로 자동 배포
-4. `action-log.json`에 기록 (2-1의 21일 쿨다운 규칙 적용)
-5. 21일 경과 후 자동으로 이전 CTR과 비교: 개선 → 유지, 악화/무변화 → 다음 후보 버전으로 자동 교체
-6. 페이지당 최대 3회 시도 — 그래도 개선이 없으면 자동 시도를 멈추고 사람에게 플래그
-7. 승인 절차 없이 진행하되, 매주 리포트에 "진행 중인 타이틀 실험" 섹션으로 사후 가시성 확보
+1. **후보 선정 (2단계 CTR 판단 — 2026-08 세션에서 확정)**: 지금은 오가닉 세션/클릭이 거의 0에 가까워, 자체 데이터만으로 "정상 CTR"의 기준을 정할 방법이 없다. 그렇다고 고정 숫자를 지금 감으로 박아넣으면 나중에 데이터가 쌓여도 그 숫자가 맞았는지 검증할 근거가 없다 — 그래서 임계값을 고정 상수가 아니라 **매 실행 시점에 다시 계산되는 상대 기준**으로 설계한다.
+   - **1차 — 업계 벤치마크 비교 (데이터량과 무관하게 1주차부터 가동)**: SERP 평균 포지션별 CTR 참조 테이블을 `data/reference/ctr-benchmark.json`에 정적 값으로 보관한다(출처와 수집일을 파일 안에 명시, 실행 중 외부 fetch 없음 — CLAUDE.md rule 2의 "외부 API 원칙 금지"는 사용자향 tool 대상이라 이 내부 분석 스크립트에는 해당하지 않음). GSC가 쿼리별로 제공하는 `avgPosition`으로 기대 CTR을 조회하고, 실제 CTR이 기대치 대비 현저히 낮으면(예: 50% 이하) 후보로 플래그한다. 노출수 10 미만인 쿼리는 CTR 자체가 우연에 가까우므로 애초에 대상에서 제외(Phase 2 3번 노출 게이트 재사용)
+   - **2차 — 자체 데이터 상대 비교 (표본이 쌓이면 자동 활성화)**: 노출 10 이상인 페이지가 최소 20개 이상 쌓인 시점부터, 그 시점 데이터 안에서 percentile 계산으로 하위 20%인 페이지도 후보에 추가한다. "언제 기준을 올릴지"를 캘린더로 미리 정하지 않고 표본 크기로 판단하므로, 트래픽이 예상보다 빨리 늘든 늦게 늘든 자동으로 맞춰진다 — 표본이 부족하면 이 필터는 그냥 0건을 반환하며 조용히 비활성 상태로 있는다.
+   - 두 필터에 모두 걸리는 페이지를 최우선 순위로 정렬해 리스트 상단에 배치한다
+   - **YMYL 페이지 제외 (`disclaimerType`이 medical/legal/financial인 tool)**: 후보 리스트에는 포함하되, 아래 3번의 auto-merge 대상에서는 제외한다 — PR은 동일하게 생성하지만 자동 병합하지 않고 사람 승인을 기다린다. CLAUDE.md rule 12(단정적 표현 금지)가 특히 엄격한 카테고리라 텍스트 변경이라도 완전 무인 배포는 하지 않는다
+   - **동시 실행 개수 제한**: `action-log.json`에서 `type: "title-experiment"`이고 아직 21일 쿨다운이 끝나지 않은 항목이 이미 2개 이상이면, 이번 주 새 후보가 있어도 시작하지 않고 다음 주로 이월한다(후보 우선순위는 유지) — 트래픽이 극히 적은 지금 여러 실험이 동시에 겹치면 사이트 전체 변동과 개별 실험 효과를 구분하기 어려워진다
+2. Claude가 title/description 여러 버전을 생성. **가드레일 (프롬프트 지시 + 코드 검증 이중 적용)**: 핵심 키워드/tool명 유지, 과장·단정적 표현("1위", "최고", "100% 정확") 금지, SERP 노출 길이 제한 준수를 프롬프트로 지시하는 것과 별개로, 생성 결과를 코드로 글자수 초과·금지 문구 포함 여부를 검사하는 하드 게이트를 둔다 — 위반 시 배포하지 않고 재생성(최대 2회 재시도, 그래도 실패하면 이번 주 해당 페이지는 스킵하고 사람에게 플래그). 리포트의 "⚠️ 성능 경고" 섹션과 동일 원칙 — 반드시 지켜져야 하는 규칙을 AI 프롬프트 준수에만 맡기지 않는다
+3. 후보 중 하나를 골라 브랜치 push → **PR 생성 → test-gate.yml 통과 → auto-merge**(Phase 0/harness가 이미 구축한 PR+auto-merge 플로우 재사용, GH_BOT_PAT로 push해 워크플로우가 정상 트리거되도록 함). `data/**`만 건드리는 `collect-data.yml`/`weekly-report.yml`과 달리 `tools-config.ts`(코드 파일)를 직접 수정하므로 **master에 직접 push하지 않는다** — 검증 없이 배포되면 생성된 텍스트의 문법 오류나 빌드 실패가 그대로 프로덕션에 나갈 수 있음. YMYL 페이지는 이 단계에서 auto-merge를 걸지 않고 Slack에 "사람 검토 필요"로 별도 표시
+4. `action-log.json`에 기록. **쿨다운 시작 시점은 배포 시각이 아니라 재색인 확인 시각**: Phase 1의 `check-indexing-status.ts`(GSC urlInspection)로 새 title/description이 실제로 재색인된 걸 확인한 시점을 `cooldownStartedAt`으로 별도 기록하고, 21일은 이 시점부터 센다 — 배포 직후엔 구글이 아직 이전 타이틀을 노출 중일 수 있어, 배포 시각 기준으로 재면 실제 신규 타이틀 노출 기간이 21일보다 짧게 측정된다
+5. 21일 경과 후 자동으로 **원본(최초 title/description)과 직전 버전 둘 다**와 비교: 원본 대비·직전 버전 대비 모두 개선 → 유지, 그렇지 않으면 다음 후보 버전으로 자동 교체
+6. 페이지당 최대 3회 시도 — 3회 모두 원본보다 개선하지 못하면 **원본으로 자동 롤백**하고 사람에게 플래그(개선 실패한 버전에 그대로 방치하지 않음)
+7. 승인 절차 없이 진행하되(YMYL 제외), 매주 리포트에 "진행 중인 타이틀 실험" 섹션으로 사후 가시성 확보
 
-**산출물**: `scripts/generate-title-variant.ts`, `scripts/run-title-experiment.ts` (2-1의 `scripts/lib/detectStagnation.ts` 쿨다운 로직 재사용)
+**산출물**: `scripts/generate-title-variant.ts`(가드레일 코드 검증 포함), `scripts/run-title-experiment.ts`(PR+auto-merge 플로우, 원본 롤백 로직, YMYL 제외·동시실행 제한 적용), `scripts/lib/detectCtrAnomalies.ts`(1차 벤치마크 비교 + 2차 percentile 비교, 순수 함수 — **Phase 4와 공유하는 핵심 모듈**), `data/reference/ctr-benchmark.json`(포지션별 업계 평균 CTR 정적 참조표, 출처/수집일 명시) (2-1의 `scripts/lib/detectStagnation.ts` 쿨다운 로직 재사용)
+
+> **모듈 경계 원칙**: `detectCtrAnomalies.ts`는 "이 페이지/쿼리의 CTR이 나쁜가?"만 순수하게 판단한다. YMYL 제외, 동시실행 제한처럼 "그래서 무엇을 자동으로 할지"에 대한 정책은 각 사용처(`run-title-experiment.ts`, Phase 4 spec 생성 스크립트)가 이 함수의 결과를 받아 자기 로직으로 처리한다 — 판단(공유)과 정책(phase별로 다름)을 분리해 향후 사용처가 늘어도 공유 모듈이 비대해지지 않게 한다.
 
 ---
 
@@ -149,23 +156,27 @@
 
 > AI는 코드를 직접 생성하지 않는다. 데이터 기반으로 "무엇을, 왜 바꿔야 하는지"에 대한 **상세 spec 문서**까지만 만들고, 실제 구현은 사람이 harness 세션에서 진행한다(CLAUDE.md rule 17과 동일 원칙).
 
+> **실행 주기·출력 형태 (2026-08 세션에서 명확화)**: 별도 워크플로우 파일 없이 **`weekly-report.yml`에 통합**(2-1의 전략 재검토와 동일 패턴) — 매주 리포트 생성 직후 같은 실행에서 spec 후보를 판단한다. 모든 spec은 **텍스트로 리포트/Slack에 포함될 뿐, 어떤 파일도 자동으로 커밋하지 않는다** — 신규 tool spec도 `docs/screens/{화면명}.md`와 같은 구조로 작성된 텍스트를 리포트 안에 담아 전달하는 것이지, 실제 `docs/screens/` 디렉토리에 파일을 쓰거나 PR을 열지 않는다. 사람이 마음에 들면 그 내용을 그대로 복사해 실제 파일로 붙여넣고 harness 세션을 시작하는 방식 — CLAUDE.md rule 17의 "사람과 논의해 확정" 원칙을 AI가 대신하지 않기 위함이다.
+
 > **모든 제안에 근거 명시 필수**: 이 phase가 생성하는 모든 spec(개선/신규 tool/신규 카테고리/Programmatic SEO)은 "무엇을 만들지"뿐 아니라 **"왜 이게 필요하다고 판단했는지"**를 반드시 함께 담는다 — 어떤 GSC 쿼리/트렌드 데이터/CTR/이탈률/키워드 검색량을 근거로 했는지 구체적으로 명시한다. 근거를 명시할 수 없는 제안은 애초에 spec으로 만들지 않고 리포트에서 제외한다.
 
 > **중복 제안 방지 — `/data/proposals.json` 대조 필수**: spec을 새로 생성하기 전에 반드시 `/data/proposals.json`(제안 ID별 최초 제안일/상태)을 먼저 확인한다. 같은 문제(같은 페이지·같은 유형)에 대해 `pending` 상태인 제안이 이미 있으면 spec을 다시 만들지 않고, 주간 리포트에는 "N주째 대기 중" 한 줄 리마인더만 표시한다 — 그렇지 않으면 사람이 아직 검토도 안 했는데 매주 같은 내용을 새로 생성해서 AI 비용과 리포트 분량만 늘어난다. 새 제안이면 spec 생성 후 `proposals.json`에 `pending`으로 기록하고, 사람이 harness로 실제 구현하면 다음 리포트 주기에 `implemented`로 갱신한다. 명시적 "거절" 처리는 v1에서는 자동화하지 않는다 — 사람이 계속 무시하면 리마인더로만 남는 정도로 충분하다.
 
 > **`/data/history.md` 참고 필수**: `proposals.json`이 "정확히 같은 제안"을 막는 기계적 대조라면, `history.md`(Phase 2 8번 참고 — 주차별 압축 요약)는 "이미 시도해봤던 접근과 그 결과"까지 감안하도록 spec 생성 프롬프트에 전체 내용을 함께 입력한다. 예: 지난달 이미 FAQ 보강을 시도했는데 CTR 개선이 없었다면, 이번 주 spec은 같은 방향을 반복 제안하지 않고 다른 원인(제목/스니펫 등)을 우선 검토하도록 한다.
 
-1. Phase 2 리포트 기반으로 CTR/이탈률이 나쁜 페이지 후보를 추출
+> **주당 생성 개수 상한 (2026-08 세션 확정)**: 리뷰 부담과 AI 비용 관리를 위해 한 주에 생성하는 spec 수를 개선 spec 최대 3개, 신규 tool spec 최대 2개로 제한한다 — 후보가 더 많으면 근거가 가장 강한 순으로 상위만 생성하고 나머지는 다음 주로 이월(`proposals.json`에는 아직 기록하지 않고 후보 목록에서만 대기). 고성과 페이지 확장 spec과 신규 카테고리 제안은 다주 연속 신호가 필요해 발생 빈도 자체가 낮으므로 별도 상한을 두지 않는다.
+
+1. **후보 추출 — Phase 2-2와 판단 기준 통일**: CTR이 나쁜 페이지 후보는 Phase 2-2의 `scripts/lib/detectCtrAnomalies.ts`(1차 벤치마크 비교 + 2차 percentile 비교)를 그대로 재사용해 추출한다(2026-08 세션 확정) — Phase 2-2 후보 선정과 Phase 4가 각자 다른 기준으로 "CTR이 나쁜 페이지"를 판단하지 않도록 공유 모듈 하나로 통일한다. 이탈률이 나쁜 페이지는 Phase 2의 기존 세션≥5 필터를 그대로 사용한다
 2. AI가 **개선 spec**을 작성: 무엇을 어떻게 바꿀지, 근거 데이터(어떤 쿼리/CTR/이탈률 때문인지), title/description/콘텐츠 구조 제안(한/영 모두)
-3. **고성과 페이지 확장 spec ("잘 되는 걸 더 잘 되게")**: Phase 2 리포트의 `topPerformingPages`(실제 클릭이 발생 중인 페이지)를 근거로, 문제 수정이 아니라 이미 검증된 성과를 증폭하는 방향의 spec도 생성한다 — 관련 서브 키워드 전용 페이지 분리, 내부링크 강화, 콘텐츠/FAQ 보강 등. **최소 2~3주 이상 연속으로 클릭이 발생한 페이지만 대상으로 한다** — 1~2회성 클릭은 노이즈이므로 이걸 근거로 투자 판단을 내리지 않는다(2026-08 세션에서 트래픽이 극히 적은 초기 상태를 근거로 논의하며 확정한 가드레일). 판단 데이터는 `trend.json`이 아니라 주간 리포트가 매주 계산하는 `topPerformingPages`를 여러 주 누적 관찰해서 사람이 우선 감지하고, spec 생성은 그 신호가 확인된 이후에 트리거한다.
-4. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 코드가 아니라 `docs/screens/{화면명}.md` 초안 형태의 **신규 tool spec**을 생성
-5. **신규 카테고리 제안 (트렌드 기반)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)로 볼 때 뚜렷한 기회가 보이면, tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
-6. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
+3. **고성과 페이지 확장 spec ("잘 되는 걸 더 잘 되게") — 완전 자동, 매주 배치에 포함 (2026-08 세션에서 자동화로 확정)**: 문제 수정이 아니라 이미 검증된 성과를 증폭하는 방향의 spec — 관련 서브 키워드 전용 페이지 분리, 내부링크 강화, 콘텐츠/FAQ 보강 등. `data/processed/top-pages-history.json`에 매주 `topPerformingPages`를 페이지별로 누적 기록(`trend.json`과 동일한 방식의 롤링 이력)하고, 코드가 이 파일을 보고 **최소 2~3주 연속 top performer** 페이지를 자동 감지해 그 주 spec 배치에 포함한다 — 사람이 별도로 지켜보다 트리거할 필요 없이 개선 spec/신규 tool spec과 같은 주기로 함께 제안된다. 1~2회성 클릭은 노이즈이므로 근거로 삼지 않는다는 원칙(트래픽이 극히 적은 초기 상태를 근거로 확정)은 그대로 유지 — 조건을 충족하는 페이지가 없는 주는 이 항목 없이 조용히 넘어간다.
+4. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 `docs/screens/{화면명}.md`와 동일한 구조의 spec 텍스트로 작성해 리포트에 포함한다(위 "실행 주기·출력 형태" 참고 — 실제 파일 생성/커밋 없음)
+5. **신규 카테고리 제안 (트렌드 기반, 최소 2주 연속 신호 필요)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)가 **최소 2주 연속으로 확인**되면(한 주치 스파이크는 노이즈일 수 있어 제외 — 2026-08 세션 확정), tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
+6. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일, 구체적 유사도 계산 방식은 harness 구현 시점에 확정). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
 7. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack으로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
 8. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
 9. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
 
-**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-growth-spec.ts`(고성과 페이지 확장), `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/check-proposal-duplicate.ts`, `/data/proposals.json`
+**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-growth-spec.ts`(고성과 페이지 확장, `top-pages-history.json` 갱신 포함), `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/check-proposal-duplicate.ts`, `/data/proposals.json`, `/data/processed/top-pages-history.json`(페이지별 주간 top-performer 롤링 이력)
 
 ---
 
@@ -261,13 +272,14 @@ GitHub Repo (bitkittools)
  │   ├─ title-variant.md              # 2-2 타이틀 A/B 후보 생성 프롬프트 (가드레일 포함)
  │   ├─ glossary-entry.md             # 용어사전 항목 생성 프롬프트
  │   ├─ improvement-spec.md           # 기존 페이지 개선 spec 생성 프롬프트
- │   └─ tool-research-spec.md         # 신규 tool spec 생성 프롬프트 (SGE 회피 규칙 포함)
+ │   ├─ growth-spec.md                # 고성과 페이지 확장 spec 생성 프롬프트
+ │   └─ tool-research-spec.md         # 신규 tool spec 생성 프롬프트 (SGE 회피 규칙 + 신규 카테고리 제안 포함)
  │
  ├─ .github/workflows/
  │   ├─ deploy.yml                    # Phase 0: main 브랜치 배포 + IndexNow 알림
  │   ├─ test-gate.yml                 # Phase 0: PR마다 Jest 테스트 게이트
  │   ├─ collect-data.yml               # Phase 1: 매일 데이터 수집 (GSC 4차원 포함)
- │   ├─ weekly-report.yml              # Phase 2: 주간 리포트 (정리 후보, 정체 감지, 타이틀 실험 현황 포함)
+ │   ├─ weekly-report.yml              # Phase 2 리포트 + 2-1 정체감지/전략재검토 + 2-2 타이틀 실험 시작/비교 + Phase 4 spec 판단, 전부 한 워크플로우 안에서 순차 실행 (별도 워크플로우 분리 안 함). 각 단계는 독립적으로 실패 허용 — 한 단계가 실패해도 나머지 단계와 리포트/Slack 발송은 계속 진행
  │   ├─ weekly-glossary-publish.yml    # Phase 3: 주 1회 용어사전 발행 (한/영)
  │   ├─ lighthouse-ci.yml              # PR마다 성능 측정
  │   └─ monthly-pruning.yml            # 매달 정리(cut-off) 후보 리포트
@@ -285,11 +297,13 @@ GitHub Repo (bitkittools)
  │   ├─ generate-strategy-review.ts # 정체 시에만 전략 재검토 섹션 생성(아니면 API 호출 없이 즉시 종료)
  │   ├─ generate-report.ts          # Claude Sonnet으로 인사이트 + 아이디어 제안 생성
  │   ├─ post-slack-report.ts        # 생성된 리포트를 Slack Webhook으로 발송(실패해도 워크플로우 안 막음)
- │   ├─ generate-title-variant.ts   # 타이틀/설명 후보 생성 (가드레일 적용)
- │   ├─ run-title-experiment.ts     # 배포 → 21일 대기 → 비교 → 교체/유지 자동화
+ │   ├─ lib/detectCtrAnomalies.ts   # 1차 업계 벤치마크 비교 + 2차 자체 percentile 비교로 CTR 후보 판정(순수 함수) — Phase 2-2·Phase 4 공유
+ │   ├─ generate-title-variant.ts   # 타이틀/설명 후보 생성 (가드레일 프롬프트 + 코드 검증)
+ │   ├─ run-title-experiment.ts     # 후보 선정(YMYL 제외·동시실행 제한) → PR+auto-merge 배포 → 재색인 확인 → 21일 대기 → 원본/직전 버전 비교 → 교체 or 원본 롤백
  │   ├─ generate-glossary-entry.ts  # 용어사전 항목 생성 (evergreen, DefinedTerm 스키마)
- │   ├─ generate-improvement-spec.ts    # 기존 페이지 개선 spec 생성 (코드 아님)
- │   ├─ generate-tool-research-spec.ts  # 신규 tool spec 생성 (코드 아님)
+ │   ├─ generate-improvement-spec.ts    # 기존 페이지 개선 spec 생성 (코드 아님, 주당 최대 3개)
+ │   ├─ generate-growth-spec.ts     # 고성과 페이지 확장 spec 생성 — top-pages-history.json 갱신 + 2~3주 연속 감지(코드 아님)
+ │   ├─ generate-tool-research-spec.ts  # 신규 tool spec 생성 (코드 아님, 주당 최대 2개) + 신규 카테고리 제안(2주 연속 트렌드 필요)
  │   ├─ check-page-similarity.ts    # Programmatic SEO 70% 유사도 가드레일
  │   ├─ check-proposal-duplicate.ts # spec 생성 전 proposals.json 대조 — 이미 pending인 제안은 재생성하지 않음
  │   ├─ check-broken-links.ts       # 깨진 링크/리다이렉트 체커
@@ -301,11 +315,13 @@ GitHub Repo (bitkittools)
  │
  ├─ data/
  │   ├─ raw/                       # 원본 API 응답 (최근 60일만 유지, 자동 삭제)
- │   ├─ processed/                 # AI 분석 입력용 가공 데이터 + 장기 집계 요약 (trend.json 등)
+ │   ├─ processed/                 # AI 분석 입력용 가공 데이터 + 장기 집계 요약 (trend.json — 사이트 전체 주간 추이, top-pages-history.json — 페이지별 주간 top-performer 롤링 이력)
  │   ├─ reports/{연도}/{날짜}.md   # 생성된 주간/전략 리포트, 개선/신규 spec — 연도별 폴더로 분리
  │   ├─ proposals.json             # 제안 ID별 최초 제안일/상태(pending/implemented) — 중복 spec 생성 방지
  │   ├─ history.md                 # 주차별 3~5줄 압축 요약(지표/특이사항/시도한 개선/결과) — 매주 append, 용량 작아 항상 전체를 프롬프트에 포함
- │   └─ action-log.json            # 실행된 액션 기록(id/type/page/deployedAt/description). Phase 2-1에서 빈 스키마로 최초 생성, 실제 기록은 2-2부터. 나중에 규모가 커지면 연도별 분리·메타데이터 확장 재검토
+ │   ├─ action-log.json            # 실행된 액션 기록(id/type/page/deployedAt/description). Phase 2-1에서 빈 스키마로 최초 생성, 실제 기록은 2-2부터. title-experiment 타입은 `cooldownStartedAt`(재색인 확인 시각, 21일 기준점) 필드 추가. 나중에 규모가 커지면 연도별 분리·메타데이터 확장 재검토
+ │   └─ reference/
+ │       └─ ctr-benchmark.json     # SERP 포지션별 업계 평균 CTR 정적 참조표(출처/수집일 명시, 런타임 fetch 없음) — Phase 2-2 1차 필터용
  │
  ├─ content/
  │   └─ glossary/
@@ -379,7 +395,7 @@ GitHub Repo (bitkittools)
 | Clarity Data Export API 제공 범위 | 세션 리플레이/히트맵은 API로 안 나오고 집계 지표만 제공될 수 있음 | 착수 전 API 문서로 실제 제공 필드 확인 |
 | GSC `urlInspection` 쿼터 | 계정당 일일 약 2,000회 제한 | 신규/변경 페이지만 검사하도록 스코프 유지 |
 | Anthropic API 과금 폭주 위험 | 워크플로우 버그(재시도 폭주 등)로 예상보다 호출량 증가 가능 | Anthropic 콘솔에 월 지출 한도(spend limit) 설정 |
-| 타이틀 실험 자동 커밋 | 승인 없이 main에 직접 커밋·배포됨 | 커밋 메시지 컨벤션 분리(`chore(title-experiment): ...`), branch protection 봇 예외 확인 |
+| 타이틀 실험 자동 배포 | 승인 없이 배포됨(YMYL 제외), `tools-config.ts`는 코드 파일이라 빌드 실패 위험 있음 | 직접 push 금지 — PR 생성 → test-gate.yml 통과 → auto-merge로만 진행(2026-08 세션에서 확정). YMYL 페이지는 auto-merge 제외하고 사람 승인 대기 |
 | 데이터 커밋의 배포 트리거 오발 | raw/processed 데이터 커밋마다 배포 워크플로우가 불필요하게 돌 수 있음 | `deploy.yml` 트리거에서 `/data/**` `paths-ignore` 처리 |
 | 서비스 계정 권한 과다 부여 | GA4/GSC 서비스 계정에 필요 이상 권한 부여 위험 | 최소 권한 원칙(GA4는 뷰어 등) |
 | Public repo 데이터 노출 | `action-log.json`/processed 데이터가 경쟁자에게도 공개될 수 있음 | Private 유지 시 Actions 분당 한도 관리 |

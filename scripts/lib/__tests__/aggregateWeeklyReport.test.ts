@@ -3,7 +3,8 @@
  */
 
 import type { ProcessedDay, ProcessedPage, ProcessedQuery } from '../../process-analytics'
-import { aggregateWeeklyReport } from '../aggregateWeeklyReport'
+import { aggregateWeeklyReport, buildTitleExperimentSection } from '../aggregateWeeklyReport'
+import type { ActionLog } from '../detectStagnation'
 
 // ── Test Fixtures ─────────────────────────────────────────────────────────────
 
@@ -529,6 +530,163 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
     )
     // zero-impression queries cannot produce a valid weighted avg → excluded
     expect(zeroEntry).toBeUndefined()
+  })
+})
+
+// ── buildTitleExperimentSection ───────────────────────────────────────────────
+
+describe('buildTitleExperimentSection', () => {
+  const NOW = new Date('2026-08-06T00:00:00Z')
+
+  function makeLog(overrides: Partial<ActionLog['actions'][number]>[] = []): ActionLog {
+    return {
+      actions: overrides.map((o) => ({
+        id: 'test-id',
+        type: 'title-experiment',
+        page: '/beer/bac-calculator/',
+        deployedAt: '2026-08-01T00:00:00Z',
+        description: 'Test experiment',
+        ...o,
+      })),
+    }
+  }
+
+  test('returns null when action log has no entries', () => {
+    expect(buildTitleExperimentSection({ actions: [] }, NOW)).toBeNull()
+  })
+
+  test('returns null when no entries have type=title-experiment', () => {
+    const log: ActionLog = {
+      actions: [
+        {
+          id: 'x',
+          type: 'content-update',
+          page: '/beer/bac-calculator/',
+          deployedAt: '2026-08-01T00:00:00Z',
+          description: 'not an experiment',
+        },
+      ],
+    }
+    expect(buildTitleExperimentSection(log, NOW)).toBeNull()
+  })
+
+  test('returns section header when there is at least one title-experiment entry', () => {
+    const log = makeLog([{}])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).not.toBeNull()
+    expect(result).toContain('## 🔤 진행 중인 타이틀 실험')
+  })
+
+  test('shows 재색인 대기 중 when entry has no status', () => {
+    const log = makeLog([{ page: '/beer/bac-calculator/', deployedAt: '2026-08-01T00:00:00Z' }])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('재색인 대기 중')
+  })
+
+  test('shows 쿨다운 진행 중 with elapsed days for in-progress status using cooldownStartedAt', () => {
+    // cooldownStartedAt 5 days before NOW
+    const log = makeLog([
+      {
+        page: '/beer/bac-calculator/',
+        deployedAt: '2026-07-25T00:00:00Z',
+        cooldownStartedAt: '2026-08-01T00:00:00Z',
+        status: 'in-progress',
+      },
+    ])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('쿨다운 진행 중 (5일 경과)')
+  })
+
+  test('falls back to deployedAt for elapsed days when cooldownStartedAt is absent on in-progress', () => {
+    // deployedAt 3 days before NOW, no cooldownStartedAt
+    const log = makeLog([
+      {
+        page: '/beer/bac-calculator/',
+        deployedAt: '2026-08-03T00:00:00Z',
+        status: 'in-progress',
+      },
+    ])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('쿨다운 진행 중 (3일 경과)')
+  })
+
+  test('shows kept for kept status', () => {
+    const log = makeLog([
+      {
+        page: '/developer/json-formatter/',
+        deployedAt: '2026-07-20T00:00:00Z',
+        status: 'kept',
+      },
+    ])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('kept')
+  })
+
+  test('shows rolled-back for rolled-back status', () => {
+    const log = makeLog([
+      {
+        page: '/travel/visa-requirement-checker/',
+        deployedAt: '2026-07-15T00:00:00Z',
+        status: 'rolled-back',
+      },
+    ])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('rolled-back')
+  })
+
+  test('includes page, deploy date (YYYY-MM-DD), and attempt number in each line', () => {
+    const log = makeLog([
+      {
+        page: '/beer/bac-calculator/',
+        deployedAt: '2026-08-01T00:00:00Z',
+        attemptNumber: 2,
+      },
+    ])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('/beer/bac-calculator/')
+    expect(result).toContain('2026-08-01')
+    expect(result).toContain('2회차')
+  })
+
+  test('shows 회차 미상 when attemptNumber is absent', () => {
+    const log = makeLog([{ page: '/beer/bac-calculator/' }])
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('회차 미상')
+  })
+
+  test('lists all title-experiment entries and ignores other types', () => {
+    const log: ActionLog = {
+      actions: [
+        {
+          id: 'a',
+          type: 'title-experiment',
+          page: '/page-a/',
+          deployedAt: '2026-08-01T00:00:00Z',
+          description: 'exp a',
+          attemptNumber: 1,
+        },
+        {
+          id: 'b',
+          type: 'content-update',
+          page: '/page-b/',
+          deployedAt: '2026-08-01T00:00:00Z',
+          description: 'not exp',
+        },
+        {
+          id: 'c',
+          type: 'title-experiment',
+          page: '/page-c/',
+          deployedAt: '2026-08-02T00:00:00Z',
+          description: 'exp c',
+          attemptNumber: 1,
+          status: 'kept',
+        },
+      ],
+    }
+    const result = buildTitleExperimentSection(log, NOW)
+    expect(result).toContain('/page-a/')
+    expect(result).not.toContain('/page-b/')
+    expect(result).toContain('/page-c/')
   })
 })
 

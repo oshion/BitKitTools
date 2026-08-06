@@ -11,13 +11,13 @@
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, resolve } from 'path'
 import type { ProcessedDay } from './process-analytics'
-import { aggregateWeeklyReport } from './lib/aggregateWeeklyReport'
+import { aggregateWeeklyReport, buildTitleExperimentSection } from './lib/aggregateWeeklyReport'
 import {
   classifyAmbiguousQueries,
   classifyIntentRuleBased,
   type IntentClassification,
 } from './lib/classifyIntent'
-import { appendTrendPoint, readTrend, writeTrend } from './lib/detectStagnation'
+import { appendTrendPoint, readActionLog, readTrend, writeTrend } from './lib/detectStagnation'
 import { extractAnthropicText } from './lib/anthropicResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
@@ -460,9 +460,18 @@ ${lighthouseSection}
   // there are scores below threshold, regardless of AI prompt compliance.
 
   const performanceWarning = buildPerformanceWarningSection(lighthouseSnapshot)
-  const report = performanceWarning
-    ? `${aiReport}\n\n${performanceWarning}`
-    : aiReport
+
+  // ── 8c. Deterministically append title experiment section ─────────────────────
+  // Also NOT delegated to AI — built in code so it always appears when there
+  // are active title experiments, regardless of AI prompt compliance.
+
+  const actionLog = readActionLog()
+  const titleExperimentSection = buildTitleExperimentSection(actionLog)
+
+  const reportParts = [aiReport]
+  if (performanceWarning) reportParts.push(performanceWarning)
+  if (titleExperimentSection) reportParts.push(titleExperimentSection)
+  const report = reportParts.join('\n\n')
 
   // ── 9. Save report ───────────────────────────────────────────────────────────
 
