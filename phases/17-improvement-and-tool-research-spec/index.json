@@ -23,7 +23,7 @@
       "name": "growth-spec-generation",
       "status": "completed",
       "started_at": "2026-08-06T14:47:52+0900",
-      "completed_at": "2026-08-06T15:09:00+0900",
+      "completed_at": "2026-08-06T14:53:56+0900",
       "summary": "recordWeeklyTopPages(TopPerformingPage[]→TopPagesHistory I/O wrapper) + generate-growth-spec.ts(GrowthSpecCandidate, DEFAULT_MIN_CONSECUTIVE_WEEKS=2, selectGrowthCandidates, generateGrowthSpec) 구현, 테스트 22개 신규 작성 및 전체 1058개 통과"
     },
     {
