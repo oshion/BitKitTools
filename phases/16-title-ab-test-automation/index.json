@@ -31,7 +31,7 @@
       "name": "title-experiment-orchestration",
       "status": "completed",
       "started_at": "2026-08-06T11:14:06+0900",
-      "completed_at": "2026-08-06T12:10:00+0900",
+      "completed_at": "2026-08-06T11:38:34+0900",
       "summary": "scripts/lib/titleExperimentOrchestrator.ts 신규(isYmylTool/countInProgressExperiments/isExperimentReadyForEvaluation/evaluateExperimentOutcome/selectCandidatePages/getPageCtr/getRequiredKeywordsForTool/findToolByPage/updateToolTitleDescription 순수 함수 + deployTitleVariant injectable spawnSyncFn) + scripts/run-title-experiment.ts 신규(Phase B 기존 실험 평가·rollback·new-attempt + Phase C 신규 실험 배포, GH_TOKEN/ANTHROPIC_API_KEY 필요) + 38개 단위 테스트(YMYL=true → gh pr merge --auto 미호출 AC 포함) 작성, 전체 964개 테스트/빌드 통과"
     },
     {
