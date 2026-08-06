@@ -7,6 +7,7 @@
  */
 
 import type { ProcessedDay } from '../process-analytics'
+import type { ActionLog } from './detectStagnation'
 
 // ── Exported Types ────────────────────────────────────────────────────────────
 
