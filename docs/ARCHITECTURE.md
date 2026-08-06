@@ -287,6 +287,56 @@ npm run lint --fix
 
 ---
 
+## CI/CD 파이프라인
+
+`.github/workflows/` 아래 4개 워크플로우가 서로 다른 트리거로 독립적으로 동작한다.
+
+### 1. 배포 (`deploy.yml`)
+
+**트리거**: `master`에 push (단 `data/**`, `phases/**`, `*.md`만 바뀐 커밋은 `paths-ignore`로 제외 — 데이터/문서 전용 커밋이 매번 불필요한 재배포를 유발하지 않도록).
+
+```
+master에 실제 코드 변경 push
+  → npm run build
+  → EC2로 rsync 배포 (-rlvz --delete, 속성 보존 안 함)
+  → IndexNow에 변경 URL 알림 (notify-indexnow.ts)
+  → GSC Sitemaps API로 sitemap 재제출 (notify-gsc-reindex.ts)
+```
+
+### 2. 코드 변경이 master로 들어가는 경로 — harness + PR 게이트
+
+harness(`scripts/execute.py`)로 작업한 코드는 직접 master에 커밋되지 않고 PR을 거친다:
+
+```
+execute.py로 phase 실행 (feat-{phase} 브랜치에서 step별 작업)
+  → 모든 step 완료 후 자동으로 push + `gh pr create`로 PR 생성 (master 대상)
+  → PR 오픈 → test-gate.yml 트리거
+  → lint / test / build / 깨진 링크 체커(scripts/check-broken-links.ts) / Lighthouse CI(정보성, 대표 5페이지)
+  → 통과 시 `gh pr merge --auto --merge`로 건 auto-merge가 자동 병합 (사람 승인 불필요)
+  → master 업데이트 → 위 1번(deploy.yml) 트리거
+```
+
+`master`에는 branch protection이 걸려 있어(`test-gate.yml`의 `test` job이 필수 상태 체크), 이 체크를 통과하지 못한 변경은 병합될 수 없다. `test-gate.yml`은 `pull_request` 이벤트에서만 트리거되므로, **PR을 거치지 않은 직접 push는 구조적으로 이 체크를 절대 받을 수 없어 차단된다**(관리자 권한으로 우회하지 않는 한).
+
+### 3. 데이터 전용 봇 — 매일/매주 자동 실행 (`collect-data.yml`, `weekly-report.yml`)
+
+코드가 아니라 `data/` 아래 JSON/MD 파일만 다루는 별개 흐름:
+
+- **`collect-data.yml`** (매일 03:00 UTC): GA4/GSC/Clarity 수집 → raw→processed 가공 → GSC 색인 상태 체크 → `data/raw`, `data/processed`, `data/indexing-status.json` 커밋
+- **`weekly-report.yml`** (매주 월요일 00:00 UTC): 운영 사이트 Lighthouse 감사 → Claude Sonnet으로 주간 리포트 생성 → 트래픽 정체 감지 시 전략 재검토 → Slack 발송 → `data/reports`, `data/history.md`, `data/processed/trend.json` 등 커밋
+
+이 둘은 `data/**`만 건드리므로 1번(`deploy.yml`)을 트리거하지 않는다.
+
+**이 두 봇은 PR을 거치지 않고 `GH_BOT_PAT`(저장소 관리자 소유 PAT, GitHub Secret)로 master에 직접 커밋한다** — branch protection을 의도적으로 우회하는 유일한 경로다. 이유와 트레이드오프는 [ADR.md](ADR.md) ADR-016 참고.
+
+### 저장소 설정 (재현용)
+
+- Settings → General → Pull Requests → **Allow auto-merge** 체크됨
+- Settings → Branches → `master` 규칙: **Require status checks to pass before merging** → `test` 체크 필수 지정 (Require branches to be up to date는 미체크)
+- `gh` CLI가 harness 실행 환경(로컬 PC)에 설치·인증되어 있어야 `execute.py`가 PR 생성/auto-merge를 걸 수 있음 (`gh auth status`로 확인)
+
+---
+
 ## next.config 핵심 설정
 
 ```js

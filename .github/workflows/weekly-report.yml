@@ -15,6 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # See docs/ADR.md ADR-016 — this bot only touches data/**, so it
+          # bypasses the master branch protection gate via a personal PAT
+          # rather than the default GITHUB_TOKEN (which can't push to a
+          # protected branch and can't trigger test-gate.yml even via PR).
+          token: ${{ secrets.GH_BOT_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

@@ -15,6 +15,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Default GITHUB_TOKEN can't push to master (branch protection requires
+          # the test-gate.yml status check, which only PRs can satisfy). This bot
+          # only ever touches data/** — no code for test-gate.yml to check — so it
+          # bypasses the gate entirely by pushing as an admin via a personal PAT.
+          # See docs/ADR.md ADR-016.
+          token: ${{ secrets.GH_BOT_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
