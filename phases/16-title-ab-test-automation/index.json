@@ -37,10 +37,10 @@
     {
       "step": 4,
       "name": "weekly-report-integration",
-      "status": "error",
-      "started_at": "2026-08-06T11:38:35+0900",
-      "error_message": "[3회 시도 후 실패] Step did not update status",
-      "failed_at": "2026-08-06T11:40:14+0900"
+      "status": "completed",
+      "started_at": "2026-08-06T14:04:06+0900",
+      "completed_at": "2026-08-06T14:28:00+0900",
+      "summary": "weekly-report.yml에 'Run title experiment' 스텝(continue-on-error: true, GH_TOKEN/ANTHROPIC_API_KEY) 추가 + aggregateWeeklyReport.ts에 buildTitleExperimentSection 순수 함수 신규(status별 라벨: 재색인 대기 중/쿨다운 진행 중 N일 경과/kept/rolled-back) + generate-report.ts에서 readActionLog 호출 후 리포트 말미에 결정론적으로 이어붙이기 + 11개 단위 테스트 작성, 전체 975개 테스트/빌드 통과"
     }
   ],
   "created_at": "2026-08-06T10:51:49+0900"

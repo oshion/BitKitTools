@@ -68,6 +68,46 @@ export interface WeeklyReportData {
   fallingQueries: QueryPositionChange[]
 }
 
+// ── Title Experiment Section ──────────────────────────────────────────────────
+
+/**
+ * Deterministically builds the `## 🔤 진행 중인 타이틀 실험` section from
+ * the action log. Returns null when there are no title-experiment entries
+ * (no section needed). This is NOT delegated to AI — built in code to
+ * guarantee it appears whenever there are active experiments.
+ *
+ * @param now - Reference date for computing elapsed days (injectable for tests)
+ */
+export function buildTitleExperimentSection(
+  actionLog: ActionLog,
+  now: Date = new Date()
+): string | null {
+  const experiments = actionLog.actions.filter((a) => a.type === 'title-experiment')
+  if (experiments.length === 0) return null
+
+  const lines = experiments.map((entry) => {
+    const deployDate = entry.deployedAt.slice(0, 10)
+    const attempt =
+      entry.attemptNumber !== undefined ? `${entry.attemptNumber}회차` : '회차 미상'
+
+    let statusLabel: string
+    if (!entry.status) {
+      statusLabel = '재색인 대기 중'
+    } else if (entry.status === 'in-progress') {
+      const startMs = new Date(entry.cooldownStartedAt ?? entry.deployedAt).getTime()
+      const daysDiff = Math.floor((now.getTime() - startMs) / (1000 * 60 * 60 * 24))
+      statusLabel = `쿨다운 진행 중 (${daysDiff}일 경과)`
+    } else {
+      // 'kept' | 'rolled-back'
+      statusLabel = entry.status
+    }
+
+    return `- ${entry.page}: 배포 ${deployDate}, ${attempt}, ${statusLabel}`
+  })
+
+  return `## 🔤 진행 중인 타이틀 실험\n\n${lines.join('\n')}`
+}
+
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 /** Minimum sessions required to include a page in highBouncePages */
