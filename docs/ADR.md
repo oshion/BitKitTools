@@ -108,3 +108,15 @@
 **결정**: ADR-013에서 채택한 CookieYes를 걷어내고, AdSense "Privacy & messaging"에서 제공하는 Google 자체 CMP(2가지 선택: 동의/옵션 관리)로 전환한다. `ConsentManager.tsx`는 CookieYes 스크립트 대신 `fundingchoicesmessages.google.com` 메시지 스크립트를 로드하고, `AnalyticsScripts.tsx`는 CookieYes의 `cookieyes_consent_update` 커스텀 이벤트 대신 Google의 `window.googlefc.callbackQueue`(`CONSENT_MODE_DATA_READY` → `getGoogleConsentModeValues()`)로 동의 상태를 구독한다.
 **이유**: CookieYes 무료 티어는 월 5,000 pageviews 한도가 있어 트래픽이 늘면 유료 전환이 필요한데, Google 자체 CMP는 AdSense 계정에 이미 연결된 광고 태그를 배포 채널로 재사용하므로 별도 계정/한도 없이 완전 무료다. AdSense 가입 직후 이 트레이드오프를 인지하고 바로 전환을 결정했다.
 **트레이드오프**: Google 자체 CMP는 AdSense 계정에 종속적이라 AdSense 외 다른 광고 네트워크를 병행할 경우 유연성이 떨어진다. 또한 CookieYes처럼 배너 문구/레이아웃을 세밀하게 커스터마이징하는 자유도가 낮다 — 이 프로젝트는 AdSense 단일 수익원이라 이 제약이 당장 문제되지 않는다고 판단했다. `AdSlot.tsx`의 광고 스크립트는 뷰포트 근접 시에만 지연 로딩되므로, 동의 메시지 스크립트는 `AdSlot.tsx`에 얹지 않고 `ConsentManager.tsx`에서 페이지 로드 시 즉시(eager) 로드하도록 별도 배치했다 — 동의는 광고 노출 여부와 무관하게 최대한 빨리 받아야 하기 때문.
+
+---
+
+### ADR-016: master branch protection + PR auto-merge 게이트, 데이터 봇은 PAT로 우회
+
+**결정**: `master`에 "test-gate.yml의 `test` job 통과" 를 필수 상태 체크로 하는 branch protection을 걸고, `scripts/execute.py`(harness)가 phase 완료 시 직접 커밋 대신 PR을 열고 `gh pr merge --auto`로 auto-merge를 걸도록 바꿨다. 단, `collect-data.yml`/`weekly-report.yml`(데이터 전용 봇)은 이 게이트를 거치지 않고 관리자 소유 PAT(`GH_BOT_PAT` GitHub Secret)로 master에 직접 커밋한다.
+
+**이유**: 자동화가 늘어날수록(주간 리포트, 향후 타이틀 A/B 테스트 등) 로컬 검증만 믿는 방식은 위험하다 — 실제로 `jest.config.ts`가 요구하는 `ts-node`가 프로젝트에 명시적으로 선언되지 않았는데도, 이 PC에 우연히 설치된 무관한 전역 패키지(`eas-cli`가 끌고 온 `ts-node`) 덕분에 로컬 `npm test`는 계속 통과해왔다. 클린한 GitHub Actions 러너에서 처음 PR을 열어보고서야 이 버그가 드러났다. PR 게이트는 "이 PC/이 사람 환경에서 통과함"이 아니라 "이 코드 자체가 클린한 환경에서 맞음"을 보장한다.
+
+데이터 봇(`collect-data.yml`/`weekly-report.yml`)은 예외로 뒀다 — 이 둘은 `data/**`(JSON/MD)만 다뤄 애초에 `test-gate.yml`(lint/test/build)이 검증할 대상이 없고, 매일/매주 실행되므로 매번 PR을 열어 CI를 기다리게 하면 불필요한 지연과 Actions 비용만 늘어난다.
+
+**트레이드오프**: 봇이 PR 없이 직접 push하려면 기본 제공 `GITHUB_TOKEN`으로는 안 된다 — `GITHUB_TOKEN`은 admin 권한이 없어 branch protection을 우회할 수 없고(직접 push가 막힘), 설령 PR을 열게 하더라도 **`GITHUB_TOKEN`으로 생성된 PR/push는 다른 워크플로우(`test-gate.yml`)를 트리거하지 않는다**(GitHub의 재귀 실행 방지 정책)는 별도 제약까지 겹쳐서, 어느 경로로도 정상 동작하지 않는다. 그래서 관리자 개인 PAT를 새로 발급해 `GH_BOT_PAT` Secret으로 등록하고, 두 워크플로우의 checkout/push에 그 토큰을 쓰도록 했다 — 장기적으로 PAT 만료 시 재발급이 필요하다는 관리 부담이 생긴다.
