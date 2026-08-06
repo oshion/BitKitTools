@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "title-variant-generation",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-08-06T10:57:08+0900",
+      "completed_at": "2026-08-06T11:30:00+0900",
+      "summary": "scripts/lib/validateTitleVariant.ts(길이/금지표현/필수키워드 3종 가드레일 코드 검증, BANNED_PATTERNS 13개) + scripts/generate-title-variant.ts(parseVariantsFromResponse 순수 파서 분리, generateTitleVariants 최대 2회 재시도 로직) + 51개 단위 테스트(validateTitleVariant 33개 + parseVariantsFromResponse 18개) 작성 및 전체 907개 테스트/빌드 통과"
     },
     {
       "step": 2,
