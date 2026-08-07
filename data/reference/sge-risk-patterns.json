@@ -1,0 +1,27 @@
+{
+  "source": "AI Overview(SGE)가 직접 답을 보여줘 클릭이 거의 발생하지 않는 것으로 알려진 검색 의도 패턴 — 공식 통계가 아닌 SEO 커뮤니티에서 통상적으로 언급되는 경향. 정확도가 검증된 수치는 아니다.",
+  "collectedAt": "2026-08-06",
+  "zeroClickPatterns": [
+    "unit convert",
+    "단위 변환",
+    "hex to decimal",
+    "진법 변환",
+    "base64 decode",
+    "base64 디코드",
+    "hash decode",
+    "해시 디코드",
+    "what is",
+    "이란",
+    "definition"
+  ],
+  "interactionNeededPatterns": [
+    "upload",
+    "업로드",
+    "compare files",
+    "파일 비교",
+    "batch",
+    "일괄",
+    "download",
+    "다운로드"
+  ]
+}

@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import { existsSync, mkdirSync, writeFileSync } from 'fs'
+import { existsSync, mkdtempSync, writeFileSync } from 'fs'
 import { tmpdir } from 'os'
 import { join, resolve } from 'path'
 import type { ActionLogEntry, TrendData, WeeklyTrendPoint } from '../detectStagnation'
@@ -17,6 +17,17 @@ import {
 } from '../detectStagnation'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+
+/**
+ * Returns a fresh, OS-guaranteed-unique temp directory. `Date.now()`-based
+ * "unique" paths collide on fast CI runners when two tests execute within
+ * the same millisecond (observed as a flaky failure on ubuntu-latest where
+ * a prior test's written action-log.json was reused as another test's
+ * "nonexistent" path).
+ */
+function uniqueTestDir(): string {
+  return mkdtempSync(join(tmpdir(), 'bitkittools-test-'))
+}
 
 function makeTrendPoint(overrides: Partial<WeeklyTrendPoint> = {}): WeeklyTrendPoint {
   return {
@@ -391,13 +402,12 @@ describe('filterCooldownComplete', () => {
 
 describe('readTrend', () => {
   test('returns { weeks: [] } when file does not exist', () => {
-    const nonexistent = resolve(tmpdir(), `bitkittools-test-${Date.now()}`, 'trend.json')
+    const nonexistent = join(uniqueTestDir(), 'trend.json')
     expect(readTrend(nonexistent)).toEqual({ weeks: [] })
   })
 
   test('returns { weeks: [] } when file is malformed JSON', () => {
-    const dir = resolve(tmpdir(), `bitkittools-test-${Date.now()}`)
-    mkdirSync(dir, { recursive: true })
+    const dir = uniqueTestDir()
     const filePath = join(dir, 'trend.json')
     writeFileSync(filePath, 'not valid json', 'utf-8')
     expect(readTrend(filePath)).toEqual({ weeks: [] })
@@ -406,7 +416,7 @@ describe('readTrend', () => {
 
 describe('writeTrend + readTrend round-trip', () => {
   test('writes and reads back the same data', () => {
-    const dir = resolve(tmpdir(), `bitkittools-test-${Date.now()}`)
+    const dir = uniqueTestDir()
     const filePath = join(dir, 'trend.json')
     const trend: TrendData = {
       weeks: [
@@ -420,7 +430,7 @@ describe('writeTrend + readTrend round-trip', () => {
   })
 
   test('creates intermediate directories if they do not exist', () => {
-    const dir = resolve(tmpdir(), `bitkittools-test-${Date.now()}`, 'nested', 'deep')
+    const dir = resolve(uniqueTestDir(), 'nested', 'deep')
     const filePath = join(dir, 'trend.json')
     const trend: TrendData = { weeks: [] }
     expect(() => writeTrend(trend, filePath)).not.toThrow()
@@ -430,21 +440,19 @@ describe('writeTrend + readTrend round-trip', () => {
 
 describe('readActionLog', () => {
   test('returns { actions: [] } when file does not exist', () => {
-    const nonexistent = resolve(tmpdir(), `bitkittools-test-${Date.now()}`, 'action-log.json')
+    const nonexistent = join(uniqueTestDir(), 'action-log.json')
     expect(readActionLog(nonexistent)).toEqual({ actions: [] })
   })
 
   test('returns { actions: [] } when file is malformed JSON', () => {
-    const dir = resolve(tmpdir(), `bitkittools-test-${Date.now()}`)
-    mkdirSync(dir, { recursive: true })
+    const dir = uniqueTestDir()
     const filePath = join(dir, 'action-log.json')
     writeFileSync(filePath, '{ broken', 'utf-8')
     expect(readActionLog(filePath)).toEqual({ actions: [] })
   })
 
   test('reads a valid action log', () => {
-    const dir = resolve(tmpdir(), `bitkittools-test-${Date.now()}`)
-    mkdirSync(dir, { recursive: true })
+    const dir = uniqueTestDir()
     const filePath = join(dir, 'action-log.json')
     const log = { actions: [makeActionEntry()] }
     writeFileSync(filePath, JSON.stringify(log), 'utf-8')
@@ -452,7 +460,7 @@ describe('readActionLog', () => {
   })
 
   test('does NOT auto-create the file when it does not exist', () => {
-    const nonexistent = resolve(tmpdir(), `bitkittools-test-${Date.now()}`, 'action-log.json')
+    const nonexistent = join(uniqueTestDir(), 'action-log.json')
     readActionLog(nonexistent)
     expect(existsSync(nonexistent)).toBe(false)
   })

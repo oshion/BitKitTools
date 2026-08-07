@@ -169,14 +169,14 @@
 1. **후보 추출 — Phase 2-2와 판단 기준 통일**: CTR이 나쁜 페이지 후보는 Phase 2-2의 `scripts/lib/detectCtrAnomalies.ts`(1차 벤치마크 비교 + 2차 percentile 비교)를 그대로 재사용해 추출한다(2026-08 세션 확정) — Phase 2-2 후보 선정과 Phase 4가 각자 다른 기준으로 "CTR이 나쁜 페이지"를 판단하지 않도록 공유 모듈 하나로 통일한다. 이탈률이 나쁜 페이지는 Phase 2의 기존 세션≥5 필터를 그대로 사용한다
 2. AI가 **개선 spec**을 작성: 무엇을 어떻게 바꿀지, 근거 데이터(어떤 쿼리/CTR/이탈률 때문인지), title/description/콘텐츠 구조 제안(한/영 모두)
 3. **고성과 페이지 확장 spec ("잘 되는 걸 더 잘 되게") — 완전 자동, 매주 배치에 포함 (2026-08 세션에서 자동화로 확정)**: 문제 수정이 아니라 이미 검증된 성과를 증폭하는 방향의 spec — 관련 서브 키워드 전용 페이지 분리, 내부링크 강화, 콘텐츠/FAQ 보강 등. `data/processed/top-pages-history.json`에 매주 `topPerformingPages`를 페이지별로 누적 기록(`trend.json`과 동일한 방식의 롤링 이력)하고, 코드가 이 파일을 보고 **최소 2~3주 연속 top performer** 페이지를 자동 감지해 그 주 spec 배치에 포함한다 — 사람이 별도로 지켜보다 트리거할 필요 없이 개선 spec/신규 tool spec과 같은 주기로 함께 제안된다. 1~2회성 클릭은 노이즈이므로 근거로 삼지 않는다는 원칙(트래픽이 극히 적은 초기 상태를 근거로 확정)은 그대로 유지 — 조건을 충족하는 페이지가 없는 주는 이 항목 없이 조용히 넘어간다.
-4. **신규 tool 리서치 — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 `docs/screens/{화면명}.md`와 동일한 구조의 spec 텍스트로 작성해 리포트에 포함한다(위 "실행 주기·출력 형태" 참고 — 실제 파일 생성/커밋 없음)
-5. **신규 카테고리 제안 (트렌드 기반, 최소 2주 연속 신호 필요)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않지만 최신 검색 트렌드(Google Trends 급상승, 키워드 검색량 증가 등)가 **최소 2주 연속으로 확인**되면(한 주치 스파이크는 노이즈일 수 있어 제외 — 2026-08 세션 확정), tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, 트렌드/검색량 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
+4. **신규 tool 리서치 — 근거는 GSC 쿼리 데이터로 한정 (2026-08 세션 확정) — SGE(AI Overview) 회피 우선순위 적용 (규칙 목록 우선 + AI는 애매한 경우만)**: Google Trends/자동완성 등 외부 트렌드 스크래핑은 쓰지 않는다 — 공식 무료 API가 없어 비공식 라이브러리에 의존해야 하는데, 이 프로젝트는 지금까지 일관되게 이런 "무료지만 비공식·불안정" 의존성을 배제해왔다(경쟁사 페이지 구조 분석 스크립트 제외, Playwright 제외와 동일한 이유). 대신 이미 매일 수집 중인 GSC 쿼리 데이터(우리 사이트가 노출된 쿼리 중 기존 tool로 충분히 커버되지 않는 것)만으로 후보를 추출한다 — 완전히 새로운(우리 사이트가 전혀 노출되지 않는) 카테고리 발견력은 약해지지만, 무료·안정성을 우선한다는 이 프로젝트의 일관된 기준에 맞다. 단위 변환, 진법 변환, 해시/인코딩 디코드 같은 알려진 zero-click 패턴은 규칙 목록(`data/reference/sge-risk-patterns.json`, 정적 데이터)으로 가중치 하향, 파일 업로드/다운로드·여러 파일 비교처럼 인터랙션이 필요한 아이디어에 가중치. 통과한 후보는 `docs/screens/{화면명}.md`와 동일한 구조의 spec 텍스트로 작성해 리포트에 포함한다(위 "실행 주기·출력 형태" 참고 — 실제 파일 생성/커밋 없음)
+5. **신규 카테고리 제안 (GSC 쿼리 기반, 최소 2주 연속 신호 필요)**: 신규 tool 후보를 리서치하는 과정에서, 기존 4개 카테고리(개발자/맥주/여행/육아) 중 어디에도 자연스럽게 속하지 않는 GSC 쿼리 군집이 **최소 2주 연속으로 확인**되면(한 주치 스파이크는 노이즈일 수 있어 제외 — 2026-08 세션 확정), tool 하나가 아니라 **신규 카테고리 자체**를 제안 항목으로 포함한다. 신규 카테고리는 tool 추가보다 훨씬 큰 스코프 변경(CLAUDE.md rule 17 기준)이므로, spec에는 일반 신규 tool spec보다 더 많은 근거를 담는다: 왜 기존 카테고리로 흡수할 수 없는지, GSC 쿼리/노출 추이 근거, 최소 몇 개 tool로 카테고리를 시작할 수 있는지, 예상 disclaimerType까지 포함
 6. **Programmatic SEO 후보도 동일 흐름**: 검색 의도별 변형 페이지(JPG→PNG, PNG→JPG 등) 후보에 대해 기존 페이지와 콘텐츠 유사도가 70% 이상이면 spec 자체를 생성하지 않음(가드레일, 구체적 유사도 계산 방식은 harness 구현 시점에 확정). 통과한 것만 "이 페이지만의 차별화 콘텐츠 계획"을 담은 spec 작성
 7. 모든 spec은 주간 리포트에 "이번 주 개선/신규 제안" 섹션으로 포함되어 Slack으로 전달 — 신규 카테고리 제안이 있는 주는 별도로 눈에 띄게 표시한다
 8. 사람이 마음에 드는 spec을 골라 실제 Claude Code 세션에서 `/harness` 워크플로우로 구현 → PR → 승인 → 배포 (Phase 0 CI/CD 재사용). tool의 경우 테스트 게이트 통과가 승인의 전제조건
 9. **FAQ + SoftwareApplication/WebApplication 스키마**: 자동 코드생성 스크립트로 별도로 두지 않고, 사람이 harness 세션에서 spec을 구현할 때 함께 생성. **단, `aggregateRating`(평점)은 넣지 않는다** — 진짜 평점 데이터를 관리할 백엔드가 없고, 가짜 평점은 Google 구조화 데이터 정책 위반 리스크
 
-**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-growth-spec.ts`(고성과 페이지 확장, `top-pages-history.json` 갱신 포함), `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/check-proposal-duplicate.ts`, `/data/proposals.json`, `/data/processed/top-pages-history.json`(페이지별 주간 top-performer 롤링 이력)
+**산출물**: `scripts/generate-improvement-spec.ts`, `scripts/generate-growth-spec.ts`(고성과 페이지 확장, `top-pages-history.json` 갱신 포함), `scripts/generate-tool-research-spec.ts`, `scripts/check-page-similarity.ts`, `scripts/lib/proposalTracking.ts`(proposals.json 중복 체크, 순수 함수), `scripts/lib/topPagesHistory.ts`(top-pages-history.json 롤링 기록 + 연속 감지, 순수 함수), `/data/proposals.json`, `/data/processed/top-pages-history.json`(페이지별 주간 top-performer 롤링 이력), `/data/reference/sge-risk-patterns.json`(SGE 회피 규칙 목록, 정적 데이터)
 
 ---
 
@@ -223,7 +223,7 @@ Phase 1(원인 분석)에 아래 항목들을 추가로 포함한다.
 |---|---|---|
 | **검색 의도(Intent) 분류** | GSC 쿼리를 tool/tutorial/comparison/problem-solving으로 분류해 "Tool을 만들지, 기존 페이지를 고칠지" 자동 판단 | AI 분류 (Phase 2에 포함) |
 | **Tool 사용 퍼널** | 검색 유입은 되는데 실제 tool 사용까지 이어지는지 (`tool_open`→`convert_click`→`download_click`) | GA4 커스텀 이벤트 (Phase 1에 포함) |
-| **경쟁사/키워드 갭 분석** | 유사 tool 사이트가 받는 트래픽 키워드 중 우리 사이트에 없는 것 파악 | Google 자동완성, "People also ask", Google Trends 비교 (무료) |
+| **경쟁사/키워드 갭 분석** | 유사 tool 사이트가 받는 트래픽 키워드 중 우리 사이트에 없는 것 파악 | **보류** — Google 자동완성/PAA/Trends는 비공식 API라 이 프로젝트가 배제해온 의존성 유형과 같아 자동화하지 않기로 확정(2026-08 세션, Phase 4 참고). 신규 tool/카테고리 후보는 GSC 쿼리 데이터만으로 판단 |
 | **검색 순위 추이** | 키워드별 순위가 오르는지 내리는지 7일/30일 단위로 추적 | GSC 일별 평균 position 데이터 활용 |
 | **Core Web Vitals / 속도** | 페이지 속도는 구글 랭킹 요소. 변환기/계산기류 tool은 JS가 무거워지기 쉬움 | GSC "핵심 웹 지표" 리포트를 주간 리포트에 포함 |
 | **깨진 링크 / 크롤링 이슈** | 404, 리다이렉트 체인, sitemap 누락은 SEO 직접 타격 | GSC "페이지 색인 생성" 리포트 + 자체 크롤링 체커 |

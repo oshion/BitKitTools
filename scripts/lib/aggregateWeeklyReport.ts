@@ -6,8 +6,9 @@
  * suitable for report generation.
  */
 
-import type { ProcessedDay } from '../process-analytics'
+import type { ProcessedDay, ProcessedQuery } from '../process-analytics'
 import type { ActionLog } from './detectStagnation'
+import type { PageCtrSample } from './detectCtrAnomalies'
 
 // ── Exported Types ────────────────────────────────────────────────────────────
 
@@ -66,6 +67,60 @@ export interface WeeklyReportData {
   risingQueries: QueryPositionChange[]
   /** Queries that fell most in rank (positionChange asc, top 10) */
   fallingQueries: QueryPositionChange[]
+}
+
+/** Re-export for callers that only need the aggregated sample shape */
+export type PageCtrSampleFromQueries = PageCtrSample
+
+// ── Query Aggregation ─────────────────────────────────────────────────────────
+
+/**
+ * Aggregates a flat list of ProcessedQuery records (one row per
+ * (query, page, country, device) combination) into a list of PageCtrSample
+ * records keyed by (page, query).
+ *
+ * - impressions and clicks are summed across all country/device variants.
+ * - avgPosition is the impressions-weighted average across variants.
+ *   When total impressions is 0, avgPosition falls back to 0.
+ *
+ * This is the required pre-processing step before passing query data to
+ * detectCtrAnomalies, because that function expects one record per
+ * (page, query) pair.
+ */
+export function aggregateQueriesByPageAndQuery(queries: ProcessedQuery[]): PageCtrSample[] {
+  type Accum = {
+    impressions: number
+    clicks: number
+    weightedPositionSum: number
+  }
+
+  const map = new Map<string, Accum>()
+
+  for (const q of queries) {
+    const key = `${q.page}\x00${q.query}`
+    const existing = map.get(key) ?? { impressions: 0, clicks: 0, weightedPositionSum: 0 }
+    existing.impressions += q.impressions
+    existing.clicks += q.clicks
+    existing.weightedPositionSum += q.position * q.impressions
+    map.set(key, existing)
+  }
+
+  const result: PageCtrSample[] = []
+  for (const [key, acc] of map) {
+    const sepIdx = key.indexOf('\x00')
+    const page = key.slice(0, sepIdx)
+    const query = key.slice(sepIdx + 1)
+    const avgPosition = acc.impressions > 0 ? acc.weightedPositionSum / acc.impressions : 0
+    result.push({
+      page,
+      query,
+      impressions: acc.impressions,
+      clicks: acc.clicks,
+      avgPosition,
+    })
+  }
+
+  return result
 }
 
 // ── Title Experiment Section ──────────────────────────────────────────────────

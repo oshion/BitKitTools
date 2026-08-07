@@ -1,0 +1,56 @@
+{
+  "project": "BitKitTools.com",
+  "phase": "17-improvement-and-tool-research-spec",
+  "steps": [
+    {
+      "step": 0,
+      "name": "proposal-tracking-foundation",
+      "status": "completed",
+      "started_at": "2026-08-06T14:35:04+0900",
+      "completed_at": "2026-08-06T14:39:42+0900",
+      "summary": "proposalTracking.ts(중복 제안 방지 순수 함수+I/O) + topPagesHistory.ts(페이지별 주간 top-performer 롤링 이력 + 연속 감지 순수 함수+I/O) 구현, 테스트 39개 신규 작성 및 전체 1014개 통과"
+    },
+    {
+      "step": 1,
+      "name": "improvement-spec-generation",
+      "status": "completed",
+      "started_at": "2026-08-06T14:39:43+0900",
+      "completed_at": "2026-08-06T14:47:52+0900",
+      "summary": "aggregateQueriesByPageAndQuery(ProcessedQuery→PageCtrSample 집계, 국가/기기 합산+impression-weighted avgPosition) + generate-improvement-spec.ts(ImprovementSpecCandidate, MAX=3 상수, selectImprovementCandidates, buildImprovementSpecPrompt, generateImprovementSpec) 구현, 테스트 22개 신규 작성 및 전체 1036개 통과"
+    },
+    {
+      "step": 2,
+      "name": "growth-spec-generation",
+      "status": "completed",
+      "started_at": "2026-08-06T14:47:52+0900",
+      "completed_at": "2026-08-06T14:53:56+0900",
+      "summary": "recordWeeklyTopPages(TopPerformingPage[]→TopPagesHistory I/O wrapper) + generate-growth-spec.ts(GrowthSpecCandidate, DEFAULT_MIN_CONSECUTIVE_WEEKS=2, selectGrowthCandidates, generateGrowthSpec) 구현, 테스트 22개 신규 작성 및 전체 1058개 통과"
+    },
+    {
+      "step": 3,
+      "name": "tool-research-and-category-spec",
+      "status": "completed",
+      "started_at": "2026-08-06T14:53:57+0900",
+      "completed_at": "2026-08-06T15:05:28+0900",
+      "summary": "unmatchedQueryHistory.ts(롤링 이력 I/O+findRecurringQueries) + toolResearchMatching.ts(findUnmatchedQueries+classifySgeRiskByRules) + generate-tool-research-spec.ts(selectToolResearchCandidates, generateToolResearchSpec, selectNewCategoryCandidate, generateNewCategorySpec, parseNewCategorySpecResponse) + data/reference/sge-risk-patterns.json 구현, 테스트 69개 신규 작성 및 전체 1127개 통과"
+    },
+    {
+      "step": 4,
+      "name": "programmatic-seo-spec",
+      "status": "completed",
+      "started_at": "2026-08-06T15:05:28+0900",
+      "completed_at": "2026-08-06T15:17:32+0900",
+      "summary": "checkPageSimilarity.ts(Jaccard 유사도+guardrail 순수 함수, 구두점 정규화 포함) + generate-programmatic-seo-spec.ts(findNearMissQueries, selectProgrammaticSeoCandidates, draftProgrammaticSeoVariant, draftAndValidateVariant 1회 재시도 후 null, generateProgrammaticSeoSpec) 구현, 테스트 45개 신규 작성 및 전체 1172개 통과"
+    },
+    {
+      "step": 5,
+      "name": "weekly-report-integration",
+      "status": "completed",
+      "started_at": "2026-08-07T08:43:38+0900",
+      "completed_at": "2026-08-07T08:48:00+0900",
+      "summary": "generate-weekly-specs.ts(8단계 오케스트레이션, safeRunStep 격리) + weeklySpecsReport.ts(WeeklySpecsResult 타입+buildWeeklySpecsSection) 구현, weekly-report.yml에 Generate weekly specs 스텝 추가+data 파일 3개 커밋 경로 추가, require.main 가드로 테스트 import 충돌 수정, 테스트 23개 신규 작성 및 전체 1195개 통과"
+    }
+  ],
+  "created_at": "2026-08-06T14:35:04+0900",
+  "completed_at": "2026-08-07T08:48:01+0900"
+}
