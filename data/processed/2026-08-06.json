@@ -1,7 +1,38 @@
 {
   "date": "2026-08-06",
-  "pages": [],
-  "queries": [],
+  "pages": [
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 76,
+      "bounceRate": null
+    }
+  ],
+  "queries": [
+    {
+      "query": "extract og calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "query": "og fg calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 76
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",
