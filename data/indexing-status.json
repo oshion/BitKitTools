@@ -2,83 +2,83 @@
   "https://bitkittools.com/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:12.372Z"
+    "lastCheckedAt": "2026-08-09T04:09:47.050Z"
   },
   "https://bitkittools.com/ko/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:18.536Z"
+    "lastCheckedAt": "2026-08-09T04:09:53.454Z"
   },
   "https://bitkittools.com/baby/height-predictor": {
     "verdict": "NEUTRAL",
-    "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-08T04:04:26.837Z"
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-09T04:11:03.860Z"
   },
   "https://bitkittools.com/ko/baby/height-predictor": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:04:33.153Z"
+    "lastCheckedAt": "2026-08-09T04:11:10.389Z"
   },
   "https://bitkittools.com/baby/temperament-quiz": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-08-08T04:04:39.542Z",
+    "lastCheckedAt": "2026-08-09T04:11:16.820Z",
     "lastCrawlTime": "2026-07-31T09:21:03Z"
   },
   "https://bitkittools.com/ko/baby/temperament-quiz": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:04:45.976Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-09T04:11:23.188Z"
   },
   "https://bitkittools.com/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
-    "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-08T04:03:24.865Z"
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-09T04:09:59.824Z"
   },
   "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:31.008Z"
+    "lastCheckedAt": "2026-08-09T04:10:06.235Z"
   },
   "https://bitkittools.com/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:37.160Z"
+    "lastCheckedAt": "2026-08-09T04:10:12.627Z"
   },
   "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:43.569Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-09T04:10:19.041Z"
   },
   "https://bitkittools.com/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:49.723Z"
+    "lastCheckedAt": "2026-08-09T04:10:25.434Z"
   },
   "https://bitkittools.com/ko/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:03:55.883Z"
+    "lastCheckedAt": "2026-08-09T04:10:31.805Z"
   },
   "https://bitkittools.com/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-08T04:04:02.032Z"
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-09T04:10:38.198Z"
   },
   "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:04:08.178Z"
+    "lastCheckedAt": "2026-08-09T04:10:44.573Z"
   },
   "https://bitkittools.com/developer/json-to-sql": {
     "verdict": "PASS",
     "coverageState": "Submitted and indexed",
-    "lastCheckedAt": "2026-08-08T04:04:14.318Z",
+    "lastCheckedAt": "2026-08-09T04:10:50.948Z",
     "lastCrawlTime": "2026-07-30T09:49:00Z"
   },
   "https://bitkittools.com/ko/developer/json-to-sql": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-08T04:04:20.454Z"
+    "lastCheckedAt": "2026-08-09T04:10:57.342Z"
   }
 }
