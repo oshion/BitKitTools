@@ -9,9 +9,28 @@
       "gscClicks": 0,
       "gscAvgPosition": 76,
       "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 71,
+      "bounceRate": null
     }
   ],
   "queries": [
+    {
+      "query": "blood alcohol content calculator australia",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 71
+    },
     {
       "query": "extract og calculator",
       "page": "/beer/homebrew-recipe-calculator/",

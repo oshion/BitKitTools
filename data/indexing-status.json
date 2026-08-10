@@ -2,83 +2,83 @@
   "https://bitkittools.com/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:13:31.241Z"
+    "lastCheckedAt": "2026-08-10T02:34:14.942Z"
   },
   "https://bitkittools.com/ko/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
-    "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-10T02:13:37.358Z"
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T02:34:21.259Z"
   },
   "https://bitkittools.com/baby/height-predictor": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:44.702Z"
+    "lastCheckedAt": "2026-08-10T02:36:52.293Z"
   },
   "https://bitkittools.com/ko/baby/height-predictor": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:50.887Z"
+    "lastCheckedAt": "2026-08-10T02:36:58.441Z"
   },
   "https://bitkittools.com/baby/temperament-quiz": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-08-10T02:14:57.184Z",
+    "lastCheckedAt": "2026-08-10T02:37:04.845Z",
     "lastCrawlTime": "2026-07-31T09:21:03Z"
   },
   "https://bitkittools.com/ko/baby/temperament-quiz": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:15:03.299Z"
+    "lastCheckedAt": "2026-08-10T02:37:11.034Z"
   },
   "https://bitkittools.com/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:13:43.467Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-10T02:34:27.420Z"
   },
   "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:13:49.584Z"
+    "lastCheckedAt": "2026-08-10T02:34:57.796Z"
   },
   "https://bitkittools.com/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:13:55.719Z"
+    "lastCheckedAt": "2026-08-10T02:35:07.171Z"
   },
   "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:01.834Z"
+    "lastCheckedAt": "2026-08-10T02:35:13.543Z"
   },
   "https://bitkittools.com/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:07.980Z"
+    "lastCheckedAt": "2026-08-10T02:35:52.936Z"
   },
   "https://bitkittools.com/ko/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:14.100Z"
+    "lastCheckedAt": "2026-08-10T02:35:59.333Z"
   },
   "https://bitkittools.com/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:20.236Z"
+    "lastCheckedAt": "2026-08-10T02:36:05.906Z"
   },
   "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T02:14:26.358Z"
+    "lastCheckedAt": "2026-08-10T02:36:12.282Z"
   },
   "https://bitkittools.com/developer/json-to-sql": {
     "verdict": "PASS",
     "coverageState": "Submitted and indexed",
-    "lastCheckedAt": "2026-08-10T02:14:32.463Z",
+    "lastCheckedAt": "2026-08-10T02:36:18.698Z",
     "lastCrawlTime": "2026-07-30T09:49:00Z"
   },
   "https://bitkittools.com/ko/developer/json-to-sql": {
     "verdict": "NEUTRAL",
-    "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-10T02:14:38.585Z"
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T02:36:25.097Z"
   }
 }
