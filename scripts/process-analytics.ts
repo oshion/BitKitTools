@@ -8,8 +8,9 @@
  * Resilient: if a raw source file is missing for a date, it is silently skipped.
  *
  * GA4 and GSC use different date keys:
- *   GA4  → data/raw/ga4-{date}.json   (date = yesterday at collection time)
- *   GSC  → data/raw/gsc-{date}.json   (date = 2 days ago at collection time)
+ *   GA4  → data/raw/ga4-{date}.json               (date = yesterday at collection time)
+ *   GSC  → data/raw/gsc-{date}.json               (date = 2-5 days ago, query-dimensioned — query-level insight only)
+ *   GSC  → data/raw/gsc-page-totals-{date}.json   (date = 2-5 days ago, page-only — authoritative click/impression totals)
  * Both are keyed by their own collection date in the filename. This processor
  * treats each filename date independently — a processed file for date D is
  * built from whichever raw files happen to exist for that same D.
@@ -71,6 +72,27 @@ interface GscRow {
 interface GscRawData {
   rows?: GscRow[]
   responseAggregationType?: string
+}
+
+// gsc-page-totals-{date}.json: dimensions=[page] only (no query). GSC
+// anonymizes/omits rows for rare, low-volume queries when the response is
+// broken down by query text (privacy protection) — on a low-traffic site, a
+// click's query is often unique enough to be redacted entirely from the
+// query-dimensioned response, even though it still counts toward page-level
+// totals. This page-only fetch is the authoritative source for
+// gscImpressions/gscClicks/gscAvgPosition; the query-dimensioned data above
+// is only used for query-level insight (search intent, per-query position)
+// and is expected to undercount clicks for rare queries.
+export interface GscPageTotalsRow {
+  keys: [string] // [page]
+  clicks: number
+  impressions: number
+  ctr: number
+  position: number
+}
+
+export interface GscPageTotalsRawData {
+  rows?: GscPageTotalsRow[]
 }
 
 interface ClarityRawData {
@@ -207,6 +229,16 @@ interface GscPageAccum {
   weightedPositionSum: number
 }
 
+/**
+ * Builds ProcessedQuery[] and, as a FALLBACK ONLY, sets page-level
+ * gscImpressions/gscClicks/gscAvgPosition by summing query rows. This
+ * undercounts clicks whenever GSC redacts a rare query's row (see
+ * GscPageTotalsRawData above) — mergePageTotalsIntoPages, called afterwards
+ * in processDate(), overwrites these fields with the authoritative
+ * page-only totals whenever that data is available. This fallback exists so
+ * a page still gets a value if the page-totals fetch failed or the file
+ * predates this fix.
+ */
 function mergeGscIntoPages(
   raw: GscRawData,
   pageMap: Map<string, ProcessedPage>
@@ -277,6 +309,42 @@ function mergeGscIntoPages(
   return queries
 }
 
+/**
+ * Authoritative page-level GSC merge — overwrites gscImpressions/gscClicks/
+ * gscAvgPosition with values from the query-less page-totals fetch, which is
+ * not subject to GSC's per-query row redaction. Creates a page entry if
+ * neither GA4 nor the query-dimensioned GSC data produced one.
+ */
+export function mergePageTotalsIntoPages(
+  raw: GscPageTotalsRawData,
+  pageMap: Map<string, ProcessedPage>
+): void {
+  if (!raw.rows || raw.rows.length === 0) return
+
+  for (const row of raw.rows) {
+    const [page] = row.keys
+    const normPath = gscPageToPath(page)
+
+    if (!pageMap.has(normPath)) {
+      pageMap.set(normPath, {
+        path: normPath,
+        sessions: 0,
+        events: {},
+        gscImpressions: 0,
+        gscClicks: 0,
+        gscAvgPosition: null,
+        bounceRate: null,
+      })
+    }
+
+    const entry = pageMap.get(normPath)!
+    entry.gscImpressions = row.impressions
+    entry.gscClicks = row.clicks
+    // The API aggregates position for us when the row isn't split by query.
+    entry.gscAvgPosition = row.impressions > 0 ? row.position : null
+  }
+}
+
 // ── GA4 Bounce processing ─────────────────────────────────────────────────────
 
 /**
@@ -309,11 +377,13 @@ function mergeBounceIntoPages(
 function processDate(date: string): void {
   const ga4Path = resolve(RAW_DIR, `ga4-${date}.json`)
   const gscPath = resolve(RAW_DIR, `gsc-${date}.json`)
+  const gscPageTotalsPath = resolve(RAW_DIR, `gsc-page-totals-${date}.json`)
   const clarityPath = resolve(RAW_DIR, `clarity-${date}.json`)
   const ga4BouncePath = resolve(RAW_DIR, `ga4-bounce-${date}.json`)
 
   const ga4Raw = readJsonFile<Ga4RawData>(ga4Path)
   const gscRaw = readJsonFile<GscRawData>(gscPath)
+  const gscPageTotalsRaw = readJsonFile<GscPageTotalsRawData>(gscPageTotalsPath)
   const clarityRaw = readJsonFile<ClarityRawData>(clarityPath)
   const ga4BounceRaw = readJsonFile<Ga4BounceRawData>(ga4BouncePath)
 
@@ -321,9 +391,15 @@ function processDate(date: string): void {
   const pageMap: Map<string, ProcessedPage> =
     ga4Raw !== null ? processGa4(ga4Raw) : new Map()
 
-  // Merge GSC data and collect query rows
+  // Merge GSC data and collect query rows (fallback page totals — may
+  // undercount clicks due to GSC's per-query redaction, see above)
   const queries: ProcessedQuery[] =
     gscRaw !== null ? mergeGscIntoPages(gscRaw, pageMap) : []
+
+  // Overwrite with authoritative, non-redacted page-level totals when available
+  if (gscPageTotalsRaw !== null) {
+    mergePageTotalsIntoPages(gscPageTotalsRaw, pageMap)
+  }
 
   // Merge bounce rate data — best-effort, file may not exist
   if (ga4BounceRaw !== null) {

@@ -29,6 +29,15 @@
       "bounceRate": null
     },
     {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 91,
+      "bounceRate": null
+    },
+    {
       "path": "/ko/beer/",
       "sessions": 0,
       "events": {},
@@ -186,6 +195,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 78
+    },
+    {
+      "query": "standard drinks converter",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 91
     },
     {
       "query": "맥주 비중 평가 방법",
