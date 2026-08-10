@@ -196,16 +196,18 @@ async function fetchGscReport(
 }
 
 /**
- * DIAGNOSTIC — fetches the same date with dimensions=['page'] only (no
- * 'query'). GSC anonymizes/omits rows for rare, low-volume queries when the
- * response is broken down by query text (privacy protection) — on a
- * low-traffic site, a click's query is often unique enough to be redacted
- * entirely, even though it still counts toward page/site-level totals.
- * This function checks whether removing the query dimension recovers the
- * "missing" clicks. Temporary — to be removed or promoted after diagnosis.
+ * Fetches page-level totals only (dimensions=['page'], no 'query'). GSC
+ * anonymizes/omits rows for rare, low-volume queries when the response is
+ * broken down by query text (privacy protection) — on a low-traffic site, a
+ * click's query is often unique enough to be redacted entirely from the
+ * query-dimensioned response (see collectGsc below), even though it still
+ * counts toward page-level totals. This is the authoritative source for
+ * click/impression counts; confirmed empirically (2026-08) by comparing
+ * against GSC console totals for dates where the query-dimensioned fetch
+ * showed 0 clicks but real clicks existed.
  */
-async function collectGscTotalsDiagnostic(date: string): Promise<void> {
-  console.log(`[GSC-diag] Fetching page-only totals for ${date}...`)
+async function collectGscPageTotals(date: string): Promise<void> {
+  console.log(`[GSC] Fetching page-only totals for ${date}...`)
   const accessToken = await getGoogleAccessToken()
   const requestBody: GscSearchAnalyticsRequestBody = {
     startDate: date,
@@ -218,11 +220,18 @@ async function collectGscTotalsDiagnostic(date: string): Promise<void> {
   const data = await fetchGscReport(accessToken, requestBody)
   const outputDir = resolve(process.cwd(), 'data', 'raw')
   ensureDataDir(outputDir)
-  const outputPath = resolve(outputDir, `gsc-diag-${date}.json`)
+  const outputPath = resolve(outputDir, `gsc-page-totals-${date}.json`)
   writeFileSync(outputPath, JSON.stringify(data, null, 2), 'utf-8')
-  console.log(`[GSC-diag] Saved → ${outputPath}`)
+  console.log(`[GSC] Saved → ${outputPath}`)
 }
 
+/**
+ * Fetches query-dimensioned data (dimensions=['query','page','country','device'])
+ * for query-level insight only (search intent classification, per-query
+ * position tracking). NOTE: click/impression TOTALS derived from this data
+ * undercount reality — see collectGscPageTotals above, which is the
+ * authoritative source process-analytics.ts uses for page-level numbers.
+ */
 async function collectGsc(date: string): Promise<void> {
   console.log(`[GSC] Fetching data for ${date}...`)
 
@@ -371,10 +380,11 @@ async function main(): Promise<void> {
     console.error(`[GA4-Bounce] Collection failed: ${String(err)}`)
   }
 
-  // GSC — refetch a rolling window (not just exactly 2 days ago). Click
-  // counts can keep being revised for several days after the initial
-  // freshness lag, so a single one-time snapshot permanently misses clicks
-  // that Google attributes later. Each date's raw file is overwritten here;
+  // GSC — refetch a rolling window (not just exactly 2 days ago) for both
+  // the query-dimensioned and page-totals fetches. Click counts can keep
+  // being revised for several days after the initial freshness lag, so a
+  // single one-time snapshot permanently misses clicks that Google
+  // attributes later. Each date's raw files are overwritten here;
   // process-analytics.ts's own REPROCESS_WINDOW_DAYS then regenerates the
   // processed output from the refreshed raw data on its next run.
   let gscSuccessCount = 0
@@ -386,17 +396,15 @@ async function main(): Promise<void> {
     } catch (err: unknown) {
       console.error(`[GSC] Collection failed for ${date}: ${String(err)}`)
     }
-  }
-  const gscSuccess = gscSuccessCount > 0
 
-  // DIAGNOSTIC — remove after root-causing the click-count discrepancy.
-  for (const date of gscDates) {
     try {
-      await collectGscTotalsDiagnostic(date)
+      await collectGscPageTotals(date)
+      gscSuccessCount++
     } catch (err: unknown) {
-      console.error(`[GSC-diag] Collection failed for ${date}: ${String(err)}`)
+      console.error(`[GSC] Page-totals collection failed for ${date}: ${String(err)}`)
     }
   }
+  const gscSuccess = gscSuccessCount > 0
 
   // Clarity — fully independent; failure never triggers process.exit(1).
   // CLARITY_API_KEY is optional; if absent, collectClarity throws and we log.
