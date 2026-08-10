@@ -1,0 +1,25 @@
+{
+  "weeks": [
+    {
+      "weekStart": "2026-08-03",
+      "pages": [
+        {
+          "page": "/ko/baby/sleep-schedule/",
+          "clicks": 3
+        },
+        {
+          "page": "/developer/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/beer/standard-drinks-calculator/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/contact/",
+          "clicks": 1
+        }
+      ]
+    }
+  ]
+}
