@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? 'BitKitTools에 문의하기. 오류 신고, 기능 제안, 광고 문의 등.'
       : 'Contact BitKitTools. Report issues, suggest features, or inquire about advertising.',
     alternates: {
-      canonical: isKo ? '/ko/contact' : '/contact',
+      canonical: isKo ? '/ko/contact/' : '/contact/',
       languages: {
-        en: '/contact',
-        ko: '/ko/contact',
-        'x-default': '/contact',
+        en: '/contact/',
+        ko: '/ko/contact/',
+        'x-default': '/contact/',
       },
     },
   }

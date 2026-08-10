@@ -8,26 +8,31 @@ describe('localeHref', () => {
   })
 
   it('returns prefix-less path for EN category', () => {
-    expect(localeHref('en', '/developer')).toBe('/developer')
+    expect(localeHref('en', '/developer')).toBe('/developer/')
   })
 
-  it('returns /ko for KO home', () => {
-    expect(localeHref('ko')).toBe('/ko')
+  it('returns /ko/ for KO home', () => {
+    expect(localeHref('ko')).toBe('/ko/')
   })
 
-  it('returns /ko/{path} for KO category', () => {
-    expect(localeHref('ko', '/developer')).toBe('/ko/developer')
+  it('returns /ko/{path}/ for KO category', () => {
+    expect(localeHref('ko', '/developer')).toBe('/ko/developer/')
   })
 
   it('adds a leading slash to a path missing one', () => {
-    expect(localeHref('en', 'developer')).toBe('/developer')
-    expect(localeHref('ko', 'developer')).toBe('/ko/developer')
+    expect(localeHref('en', 'developer')).toBe('/developer/')
+    expect(localeHref('ko', 'developer')).toBe('/ko/developer/')
+  })
+
+  it('is idempotent when the path already has a trailing slash', () => {
+    expect(localeHref('en', '/developer/')).toBe('/developer/')
+    expect(localeHref('ko', '/developer/')).toBe('/ko/developer/')
   })
 
   it('uses explicit /en prefix in development (real dev-server route)', () => {
     jest.replaceProperty(process.env, 'NODE_ENV', 'development')
-    expect(localeHref('en')).toBe('/en')
-    expect(localeHref('en', '/developer')).toBe('/en/developer')
+    expect(localeHref('en')).toBe('/en/')
+    expect(localeHref('en', '/developer')).toBe('/en/developer/')
     jest.replaceProperty(process.env, 'NODE_ENV', 'test')
   })
 })

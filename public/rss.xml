@@ -2,122 +2,122 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BitKitTools</title>
-    <link>https://bitkittools.com</link>
+    <link>https://bitkittools.com/</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 23:47:49 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 06:16:04 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JWT Decoder</title>
-      <link>https://bitkittools.com/developer/jwt-decoder</link>
+      <link>https://bitkittools.com/developer/jwt-decoder/</link>
       <description>Instantly decode JWT tokens and inspect Header, Payload, and standard claims — exp, iat, sub, iss, aud and more — with human-readable explanations. Everything runs in your browser; your token never leaves your device.</description>
       <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/developer/jwt-decoder</guid>
+      <guid isPermaLink="true">https://bitkittools.com/developer/jwt-decoder/</guid>
     </item>
     <item>
       <title>JSON to SQL Converter</title>
-      <link>https://bitkittools.com/developer/json-to-sql</link>
+      <link>https://bitkittools.com/developer/json-to-sql/</link>
       <description>Convert JSON objects or arrays into SQL INSERT statements — supports MySQL, PostgreSQL, Oracle, and MSSQL. Generates CREATE TABLE and batch INSERTs with dialect-correct quoting and type inference. All processing happens in your browser; nothing is sent to any server.</description>
       <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/developer/json-to-sql</guid>
+      <guid isPermaLink="true">https://bitkittools.com/developer/json-to-sql/</guid>
     </item>
     <item>
       <title>Hydrometer Temperature Correction Calculator</title>
-      <link>https://bitkittools.com/beer/hydrometer-temperature-correction</link>
+      <link>https://bitkittools.com/beer/hydrometer-temperature-correction/</link>
       <description>Correct your hydrometer reading for sample temperature. Enter your measured gravity, the actual sample temperature, and your hydrometer&apos;s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. All calculations run in your browser — no login, no uploads.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/beer/hydrometer-temperature-correction</guid>
+      <guid isPermaLink="true">https://bitkittools.com/beer/hydrometer-temperature-correction/</guid>
     </item>
     <item>
       <title>Standard Drinks / Alcohol Units Calculator</title>
-      <link>https://bitkittools.com/beer/standard-drinks-calculator</link>
+      <link>https://bitkittools.com/beer/standard-drinks-calculator/</link>
       <description>Convert any drink&apos;s volume and ABV into standard drinks (US, UK, AU/SG, Canada) and pure alcohol grams. See how many units your drink contains according to your country&apos;s health guidelines — for reference only. All calculations run in your browser.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/beer/standard-drinks-calculator</guid>
+      <guid isPermaLink="true">https://bitkittools.com/beer/standard-drinks-calculator/</guid>
     </item>
     <item>
       <title>Layover &amp; Connection Time Calculator</title>
-      <link>https://bitkittools.com/travel/layover-connection-calculator</link>
+      <link>https://bitkittools.com/travel/layover-connection-calculator/</link>
       <description>Check whether your layover is long enough based on the official Minimum Connecting Time (MCT) for your airport and connection type. Covers 22 major hubs — plus general industry defaults for all other airports. Reference only; always confirm with your airline.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/travel/layover-connection-calculator</guid>
+      <guid isPermaLink="true">https://bitkittools.com/travel/layover-connection-calculator/</guid>
     </item>
     <item>
       <title>Jet Lag Recovery Calculator</title>
-      <link>https://bitkittools.com/travel/jetlag-recovery-calculator</link>
+      <link>https://bitkittools.com/travel/jetlag-recovery-calculator/</link>
       <description>Estimate how many days it takes to recover from jet lag based on the number of time zones you cross and your direction of travel. Includes a day-by-day general adaptation guide for eastward and westward flights — no sign-up required.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/travel/jetlag-recovery-calculator</guid>
+      <guid isPermaLink="true">https://bitkittools.com/travel/jetlag-recovery-calculator/</guid>
     </item>
     <item>
       <title>Child Height Predictor</title>
-      <link>https://bitkittools.com/baby/height-predictor</link>
+      <link>https://bitkittools.com/baby/height-predictor/</link>
       <description>Estimate your child&apos;s predicted adult height using the Mid-Parental Height method (Tanner, Goldstein &amp; Whitehouse, 1970). Enter both parents&apos; heights to get an evidence-based prediction with a statistical range. For reference only — consult a paediatrician for clinical assessment.</description>
       <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/baby/height-predictor</guid>
+      <guid isPermaLink="true">https://bitkittools.com/baby/height-predictor/</guid>
     </item>
     <item>
       <title>Baby Temperament Type Quiz</title>
-      <link>https://bitkittools.com/baby/temperament-quiz</link>
+      <link>https://bitkittools.com/baby/temperament-quiz/</link>
       <description>Discover your baby&apos;s natural temperament type through 20 fun questions. Based on Thomas &amp; Chess&apos;s landmark temperament research, this quiz identifies which of 16 personality styles best fits your little one — with tailored parenting tips for each type. For entertainment and general reference only.</description>
       <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/baby/temperament-quiz</guid>
+      <guid isPermaLink="true">https://bitkittools.com/baby/temperament-quiz/</guid>
     </item>
     <item>
       <title>Baby Growth Percentile Calculator</title>
-      <link>https://bitkittools.com/baby/growth-percentile</link>
+      <link>https://bitkittools.com/baby/growth-percentile/</link>
       <description>Calculate your baby&apos;s weight and height/length percentiles (0–60 months) using WHO or CDC growth standards. Enter sex, age, weight, and height to instantly see where your child falls on the growth chart. For informational reference only — always consult a paediatrician for clinical assessment.</description>
       <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/baby/growth-percentile</guid>
+      <guid isPermaLink="true">https://bitkittools.com/baby/growth-percentile/</guid>
     </item>
     <item>
       <title>Baby Sleep Schedule Calculator</title>
-      <link>https://bitkittools.com/baby/sleep-schedule</link>
+      <link>https://bitkittools.com/baby/sleep-schedule/</link>
       <description>Enter your baby&apos;s age and today&apos;s wake-up time to get a recommended nap schedule and bedtime — based on age-appropriate wake windows and nap durations. For general reference only; always consult a paediatrician for individual sleep concerns.</description>
       <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/baby/sleep-schedule</guid>
+      <guid isPermaLink="true">https://bitkittools.com/baby/sleep-schedule/</guid>
     </item>
     <item>
       <title>JSON Formatter &amp; Validator</title>
-      <link>https://bitkittools.com/developer/json-formatter</link>
+      <link>https://bitkittools.com/developer/json-formatter/</link>
       <description>Instantly format, pretty-print, or minify JSON. Catches syntax errors and highlights the exact line — no login, no uploads, all in your browser.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/developer/json-formatter</guid>
+      <guid isPermaLink="true">https://bitkittools.com/developer/json-formatter/</guid>
     </item>
     <item>
       <title>Password Generator</title>
-      <link>https://bitkittools.com/developer/password-generator</link>
+      <link>https://bitkittools.com/developer/password-generator/</link>
       <description>Generate strong, secure passwords instantly. Customize length and character types — uppercase, lowercase, numbers, symbols. All generated in your browser using cryptographically secure randomness. Nothing is sent to any server.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/developer/password-generator</guid>
+      <guid isPermaLink="true">https://bitkittools.com/developer/password-generator/</guid>
     </item>
     <item>
       <title>Visa Requirement Checker</title>
-      <link>https://bitkittools.com/travel/visa-requirement-checker</link>
+      <link>https://bitkittools.com/travel/visa-requirement-checker/</link>
       <description>Check visa requirements for your passport and destination country instantly. Find out whether you need a visa, an e-Visa/ETA, or can enter visa-free — plus general travel insurance guidance. Based on a static reference snapshot; always verify with the official consulate before travel.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/travel/visa-requirement-checker</guid>
+      <guid isPermaLink="true">https://bitkittools.com/travel/visa-requirement-checker/</guid>
     </item>
     <item>
       <title>BAC Calculator (Blood Alcohol Concentration)</title>
-      <link>https://bitkittools.com/beer/bac-calculator</link>
+      <link>https://bitkittools.com/beer/bac-calculator/</link>
       <description>Estimate your Blood Alcohol Concentration (BAC) using the Widmark formula. Enter your sex, weight, drinks consumed, and time elapsed to get an instant estimate — for informational reference only. Never use this to judge fitness to drive.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/beer/bac-calculator</guid>
+      <guid isPermaLink="true">https://bitkittools.com/beer/bac-calculator/</guid>
     </item>
     <item>
       <title>Homebrew Recipe &amp; ABV Calculator</title>
-      <link>https://bitkittools.com/beer/homebrew-recipe-calculator</link>
+      <link>https://bitkittools.com/beer/homebrew-recipe-calculator/</link>
       <description>Calculate estimated ABV from Original Gravity (OG) and Final Gravity (FG) using the standard homebrewing formula. Includes a dilution calculator to hit your target alcohol percentage. All calculations run in your browser — no login, no uploads.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/beer/homebrew-recipe-calculator</guid>
+      <guid isPermaLink="true">https://bitkittools.com/beer/homebrew-recipe-calculator/</guid>
     </item>
     <item>
       <title>Flight Delay Compensation Calculator</title>
-      <link>https://bitkittools.com/travel/flight-delay-compensation</link>
+      <link>https://bitkittools.com/travel/flight-delay-compensation/</link>
       <description>Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="true">https://bitkittools.com/travel/flight-delay-compensation</guid>
+      <guid isPermaLink="true">https://bitkittools.com/travel/flight-delay-compensation/</guid>
     </item>
   </channel>
 </rss>

@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const isKo = safeLocale === 'ko'
   const canonical = isKo
-    ? `${SITE_URL}/ko/${CATEGORY}/${SLUG}`
-    : `${SITE_URL}/${CATEGORY}/${SLUG}`
+    ? `${SITE_URL}/ko/${CATEGORY}/${SLUG}/`
+    : `${SITE_URL}/${CATEGORY}/${SLUG}/`
 
   return {
     title: `${tool.title[safeLocale]} — BitKitTools`,
@@ -45,9 +45,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical,
       languages: {
-        en: `${SITE_URL}/${CATEGORY}/${SLUG}`,
-        ko: `${SITE_URL}/ko/${CATEGORY}/${SLUG}`,
-        'x-default': `${SITE_URL}/${CATEGORY}/${SLUG}`,
+        en: `${SITE_URL}/${CATEGORY}/${SLUG}/`,
+        ko: `${SITE_URL}/ko/${CATEGORY}/${SLUG}/`,
+        'x-default': `${SITE_URL}/${CATEGORY}/${SLUG}/`,
       },
     },
     openGraph: {
@@ -75,11 +75,11 @@ export default async function BacCalculatorPage({ params }: Props) {
   const relatedTools = getRelatedTools(tool.id)
   const pageUrl =
     safeLocale === 'ko'
-      ? `${SITE_URL}/ko/${CATEGORY}/${SLUG}`
-      : `${SITE_URL}/${CATEGORY}/${SLUG}`
+      ? `${SITE_URL}/ko/${CATEGORY}/${SLUG}/`
+      : `${SITE_URL}/${CATEGORY}/${SLUG}/`
 
   const breadcrumbItems = [
-    { name: 'Home', url: safeLocale === 'ko' ? `${SITE_URL}/ko` : SITE_URL },
+    { name: 'Home', url: safeLocale === 'ko' ? `${SITE_URL}/ko/` : `${SITE_URL}/` },
     {
       name: safeLocale === 'ko' ? '맥주' : 'Beer',
       url: `${SITE_URL}${localeHref(safeLocale, '/beer')}`,

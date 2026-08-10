@@ -55,14 +55,14 @@ describe('Nav', () => {
   it('category links have correct hrefs for EN locale', () => {
     render(<Nav />)
     const developerLink = screen.getByText('developer').closest('a')
-    expect(developerLink).toHaveAttribute('href', '/developer')
+    expect(developerLink).toHaveAttribute('href', '/developer/')
   })
 
   it('category links have /ko prefix for KO locale', () => {
     mockLocale = 'ko'
     render(<Nav />)
     const developerLink = screen.getByText('developer').closest('a')
-    expect(developerLink).toHaveAttribute('href', '/ko/developer')
+    expect(developerLink).toHaveAttribute('href', '/ko/developer/')
   })
 
   it('language switch link points to /ko/ when in EN locale', () => {
@@ -76,13 +76,13 @@ describe('Nav', () => {
     mockPathname = '/en'
     render(<Nav />)
     const switchLink = screen.getByText('languageSwitch').closest('a')
-    expect(switchLink).toHaveAttribute('href', '/ko')
+    expect(switchLink).toHaveAttribute('href', '/ko/')
   })
 
   it('strips a dev-mode /en prefix on a category page when switching to KO', () => {
     mockPathname = '/en/developer'
     render(<Nav />)
     const switchLink = screen.getByText('languageSwitch').closest('a')
-    expect(switchLink).toHaveAttribute('href', '/ko/developer')
+    expect(switchLink).toHaveAttribute('href', '/ko/developer/')
   })
 })

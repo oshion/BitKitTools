@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!persona) return {}
 
   const isKo = safeLocale === 'ko'
-  const basePath = `/baby/temperament-quiz/result/${code}`
+  const basePath = `/baby/temperament-quiz/result/${code}/`
   const canonical = isKo ? `${SITE_URL}/ko${basePath}` : `${SITE_URL}${basePath}`
 
   const title = `${persona.name[safeLocale]} — BitKitTools`
@@ -76,8 +76,10 @@ export default async function TemperamentResultPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
   const quizUrl = `${SITE_URL}${localeHref(safeLocale, '/baby/temperament-quiz')}`
 
+  const basePath = `/baby/temperament-quiz/result/${code}/`
+
   const breadcrumbItems = [
-    { name: 'Home', url: safeLocale === 'ko' ? `${SITE_URL}/ko` : SITE_URL },
+    { name: 'Home', url: safeLocale === 'ko' ? `${SITE_URL}/ko/` : `${SITE_URL}/` },
     {
       name: isKo ? '육아' : 'Baby',
       url: `${SITE_URL}${localeHref(safeLocale, '/baby')}`,
@@ -88,9 +90,7 @@ export default async function TemperamentResultPage({ params }: Props) {
     },
     {
       name: persona.name[safeLocale],
-      url: isKo
-        ? `${SITE_URL}/ko/baby/temperament-quiz/result/${code}`
-        : `${SITE_URL}/baby/temperament-quiz/result/${code}`,
+      url: isKo ? `${SITE_URL}/ko${basePath}` : `${SITE_URL}${basePath}`,
     },
   ]
 

@@ -40,7 +40,7 @@ describe('Header', () => {
   it('logo links to /ko for KO locale', () => {
     render(<Header locale="ko" />)
     const logoLink = screen.getByText('BitKitTools').closest('a')
-    expect(logoLink).toHaveAttribute('href', '/ko')
+    expect(logoLink).toHaveAttribute('href', '/ko/')
   })
 
   it('renders navigation via Nav component', () => {

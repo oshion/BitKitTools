@@ -8,12 +8,19 @@ const LOCALES = ['en', 'ko'] as const
 
 const LEGAL_PAGES = ['privacy-policy', 'terms', 'about', 'contact'] as const
 
+/**
+ * `path` starts with a single `/` (e.g. `/beer/bac-calculator`) and never
+ * ends in one. A trailing slash is always appended to match `trailingSlash:
+ * true` in next.config.mjs — the actual exported page lives at
+ * `.../index.html`, so a sitemap entry missing the trailing slash sends
+ * crawlers through an extra redirect hop before reaching the real page.
+ */
 function enUrl(path: string): string {
-  return path === '/' ? SITE_URL : `${SITE_URL}${path}`
+  return path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}/`
 }
 
 function koUrl(path: string): string {
-  return path === '/' ? `${SITE_URL}/ko` : `${SITE_URL}/ko${path}`
+  return path === '/' ? `${SITE_URL}/ko/` : `${SITE_URL}/ko${path}/`
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

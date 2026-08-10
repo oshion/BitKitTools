@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'common' })
 
   const isKo = locale === 'ko'
-  const canonical = isKo ? `${SITE_URL}/ko` : SITE_URL
+  const canonical = isKo ? `${SITE_URL}/ko/` : `${SITE_URL}/`
 
   return {
     title: `BitKitTools — ${t('tagline')}`,
@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical,
       languages: {
-        en: SITE_URL,
-        ko: `${SITE_URL}/ko`,
-        'x-default': SITE_URL,
+        en: `${SITE_URL}/`,
+        ko: `${SITE_URL}/ko/`,
+        'x-default': `${SITE_URL}/`,
       },
     },
     openGraph: {
