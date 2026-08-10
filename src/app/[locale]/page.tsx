@@ -71,7 +71,7 @@ export default async function HomePage({ params }: Props) {
           <h2 className="text-xl font-medium text-white mb-4">
             {t('popularTools')}
           </h2>
-          <ToolCardGrid tools={popularTools} locale={safeLocale} />
+          <ToolCardGrid tools={popularTools} locale={safeLocale} prefetch={false} />
         </section>
       )}
 
@@ -86,6 +86,7 @@ export default async function HomePage({ params }: Props) {
               tools={tools}
               locale={safeLocale}
               emptyMessage={t('comingSoon')}
+              prefetch={false}
             />
           </section>
         )
@@ -98,7 +99,7 @@ export default async function HomePage({ params }: Props) {
           <h2 className="text-xl font-medium text-white mb-4">
             {t('recentlyAdded')}
           </h2>
-          <ToolCardGrid tools={recentTools} locale={safeLocale} />
+          <ToolCardGrid tools={recentTools} locale={safeLocale} prefetch={false} />
         </section>
       )}
     </div>

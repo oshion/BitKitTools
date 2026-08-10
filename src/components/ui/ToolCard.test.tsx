@@ -7,13 +7,15 @@ jest.mock('next/link', () => {
     children,
     href,
     className,
+    prefetch,
   }: {
     children: React.ReactNode
     href: string
     className?: string
+    prefetch?: boolean
   }) {
     return (
-      <a href={href} className={className}>
+      <a href={href} className={className} data-prefetch={String(prefetch)}>
         {children}
       </a>
     )
@@ -65,5 +67,17 @@ describe('ToolCard', () => {
     render(<ToolCard tool={mockTool} locale="ko" />)
     const link = screen.getByRole('link')
     expect(link).toHaveAttribute('href', '/ko/developer/json-formatter/')
+  })
+
+  it('leaves prefetch unset (Next.js default) when the prop is not passed', () => {
+    render(<ToolCard tool={mockTool} locale="en" />)
+    const link = screen.getByRole('link')
+    expect(link).toHaveAttribute('data-prefetch', 'undefined')
+  })
+
+  it('forwards prefetch={false} to the underlying Link', () => {
+    render(<ToolCard tool={mockTool} locale="en" prefetch={false} />)
+    const link = screen.getByRole('link')
+    expect(link).toHaveAttribute('data-prefetch', 'false')
   })
 })
