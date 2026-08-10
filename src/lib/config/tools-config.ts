@@ -435,8 +435,8 @@ export const toolsConfig: ToolConfig[] = [
     slug: 'homebrew-recipe-calculator',
     category: 'beer',
     title: {
-      en: 'Homebrew Recipe & ABV Calculator',
-      ko: '홈브루 레시피 & 도수 계산기',
+      en: 'Homebrew Gravity & ABV Calculator',
+      ko: '홈브루 비중(Gravity) & 도수 계산기',
     },
     description: {
       en: 'Calculate estimated ABV from Original Gravity (OG) and Final Gravity (FG) using the standard homebrewing formula. Includes a dilution calculator to hit your target alcohol percentage. All calculations run in your browser — no login, no uploads.',
@@ -697,7 +697,7 @@ export const toolsConfig: ToolConfig[] = [
     disclaimerType: 'medical',
     aiOverviewResistance: 'high',
     addedAt: '2026-07-04',
-    popular: false,
+    popular: true,
   },
   {
     id: 'height-predictor',
@@ -803,13 +803,14 @@ export const toolsConfig: ToolConfig[] = [
       ko: '항공편 지연 보상 계산기',
     },
     description: {
-      en: 'Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.',
-      ko: 'EU 규정 261/2004 또는 미국 DOT 규정에 따라 지연, 취소 또는 탑승거부된 항공편에 대한 보상을 받을 수 있는지 확인하세요. 규정, 혼란 유형, 노선 거리, 지연 시간을 선택하면 즉시 추정 보상액을 확인할 수 있습니다 — 가입 불필요.',
+      en: 'Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 (also known as EC261) or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.',
+      ko: 'EU 규정 261/2004(EC261이라고도 함) 또는 미국 DOT 규정에 따라 지연, 취소 또는 탑승거부된 항공편에 대한 보상을 받을 수 있는지 확인하세요. 규정, 혼란 유형, 노선 거리, 지연 시간을 선택하면 즉시 추정 보상액을 확인할 수 있습니다 — 가입 불필요.',
     },
     keywords: {
       en: [
         'flight delay compensation',
         'EU261 calculator',
+        'EC261 calculator',
         'flight delay refund',
         'airline compensation calculator',
         'EU regulation 261',
@@ -821,6 +822,7 @@ export const toolsConfig: ToolConfig[] = [
         'flight cancellation compensation calculator',
         'delayed flight compensation',
         'eu261 compensation table',
+        'ec261 compensation calculator',
         'denied boarding compensation',
         'involuntary bumping compensation',
         'overbooking compensation calculator',
@@ -828,6 +830,7 @@ export const toolsConfig: ToolConfig[] = [
       ko: [
         '항공 지연 보상',
         'EU261 보상 계산기',
+        'EC261 보상 계산기',
         '항공편 지연 환불',
         '항공사 보상금',
         'EU 규정 261/2004',
