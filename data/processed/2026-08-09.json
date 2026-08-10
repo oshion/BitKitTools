@@ -1,8 +1,8 @@
 {
-  "collectedAt": "2026-08-10T04:21:42.706Z",
-  "collectionDate": "2026-08-09",
-  "note": "Clarity Data Export API returns rolling last-24h aggregates; specific calendar-date queries are not supported by the API.",
-  "data": [
+  "date": "2026-08-09",
+  "pages": [],
+  "queries": [],
+  "clarity": [
     {
       "metricName": "DeadClickCount",
       "information": []

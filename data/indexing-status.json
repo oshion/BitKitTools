@@ -1,0 +1,63 @@
+{
+  "https://bitkittools.com/developer/jwt-decoder": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:21:49.904Z"
+  },
+  "https://bitkittools.com/ko/developer/jwt-decoder": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:21:56.068Z"
+  },
+  "https://bitkittools.com/beer/hydrometer-temperature-correction": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:02.206Z"
+  },
+  "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:08.357Z"
+  },
+  "https://bitkittools.com/beer/standard-drinks-calculator": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:14.525Z"
+  },
+  "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:20.668Z"
+  },
+  "https://bitkittools.com/travel/layover-connection-calculator": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:26.811Z"
+  },
+  "https://bitkittools.com/ko/travel/layover-connection-calculator": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:32.953Z"
+  },
+  "https://bitkittools.com/travel/jetlag-recovery-calculator": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:39.142Z"
+  },
+  "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "lastCheckedAt": "2026-08-10T04:22:45.455Z"
+  },
+  "https://bitkittools.com/developer/json-to-sql": {
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "lastCheckedAt": "2026-08-10T04:22:51.629Z",
+    "lastCrawlTime": "2026-07-30T09:49:00Z"
+  },
+  "https://bitkittools.com/ko/developer/json-to-sql": {
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-10T04:22:57.788Z"
+  }
+}
