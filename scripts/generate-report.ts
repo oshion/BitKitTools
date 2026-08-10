@@ -1,9 +1,10 @@
 /**
  * generate-report.ts
  *
- * Weekly report generator. Reads recent 7 days of processed data,
- * aggregates it, classifies query intents, detects stagnation trend,
- * and generates an AI-authored Markdown report via Anthropic API.
+ * Weekly report generator. Reads the calendar Saturday-to-Friday week of
+ * processed data (see lib/weeklyReportWindow.ts), aggregates it, classifies
+ * query intents, detects stagnation trend, and generates an AI-authored
+ * Markdown report via Anthropic API.
  *
  * Usage: npx tsx scripts/generate-report.ts
  */
@@ -18,6 +19,7 @@ import {
   type IntentClassification,
 } from './lib/classifyIntent'
 import { appendTrendPoint, readActionLog, readTrend, writeTrend } from './lib/detectStagnation'
+import { getWeeklyReportWindow } from './lib/weeklyReportWindow'
 import { extractAnthropicText } from './lib/anthropicResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
@@ -42,14 +44,17 @@ const CLEANUP_AGE_DAYS = 90
 
 // ── Data I/O ──────────────────────────────────────────────────────────────────
 
-/** Read up to the most recent `limit` days of processed files (YYYY-MM-DD.json only). */
-function readRecentProcessedDays(limit: number): ProcessedDay[] {
+/** Read processed day files (YYYY-MM-DD.json) whose date falls within [start, end] inclusive. */
+function readProcessedDaysInWindow(start: string, end: string): ProcessedDay[] {
   if (!existsSync(PROCESSED_DIR)) return []
 
   const files = readdirSync(PROCESSED_DIR)
     .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
+    .filter((f) => {
+      const date = f.slice(0, 10)
+      return date >= start && date <= end
+    })
     .sort()
-    .slice(-limit)
 
   const result: ProcessedDay[] = []
   for (const file of files) {
@@ -260,13 +265,16 @@ async function main(): Promise<void> {
     )
   }
 
-  // ── 1. Read recent 7 days of processed data ─────────────────────────────────
+  // ── 1. Read the Sat-Fri weekly window of processed data ──────────────────────
 
-  const days = readRecentProcessedDays(7)
+  const { start: windowStart, end: windowEnd } = getWeeklyReportWindow(new Date())
+  console.log(`[generate-report] Report window: ${windowStart} ~ ${windowEnd}`)
+
+  const days = readProcessedDaysInWindow(windowStart, windowEnd)
 
   if (days.length === 0) {
     console.log(
-      '[generate-report] No processed data files found in data/processed/. ' +
+      '[generate-report] No processed data files found for the report window. ' +
         'Skipping report generation (this is expected in the initial state).'
     )
     process.exit(0)
