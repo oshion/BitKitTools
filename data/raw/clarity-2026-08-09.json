@@ -1,0 +1,43 @@
+{
+  "collectedAt": "2026-08-10T02:13:24.130Z",
+  "collectionDate": "2026-08-09",
+  "note": "Clarity Data Export API returns rolling last-24h aggregates; specific calendar-date queries are not supported by the API.",
+  "data": [
+    {
+      "metricName": "DeadClickCount",
+      "information": []
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": []
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": []
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": []
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": []
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": []
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": []
+    },
+    {
+      "metricName": "Traffic",
+      "information": []
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": []
+    }
+  ]
+}
