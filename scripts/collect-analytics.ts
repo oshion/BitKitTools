@@ -195,6 +195,34 @@ async function fetchGscReport(
   return response.json()
 }
 
+/**
+ * DIAGNOSTIC — fetches the same date with dimensions=['page'] only (no
+ * 'query'). GSC anonymizes/omits rows for rare, low-volume queries when the
+ * response is broken down by query text (privacy protection) — on a
+ * low-traffic site, a click's query is often unique enough to be redacted
+ * entirely, even though it still counts toward page/site-level totals.
+ * This function checks whether removing the query dimension recovers the
+ * "missing" clicks. Temporary — to be removed or promoted after diagnosis.
+ */
+async function collectGscTotalsDiagnostic(date: string): Promise<void> {
+  console.log(`[GSC-diag] Fetching page-only totals for ${date}...`)
+  const accessToken = await getGoogleAccessToken()
+  const requestBody: GscSearchAnalyticsRequestBody = {
+    startDate: date,
+    endDate: date,
+    dimensions: ['page'],
+    rowLimit: 25000,
+    startRow: 0,
+    dataState: 'all',
+  }
+  const data = await fetchGscReport(accessToken, requestBody)
+  const outputDir = resolve(process.cwd(), 'data', 'raw')
+  ensureDataDir(outputDir)
+  const outputPath = resolve(outputDir, `gsc-diag-${date}.json`)
+  writeFileSync(outputPath, JSON.stringify(data, null, 2), 'utf-8')
+  console.log(`[GSC-diag] Saved → ${outputPath}`)
+}
+
 async function collectGsc(date: string): Promise<void> {
   console.log(`[GSC] Fetching data for ${date}...`)
 
@@ -360,6 +388,15 @@ async function main(): Promise<void> {
     }
   }
   const gscSuccess = gscSuccessCount > 0
+
+  // DIAGNOSTIC — remove after root-causing the click-count discrepancy.
+  for (const date of gscDates) {
+    try {
+      await collectGscTotalsDiagnostic(date)
+    } catch (err: unknown) {
+      console.error(`[GSC-diag] Collection failed for ${date}: ${String(err)}`)
+    }
+  }
 
   // Clarity — fully independent; failure never triggers process.exit(1).
   // CLARITY_API_KEY is optional; if absent, collectClarity throws and we log.
