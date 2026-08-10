@@ -25,6 +25,7 @@ import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, write
 import { join, resolve } from 'path'
 import type { ProcessedDay } from './process-analytics'
 import { aggregateQueriesByPageAndQuery, aggregateWeeklyReport } from './lib/aggregateWeeklyReport'
+import { getWeeklyReportWindow } from './lib/weeklyReportWindow'
 import { detectCtrAnomalies } from './lib/detectCtrAnomalies'
 import type { CtrBenchmarkTable } from './lib/detectCtrAnomalies'
 import { readProposals, writeProposals, upsertProposal } from './lib/proposalTracking'
@@ -88,13 +89,16 @@ const CTR_BENCHMARK: CtrBenchmarkTable = {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-/** Read up to the most recent `limit` days of processed files. */
-function readRecentProcessedDays(limit: number): ProcessedDay[] {
+/** Read processed day files whose date falls within [start, end] inclusive. */
+function readProcessedDaysInWindow(start: string, end: string): ProcessedDay[] {
   if (!existsSync(PROCESSED_DIR)) return []
   const files = readdirSync(PROCESSED_DIR)
     .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
+    .filter((f) => {
+      const date = f.slice(0, 10)
+      return date >= start && date <= end
+    })
     .sort()
-    .slice(-limit)
   const result: ProcessedDay[] = []
   for (const file of files) {
     try {
@@ -177,7 +181,8 @@ export async function generateWeeklySpecs(apiKey: string): Promise<WeeklySpecsRe
     reminders: [],
   }
 
-  const days = readRecentProcessedDays(7)
+  const { start: windowStart, end: windowEnd } = getWeeklyReportWindow(new Date())
+  const days = readProcessedDaysInWindow(windowStart, windowEnd)
   if (days.length === 0) {
     console.log('[generate-weekly-specs] No processed data found — skipping all spec generation.')
     return result
