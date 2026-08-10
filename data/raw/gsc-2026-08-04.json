@@ -1,0 +1,113 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "alcohol measurement",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 82.5
+    },
+    {
+      "keys": [
+        "flight compensation calculator",
+        "https://bitkittools.com/travel/flight-delay-compensation/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 63
+    },
+    {
+      "keys": [
+        "flight delay calculator",
+        "https://bitkittools.com/travel/flight-delay-compensation/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 51
+    },
+    {
+      "keys": [
+        "flight delay compensation calculator",
+        "https://bitkittools.com/travel/flight-delay-compensation/",
+        "gbr",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73
+    },
+    {
+      "keys": [
+        "flight delay compensation calculator",
+        "https://bitkittools.com/travel/flight-delay-compensation/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 55
+    },
+    {
+      "keys": [
+        "json to sql",
+        "https://bitkittools.com/developer/json-to-sql/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 66
+    },
+    {
+      "keys": [
+        "og calculator extract",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 74.33333333333333
+    },
+    {
+      "keys": [
+        "tanner goldstein whitehouse 1970 midparental height 8.5 cm",
+        "https://bitkittools.com/baby/height-predictor/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "temperament niemowlaka test",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "pol",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 43
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
