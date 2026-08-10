@@ -57,6 +57,8 @@ describe('aggregateWeeklyReport — empty/edge inputs', () => {
     expect(result.zeroCtrPages).toEqual([])
     expect(result.highBouncePages).toEqual([])
     expect(result.ctrDeviations).toEqual([])
+    expect(result.toolEngagement).toEqual([])
+    expect(result.claritySignals).toEqual([])
     expect(result.risingQueries).toEqual([])
     expect(result.fallingQueries).toEqual([])
   })
@@ -267,6 +269,86 @@ describe('aggregateWeeklyReport — highBouncePages', () => {
     const result = aggregateWeeklyReport(days)
     expect(result.highBouncePages).toHaveLength(1)
     expect(result.highBouncePages[0]!.bounceRate).toBeCloseTo(0.6)
+  })
+})
+
+// ── toolEngagement ───────────────────────────────────────────────────────────
+
+describe('aggregateWeeklyReport — toolEngagement', () => {
+  test('computes engagement rate from input_enter events vs sessions', () => {
+    const day = makeDay('2026-08-01', {
+      pages: [makePage({ sessions: 10, events: { page_view: 10, input_enter: 4 } })],
+      queries: [],
+    })
+    const result = aggregateWeeklyReport([day])
+    expect(result.toolEngagement).toEqual([
+      {
+        path: '/beer/bac-calculator/',
+        sessions: 10,
+        inputEnterCount: 4,
+        engagementRate: 0.4,
+      },
+    ])
+  })
+
+  test('excludes pages with sessions below the engagement threshold', () => {
+    const day = makeDay('2026-08-01', {
+      pages: [makePage({ path: '/low/', sessions: 2, events: { input_enter: 2 } })],
+      queries: [],
+    })
+    const result = aggregateWeeklyReport([day])
+    expect(result.toolEngagement).toEqual([])
+  })
+
+  test('accumulates input_enter counts across multiple days', () => {
+    const days = [
+      makeDay('2026-08-01', {
+        pages: [makePage({ sessions: 5, events: { input_enter: 1 } })],
+        queries: [],
+      }),
+      makeDay('2026-08-02', {
+        pages: [makePage({ sessions: 5, events: { input_enter: 2 } })],
+        queries: [],
+      }),
+    ]
+    const result = aggregateWeeklyReport(days)
+    expect(result.toolEngagement).toEqual([
+      {
+        path: '/beer/bac-calculator/',
+        sessions: 10,
+        inputEnterCount: 3,
+        engagementRate: 0.3,
+      },
+    ])
+  })
+})
+
+// ── claritySignals ───────────────────────────────────────────────────────────
+
+describe('aggregateWeeklyReport — claritySignals', () => {
+  test('returns an empty array when clarity data is null', () => {
+    const day = makeDay('2026-08-01', { clarity: null })
+    const result = aggregateWeeklyReport([day])
+    expect(result.claritySignals).toEqual([])
+  })
+
+  test('surfaces watched Clarity metrics across the week', () => {
+    const day = makeDay('2026-08-01', {
+      clarity: [
+        {
+          metricName: 'RageClickCount',
+          information: [{ URL: 'https://bitkittools.com/beer/bac-calculator/' }],
+        },
+      ],
+    })
+    const result = aggregateWeeklyReport([day])
+    expect(result.claritySignals).toEqual([
+      {
+        metricName: 'RageClickCount',
+        affectedRowCount: 1,
+        samplePages: ['https://bitkittools.com/beer/bac-calculator/'],
+      },
+    ])
   })
 })
 
