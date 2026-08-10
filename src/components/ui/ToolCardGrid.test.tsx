@@ -7,13 +7,15 @@ jest.mock('next/link', () => {
     children,
     href,
     className,
+    prefetch,
   }: {
     children: React.ReactNode
     href: string
     className?: string
+    prefetch?: boolean
   }) {
     return (
-      <a href={href} className={className}>
+      <a href={href} className={className} data-prefetch={String(prefetch)}>
         {children}
       </a>
     )
@@ -71,5 +73,11 @@ describe('ToolCardGrid', () => {
     render(<ToolCardGrid tools={[mockTool, secondTool]} locale="en" />)
     expect(screen.getByText('JSON Formatter')).toBeInTheDocument()
     expect(screen.getByText('Password Generator')).toBeInTheDocument()
+  })
+
+  it('forwards prefetch={false} to every ToolCard link', () => {
+    render(<ToolCardGrid tools={[mockTool]} locale="en" prefetch={false} />)
+    const link = screen.getByRole('link')
+    expect(link).toHaveAttribute('data-prefetch', 'false')
   })
 })

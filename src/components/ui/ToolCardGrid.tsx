@@ -5,9 +5,11 @@ type ToolCardGridProps = {
   tools: ToolConfig[]
   locale: 'en' | 'ko'
   emptyMessage?: string
+  /** Forwarded to each ToolCard's <Link>. See ToolCard's prefetch prop doc. */
+  prefetch?: boolean
 }
 
-export default function ToolCardGrid({ tools, locale, emptyMessage }: ToolCardGridProps) {
+export default function ToolCardGrid({ tools, locale, emptyMessage, prefetch }: ToolCardGridProps) {
   if (tools.length === 0) {
     return emptyMessage ? (
       <p className="text-sm text-neutral-500">{emptyMessage}</p>
@@ -17,7 +19,7 @@ export default function ToolCardGrid({ tools, locale, emptyMessage }: ToolCardGr
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {tools.map((tool) => (
-        <ToolCard key={tool.id} tool={tool} locale={locale} />
+        <ToolCard key={tool.id} tool={tool} locale={locale} prefetch={prefetch} />
       ))}
     </div>
   )
