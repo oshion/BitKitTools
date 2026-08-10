@@ -1,0 +1,58 @@
+name: Backfill Analytics Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Start date (YYYY-MM-DD, inclusive)'
+        required: true
+        type: string
+      end_date:
+        description: 'End date (YYYY-MM-DD, inclusive, must be before today)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # See docs/ADR.md ADR-016 — this bot only touches data/**, so it
+          # bypasses the master branch protection gate via a personal PAT.
+          token: ${{ secrets.GH_BOT_PAT }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run analytics backfill
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+        run: npx tsx scripts/backfill-analytics.ts --start "${{ inputs.start_date }}" --end "${{ inputs.end_date }}"
+
+      - name: Process analytics data
+        run: npx tsx scripts/process-analytics.ts
+
+      - name: Commit backfilled data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw data/processed
+          if git diff --quiet --staged; then
+            echo "No new data files to commit. Skipping commit."
+          else
+            git commit -m "chore(backfill-data): backfill analytics ${{ inputs.start_date }}..${{ inputs.end_date }}"
+            git push
+          fi

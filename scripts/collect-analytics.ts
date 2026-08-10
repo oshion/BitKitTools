@@ -86,7 +86,7 @@ async function fetchGa4Report(
   return response.json()
 }
 
-async function collectGa4(date: string): Promise<void> {
+export async function collectGa4(date: string): Promise<void> {
   const propertyId = process.env.GA4_PROPERTY_ID
   if (!propertyId) {
     throw new Error(
@@ -99,7 +99,9 @@ async function collectGa4(date: string): Promise<void> {
   const accessToken = await getGoogleAccessToken()
 
   const requestBody: Ga4ReportRequestBody = {
-    dateRanges: [{ startDate: 'yesterday', endDate: 'yesterday' }],
+    // Explicit date (not the 'yesterday' keyword) so this same function can
+    // be reused for historical backfill, not just the daily "yesterday" run.
+    dateRanges: [{ startDate: date, endDate: date }],
     dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
     metrics: [{ name: 'sessions' }, { name: 'eventCount' }],
     keepEmptyRows: false,
@@ -127,7 +129,7 @@ async function collectGa4(date: string): Promise<void> {
  * Failure here does NOT affect ga4Success or the process exit code — it follows
  * the same best-effort pattern as Clarity collection.
  */
-async function collectGa4Bounce(date: string): Promise<void> {
+export async function collectGa4Bounce(date: string): Promise<void> {
   const propertyId = process.env.GA4_PROPERTY_ID
   if (!propertyId) {
     throw new Error(
@@ -140,7 +142,8 @@ async function collectGa4Bounce(date: string): Promise<void> {
   const accessToken = await getGoogleAccessToken()
 
   const requestBody: Ga4ReportRequestBody = {
-    dateRanges: [{ startDate: 'yesterday', endDate: 'yesterday' }],
+    // Explicit date, see collectGa4 above.
+    dateRanges: [{ startDate: date, endDate: date }],
     dimensions: [{ name: 'pagePath' }],
     metrics: [{ name: 'bounceRate' }, { name: 'sessions' }],
     keepEmptyRows: false,
@@ -206,7 +209,7 @@ async function fetchGscReport(
  * against GSC console totals for dates where the query-dimensioned fetch
  * showed 0 clicks but real clicks existed.
  */
-async function collectGscPageTotals(date: string): Promise<void> {
+export async function collectGscPageTotals(date: string): Promise<void> {
   console.log(`[GSC] Fetching page-only totals for ${date}...`)
   const accessToken = await getGoogleAccessToken()
   const requestBody: GscSearchAnalyticsRequestBody = {
@@ -232,7 +235,7 @@ async function collectGscPageTotals(date: string): Promise<void> {
  * undercount reality — see collectGscPageTotals above, which is the
  * authoritative source process-analytics.ts uses for page-level numbers.
  */
-async function collectGsc(date: string): Promise<void> {
+export async function collectGsc(date: string): Promise<void> {
   console.log(`[GSC] Fetching data for ${date}...`)
 
   const accessToken = await getGoogleAccessToken()
@@ -424,7 +427,11 @@ async function main(): Promise<void> {
   console.log('[collect-analytics] Done.')
 }
 
-main().catch((err: unknown) => {
-  console.error(`[collect-analytics] Fatal error: ${String(err)}`)
-  process.exit(1)
-})
+// Execute only when run as a script, not when imported (e.g. by
+// scripts/backfill-analytics.ts, which reuses collectGa4/collectGsc/etc.)
+if (process.env['NODE_ENV'] !== 'test' && require.main === module) {
+  main().catch((err: unknown) => {
+    console.error(`[collect-analytics] Fatal error: ${String(err)}`)
+    process.exit(1)
+  })
+}
