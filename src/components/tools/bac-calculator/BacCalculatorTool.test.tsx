@@ -65,3 +65,23 @@ describe('BacCalculatorTool — input_enter event', () => {
     ).toBeTruthy()
   })
 })
+
+describe('BacCalculatorTool — drink field accessibility', () => {
+  it('associates the Type, ABV, and Volume fields with their labels', () => {
+    const { getByLabelText } = render(<BacCalculatorTool />)
+
+    expect(getByLabelText('Type')).toBeTruthy()
+    expect(getByLabelText('ABV (%)')).toBeTruthy()
+    expect(getByLabelText('Volume (mL)')).toBeTruthy()
+  })
+
+  it('keeps each drink row\'s fields uniquely associated after adding a second drink', () => {
+    const { getByText, getAllByLabelText } = render(<BacCalculatorTool />)
+
+    fireEvent.click(getByText('+ Add another drink'))
+
+    expect(getAllByLabelText('Type')).toHaveLength(2)
+    expect(getAllByLabelText('ABV (%)')).toHaveLength(2)
+    expect(getAllByLabelText('Volume (mL)')).toHaveLength(2)
+  })
+})

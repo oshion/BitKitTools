@@ -419,8 +419,9 @@ export default function BacCalculatorTool() {
 
               {/* Preset selector */}
               <div className="space-y-1.5">
-                <label className="block text-xs text-neutral-500">Type</label>
+                <label htmlFor={`type-select-${drink.id}`} className="block text-xs text-neutral-500">Type</label>
                 <select
+                  id={`type-select-${drink.id}`}
                   value={drink.presetKey}
                   onChange={(e) => {
                     fireInputEnterOnce()
@@ -444,8 +445,9 @@ export default function BacCalculatorTool() {
               {/* ABV + Volume */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="block text-xs text-neutral-500">ABV (%)</label>
+                  <label htmlFor={`abv-input-${drink.id}`} className="block text-xs text-neutral-500">ABV (%)</label>
                   <input
+                    id={`abv-input-${drink.id}`}
                     type="number"
                     min={0.5}
                     max={95}
@@ -467,8 +469,9 @@ export default function BacCalculatorTool() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="block text-xs text-neutral-500">Volume (mL)</label>
+                  <label htmlFor={`volume-input-${drink.id}`} className="block text-xs text-neutral-500">Volume (mL)</label>
                   <input
+                    id={`volume-input-${drink.id}`}
                     type="number"
                     min={10}
                     max={2000}
