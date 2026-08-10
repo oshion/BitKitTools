@@ -7,8 +7,10 @@
  *   data/raw/gsc-{YYYY-MM-DD}.json
  *   data/raw/clarity-{YYYY-MM-DD}.json
  *
- * GA4 reports yesterday's data; GSC reports 2 days ago (accounts for
- * the typical 2–3 day data freshness lag in Search Console).
+ * GA4 reports yesterday's data; GSC re-fetches a rolling window (2–5 days
+ * ago, see scripts/lib/gscDateWindow.ts) every run, since click counts keep
+ * being revised for a few days after the initial freshness lag and a single
+ * one-time snapshot would permanently miss late-attributed clicks.
  * Clarity reports the last 24 hours of rolling aggregates (the API does not
  * support specific calendar-date queries).
  *
@@ -32,6 +34,7 @@
 import { mkdirSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { getGoogleAccessToken } from './lib/googleAuth'
+import { getGscBackfillDates } from './lib/gscDateWindow'
 
 const GA4_API_BASE = 'https://analyticsdata.googleapis.com/v1beta'
 const GSC_API_BASE = 'https://searchconsole.googleapis.com/webmasters/v3'
@@ -321,12 +324,8 @@ async function main(): Promise<void> {
 
   // GA4: yesterday's data (no freshness lag issue)
   const yesterdayDate = getDateDaysAgo(1)
-  // GSC: 2 days ago — Search Console data typically lags 2–3 days,
-  // so requesting yesterday often returns an empty or incomplete dataset.
-  const gscDate = getDateDaysAgo(2)
 
   let ga4Success = false
-  let gscSuccess = false
 
   // GA4 — independent try/catch; GSC always runs regardless of GA4 outcome.
   try {
@@ -344,13 +343,23 @@ async function main(): Promise<void> {
     console.error(`[GA4-Bounce] Collection failed: ${String(err)}`)
   }
 
-  // GSC — independent try/catch.
-  try {
-    await collectGsc(gscDate)
-    gscSuccess = true
-  } catch (err: unknown) {
-    console.error(`[GSC] Collection failed: ${String(err)}`)
+  // GSC — refetch a rolling window (not just exactly 2 days ago). Click
+  // counts can keep being revised for several days after the initial
+  // freshness lag, so a single one-time snapshot permanently misses clicks
+  // that Google attributes later. Each date's raw file is overwritten here;
+  // process-analytics.ts's own REPROCESS_WINDOW_DAYS then regenerates the
+  // processed output from the refreshed raw data on its next run.
+  let gscSuccessCount = 0
+  const gscDates = getGscBackfillDates(new Date())
+  for (const date of gscDates) {
+    try {
+      await collectGsc(date)
+      gscSuccessCount++
+    } catch (err: unknown) {
+      console.error(`[GSC] Collection failed for ${date}: ${String(err)}`)
+    }
   }
+  const gscSuccess = gscSuccessCount > 0
 
   // Clarity — fully independent; failure never triggers process.exit(1).
   // CLARITY_API_KEY is optional; if absent, collectClarity throws and we log.
