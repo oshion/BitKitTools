@@ -9,6 +9,12 @@
 import type { ProcessedDay, ProcessedQuery } from '../process-analytics'
 import type { ActionLog } from './detectStagnation'
 import type { PageCtrSample } from './detectCtrAnomalies'
+import {
+  computeEngagementRates,
+  summarizeClaritySignals,
+  type PageEngagementRate,
+  type ClarityIssueSummary,
+} from './toolQualitySignals'
 
 // ── Exported Types ────────────────────────────────────────────────────────────
 
@@ -67,6 +73,10 @@ export interface WeeklyReportData {
   risingQueries: QueryPositionChange[]
   /** Queries that fell most in rank (positionChange asc, top 10) */
   fallingQueries: QueryPositionChange[]
+  /** input_enter engagement rate per page (sessions >= MIN_SESSIONS_FOR_ENGAGEMENT only), ascending — lowest engagement first */
+  toolEngagement: PageEngagementRate[]
+  /** Clarity UX-issue signals (dead/rage clicks, script errors, quickback), descending by affected row count */
+  claritySignals: ClarityIssueSummary[]
 }
 
 /** Re-export for callers that only need the aggregated sample shape */
@@ -201,6 +211,7 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
   // bounceRate: accumulate as weighted sum (by sessions) then divide
   const pageBounceWeightedSum = new Map<string, number>()
   const pageBounceSessionSum = new Map<string, number>()
+  const pageInputEnterCounts = new Map<string, number>()
 
   // Query/segment-level accumulators for CTR deviation
   // Key: `${path}::country::${country}` or `${path}::device::${device}`
@@ -221,6 +232,9 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
 
       const prevSessions = pageSessions.get(page.path) ?? 0
       pageSessions.set(page.path, prevSessions + page.sessions)
+
+      const prevInputEnter = pageInputEnterCounts.get(page.path) ?? 0
+      pageInputEnterCounts.set(page.path, prevInputEnter + (page.events['input_enter'] ?? 0))
 
       // Bounce rate: weight by sessions to handle multi-day accumulation
       if (page.bounceRate !== null && page.sessions > 0) {
@@ -400,6 +414,11 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
       .slice(0, 10)
   }
 
+  // ── Tool quality signals ──────────────────────────────────────────────────
+
+  const toolEngagement = computeEngagementRates(pageSessions, pageInputEnterCounts)
+  const claritySignals = summarizeClaritySignals(sorted.map((day) => day.clarity))
+
   return {
     periodStart,
     periodEnd,
@@ -412,6 +431,8 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
     zeroCtrPages: zeroCtrTop10,
     highBouncePages: highBounceTop10,
     ctrDeviations,
+    toolEngagement,
+    claritySignals,
     risingQueries,
     fallingQueries,
   }
