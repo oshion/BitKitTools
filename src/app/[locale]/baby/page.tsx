@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tCategory = await getTranslations({ locale, namespace: 'categoryPage' })
 
   const isKo = safeLocale === 'ko'
-  const canonical = isKo ? `${SITE_URL}/ko/${CATEGORY}` : `${SITE_URL}/${CATEGORY}`
+  const canonical = isKo ? `${SITE_URL}/ko/${CATEGORY}/` : `${SITE_URL}/${CATEGORY}/`
   const title = `${tNav(CATEGORY)} — BitKitTools`
   const description = tCategory(`description.${CATEGORY}`)
 
@@ -37,9 +37,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical,
       languages: {
-        en: `${SITE_URL}/${CATEGORY}`,
-        ko: `${SITE_URL}/ko/${CATEGORY}`,
-        'x-default': `${SITE_URL}/${CATEGORY}`,
+        en: `${SITE_URL}/${CATEGORY}/`,
+        ko: `${SITE_URL}/ko/${CATEGORY}/`,
+        'x-default': `${SITE_URL}/${CATEGORY}/`,
       },
     },
     openGraph: {
@@ -66,10 +66,10 @@ export default async function BabyCategoryPage({ params }: Props) {
 
   const tools = getToolsByCategory(CATEGORY)
   const isKo = safeLocale === 'ko'
-  const pageUrl = isKo ? `${SITE_URL}/ko/${CATEGORY}` : `${SITE_URL}/${CATEGORY}`
+  const pageUrl = isKo ? `${SITE_URL}/ko/${CATEGORY}/` : `${SITE_URL}/${CATEGORY}/`
 
   const breadcrumbItems = [
-    { name: 'Home', url: isKo ? `${SITE_URL}/ko` : SITE_URL },
+    { name: 'Home', url: isKo ? `${SITE_URL}/ko/` : `${SITE_URL}/` },
     { name: tNav(CATEGORY), url: pageUrl },
   ]
 

@@ -56,15 +56,15 @@ describe('Footer', () => {
   it('legal links have correct EN paths', () => {
     render(<Footer />)
     const privacyLink = screen.getByText('privacyPolicy').closest('a')
-    expect(privacyLink).toHaveAttribute('href', '/privacy-policy')
+    expect(privacyLink).toHaveAttribute('href', '/privacy-policy/')
     const termsLink = screen.getByText('terms').closest('a')
-    expect(termsLink).toHaveAttribute('href', '/terms')
+    expect(termsLink).toHaveAttribute('href', '/terms/')
   })
 
   it('legal links have /ko prefix for KO locale', () => {
     mockFooterLocale = 'ko'
     render(<Footer />)
     const privacyLink = screen.getByText('privacyPolicy').closest('a')
-    expect(privacyLink).toHaveAttribute('href', '/ko/privacy-policy')
+    expect(privacyLink).toHaveAttribute('href', '/ko/privacy-policy/')
   })
 })

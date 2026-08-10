@@ -58,12 +58,12 @@ describe('ToolCard', () => {
   it('renders link with correct EN href', () => {
     render(<ToolCard tool={mockTool} locale="en" />)
     const link = screen.getByRole('link')
-    expect(link).toHaveAttribute('href', '/developer/json-formatter')
+    expect(link).toHaveAttribute('href', '/developer/json-formatter/')
   })
 
   it('renders link with /ko prefix for KO locale', () => {
     render(<ToolCard tool={mockTool} locale="ko" />)
     const link = screen.getByRole('link')
-    expect(link).toHaveAttribute('href', '/ko/developer/json-formatter')
+    expect(link).toHaveAttribute('href', '/ko/developer/json-formatter/')
   })
 })

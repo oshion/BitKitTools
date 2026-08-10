@@ -30,7 +30,7 @@ function buildRss(): string {
 
   const items = sorted
     .map((tool) => {
-      const link = `${SITE_URL}/${tool.category}/${tool.slug}`
+      const link = `${SITE_URL}/${tool.category}/${tool.slug}/`
       return `    <item>
       <title>${escapeXml(tool.title.en)}</title>
       <link>${link}</link>
@@ -47,7 +47,7 @@ function buildRss(): string {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${escapeXml(SITE_TITLE)}</title>
-    <link>${SITE_URL}</link>
+    <link>${SITE_URL}/</link>
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <language>en</language>
     <lastBuildDate>${now}</lastBuildDate>

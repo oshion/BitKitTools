@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? '개발자, 여행자, 맥주 애호가, 육아 부모를 위한 무료 계산기 모음 서비스 BitKitTools를 소개합니다.'
       : 'BitKitTools is a free collection of micro-calculators for developers, travelers, beer lovers, and parents.',
     alternates: {
-      canonical: isKo ? '/ko/about' : '/about',
+      canonical: isKo ? '/ko/about/' : '/about/',
       languages: {
-        en: '/about',
-        ko: '/ko/about',
-        'x-default': '/about',
+        en: '/about/',
+        ko: '/ko/about/',
+        'x-default': '/about/',
       },
     },
   }

@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? 'BitKitTools의 개인정보처리방침. 쿠키, LocalStorage 사용 및 제3자 서비스에 대한 고지.'
       : 'BitKitTools Privacy Policy. Information about our use of cookies, LocalStorage, and third-party services.',
     alternates: {
-      canonical: isKo ? '/ko/privacy-policy' : '/privacy-policy',
+      canonical: isKo ? '/ko/privacy-policy/' : '/privacy-policy/',
       languages: {
-        en: '/privacy-policy',
-        ko: '/ko/privacy-policy',
-        'x-default': '/privacy-policy',
+        en: '/privacy-policy/',
+        ko: '/ko/privacy-policy/',
+        'x-default': '/privacy-policy/',
       },
     },
   }

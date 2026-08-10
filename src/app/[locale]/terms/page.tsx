@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? 'BitKitTools 이용약관. 계산 결과의 정확성 미보장 및 면책 범위.'
       : 'BitKitTools Terms of Use. Disclaimer of accuracy for calculation results and scope of liability.',
     alternates: {
-      canonical: isKo ? '/ko/terms' : '/terms',
+      canonical: isKo ? '/ko/terms/' : '/terms/',
       languages: {
-        en: '/terms',
-        ko: '/ko/terms',
-        'x-default': '/terms',
+        en: '/terms/',
+        ko: '/ko/terms/',
+        'x-default': '/terms/',
       },
     },
   }
