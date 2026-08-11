@@ -2,12 +2,21 @@
   "date": "2026-08-09",
   "pages": [
     {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 50,
+      "bounceRate": null
+    },
+    {
       "path": "/baby/height-predictor/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 9,
+      "gscImpressions": 12,
       "gscClicks": 0,
-      "gscAvgPosition": 17.666666666666668,
+      "gscAvgPosition": 15.083333333333334,
       "bounceRate": null
     },
     {
@@ -17,6 +26,33 @@
       "gscImpressions": 1,
       "gscClicks": 0,
       "gscAvgPosition": 96,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 41,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 9,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 70.25,
       "bounceRate": null
     },
     {
@@ -38,12 +74,48 @@
       "bounceRate": null
     },
     {
+      "path": "/ko/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 22,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 20,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/json-formatter/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 52,
+      "bounceRate": null
+    },
+    {
       "path": "/ko/travel/flight-delay-compensation/",
       "sessions": 0,
       "events": {},
       "gscImpressions": 1,
       "gscClicks": 0,
       "gscAvgPosition": 4,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 11,
       "bounceRate": null
     },
     {
@@ -68,13 +140,23 @@
       "path": "/travel/layover-connection-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 5,
+      "gscImpressions": 9,
       "gscClicks": 0,
-      "gscAvgPosition": 36.6,
+      "gscAvgPosition": 31,
       "bounceRate": null
     }
   ],
   "queries": [
+    {
+      "query": "abv converter",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "nld",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 66
+    },
     {
       "query": "airport connection times data",
       "page": "/travel/layover-connection-calculator/",
@@ -126,6 +208,26 @@
       "position": 72
     },
     {
+      "query": "gravity calculator beer",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "can",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 77
+    },
+    {
+      "query": "homebrew abv calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 64
+    },
+    {
       "query": "icn mct",
       "page": "/travel/layover-connection-calculator/",
       "country": "usa",
@@ -156,6 +258,16 @@
       "position": 65
     },
     {
+      "query": "json 검사기",
+      "page": "/ko/developer/json-formatter/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 52
+    },
+    {
       "query": "midparental height equation",
       "page": "/baby/height-predictor/",
       "country": "usa",
@@ -164,6 +276,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 98
+    },
+    {
+      "query": "og calculator extract",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 74
     },
     {
       "query": "standard drinks calc",

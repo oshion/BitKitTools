@@ -1,63 +1,63 @@
 {
   "https://bitkittools.com/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:21:49.904Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:12.906Z"
   },
   "https://bitkittools.com/ko/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:21:56.068Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:19.166Z"
   },
   "https://bitkittools.com/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:02.206Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:25.536Z"
   },
   "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:08.357Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:31.796Z"
   },
   "https://bitkittools.com/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:14.525Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:37.997Z"
   },
   "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:20.668Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:44.184Z"
   },
   "https://bitkittools.com/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:26.811Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:50.522Z"
   },
   "https://bitkittools.com/ko/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:32.953Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:11:56.653Z"
   },
   "https://bitkittools.com/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:39.142Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:12:03.104Z"
   },
   "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
-    "coverageState": "Discovered - currently not indexed",
-    "lastCheckedAt": "2026-08-10T04:22:45.455Z"
+    "coverageState": "URL is unknown to Google",
+    "lastCheckedAt": "2026-08-11T04:12:09.486Z"
   },
   "https://bitkittools.com/developer/json-to-sql": {
     "verdict": "PASS",
     "coverageState": "Submitted and indexed",
-    "lastCheckedAt": "2026-08-10T04:22:51.629Z",
+    "lastCheckedAt": "2026-08-11T04:12:16.064Z",
     "lastCrawlTime": "2026-07-30T09:49:00Z"
   },
   "https://bitkittools.com/ko/developer/json-to-sql": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-10T04:22:57.788Z"
+    "lastCheckedAt": "2026-08-11T04:12:22.528Z"
   }
 }
