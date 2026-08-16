@@ -166,6 +166,16 @@
   ],
   "queries": [
     {
+      "query": "0.12 bac in promille",
+      "page": "/beer/bac-calculator/",
+      "country": "mys",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 74
+    },
+    {
       "query": "alcohol calculator homebrew",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "gbr",
@@ -254,6 +264,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 47
+    },
+    {
+      "query": "connection counter",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "mys",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
     },
     {
       "query": "determine blood alcohol level",
