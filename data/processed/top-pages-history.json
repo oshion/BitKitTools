@@ -20,6 +20,19 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-08-08",
+      "pages": [
+        {
+          "page": "/travel/layover-connection-calculator/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/travel/flight-delay-compensation/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }

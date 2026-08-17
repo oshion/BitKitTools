@@ -1,3 +1,12 @@
 {
-  "proposals": []
+  "proposals": [
+    {
+      "id": "improvement-travel-jetlag-recovery-calculator",
+      "type": "improvement",
+      "target": "/travel/jetlag-recovery-calculator/",
+      "firstProposedAt": "2026-08-17",
+      "status": "pending",
+      "lastReminderAt": "2026-08-17"
+    }
+  ]
 }

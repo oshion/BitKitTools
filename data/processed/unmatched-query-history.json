@@ -3,6 +3,10 @@
     {
       "weekStart": "2026-08-03",
       "queries": []
+    },
+    {
+      "weekStart": "2026-08-08",
+      "queries": []
     }
   ]
 }
