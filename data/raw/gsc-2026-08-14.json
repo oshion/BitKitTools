@@ -62,6 +62,18 @@
     },
     {
       "keys": [
+        "calculate homebrew abv",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 70
+    },
+    {
+      "keys": [
         "connecting times",
         "https://bitkittools.com/travel/layover-connection-calculator/",
         "usa",
@@ -131,6 +143,18 @@
       "impressions": 1,
       "ctr": 0,
       "position": 82
+    },
+    {
+      "keys": [
+        "how much does a shot of vodka raise your bac",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "idn",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
     },
     {
       "keys": [
@@ -572,9 +596,9 @@
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 86.5
+      "position": 86
     },
     {
       "keys": [

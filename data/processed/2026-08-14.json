@@ -59,9 +59,9 @@
       "path": "/beer/hydrometer-temperature-correction/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 38,
+      "gscImpressions": 37,
       "gscClicks": 0,
-      "gscAvgPosition": 80.44736842105263,
+      "gscAvgPosition": 80.27027027027027,
       "bounceRate": null
     },
     {
@@ -189,6 +189,16 @@
       "position": 86
     },
     {
+      "query": "calculate homebrew abv",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
+    },
+    {
       "query": "connecting times",
       "page": "/travel/layover-connection-calculator/",
       "country": "usa",
@@ -247,6 +257,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 82
+    },
+    {
+      "query": "how much does a shot of vodka raise your bac",
+      "page": "/beer/bac-calculator/",
+      "country": "idn",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
     },
     {
       "query": "how to calculate alcohol percentage",
@@ -613,10 +633,10 @@
       "page": "/beer/hydrometer-temperature-correction/",
       "country": "usa",
       "device": "DESKTOP",
-      "impressions": 2,
+      "impressions": 1,
       "clicks": 0,
       "ctr": 0,
-      "position": 86.5
+      "position": 86
     },
     {
       "query": "thomas and chess temperament scale",
