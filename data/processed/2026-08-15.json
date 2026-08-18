@@ -157,6 +157,16 @@
   ],
   "queries": [
     {
+      "query": "2 glasses of wine blood alcohol level",
+      "page": "/beer/bac-calculator/",
+      "country": "tur",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 77
+    },
+    {
       "query": "abv calculator gravity",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "gbr",
@@ -235,6 +245,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 89
+    },
+    {
+      "query": "beer calculator bdo",
+      "page": "/beer/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 62
     },
     {
       "query": "brew gravity calculator",
