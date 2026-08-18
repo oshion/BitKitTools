@@ -12,10 +12,21 @@ export interface AnthropicContentBlock {
 
 export interface AnthropicMessageResponse {
   content?: AnthropicContentBlock[]
+  stop_reason?: string
 }
 
 /** Returns the text of the first `type: 'text'` content block, or '' if none exists. */
 export function extractAnthropicText(json: AnthropicMessageResponse): string {
   const textBlock = json.content?.find((block) => block.type === 'text')
   return textBlock?.text ?? ''
+}
+
+/**
+ * Returns true when the response was cut off by the max_tokens limit rather
+ * than finishing naturally. A truncated response has silently-incomplete
+ * text (no error is thrown), so callers should log a warning when this is
+ * true instead of treating the text as a complete report/spec.
+ */
+export function isTruncated(json: AnthropicMessageResponse): boolean {
+  return json.stop_reason === 'max_tokens'
 }

@@ -18,7 +18,7 @@ import {
   readTrend,
   type ActionLogEntry,
 } from './lib/detectStagnation'
-import { extractAnthropicText } from './lib/anthropicResponse'
+import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -133,7 +133,7 @@ async function main(): Promise<void> {
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 2048,
+        max_tokens: 4096,
         messages: [{ role: 'user', content: prompt }],
       }),
     })
@@ -146,12 +146,21 @@ async function main(): Promise<void> {
       process.exit(1)
     }
 
-    const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+    const json = (await response.json()) as {
+      content?: Array<{ type: string; text?: string }>
+      stop_reason?: string
+    }
     strategyReview = extractAnthropicText(json)
 
     if (!strategyReview) {
       console.error('[generate-strategy-review] Anthropic API returned empty response.')
       process.exit(1)
+    }
+
+    if (isTruncated(json)) {
+      console.warn(
+        '[generate-strategy-review] Anthropic response was cut off by max_tokens — review may be incomplete.'
+      )
     }
   } catch (err) {
     console.error('[generate-strategy-review] Network error calling Anthropic API:', err)

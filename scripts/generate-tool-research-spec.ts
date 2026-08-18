@@ -32,7 +32,7 @@ import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, weeksPending } from './lib/proposalTracking'
 import type { UnmatchedQuery, SgeRiskPatterns } from './lib/toolResearchMatching'
 import { classifySgeRiskByRules } from './lib/toolResearchMatching'
-import { extractAnthropicText } from './lib/anthropicResponse'
+import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -326,7 +326,7 @@ ${historySection}
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -338,12 +338,21 @@ ${historySection}
     )
   }
 
-  const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+  const json = (await response.json()) as {
+    content?: Array<{ type: string; text?: string }>
+    stop_reason?: string
+  }
   const text = extractAnthropicText(json)
 
   if (!text.trim()) {
     throw new Error(
       `[generate-tool-research-spec] Anthropic API returned empty response for query: ${candidate.query}`
+    )
+  }
+
+  if (isTruncated(json)) {
+    console.warn(
+      `[generate-tool-research-spec] Anthropic response was cut off by max_tokens for query "${candidate.query}" — spec may be incomplete.`
     )
   }
 
@@ -486,7 +495,7 @@ NONE
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -498,12 +507,21 @@ NONE
     )
   }
 
-  const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+  const json = (await response.json()) as {
+    content?: Array<{ type: string; text?: string }>
+    stop_reason?: string
+  }
   const text = extractAnthropicText(json)
 
   if (!text.trim()) {
     throw new Error(
       '[generate-tool-research-spec] Anthropic API returned empty response for new category spec'
+    )
+  }
+
+  if (isTruncated(json)) {
+    console.warn(
+      '[generate-tool-research-spec] Anthropic response was cut off by max_tokens for new category spec — spec may be incomplete.'
     )
   }
 
