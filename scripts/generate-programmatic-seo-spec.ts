@@ -36,7 +36,7 @@ import type { UnmatchedQuery } from './lib/toolResearchMatching'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, weeksPending } from './lib/proposalTracking'
 import { passesSimilarityGuardrail } from './lib/checkPageSimilarity'
-import { extractAnthropicText } from './lib/anthropicResponse'
+import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -484,7 +484,7 @@ ${faqList}
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -496,12 +496,21 @@ ${faqList}
     )
   }
 
-  const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+  const json = (await response.json()) as {
+    content?: Array<{ type: string; text?: string }>
+    stop_reason?: string
+  }
   const text = extractAnthropicText(json)
 
   if (!text.trim()) {
     throw new Error(
       `[generate-programmatic-seo-spec] Anthropic API returned empty response for query: "${candidate.variantQuery}"`
+    )
+  }
+
+  if (isTruncated(json)) {
+    console.warn(
+      `[generate-programmatic-seo-spec] Anthropic response was cut off by max_tokens for "${candidate.variantQuery}" — spec may be incomplete.`
     )
   }
 

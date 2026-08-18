@@ -20,7 +20,7 @@ import {
 } from './lib/classifyIntent'
 import { appendTrendPoint, readActionLog, readTrend, writeTrend } from './lib/detectStagnation'
 import { getWeeklyReportWindow } from './lib/weeklyReportWindow'
-import { extractAnthropicText } from './lib/anthropicResponse'
+import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
 import type { PageLighthouseScore } from './lib/lighthouseThreshold'
@@ -434,7 +434,7 @@ ${lighthouseSection}
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 4096,
+        max_tokens: 8192,
         messages: [{ role: 'user', content: prompt }],
       }),
     })
@@ -445,8 +445,17 @@ ${lighthouseSection}
       process.exit(1)
     }
 
-    const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+    const json = (await response.json()) as {
+      content?: Array<{ type: string; text?: string }>
+      stop_reason?: string
+    }
     apiResponseText = extractAnthropicText(json)
+
+    if (isTruncated(json)) {
+      console.warn(
+        '[generate-report] Anthropic response was cut off by max_tokens — the report may be incomplete.'
+      )
+    }
 
     if (!apiResponseText.trim()) {
       console.error(

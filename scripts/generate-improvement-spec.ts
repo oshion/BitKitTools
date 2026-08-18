@@ -21,7 +21,7 @@ import type { CtrAnomaly } from './lib/detectCtrAnomalies'
 import type { HighBouncePage } from './lib/aggregateWeeklyReport'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, weeksPending } from './lib/proposalTracking'
-import { extractAnthropicText } from './lib/anthropicResponse'
+import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -265,7 +265,7 @@ export async function generateImprovementSpec(
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -277,13 +277,22 @@ export async function generateImprovementSpec(
     )
   }
 
-  const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+  const json = (await response.json()) as {
+    content?: Array<{ type: string; text?: string }>
+    stop_reason?: string
+  }
   const text = extractAnthropicText(json)
 
   if (!text.trim()) {
     throw new Error(
       '[generate-improvement-spec] Anthropic API returned empty response for ' +
         candidate.page
+    )
+  }
+
+  if (isTruncated(json)) {
+    console.warn(
+      `[generate-improvement-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — spec may be incomplete.`
     )
   }
 

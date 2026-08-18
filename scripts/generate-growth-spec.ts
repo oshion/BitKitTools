@@ -21,7 +21,7 @@ import type { TopPagesHistory } from './lib/topPagesHistory'
 import { findConsecutiveTopPerformers } from './lib/topPagesHistory'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, weeksPending } from './lib/proposalTracking'
-import { extractAnthropicText } from './lib/anthropicResponse'
+import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -201,7 +201,7 @@ ${historySection}
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -213,12 +213,21 @@ ${historySection}
     )
   }
 
-  const json = (await response.json()) as { content?: Array<{ type: string; text?: string }> }
+  const json = (await response.json()) as {
+    content?: Array<{ type: string; text?: string }>
+    stop_reason?: string
+  }
   const text = extractAnthropicText(json)
 
   if (!text.trim()) {
     throw new Error(
       '[generate-growth-spec] Anthropic API returned empty response for ' + candidate.page
+    )
+  }
+
+  if (isTruncated(json)) {
+    console.warn(
+      `[generate-growth-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — spec may be incomplete.`
     )
   }
 
