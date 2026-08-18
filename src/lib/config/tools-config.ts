@@ -1266,8 +1266,8 @@ export const toolsConfig: ToolConfig[] = [
       ko: '시차 적응 회복 계산기',
     },
     description: {
-      en: 'Estimate how many days it takes to recover from jet lag based on the number of time zones you cross and your direction of travel. Includes a day-by-day general adaptation guide for eastward and westward flights — no sign-up required.',
-      ko: '넘어가는 시간대 수와 이동 방향에 따라 시차 적응에 며칠이 걸릴지 추정합니다. 동쪽/서쪽 이동별 일자별 일반 적응 가이드를 제공합니다 — 가입 불필요.',
+      en: 'Get an instant estimate of how many days it takes to recover from jet lag, based on the number of time zones you cross and your direction of travel. Includes a day-by-day adaptation guide for eastward and westward flights — free, no sign-up required.',
+      ko: '넘어가는 시간대 수와 이동 방향에 따라 시차 회복에 며칠이 걸릴지 즉시 확인하세요. 동쪽/서쪽 이동별 일자별 적응 가이드를 제공합니다 — 무료, 가입 불필요.',
     },
     keywords: {
       en: [
@@ -1295,6 +1295,16 @@ export const toolsConfig: ToolConfig[] = [
     },
     schemaType: 'WebApplication',
     faq: [
+      {
+        question: {
+          en: 'How many days does it typically take to recover from jet lag?',
+          ko: '시차는 보통 며칠 만에 회복되나요?',
+        },
+        answer: {
+          en: 'A common rule of thumb is about one day of recovery per time zone crossed for eastward travel, and slightly less — roughly two-thirds of a day per zone — for westward travel, since the body adapts faster going west. Use the calculator above with your specific route to get a tailored estimate rather than relying on this general rule alone.',
+          ko: '흔히 쓰이는 경험칙은 동쪽 이동 시 넘어간 시간대 1개당 약 하루, 서쪽 이동 시에는 몸이 더 빨리 적응하므로 시간대당 약 3분의 2일 정도입니다. 이 일반 규칙만 참고하기보다 위 계산기에 실제 경로를 입력해 맞춤 추정치를 확인하세요.',
+        },
+      },
       {
         question: {
           en: 'Why is eastward travel generally harder than westward for jet lag?',
