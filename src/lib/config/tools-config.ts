@@ -70,7 +70,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['password-generator', 'json-to-sql'],
+    relatedToolIds: ['password-generator', 'json-to-sql', 'jwt-decoder'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -153,7 +153,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['json-formatter'],
+    relatedToolIds: ['json-formatter', 'json-to-sql', 'jwt-decoder'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -236,7 +236,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: [],
+    relatedToolIds: ['json-formatter', 'password-generator', 'json-to-sql'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -321,7 +321,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['flight-delay-compensation'],
+    relatedToolIds: ['flight-delay-compensation', 'layover-connection-calculator', 'jetlag-recovery-calculator'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -415,7 +415,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['homebrew-recipe-calculator', 'standard-drinks-calculator'],
+    relatedToolIds: ['homebrew-recipe-calculator', 'standard-drinks-calculator', 'hydrometer-temperature-correction'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -515,7 +515,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['bac-calculator', 'hydrometer-temperature-correction'],
+    relatedToolIds: ['bac-calculator', 'hydrometer-temperature-correction', 'standard-drinks-calculator'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -600,7 +600,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['sleep-schedule', 'height-predictor'],
+    relatedToolIds: ['sleep-schedule', 'height-predictor', 'temperament-quiz'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -990,7 +990,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['growth-percentile', 'sleep-schedule'],
+    relatedToolIds: ['growth-percentile', 'sleep-schedule', 'height-predictor'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -1074,7 +1074,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['homebrew-recipe-calculator'],
+    relatedToolIds: ['homebrew-recipe-calculator', 'bac-calculator', 'standard-drinks-calculator'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -1158,7 +1158,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['bac-calculator'],
+    relatedToolIds: ['bac-calculator', 'homebrew-recipe-calculator', 'hydrometer-temperature-correction'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -1242,7 +1242,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['flight-delay-compensation', 'visa-requirement-checker'],
+    relatedToolIds: ['flight-delay-compensation', 'visa-requirement-checker', 'jetlag-recovery-calculator'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -1336,7 +1336,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['flight-delay-compensation', 'layover-connection-calculator'],
+    relatedToolIds: ['flight-delay-compensation', 'layover-connection-calculator', 'visa-requirement-checker'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
@@ -1419,7 +1419,7 @@ export const toolsConfig: ToolConfig[] = [
         },
       },
     ],
-    relatedToolIds: ['json-formatter'],
+    relatedToolIds: ['json-formatter', 'password-generator', 'jwt-decoder'],
     adSlots: [
       { position: 'header', minHeightPx: 90 },
       { position: 'result', minHeightPx: 250 },
