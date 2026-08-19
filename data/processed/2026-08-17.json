@@ -1,7 +1,344 @@
 {
   "date": "2026-08-17",
-  "pages": [],
-  "queries": [],
+  "pages": [
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 12.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 9,
+      "gscClicks": 0,
+      "gscAvgPosition": 50.44444444444444,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 78,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 11,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 70,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 6,
+      "gscClicks": 0,
+      "gscAvgPosition": 66.83333333333333,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 18,
+      "gscClicks": 0,
+      "gscAvgPosition": 73.88888888888889,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 8,
+      "gscClicks": 0,
+      "gscAvgPosition": 74.375,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 85.2,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 8,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 10,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 9.666666666666666,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 50.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 6,
+      "gscClicks": 0,
+      "gscAvgPosition": 55.666666666666664,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/visa-requirement-checker/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 39.5,
+      "bounceRate": null
+    }
+  ],
+  "queries": [
+    {
+      "query": "airport connection times data",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "query": "alcohol calculator homebrew",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 82
+    },
+    {
+      "query": "alcohol in grams",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "jor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 75
+    },
+    {
+      "query": "alcohol measurement",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 88
+    },
+    {
+      "query": "alcometer temperature adjustment",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "ukr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 71
+    },
+    {
+      "query": "bac count",
+      "page": "/beer/bac-calculator/",
+      "country": "tur",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 75
+    },
+    {
+      "query": "fg calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "rus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 57
+    },
+    {
+      "query": "fg calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "tur",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 63
+    },
+    {
+      "query": "flight connection times data",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "query": "fox alcohol calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 67
+    },
+    {
+      "query": "hydrometer correction",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 98
+    },
+    {
+      "query": "hydrometer temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 84
+    },
+    {
+      "query": "hydrometer temperature calculator",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "phl",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "query": "metabolize alcohol calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 72
+    },
+    {
+      "query": "mid parental height chart",
+      "page": "/baby/height-predictor/",
+      "country": "rus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 85
+    },
+    {
+      "query": "mid-parental height method",
+      "page": "/baby/height-predictor/",
+      "country": "rus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 79
+    },
+    {
+      "query": "og calculator extract",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 79.5
+    },
+    {
+      "query": "tanner goldstein whitehouse 1970 midparental height 8.5 cm",
+      "page": "/baby/height-predictor/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "query": "tanner method height",
+      "page": "/baby/height-predictor/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 77
+    },
+    {
+      "query": "temperature correction specific gravity",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 76
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",

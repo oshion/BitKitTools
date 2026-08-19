@@ -218,6 +218,16 @@
       "position": 38
     },
     {
+      "query": "child height predictor based on parents height",
+      "page": "/baby/height-predictor/",
+      "country": "rus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 89
+    },
+    {
       "query": "child temperament quiz",
       "page": "/baby/temperament-quiz/",
       "country": "usa",

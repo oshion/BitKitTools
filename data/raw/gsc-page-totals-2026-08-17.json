@@ -1,0 +1,140 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "https://bitkittools.com/baby/growth-percentile/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 12.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 50.44444444444444
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/sleep-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/temperament-quiz/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 70
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/bac-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 66.83333333333333
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 18,
+      "ctr": 0,
+      "position": 73.88888888888889
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 74.375
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/standard-drinks-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 85.2
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/baby/growth-percentile/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/standard-drinks-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 9.666666666666666
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/jetlag-recovery-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 50.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 55.666666666666664
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/visa-requirement-checker/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 39.5
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
