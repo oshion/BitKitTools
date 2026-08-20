@@ -239,6 +239,16 @@
       "position": 67
     },
     {
+      "query": "how much is 1.5 alcohol",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "vnm",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    },
+    {
       "query": "hydrometer correction",
       "page": "/beer/hydrometer-temperature-correction/",
       "country": "usa",
