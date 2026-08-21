@@ -178,6 +178,16 @@
       "position": 83
     },
     {
+      "query": "alcometer temperature correction",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
+    },
+    {
       "query": "calculating abv from gravity",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "usa",
@@ -328,6 +338,16 @@
       "position": 49
     },
     {
+      "query": "mead starting gravity calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "idn",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 71
+    },
+    {
       "query": "mid parental height calculation",
       "page": "/baby/height-predictor/",
       "country": "gbr",
@@ -376,6 +396,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 64
+    },
+    {
+      "query": "specific gravity calculator temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
     },
     {
       "query": "time between two flights",

@@ -2,15 +2,39 @@
   "rows": [
     {
       "keys": [
-        "abv gravity calculator",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "0 02 bac in promille",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "phl",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 94
+    },
+    {
+      "keys": [
+        "0 02 bac in promille",
+        "https://bitkittools.com/beer/bac-calculator/",
         "usa",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 84
+      "position": 80
+    },
+    {
+      "keys": [
+        "alcohol calculator homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 88
     },
     {
       "keys": [
@@ -22,73 +46,97 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 81
+      "position": 83
     },
     {
       "keys": [
-        "alcohol measurement",
-        "https://bitkittools.com/beer/standard-drinks-calculator/",
-        "aus",
+        "alcohol hydrometer temperature correction table pdf",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "ind",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 83
+      "position": 74
     },
     {
       "keys": [
         "alcometer temperature correction",
         "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "aus",
+        "sau",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 70
+      "position": 71
     },
     {
       "keys": [
-        "calculating abv from gravity",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "usa",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 84
-    },
-    {
-      "keys": [
-        "cdc baby growth chart calculator",
-        "https://bitkittools.com/baby/growth-percentile/",
-        "gbr",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 49
-    },
-    {
-      "keys": [
-        "corrected temperature",
+        "alcometer temperature correction",
         "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "gbr",
+        "tur",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 83
+      "position": 66
     },
     {
       "keys": [
-        "drink unit calculator",
-        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "beer gravity calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "isl",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73
+    },
+    {
+      "keys": [
+        "blood alcohol concentration calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "can",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "keys": [
+        "calculate abv homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
         "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 69
+    },
+    {
+      "keys": [
+        "calculating abv from specific gravity",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "tur",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "keys": [
+        "cocktail units of alcohol",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "vnm",
         "DESKTOP"
       ],
       "clicks": 0,
@@ -98,15 +146,51 @@
     },
     {
       "keys": [
-        "flight delay compensation calculator",
+        "eu261 compensation calculator",
         "https://bitkittools.com/travel/flight-delay-compensation/",
-        "usa",
+        "gbr",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 71
+      "position": 60
+    },
+    {
+      "keys": [
+        "gravity calculator beer",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "keys": [
+        "gravity calculator mead",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "ind",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73
+    },
+    {
+      "keys": [
+        "gravity reading calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "vnm",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
     },
     {
       "keys": [
@@ -118,55 +202,55 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 80
+      "position": 81
     },
     {
       "keys": [
-        "homebrew gravity calculator",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "jor",
+        "how much alcohol to get drunk calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "phl",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 66
+      "position": 68
     },
     {
       "keys": [
-        "hydrometer calibration",
+        "how much is 80 mg of alcohol",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "tur",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 81
+    },
+    {
+      "keys": [
+        "hydrometer calculator",
         "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "gbr",
+        "aus",
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 79
+      "position": 79.5
     },
     {
       "keys": [
-        "hydrometer calibration",
+        "hydrometer calculator temperature",
         "https://bitkittools.com/beer/hydrometer-temperature-correction/",
         "usa",
-        "MOBILE"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 92
-    },
-    {
-      "keys": [
-        "hydrometer conversion chart",
-        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "fra",
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 89
+      "position": 81
     },
     {
       "keys": [
@@ -178,37 +262,13 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 83
-    },
-    {
-      "keys": [
-        "hydrometer temperature correction formula",
-        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "rus",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 77
-    },
-    {
-      "keys": [
-        "jet lag recovery calculator",
-        "https://bitkittools.com/travel/jetlag-recovery-calculator/",
-        "ind",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 53
+      "position": 85
     },
     {
       "keys": [
         "json to sql",
         "https://bitkittools.com/developer/json-to-sql/",
-        "usa",
+        "tha",
         "DESKTOP"
       ],
       "clicks": 0,
@@ -218,63 +278,63 @@
     },
     {
       "keys": [
-        "json to sql converter",
-        "https://bitkittools.com/developer/json-to-sql/",
-        "usa",
-        "DESKTOP"
+        "jwt 디코딩",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 49
+      "position": 58
     },
     {
       "keys": [
-        "mead starting gravity calculator",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "idn",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 71
-    },
-    {
-      "keys": [
-        "mid parental height calculation",
+        "mid parental height equation",
         "https://bitkittools.com/baby/height-predictor/",
-        "gbr",
+        "aus",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 91
+      "position": 94
+    },
+    {
+      "keys": [
+        "mid-parental height",
+        "https://bitkittools.com/baby/height-predictor/",
+        "tur",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 87
     },
     {
       "keys": [
         "midparental height formula",
         "https://bitkittools.com/baby/height-predictor/",
-        "gbr",
+        "ind",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 85
+      "position": 95
     },
     {
       "keys": [
-        "midparental height formula",
-        "https://bitkittools.com/baby/height-predictor/",
-        "usa",
+        "minimum connection times",
+        "https://bitkittools.com/travel/layover-connection-calculator/",
+        "dza",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 96
+      "position": 82
     },
     {
       "keys": [
@@ -290,19 +350,31 @@
     },
     {
       "keys": [
-        "og fg calc",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "swe",
+        "parental height predictor",
+        "https://bitkittools.com/baby/height-predictor/",
+        "vnm",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 64
+      "position": 77
     },
     {
       "keys": [
-        "specific gravity calculator temperature",
+        "specific gravity of beer calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 88
+    },
+    {
+      "keys": [
+        "specific gravity temp correction",
         "https://bitkittools.com/beer/hydrometer-temperature-correction/",
         "usa",
         "DESKTOP"
@@ -310,31 +382,19 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 70
+      "position": 79
     },
     {
       "keys": [
-        "time between two flights",
-        "https://bitkittools.com/travel/layover-connection-calculator/",
-        "jor",
+        "tanner goldstein whitehouse 1970 midparental height 8.5 cm",
+        "https://bitkittools.com/baby/height-predictor/",
+        "usa",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 73
-    },
-    {
-      "keys": [
-        "time between two flights",
-        "https://bitkittools.com/travel/layover-connection-calculator/",
-        "phl",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 64
+      "position": 7
     }
   ],
   "responseAggregationType": "byPage"
