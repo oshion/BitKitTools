@@ -341,6 +341,16 @@
       "position": 85
     },
     {
+      "query": "json to db converter",
+      "page": "/developer/json-to-sql/",
+      "country": "ind",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 61
+    },
+    {
       "query": "json to sql",
       "page": "/developer/json-to-sql/",
       "country": "tha",
@@ -419,6 +429,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 77
+    },
+    {
+      "query": "quantities of alcohol",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "rus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 89
     },
     {
       "query": "specific gravity of beer calculator",
