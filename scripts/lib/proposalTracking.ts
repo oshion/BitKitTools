@@ -16,7 +16,7 @@ export interface ProposalEntry {
   type: 'improvement' | 'growth' | 'tool-research' | 'new-category' | 'programmatic-seo'
   target: string
   firstProposedAt: string // ISO date
-  status: 'pending' | 'implemented'
+  status: 'pending' | 'implemented' | 'rejected'
   lastReminderAt: string // ISO date
 }
 
@@ -80,6 +80,15 @@ export function findPendingProposal(
   return log.proposals.find((p) => p.status === 'pending' && p.type === type && p.target === target)
 }
 
+/** Returns the first `rejected` proposal matching (type, target), or undefined. */
+export function findRejectedProposal(
+  log: ProposalLog,
+  type: ProposalEntry['type'],
+  target: string
+): ProposalEntry | undefined {
+  return log.proposals.find((p) => p.status === 'rejected' && p.type === type && p.target === target)
+}
+
 /**
  * Upserts a proposal:
  * - If a pending proposal for (type, target) already exists, updates `lastReminderAt` to `asOf`
@@ -132,6 +141,19 @@ export function weeksPending(entry: ProposalEntry, asOf: Date): number {
 export function markImplemented(log: ProposalLog, id: string): ProposalLog {
   const proposals = log.proposals.map((p) =>
     p.id === id ? { ...p, status: 'implemented' as const } : p
+  )
+  return { ...log, proposals }
+}
+
+/**
+ * Returns a new log with the matching proposal's status set to 'rejected'.
+ * Once rejected, findRejectedProposal() suppresses re-generation of a spec
+ * for the same (type, target) indefinitely — unlike 'implemented', rejection
+ * is not expected to reverse itself on a later run.
+ */
+export function markRejected(log: ProposalLog, id: string): ProposalLog {
+  const proposals = log.proposals.map((p) =>
+    p.id === id ? { ...p, status: 'rejected' as const } : p
   )
   return { ...log, proposals }
 }

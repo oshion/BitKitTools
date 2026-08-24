@@ -305,6 +305,29 @@ describe('selectProgrammaticSeoCandidates', () => {
     }
   })
 
+  it('excludes a rejected near-miss silently (no candidate, no reminder)', () => {
+    const tool = makeMinimalTool({
+      title_en: 'JPG to PNG Converter',
+      keywords_en: ['jpg png converter image'],
+    })
+    const query = 'png to webp image'
+    const nearMisses = findNearMissQueries([makeUnmatchedQuery(query)], [tool])
+
+    if (nearMisses.length > 0) {
+      const proposals = makeProposalLog([
+        { ...makePendingProgrammaticSeoProposal(query), status: 'rejected' },
+      ])
+      const result = selectProgrammaticSeoCandidates(
+        [makeUnmatchedQuery(query)],
+        [tool],
+        proposals,
+        asOf
+      )
+      expect(result.candidates).toHaveLength(0)
+      expect(result.reminders).toHaveLength(0)
+    }
+  })
+
   it('reminder string includes the variant query', () => {
     const tool = makeMinimalTool({
       title_en: 'JPG to PNG Converter',

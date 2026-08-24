@@ -3,10 +3,12 @@
  */
 
 import type { ProposalEntry, ProposalLog } from '../proposalTracking'
+import type { SgeRiskPatterns } from '../toolResearchMatching'
 import {
   MAX_TOOL_RESEARCH_SPECS_PER_WEEK,
   parseNewCategorySpecResponse,
   selectNewCategoryCandidate,
+  selectToolResearchCandidates,
 } from '../../generate-tool-research-spec'
 
 // ── Fixtures ──────────────────────────────────────────────────────────────────
@@ -35,6 +37,63 @@ function makePendingProposal(
 describe('MAX_TOOL_RESEARCH_SPECS_PER_WEEK', () => {
   it('is 2', () => {
     expect(MAX_TOOL_RESEARCH_SPECS_PER_WEEK).toBe(2)
+  })
+})
+
+// ── selectToolResearchCandidates ──────────────────────────────────────────────
+
+describe('selectToolResearchCandidates', () => {
+  const asOf = new Date('2026-08-06T00:00:00Z')
+
+  // 'calculator' is a rule-based interactionNeededPatterns match, so
+  // classification resolves to 'low' without any AI call — keeps these
+  // tests synchronous-in-effect and free of network mocking.
+  function makePatterns(): SgeRiskPatterns {
+    return { zeroClickPatterns: [], interactionNeededPatterns: ['calculator'] }
+  }
+
+  it('returns a candidate for a recurring low-risk query with no proposal history', async () => {
+    const result = await selectToolResearchCandidates(
+      ['mortgage calculator'],
+      [{ query: 'mortgage calculator', impressions: 50 }],
+      makePatterns(),
+      makeProposalLog(),
+      asOf,
+      'dummy-key'
+    )
+    expect(result.candidates).toHaveLength(1)
+    expect(result.candidates[0]!.query).toBe('mortgage calculator')
+    expect(result.reminders).toHaveLength(0)
+  })
+
+  it('puts already-pending tool-research proposal in reminders, not candidates', async () => {
+    const log = makeProposalLog([makePendingProposal('tool-research', 'mortgage calculator')])
+    const result = await selectToolResearchCandidates(
+      ['mortgage calculator'],
+      [{ query: 'mortgage calculator', impressions: 50 }],
+      makePatterns(),
+      log,
+      asOf,
+      'dummy-key'
+    )
+    expect(result.candidates).toHaveLength(0)
+    expect(result.reminders).toHaveLength(1)
+  })
+
+  it('excludes a rejected tool-research proposal silently (no candidate, no reminder)', async () => {
+    const log = makeProposalLog([
+      { ...makePendingProposal('tool-research', 'mortgage calculator'), status: 'rejected' },
+    ])
+    const result = await selectToolResearchCandidates(
+      ['mortgage calculator'],
+      [{ query: 'mortgage calculator', impressions: 50 }],
+      makePatterns(),
+      log,
+      asOf,
+      'dummy-key'
+    )
+    expect(result.candidates).toHaveLength(0)
+    expect(result.reminders).toHaveLength(0)
   })
 })
 
@@ -82,6 +141,16 @@ describe('selectNewCategoryCandidate', () => {
       log,
       asOf
     )
+    expect(result).toBeNull()
+  })
+
+  it('returns null when there is a rejected new-category proposal for the same query set', () => {
+    const remaining = ['car loan estimator', 'mortgage calculator']
+    const target = remaining.slice().sort().join('|')
+    const log = makeProposalLog([
+      { ...makePendingProposal('new-category', target), status: 'rejected' },
+    ])
+    const result = selectNewCategoryCandidate(remaining, [], log, asOf)
     expect(result).toBeNull()
   })
 

@@ -29,7 +29,7 @@
  */
 
 import type { ProposalLog } from './lib/proposalTracking'
-import { findPendingProposal, weeksPending } from './lib/proposalTracking'
+import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
 import type { UnmatchedQuery, SgeRiskPatterns } from './lib/toolResearchMatching'
 import { classifySgeRiskByRules } from './lib/toolResearchMatching'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
@@ -256,6 +256,11 @@ export async function selectToolResearchCandidates(
       continue
     }
 
+    // Rejected proposals are suppressed silently (no reminder) — see
+    // generate-improvement-spec.ts for the same pattern and rationale.
+    const isRejected = !!findRejectedProposal(proposals, 'tool-research', query)
+    if (isRejected) continue
+
     const impressions = impressionLookup.get(query) ?? 0
     const evidence = `2주 이상 연속으로 기존 tool과 매칭되지 않는 GSC 쿼리 (최근 노출수: ${impressions})`
     candidates.push({ query, impressions, evidence })
@@ -396,6 +401,11 @@ export function selectNewCategoryCandidate(
 
   const isPending = !!findPendingProposal(proposals, 'new-category', target)
   if (isPending) {
+    return null
+  }
+
+  const isRejected = !!findRejectedProposal(proposals, 'new-category', target)
+  if (isRejected) {
     return null
   }
 

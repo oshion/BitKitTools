@@ -5,7 +5,7 @@
 - `src/lib/config/tools-config.ts` (현재 존재하는 tool 목록 — 리포트가 "신규 제작 검토"라고 잘못 제안하는 걸 잡아내려면 필수)
 - `scripts/lib/aggregateWeeklyReport.ts`, `scripts/lib/weeklyReportWindow.ts` (리포트 집계/기간 로직)
 - `scripts/generate-report.ts` (리포트 생성 프롬프트 — 이 리포트가 어떤 데이터를 근거로 뭘 쓰라고 지시받았는지)
-- `data/proposals.json` (이번 주 리포트 파일 하단에 `generate-weekly-specs.ts`가 자동으로 append한 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안들의 추적 상태 — pending/implemented)
+- `data/proposals.json` (이번 주 리포트 파일 하단에 `generate-weekly-specs.ts`가 자동으로 append한 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안들의 추적 상태 — pending/rejected/implemented)
 
 ## 배경 지식 (세션 간 반복 설명을 피하기 위해 여기 고정)
 
@@ -14,7 +14,7 @@
 - **GA4/Clarity는 방문자가 쿠키 동의 배너에서 "동의"를 눌러야만 수집이 시작된다**(`AnalyticsScripts.tsx`, Google Consent Mode v2). 그래서 GSC 클릭·노출은 있는데 GA4 세션/Clarity 데이터가 0인 것은 버그가 아니라 정상적인 동의 게이팅 결과일 수 있다 — "세션 0이 이상하다"고 성급히 지적하지 마라. 다만 GSC 클릭이 **여러 건** 발생했는데 세션이 계속 0이라면(즉 검색 결과 클릭이 실제 방문으로 이어지지 않는 정도가 과도하다면) 그건 별개로 짚을 만한 신호다.
 - **`toolEngagement`(input_enter 이벤트/세션)와 `claritySignals`(DeadClick/RageClick/ScriptErrorCount/QuickbackClick)**는 이미 `aggregateWeeklyReport.ts`가 계산해서 `WeeklyReportData`에 넣어주고, 리포트 프롬프트의 "8. 툴 품질 신호" 섹션이 이걸 서술한다. 데이터가 없으면(둘 다 빈 배열) 이 섹션 자체가 생략되는 게 정상이다 — GA4/Clarity 동의 트래픽이 쌓이기 전까지는 계속 비어있을 수 있다.
 - **표본 크기가 매우 작다** (이 사이트는 신생 사이트, 주당 클릭 수가 한 자릿수인 경우가 흔함). 클릭 1~2건 차이로 "급증/급감"이라 서술하거나 확정적 원인을 단정하는 건 과잉해석이다.
-- **이 리포트 파일에는 이미 자동 생성된 제안이 섞여 있다**: `generate-weekly-specs.ts`가 매주 `generate-report.ts`의 AI 서술 리포트 뒤에 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안 섹션을 자동으로 append하고, 그 추적 상태를 `data/proposals.json`(status: `pending`/`implemented`)에 기록한다. 이 스킬의 Step 7이 "새로운" 제안을 만들기 전에 반드시 이 자동 생성분과 겹치는지 먼저 확인해야 한다.
+- **이 리포트 파일에는 이미 자동 생성된 제안이 섞여 있다**: `generate-weekly-specs.ts`가 매주 `generate-report.ts`의 AI 서술 리포트 뒤에 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안 섹션을 자동으로 append하고, 그 추적 상태를 `data/proposals.json`(status: `pending`/`rejected`/`implemented`)에 기록한다. `rejected`는 이 스킬의 Step 8에서 사용자가 거절한 제안을 기록해 다음 주 자동 파이프라인이 재생성하지 않도록 막는 상태다. 이 스킬의 Step 7이 "새로운" 제안을 만들기 전에 반드시 이 자동 생성분과 겹치는지, 이미 `rejected` 처리된 항목을 다시 제안하는 건 아닌지 먼저 확인해야 한다.
 
 ## Step 1: 대상 리포트 식별 및 최신성 확인
 
@@ -66,7 +66,7 @@ print(total_clicks, total_impr)
 
 ## Step 7: 제안 카테고리별 검토 및 개발 초안 작성
 
-**먼저 중복/재제안 여부부터 확인한다**: `data/proposals.json`을 읽어 이번 주 리포트 파일 하단에 자동 append된 스펙 섹션(개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO)의 대상(page/query)이 이미 `pending`으로 추적 중인지 확인한다. `pending` 항목은 새로 만들지 말고 "N주째 대기 중" 상태로만 요약한다.
+**먼저 중복/재제안 여부부터 확인한다**: `data/proposals.json`을 읽어 이번 주 리포트 파일 하단에 자동 append된 스펙 섹션(개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO)의 대상(page/query)이 이미 `pending`으로 추적 중인지, 혹은 과거에 `rejected`로 기록된 적 있는지 확인한다. `pending` 항목은 새로 만들지 말고 "N주째 대기 중" 상태로만 요약한다. `rejected` 항목은 그때와 다른 새로운 근거(다른 데이터 신호, 시간 경과에 따른 상황 변화)가 없는 한 다시 제안하지 않는다 — 왜 거절됐었는지 `data/history.md`에서 사유를 확인하고, 그 사유가 지금도 유효한지 판단한다.
 
 이렇게 걸러진 뒤, 리포트의 "추가 아이디어 제안" 섹션과, 이 스킬이 Step 2~5에서 직접 발견한 이상 신호들을 모아 아래 네 카테고리로 분류한다:
 
@@ -95,4 +95,6 @@ Step 2~7 결과를 종합해 사용자에게 보고한다:
 3. 정리 후보 처리 여부 확인 요청.
 4. Step 7에서 작성한 개발 초안 목록 — 우선순위 순으로 제시하고 어떤 걸 진행할지 사용자에게 확인받는다.
 
-사용자가 특정 항목의 진행을 승인하면, 그 항목에 한해 TDD(테스트 먼저) → `npm run lint && npm test && npm run build` 검증 → 커밋 → PR → auto-merge 흐름으로 진행한다 (이 프로젝트의 기존 브랜치 보호 정책상 `master` 직접 push는 하지 않는다 — `gh pr create` 후 `gh pr merge --auto --merge`). CLAUDE.md rule 17에 따라, 스펙이 실질적으로 바뀌는 큰 범위의 작업(신규 tool 추가 등)이라면 여기서 멈추고 `docs/screens/` 설계부터 사용자와 논의한다.
+**사용자가 특정 항목을 거절하면**: 그 항목이 `data/proposals.json`의 자동 생성 스펙과 대응되면(Step 7에서 확인한 type/target), `scripts/lib/proposalTracking.ts`의 `markRejected()`와 동일한 결과가 되도록 해당 엔트리의 `status`를 `'rejected'`로 직접 Edit한다 (파일에 아직 엔트리가 없으면 새로 추가 — `id`는 `{type}-{target을 소문자+영숫자 외 문자는 하이픈으로 치환}`, `firstProposedAt`/`lastReminderAt`은 오늘 날짜). 이렇게 하면 다음 주 `generate-weekly-specs.ts` 실행 시 같은 (type, target) 조합이 다시 후보로 선정되지 않는다. 자동 생성 스펙과 대응되지 않는, 이 스킬이 Step 2~5에서 직접 도출한 제안이면 `data/history.md`에 "YYYY년 MM월 N주차: 제안했으나 거절 — {내용} / 사유: {사유}" 형식으로 한 줄 남긴다. 어느 쪽이든 대화창에만 남기지 않는다 — 다음 주 세션(자동 파이프라인이든, 이 스킬의 재실행이든)이 같은 걸 또 제안하지 않도록 반드시 파일에 기록한다.
+
+**사용자가 특정 항목의 진행을 승인하면**, 그 항목에 한해 TDD(테스트 먼저) → `npm run lint && npm test && npm run build` 검증 → 커밋 → PR → auto-merge 흐름으로 진행한다 (이 프로젝트의 기존 브랜치 보호 정책상 `master` 직접 push는 하지 않는다 — `gh pr create` 후 `gh pr merge --auto --merge`). CLAUDE.md rule 17에 따라, 스펙이 실질적으로 바뀌는 큰 범위의 작업(신규 tool 추가 등)이라면 여기서 멈추고 `docs/screens/` 설계부터 사용자와 논의한다.
