@@ -33,6 +33,23 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-08-15",
+      "pages": [
+        {
+          "page": "/baby/height-predictor/",
+          "clicks": 1
+        },
+        {
+          "page": "/baby/temperament-quiz/",
+          "clicks": 1
+        },
+        {
+          "page": "/travel/flight-delay-compensation/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }

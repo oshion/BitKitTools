@@ -7,6 +7,14 @@
       "firstProposedAt": "2026-08-17",
       "status": "pending",
       "lastReminderAt": "2026-08-17"
+    },
+    {
+      "id": "improvement-beer-hydrometer-temperature-correction",
+      "type": "improvement",
+      "target": "/beer/hydrometer-temperature-correction/",
+      "firstProposedAt": "2026-08-24",
+      "status": "pending",
+      "lastReminderAt": "2026-08-24"
     }
   ]
 }
