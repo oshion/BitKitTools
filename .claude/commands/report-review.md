@@ -5,6 +5,7 @@
 - `src/lib/config/tools-config.ts` (현재 존재하는 tool 목록 — 리포트가 "신규 제작 검토"라고 잘못 제안하는 걸 잡아내려면 필수)
 - `scripts/lib/aggregateWeeklyReport.ts`, `scripts/lib/weeklyReportWindow.ts` (리포트 집계/기간 로직)
 - `scripts/generate-report.ts` (리포트 생성 프롬프트 — 이 리포트가 어떤 데이터를 근거로 뭘 쓰라고 지시받았는지)
+- `data/proposals.json` (이번 주 리포트 파일 하단에 `generate-weekly-specs.ts`가 자동으로 append한 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안들의 추적 상태 — pending/implemented)
 
 ## 배경 지식 (세션 간 반복 설명을 피하기 위해 여기 고정)
 
@@ -13,6 +14,7 @@
 - **GA4/Clarity는 방문자가 쿠키 동의 배너에서 "동의"를 눌러야만 수집이 시작된다**(`AnalyticsScripts.tsx`, Google Consent Mode v2). 그래서 GSC 클릭·노출은 있는데 GA4 세션/Clarity 데이터가 0인 것은 버그가 아니라 정상적인 동의 게이팅 결과일 수 있다 — "세션 0이 이상하다"고 성급히 지적하지 마라. 다만 GSC 클릭이 **여러 건** 발생했는데 세션이 계속 0이라면(즉 검색 결과 클릭이 실제 방문으로 이어지지 않는 정도가 과도하다면) 그건 별개로 짚을 만한 신호다.
 - **`toolEngagement`(input_enter 이벤트/세션)와 `claritySignals`(DeadClick/RageClick/ScriptErrorCount/QuickbackClick)**는 이미 `aggregateWeeklyReport.ts`가 계산해서 `WeeklyReportData`에 넣어주고, 리포트 프롬프트의 "8. 툴 품질 신호" 섹션이 이걸 서술한다. 데이터가 없으면(둘 다 빈 배열) 이 섹션 자체가 생략되는 게 정상이다 — GA4/Clarity 동의 트래픽이 쌓이기 전까지는 계속 비어있을 수 있다.
 - **표본 크기가 매우 작다** (이 사이트는 신생 사이트, 주당 클릭 수가 한 자릿수인 경우가 흔함). 클릭 1~2건 차이로 "급증/급감"이라 서술하거나 확정적 원인을 단정하는 건 과잉해석이다.
+- **이 리포트 파일에는 이미 자동 생성된 제안이 섞여 있다**: `generate-weekly-specs.ts`가 매주 `generate-report.ts`의 AI 서술 리포트 뒤에 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안 섹션을 자동으로 append하고, 그 추적 상태를 `data/proposals.json`(status: `pending`/`implemented`)에 기록한다. 이 스킬의 Step 7이 "새로운" 제안을 만들기 전에 반드시 이 자동 생성분과 겹치는지 먼저 확인해야 한다.
 
 ## Step 1: 대상 리포트 식별 및 최신성 확인
 
@@ -64,7 +66,9 @@ print(total_clicks, total_impr)
 
 ## Step 7: 제안 카테고리별 검토 및 개발 초안 작성
 
-리포트의 "추가 아이디어 제안" 섹션과, 이 스킬이 Step 2~5에서 직접 발견한 이상 신호들을 모아 아래 네 카테고리로 분류한다:
+**먼저 중복/재제안 여부부터 확인한다**: `data/proposals.json`을 읽어 이번 주 리포트 파일 하단에 자동 append된 스펙 섹션(개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO)의 대상(page/query)이 이미 `pending`으로 추적 중인지 확인한다. `pending` 항목은 새로 만들지 말고 "N주째 대기 중" 상태로만 요약한다.
+
+이렇게 걸러진 뒤, 리포트의 "추가 아이디어 제안" 섹션과, 이 스킬이 Step 2~5에서 직접 발견한 이상 신호들을 모아 아래 네 카테고리로 분류한다:
 
 - **기존 tool SEO 보완**: 타이틀/설명/keywords가 실제 GSC 쿼리와 어긋나는 경우 (참고: `tools-config.ts`의 `keywords`는 SERP 노출에 영향 없음 — title/description에 반영해야 실효가 있다)
 - **기존 tool 개선**: Lighthouse 점수 저하, `toolEngagement` 참여율 저조, `claritySignals`(특히 `ScriptErrorCount`)로 드러난 UX/버그 이슈
