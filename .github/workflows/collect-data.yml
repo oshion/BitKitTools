@@ -60,5 +60,19 @@ jobs:
           else
             DATE=$(date -u +%Y-%m-%d)
             git commit -m "chore(collect-data): daily analytics collection, processing & retention ${DATE}"
-            git push
+
+            # master may have moved (e.g. a PR merging, or weekly-report.yml
+            # committing concurrently) between checkout and this push — retry
+            # with a rebase onto the latest master instead of failing outright.
+            attempt=0
+            until git push; do
+              attempt=$((attempt + 1))
+              if [ "$attempt" -ge 3 ]; then
+                echo "git push failed after 3 attempts — giving up."
+                exit 1
+              fi
+              echo "git push rejected (attempt ${attempt}/3) — fetching and rebasing onto origin/master before retry..."
+              git fetch origin master
+              git rebase origin/master
+            done
           fi
