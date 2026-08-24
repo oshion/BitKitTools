@@ -8,6 +8,15 @@
       "description": "Title/description rewrite to signal free/instant calculator for \"hydrometer temperature\" query (CTR 0.0% at 92 impressions)",
       "baselineCtr": 0,
       "status": "in-progress"
+    },
+    {
+      "id": "content-update-travel-jetlag-recovery-calculator-1",
+      "type": "content-update",
+      "page": "/travel/jetlag-recovery-calculator/",
+      "deployedAt": "2026-08-24T02:05:10Z",
+      "description": "Title/description rewrite (question-hook framing + personalized schedule callout) for \"jet lag recovery calculator\" query (CTR 0.0% at 20 impressions, rank 43->47); likely rank-limited so expected impact is smaller than the hydrometer fix",
+      "baselineCtr": 0,
+      "status": "in-progress"
     }
   ]
 }
