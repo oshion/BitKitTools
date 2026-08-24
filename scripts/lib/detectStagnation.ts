@@ -46,8 +46,14 @@ export interface ActionLogEntry {
   originalDescription?: LocalizedText
   /** CTR measured at experiment start time — baseline for outcome comparison. */
   baselineCtr?: number
-  /** Lifecycle state of this title experiment. */
-  status?: 'in-progress' | 'kept' | 'rolled-back'
+  /**
+   * Lifecycle state of this action. 'in-progress' | 'kept' | 'rolled-back'
+   * apply to title-experiment entries; 'no-improvement' applies to
+   * content-update entries (see Step 0 of report-review.md) — unlike a
+   * title experiment, a content-update change is not auto-reverted, so
+   * 'no-improvement' just means the CTR check found no gain.
+   */
+  status?: 'in-progress' | 'kept' | 'rolled-back' | 'no-improvement'
 }
 
 export interface ActionLog {
