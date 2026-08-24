@@ -1,0 +1,13 @@
+{
+  "actions": [
+    {
+      "id": "content-update-beer-hydrometer-temperature-correction-1",
+      "type": "content-update",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "deployedAt": "2026-08-24T01:44:32Z",
+      "description": "Title/description rewrite to signal free/instant calculator for \"hydrometer temperature\" query (CTR 0.0% at 92 impressions)",
+      "baselineCtr": 0,
+      "status": "in-progress"
+    }
+  ]
+}
