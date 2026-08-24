@@ -20,7 +20,7 @@
 import type { CtrAnomaly } from './lib/detectCtrAnomalies'
 import type { HighBouncePage } from './lib/aggregateWeeklyReport'
 import type { ProposalLog } from './lib/proposalTracking'
-import { findPendingProposal, weeksPending } from './lib/proposalTracking'
+import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -170,9 +170,16 @@ export function selectImprovementCandidates(
     const isPending = !!findPendingProposal(proposals, 'improvement', raw.page)
     if (isPending) {
       reminders.push(reminderString(raw.page, proposals, asOf))
-    } else {
-      candidates.push({ page: raw.page, reason: raw.reason, evidence: raw.evidence })
+      continue
     }
+
+    // Rejected proposals are suppressed silently (no reminder) — unlike
+    // 'pending', rejection is a human decision that should not resurface
+    // on every run until new evidence justifies re-proposing it.
+    const isRejected = !!findRejectedProposal(proposals, 'improvement', raw.page)
+    if (isRejected) continue
+
+    candidates.push({ page: raw.page, reason: raw.reason, evidence: raw.evidence })
   }
 
   // ── Step 3: sort by evidence strength ──────────────────────────────────────

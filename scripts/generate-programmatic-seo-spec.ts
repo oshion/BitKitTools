@@ -34,7 +34,7 @@
 import type { ToolConfig, LocalizedText } from '../src/types/tool'
 import type { UnmatchedQuery } from './lib/toolResearchMatching'
 import type { ProposalLog } from './lib/proposalTracking'
-import { findPendingProposal, weeksPending } from './lib/proposalTracking'
+import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
 import { passesSimilarityGuardrail } from './lib/checkPageSimilarity'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
@@ -248,6 +248,16 @@ export function selectProgrammaticSeoCandidates(
       reminders.push(reminderString(candidate.variantQuery, proposals, asOf))
       continue
     }
+
+    // Rejected proposals are suppressed silently (no reminder) — see
+    // generate-improvement-spec.ts for the same pattern and rationale.
+    const isRejected = !!findRejectedProposal(
+      proposals,
+      'programmatic-seo',
+      candidate.variantQuery
+    )
+    if (isRejected) continue
+
     candidates.push(candidate)
   }
 

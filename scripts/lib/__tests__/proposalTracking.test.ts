@@ -5,7 +5,9 @@
 import type { ProposalEntry, ProposalLog } from '../proposalTracking'
 import {
   findPendingProposal,
+  findRejectedProposal,
   markImplemented,
+  markRejected,
   readProposals,
   upsertProposal,
   weeksPending,
@@ -151,6 +153,58 @@ describe('findPendingProposal', () => {
     }
     const log: ProposalLog = { proposals: [entry] }
     const result = findPendingProposal(log, 'growth', '/beer/bac-calculator')
+    expect(result).toBeUndefined()
+  })
+})
+
+// ── findRejectedProposal ──────────────────────────────────────────────────────
+
+describe('findRejectedProposal', () => {
+  it('finds matching rejected proposal', () => {
+    const entry: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'rejected',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry] }
+    const result = findRejectedProposal(log, 'improvement', '/beer/bac-calculator')
+    expect(result).toEqual(entry)
+  })
+
+  it('returns undefined when no matching rejected proposal', () => {
+    const log: ProposalLog = { proposals: [] }
+    const result = findRejectedProposal(log, 'improvement', '/beer/bac-calculator')
+    expect(result).toBeUndefined()
+  })
+
+  it('returns undefined when proposal is pending (not rejected)', () => {
+    const entry: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'pending',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry] }
+    const result = findRejectedProposal(log, 'improvement', '/beer/bac-calculator')
+    expect(result).toBeUndefined()
+  })
+
+  it('returns undefined when type does not match', () => {
+    const entry: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'rejected',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry] }
+    const result = findRejectedProposal(log, 'growth', '/beer/bac-calculator')
     expect(result).toBeUndefined()
   })
 })
@@ -332,6 +386,76 @@ describe('markImplemented', () => {
     }
     const log: ProposalLog = { proposals: [entry] }
     markImplemented(log, 'improvement-beer-bac-calculator')
+    expect(log.proposals[0]!.status).toBe('pending') // original unchanged
+  })
+})
+
+// ── markRejected ──────────────────────────────────────────────────────────────
+
+describe('markRejected', () => {
+  it('marks the proposal as rejected', () => {
+    const entry: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'pending',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry] }
+    const newLog = markRejected(log, 'improvement-beer-bac-calculator')
+    expect(newLog.proposals[0]!.status).toBe('rejected')
+  })
+
+  it('does not affect other proposals', () => {
+    const entry1: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'pending',
+      lastReminderAt: '2026-01-05',
+    }
+    const entry2: ProposalEntry = {
+      id: 'tool-research-json-to-sql',
+      type: 'tool-research',
+      target: 'json-to-sql',
+      firstProposedAt: '2026-01-05',
+      status: 'pending',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry1, entry2] }
+    const newLog = markRejected(log, 'improvement-beer-bac-calculator')
+    expect(newLog.proposals[0]!.status).toBe('rejected')
+    expect(newLog.proposals[1]!.status).toBe('pending')
+  })
+
+  it('after markRejected, findPendingProposal no longer finds the entry', () => {
+    const entry: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'pending',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry] }
+    const newLog = markRejected(log, 'improvement-beer-bac-calculator')
+    const found = findPendingProposal(newLog, 'improvement', '/beer/bac-calculator')
+    expect(found).toBeUndefined()
+  })
+
+  it('does not mutate the original log', () => {
+    const entry: ProposalEntry = {
+      id: 'improvement-beer-bac-calculator',
+      type: 'improvement',
+      target: '/beer/bac-calculator',
+      firstProposedAt: '2026-01-05',
+      status: 'pending',
+      lastReminderAt: '2026-01-05',
+    }
+    const log: ProposalLog = { proposals: [entry] }
+    markRejected(log, 'improvement-beer-bac-calculator')
     expect(log.proposals[0]!.status).toBe('pending') // original unchanged
   })
 })

@@ -150,6 +150,19 @@ describe('selectGrowthCandidates', () => {
     expect(result.reminders[0]).toContain('/beer/bac-calculator/')
   })
 
+  it('excludes a rejected growth proposal silently (no candidate, no reminder)', () => {
+    const history = makeHistory([
+      makePoint('2026-07-28', [{ page: '/beer/bac-calculator/', clicks: 100 }]),
+      makePoint('2026-08-04', [{ page: '/beer/bac-calculator/', clicks: 120 }]),
+    ])
+    const log = makeProposalLog([
+      { ...makePendingGrowthProposal('/beer/bac-calculator/'), status: 'rejected' },
+    ])
+    const result = selectGrowthCandidates(history, log, asOf)
+    expect(result.candidates).toHaveLength(0)
+    expect(result.reminders).toHaveLength(0)
+  })
+
   it('reminder string includes weeks-pending info', () => {
     const history = makeHistory([
       makePoint('2026-07-28', [{ page: '/beer/bac-calculator/', clicks: 100 }]),

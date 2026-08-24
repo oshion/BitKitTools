@@ -198,6 +198,16 @@ describe('selectImprovementCandidates', () => {
     expect(result.reminders).toHaveLength(1)
   })
 
+  it('excludes a rejected proposal silently (no candidate, no reminder)', () => {
+    const anomalies = [makeAnomaly({ page: '/beer/bac-calculator/' })]
+    const log = makeProposalLog([
+      { ...makePendingProposal('/beer/bac-calculator/'), status: 'rejected' },
+    ])
+    const result = selectImprovementCandidates(anomalies, [], log, asOf)
+    expect(result.candidates).toHaveLength(0)
+    expect(result.reminders).toHaveLength(0)
+  })
+
   it('limits candidates to MAX_IMPROVEMENT_SPECS_PER_WEEK (3)', () => {
     const anomalies: CtrAnomaly[] = [
       makeAnomaly({ page: '/p1/', query: 'q1', ctr: 0.01, reasons: ['below-benchmark'] }),

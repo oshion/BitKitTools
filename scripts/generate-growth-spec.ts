@@ -20,7 +20,7 @@
 import type { TopPagesHistory } from './lib/topPagesHistory'
 import { findConsecutiveTopPerformers } from './lib/topPagesHistory'
 import type { ProposalLog } from './lib/proposalTracking'
-import { findPendingProposal, weeksPending } from './lib/proposalTracking'
+import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -131,6 +131,11 @@ export function selectGrowthCandidates(
       reminders.push(reminderString(page, proposals, asOf))
       continue
     }
+
+    // Rejected proposals are suppressed silently (no reminder) — see
+    // generate-improvement-spec.ts for the same pattern and rationale.
+    const isRejected = !!findRejectedProposal(proposals, 'growth', page)
+    if (isRejected) continue
 
     const consecutiveWeeks = countConsecutiveWeeks(history, page)
     const evidence = buildGrowthEvidence(history, page, consecutiveWeeks)
