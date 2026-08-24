@@ -1262,12 +1262,12 @@ export const toolsConfig: ToolConfig[] = [
     slug: 'jetlag-recovery-calculator',
     category: 'travel',
     title: {
-      en: 'Jet Lag Recovery Calculator',
-      ko: '시차 적응 회복 계산기',
+      en: 'Jet Lag Recovery Calculator – How Many Days to Adjust?',
+      ko: '시차 적응 회복 계산기 – 며칠이면 적응할까?',
     },
     description: {
-      en: 'Get an instant estimate of how many days it takes to recover from jet lag, based on the number of time zones you cross and your direction of travel. Includes a day-by-day adaptation guide for eastward and westward flights — free, no sign-up required.',
-      ko: '넘어가는 시간대 수와 이동 방향에 따라 시차 회복에 며칠이 걸릴지 즉시 확인하세요. 동쪽/서쪽 이동별 일자별 적응 가이드를 제공합니다 — 무료, 가입 불필요.',
+      en: 'Get an instant estimate of how many days it takes to recover from jet lag, plus a personalized day-by-day adaptation schedule based on the number of time zones you cross and your direction of travel — free, no sign-up required.',
+      ko: '넘어가는 시간대 수와 이동 방향을 입력하면 시차 회복에 며칠이 걸릴지, 그리고 나만의 일자별 적응 스케줄을 즉시 확인하세요 — 무료, 가입 불필요.',
     },
     keywords: {
       en: [
