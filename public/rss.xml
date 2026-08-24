@@ -5,7 +5,7 @@
     <link>https://bitkittools.com/</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Aug 2026 06:16:04 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 01:41:16 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>JWT Decoder</title>
@@ -22,9 +22,9 @@
       <guid isPermaLink="true">https://bitkittools.com/developer/json-to-sql/</guid>
     </item>
     <item>
-      <title>Hydrometer Temperature Correction Calculator</title>
+      <title>Hydrometer Temperature Correction Calculator – Instant &amp; Free</title>
       <link>https://bitkittools.com/beer/hydrometer-temperature-correction/</link>
-      <description>Correct your hydrometer reading for sample temperature. Enter your measured gravity, the actual sample temperature, and your hydrometer&apos;s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. All calculations run in your browser — no login, no uploads.</description>
+      <description>Correct your hydrometer reading for sample temperature in seconds. Enter your measured gravity, the actual sample temperature, and your hydrometer&apos;s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. Free, instant, and runs entirely in your browser — no login, no uploads.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/beer/hydrometer-temperature-correction/</guid>
     </item>
@@ -45,7 +45,7 @@
     <item>
       <title>Jet Lag Recovery Calculator</title>
       <link>https://bitkittools.com/travel/jetlag-recovery-calculator/</link>
-      <description>Estimate how many days it takes to recover from jet lag based on the number of time zones you cross and your direction of travel. Includes a day-by-day general adaptation guide for eastward and westward flights — no sign-up required.</description>
+      <description>Get an instant estimate of how many days it takes to recover from jet lag, based on the number of time zones you cross and your direction of travel. Includes a day-by-day adaptation guide for eastward and westward flights — free, no sign-up required.</description>
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/travel/jetlag-recovery-calculator/</guid>
     </item>
@@ -106,7 +106,7 @@
       <guid isPermaLink="true">https://bitkittools.com/beer/bac-calculator/</guid>
     </item>
     <item>
-      <title>Homebrew Recipe &amp; ABV Calculator</title>
+      <title>Homebrew Gravity &amp; ABV Calculator</title>
       <link>https://bitkittools.com/beer/homebrew-recipe-calculator/</link>
       <description>Calculate estimated ABV from Original Gravity (OG) and Final Gravity (FG) using the standard homebrewing formula. Includes a dilution calculator to hit your target alcohol percentage. All calculations run in your browser — no login, no uploads.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
@@ -115,7 +115,7 @@
     <item>
       <title>Flight Delay Compensation Calculator</title>
       <link>https://bitkittools.com/travel/flight-delay-compensation/</link>
-      <description>Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.</description>
+      <description>Find out if your delayed, cancelled, or denied-boarding flight qualifies for compensation under EU Regulation 261/2004 (also known as EC261) or US DOT rules. Select your regulation, disruption type, route distance, and delay duration to get an instant estimate — no sign-up required.</description>
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://bitkittools.com/travel/flight-delay-compensation/</guid>
     </item>

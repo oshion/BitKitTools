@@ -1010,12 +1010,12 @@ export const toolsConfig: ToolConfig[] = [
     slug: 'hydrometer-temperature-correction',
     category: 'beer',
     title: {
-      en: 'Hydrometer Temperature Correction Calculator',
-      ko: '비중계 온도 보정 계산기',
+      en: 'Hydrometer Temperature Correction Calculator – Instant & Free',
+      ko: '비중계 온도 보정 계산기 – 무료·즉시 결과',
     },
     description: {
-      en: 'Correct your hydrometer reading for sample temperature. Enter your measured gravity, the actual sample temperature, and your hydrometer\'s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. All calculations run in your browser — no login, no uploads.',
-      ko: '비중계 측정값을 시료 온도에 맞게 보정합니다. 측정된 비중, 실제 시료 온도, 비중계의 기준온도를 입력하면 보정된 비중을 즉시 계산합니다. 59°F(15°C) 및 68°F(20°C) 기준온도 프리셋을 지원합니다. 모든 계산은 브라우저에서 처리되며 로그인이 필요 없습니다.',
+      en: 'Correct your hydrometer reading for sample temperature in seconds. Enter your measured gravity, the actual sample temperature, and your hydrometer\'s calibration temperature to get an accurate specific gravity. Supports 59°F (15°C) and 68°F (20°C) calibration presets. Free, instant, and runs entirely in your browser — no login, no uploads.',
+      ko: '비중계 측정값을 시료 온도에 맞게 몇 초 만에 보정하세요. 측정된 비중, 실제 시료 온도, 비중계의 기준온도를 입력하면 보정된 비중을 즉시 계산합니다. 59°F(15°C) 및 68°F(20°C) 기준온도 프리셋을 지원합니다. 회원가입 없이 무료로, 모든 계산은 브라우저에서 즉시 처리됩니다.',
     },
     keywords: {
       en: [
