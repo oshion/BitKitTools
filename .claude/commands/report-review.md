@@ -6,6 +6,7 @@
 - `scripts/lib/aggregateWeeklyReport.ts`, `scripts/lib/weeklyReportWindow.ts` (리포트 집계/기간 로직)
 - `scripts/generate-report.ts` (리포트 생성 프롬프트 — 이 리포트가 어떤 데이터를 근거로 뭘 쓰라고 지시받았는지)
 - `data/proposals.json` (이번 주 리포트 파일 하단에 `generate-weekly-specs.ts`가 자동으로 append한 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안들의 추적 상태 — pending/rejected/implemented)
+- `data/action-log.json` (title-experiment 및 content-update 액션들의 배포 이력 — Step 0이 지난 content-update 액션의 효과를 검증하는 데 사용)
 
 ## 배경 지식 (세션 간 반복 설명을 피하기 위해 여기 고정)
 
@@ -15,6 +16,24 @@
 - **`toolEngagement`(input_enter 이벤트/세션)와 `claritySignals`(DeadClick/RageClick/ScriptErrorCount/QuickbackClick)**는 이미 `aggregateWeeklyReport.ts`가 계산해서 `WeeklyReportData`에 넣어주고, 리포트 프롬프트의 "8. 툴 품질 신호" 섹션이 이걸 서술한다. 데이터가 없으면(둘 다 빈 배열) 이 섹션 자체가 생략되는 게 정상이다 — GA4/Clarity 동의 트래픽이 쌓이기 전까지는 계속 비어있을 수 있다.
 - **표본 크기가 매우 작다** (이 사이트는 신생 사이트, 주당 클릭 수가 한 자릿수인 경우가 흔함). 클릭 1~2건 차이로 "급증/급감"이라 서술하거나 확정적 원인을 단정하는 건 과잉해석이다.
 - **이 리포트 파일에는 이미 자동 생성된 제안이 섞여 있다**: `generate-weekly-specs.ts`가 매주 `generate-report.ts`의 AI 서술 리포트 뒤에 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안 섹션을 자동으로 append하고, 그 추적 상태를 `data/proposals.json`(status: `pending`/`rejected`/`implemented`)에 기록한다. `rejected`는 이 스킬의 Step 8에서 사용자가 거절한 제안을 기록해 다음 주 자동 파이프라인이 재생성하지 않도록 막는 상태다. 이 스킬의 Step 7이 "새로운" 제안을 만들기 전에 반드시 이 자동 생성분과 겹치는지, 이미 `rejected` 처리된 항목을 다시 제안하는 건 아닌지 먼저 확인해야 한다.
+
+## Step 0: 지난 콘텐츠 개선 액션의 효과 검증
+
+`data/action-log.json`에서 `type: 'content-update'`이고 `status: 'in-progress'`인 항목을 찾는다 — 이 스킬의 이전 Step 8 실행에서 승인·배포된 콘텐츠/문구 수정 건들이다 (title-experiment는 `run-title-experiment.ts`가 별도로 자동 평가하므로 여기서 다루지 않는다). 각 항목에 대해:
+
+1. `deployedAt` 기준 14일 이상 경과했는지 확인한다 (GSC 재색인 + 클릭 데이터 반영에 필요한 최소 기간). 아직이면 건너뛴다.
+2. 경과했다면, 이번 주 `data/processed/*.json`의 `queries`를 모아 해당 `page`의 현재 CTR을 계산한다 — `scripts/lib/titleExperimentOrchestrator.ts`가 이미 export하는 `getPageCtr(queries, page)`를 그대로 재사용한다 (CTR 계산 로직을 직접 재구현하지 말 것). 예:
+   ```bash
+   npx tsx -e "
+   import { getPageCtr } from './scripts/lib/titleExperimentOrchestrator'
+   import { readFileSync, readdirSync } from 'fs'
+   const files = readdirSync('data/processed').filter(f => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
+   const queries = files.flatMap(f => JSON.parse(readFileSync('data/processed/' + f, 'utf-8')).queries)
+   console.log(getPageCtr(queries, '/해당/경로/'))
+   "
+   ```
+3. `entry.baselineCtr`과 비교한다: 개선됐으면 `status`를 `'kept'`로, 개선되지 않았으면 `'no-improvement'`로 `data/action-log.json`에 직접 Edit한다 (별도 스크립트 없음 — title-experiment의 자동 롤백과 달리 content-update는 자동으로 되돌리지 않는다). 표본이 너무 작아 판단이 어려우면 상태를 바꾸지 말고 `in-progress`를 유지한다.
+4. 이 결과를 Step 8 최종 보고에 "지난 실행 효과" 섹션으로 반드시 포함한다 (예: "jetlag-recovery-calculator FAQ 추가 — CTR 0.0%→1.2%로 개선, kept로 기록").
 
 ## Step 1: 대상 리포트 식별 및 최신성 확인
 
@@ -89,12 +108,15 @@ print(total_clicks, total_impr)
 
 ## Step 8: 종합 보고
 
-Step 2~7 결과를 종합해 사용자에게 보고한다:
+Step 0~7 결과를 종합해 사용자에게 보고한다:
 1. 리포트 자체의 품질 문제(있다면) — 최우선으로 짚는다.
 2. 데이터 수집 상태 이상(있다면).
-3. 정리 후보 처리 여부 확인 요청.
-4. Step 7에서 작성한 개발 초안 목록 — 우선순위 순으로 제시하고 어떤 걸 진행할지 사용자에게 확인받는다.
+3. **지난 실행 항목 효과** (Step 0 결과) — 개선됐는지, 무변화인지, 아직 판단하기엔 이른지.
+4. 정리 후보 처리 여부 확인 요청.
+5. Step 7에서 작성한 개발 초안 목록 — 우선순위 순으로 제시하고 어떤 걸 진행할지 사용자에게 확인받는다.
 
 **사용자가 특정 항목을 거절하면**: 그 항목이 `data/proposals.json`의 자동 생성 스펙과 대응되면(Step 7에서 확인한 type/target), `scripts/lib/proposalTracking.ts`의 `markRejected()`와 동일한 결과가 되도록 해당 엔트리의 `status`를 `'rejected'`로 직접 Edit한다 (파일에 아직 엔트리가 없으면 새로 추가 — `id`는 `{type}-{target을 소문자+영숫자 외 문자는 하이픈으로 치환}`, `firstProposedAt`/`lastReminderAt`은 오늘 날짜). 이렇게 하면 다음 주 `generate-weekly-specs.ts` 실행 시 같은 (type, target) 조합이 다시 후보로 선정되지 않는다. 자동 생성 스펙과 대응되지 않는, 이 스킬이 Step 2~5에서 직접 도출한 제안이면 `data/history.md`에 "YYYY년 MM월 N주차: 제안했으나 거절 — {내용} / 사유: {사유}" 형식으로 한 줄 남긴다. 어느 쪽이든 대화창에만 남기지 않는다 — 다음 주 세션(자동 파이프라인이든, 이 스킬의 재실행이든)이 같은 걸 또 제안하지 않도록 반드시 파일에 기록한다.
 
 **사용자가 특정 항목의 진행을 승인하면**, 그 항목에 한해 TDD(테스트 먼저) → `npm run lint && npm test && npm run build` 검증 → 커밋 → PR → auto-merge 흐름으로 진행한다 (이 프로젝트의 기존 브랜치 보호 정책상 `master` 직접 push는 하지 않는다 — `gh pr create` 후 `gh pr merge --auto --merge`). CLAUDE.md rule 17에 따라, 스펙이 실질적으로 바뀌는 큰 범위의 작업(신규 tool 추가 등)이라면 여기서 멈추고 `docs/screens/` 설계부터 사용자와 논의한다.
+
+**병합이 끝나면 (콘텐츠/문구 성격의 변경이고, CTR로 효과 판단이 가능할 때)**, 다음 주 이후의 Step 0이 효과를 검증할 수 있도록 `data/action-log.json`에 항목을 추가한다: `type: 'content-update'`, `page`(영향받은 경로), `deployedAt`(병합 시각 ISO), `description`(무엇을 바꿨는지 한 줄), `baselineCtr`(변경 직전 — 이번 주 데이터 기준 그 페이지의 CTR, 0이어도 명시적으로 기록), `status: 'in-progress'`. 신규 tool 추가나 순수 버그 수정처럼 CTR로 효과를 판단하기 어려운 변경에는 이 로그를 남기지 않는다.
