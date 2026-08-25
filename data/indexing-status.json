@@ -2,52 +2,52 @@
   "https://bitkittools.com/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:43:52.036Z"
+    "lastCheckedAt": "2026-08-25T03:38:55.383Z"
   },
   "https://bitkittools.com/ko/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:43:58.395Z"
+    "lastCheckedAt": "2026-08-25T03:39:01.634Z"
   },
   "https://bitkittools.com/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:04.763Z"
+    "lastCheckedAt": "2026-08-25T03:39:08.329Z"
   },
   "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:11.061Z"
+    "lastCheckedAt": "2026-08-25T03:39:14.566Z"
   },
   "https://bitkittools.com/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:17.427Z"
+    "lastCheckedAt": "2026-08-25T03:39:20.937Z"
   },
   "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:23.771Z"
+    "lastCheckedAt": "2026-08-25T03:39:27.284Z"
   },
   "https://bitkittools.com/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:30.114Z"
+    "lastCheckedAt": "2026-08-25T03:39:33.603Z"
   },
   "https://bitkittools.com/ko/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:36.478Z"
+    "lastCheckedAt": "2026-08-25T03:39:39.762Z"
   },
   "https://bitkittools.com/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:42.872Z"
+    "lastCheckedAt": "2026-08-25T03:39:45.947Z"
   },
   "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:49.163Z"
+    "lastCheckedAt": "2026-08-25T03:39:52.146Z"
   },
   "https://bitkittools.com/developer/json-to-sql": {
     "verdict": "PASS",
@@ -58,6 +58,6 @@
   "https://bitkittools.com/ko/developer/json-to-sql": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-08-24T03:44:55.570Z"
+    "lastCheckedAt": "2026-08-25T03:39:58.292Z"
   }
 }

@@ -1,7 +1,346 @@
 {
   "date": "2026-08-23",
-  "pages": [],
-  "queries": [],
+  "pages": [
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 11,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 90.66666666666667,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 96,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 33.333333333333336,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 80,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 20,
+      "gscClicks": 0,
+      "gscAvgPosition": 74.65,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 21,
+      "gscClicks": 0,
+      "gscAvgPosition": 74.76190476190476,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 11,
+      "gscClicks": 0,
+      "gscAvgPosition": 82.27272727272727,
+      "bounceRate": null
+    },
+    {
+      "path": "/developer/json-to-sql/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 9,
+      "gscClicks": 0,
+      "gscAvgPosition": 73.88888888888889,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 10.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/flight-delay-compensation/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 35.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 44.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 24.25,
+      "bounceRate": null
+    }
+  ],
+  "queries": [
+    {
+      "query": "100 grams of alcohol is how many drinks",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "tur",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 79
+    },
+    {
+      "query": "alcohol calculator homebrew",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "query": "alcohol unit calculator",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 67
+    },
+    {
+      "query": "baby sleep schedule generator",
+      "page": "/baby/sleep-schedule/",
+      "country": "usa",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 96
+    },
+    {
+      "query": "bac calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "query": "brewing gravity calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "query": "eu261 calculator",
+      "page": "/travel/flight-delay-compensation/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "query": "gravity calculator beer",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 89.5
+    },
+    {
+      "query": "gravity temperature adjustment",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "ind",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 75
+    },
+    {
+      "query": "home brew alcohol calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 81
+    },
+    {
+      "query": "home brew calculator abv",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "query": "how much is 50g of alcohol",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "mar",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "query": "hydrometer calibration",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "ind",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "query": "hydrometer calibration",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "query": "hydrometer temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 88
+    },
+    {
+      "query": "jet lag recovery calculator",
+      "page": "/travel/jetlag-recovery-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 47
+    },
+    {
+      "query": "json to sql",
+      "page": "/developer/json-to-sql/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70.5
+    },
+    {
+      "query": "midparental height",
+      "page": "/baby/height-predictor/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 94
+    },
+    {
+      "query": "specific gravity temperature calculator",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "tha",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "query": "specific gravity temperature correction calculator",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "mex",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 65
+    },
+    {
+      "query": "specific gravity to abv calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "esp",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 62
+    },
+    {
+      "query": "temperature correction factor",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 82
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",

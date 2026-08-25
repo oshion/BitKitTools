@@ -133,6 +133,16 @@
       "position": 83
     },
     {
+      "query": "bac after drinking a bottle of wine",
+      "page": "/beer/bac-calculator/",
+      "country": "tur",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 93
+    },
+    {
       "query": "blood alcohol concentration",
       "page": "/beer/bac-calculator/",
       "country": "dnk",
@@ -171,6 +181,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 72
+    },
+    {
+      "query": "home brew calculator abv",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 81
     },
     {
       "query": "hydrometer temperature",
