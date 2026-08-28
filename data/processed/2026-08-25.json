@@ -218,6 +218,26 @@
       "position": 66
     },
     {
+      "query": "corrected hydrometer reading formula",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "bgd",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "query": "corrected hydrometer reading formula",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "vnm",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 58
+    },
+    {
       "query": "corrected temperature formula",
       "page": "/beer/hydrometer-temperature-correction/",
       "country": "usa",
@@ -286,6 +306,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 78
+    },
+    {
+      "query": "how much is 100 grams of alcohol",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "mys",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 99
     },
     {
       "query": "hydrometer calibration",
@@ -446,6 +476,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 44
+    },
+    {
+      "query": "성장 계산기",
+      "page": "/ko/baby/growth-percentile/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 42
     }
   ],
   "clarity": [

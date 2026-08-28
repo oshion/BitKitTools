@@ -86,6 +86,30 @@
     },
     {
       "keys": [
+        "corrected hydrometer reading formula",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "bgd",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "keys": [
+        "corrected hydrometer reading formula",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "vnm",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
         "corrected temperature formula",
         "https://bitkittools.com/beer/hydrometer-temperature-correction/",
         "usa",
@@ -167,6 +191,18 @@
       "impressions": 1,
       "ctr": 0,
       "position": 78
+    },
+    {
+      "keys": [
+        "how much is 100 grams of alcohol",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "mys",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 99
     },
     {
       "keys": [
@@ -359,6 +395,18 @@
       "impressions": 1,
       "ctr": 0,
       "position": 44
+    },
+    {
+      "keys": [
+        "성장 계산기",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 42
     }
   ],
   "responseAggregationType": "byPage"
