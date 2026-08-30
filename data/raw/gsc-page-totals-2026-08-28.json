@@ -1,0 +1,140 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "https://bitkittools.com/travel/flight-delay-compensation/"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 1
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/growth-percentile/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 81.41666666666667
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/temperament-quiz/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 49.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/bac-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 51
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 26,
+      "ctr": 0,
+      "position": 77.3076923076923
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 37,
+      "ctr": 0,
+      "position": 78.75675675675676
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/standard-drinks-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 81.8
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/developer/json-to-sql/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 52
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 72
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/bac-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 48
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/homebrew-recipe-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/developer/jwt-decoder/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 49.666666666666664
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
