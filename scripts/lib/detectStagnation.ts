@@ -224,3 +224,38 @@ export function filterCooldownComplete(
 ): ActionLogEntry[] {
   return entries.filter((e) => isCooldownComplete(e, asOf, cooldownDays))
 }
+
+// ── Content-Update Escalation Helpers ────────────────────────────────────────
+
+/** Minimum consecutive 'no-improvement' content-update attempts on the same
+ * page before report-review should stop proposing another wording/FAQ tweak
+ * and escalate to reconsidering the underlying approach instead. */
+export const DEFAULT_ESCALATION_THRESHOLD = 2
+
+/**
+ * Counts all `type: 'content-update'` action-log entries for a page,
+ * regardless of status. Used to assign the next `attemptNumber` when
+ * report-review logs a new content-update action, mirroring how
+ * title-experiment tracks attempt counts.
+ */
+export function countContentUpdateAttempts(log: ActionLog, page: string): number {
+  return log.actions.filter((a) => a.type === 'content-update' && a.page === page).length
+}
+
+/**
+ * Returns true when a page has accumulated `threshold` or more content-update
+ * attempts that ended in `'no-improvement'`. A true result signals that
+ * another wording/FAQ tweak is unlikely to help — report-review should
+ * reconsider the page's underlying approach (target keyword, page scope,
+ * cleanup candidacy) rather than drafting yet another copy-level fix.
+ */
+export function shouldEscalateApproach(
+  log: ActionLog,
+  page: string,
+  threshold: number = DEFAULT_ESCALATION_THRESHOLD
+): boolean {
+  const noImprovementCount = log.actions.filter(
+    (a) => a.type === 'content-update' && a.page === page && a.status === 'no-improvement'
+  ).length
+  return noImprovementCount >= threshold
+}

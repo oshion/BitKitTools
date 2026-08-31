@@ -5,14 +5,16 @@
 import { existsSync, mkdtempSync, writeFileSync } from 'fs'
 import { tmpdir } from 'os'
 import { join, resolve } from 'path'
-import type { ActionLogEntry, TrendData, WeeklyTrendPoint } from '../detectStagnation'
+import type { ActionLog, ActionLogEntry, TrendData, WeeklyTrendPoint } from '../detectStagnation'
 import {
   appendTrendPoint,
+  countContentUpdateAttempts,
   filterCooldownComplete,
   isCooldownComplete,
   isStagnant,
   readActionLog,
   readTrend,
+  shouldEscalateApproach,
   writeTrend,
 } from '../detectStagnation'
 
@@ -463,5 +465,97 @@ describe('readActionLog', () => {
     const nonexistent = join(uniqueTestDir(), 'action-log.json')
     readActionLog(nonexistent)
     expect(existsSync(nonexistent)).toBe(false)
+  })
+})
+
+// ── countContentUpdateAttempts ────────────────────────────────────────────────
+
+describe('countContentUpdateAttempts', () => {
+  test('returns 0 when there are no matching entries', () => {
+    const log: ActionLog = { actions: [] }
+    expect(countContentUpdateAttempts(log, '/beer/bac-calculator/')).toBe(0)
+  })
+
+  test('counts content-update entries for the given page regardless of status', () => {
+    const log: ActionLog = {
+      actions: [
+        makeActionEntry({ id: 'a1', type: 'content-update', page: '/beer/bac-calculator/', status: 'in-progress' }),
+        makeActionEntry({ id: 'a2', type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+        makeActionEntry({ id: 'a3', type: 'content-update', page: '/beer/bac-calculator/', status: 'kept' }),
+      ],
+    }
+    expect(countContentUpdateAttempts(log, '/beer/bac-calculator/')).toBe(3)
+  })
+
+  test('ignores entries for other pages', () => {
+    const log: ActionLog = {
+      actions: [makeActionEntry({ type: 'content-update', page: '/beer/homebrew-recipe-calculator/' })],
+    }
+    expect(countContentUpdateAttempts(log, '/beer/bac-calculator/')).toBe(0)
+  })
+
+  test('ignores title-experiment entries for the same page', () => {
+    const log: ActionLog = {
+      actions: [makeActionEntry({ type: 'title-experiment', page: '/beer/bac-calculator/' })],
+    }
+    expect(countContentUpdateAttempts(log, '/beer/bac-calculator/')).toBe(0)
+  })
+})
+
+// ── shouldEscalateApproach ────────────────────────────────────────────────────
+
+describe('shouldEscalateApproach', () => {
+  test('returns false when there are no content-update entries', () => {
+    const log: ActionLog = { actions: [] }
+    expect(shouldEscalateApproach(log, '/beer/bac-calculator/')).toBe(false)
+  })
+
+  test('returns false when only 1 no-improvement attempt exists (below default threshold of 2)', () => {
+    const log: ActionLog = {
+      actions: [
+        makeActionEntry({ type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+      ],
+    }
+    expect(shouldEscalateApproach(log, '/beer/bac-calculator/')).toBe(false)
+  })
+
+  test('returns true when 2 no-improvement attempts exist (meets default threshold)', () => {
+    const log: ActionLog = {
+      actions: [
+        makeActionEntry({ id: 'a1', type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+        makeActionEntry({ id: 'a2', type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+      ],
+    }
+    expect(shouldEscalateApproach(log, '/beer/bac-calculator/')).toBe(true)
+  })
+
+  test('does not count in-progress or kept attempts toward the threshold', () => {
+    const log: ActionLog = {
+      actions: [
+        makeActionEntry({ id: 'a1', type: 'content-update', page: '/beer/bac-calculator/', status: 'in-progress' }),
+        makeActionEntry({ id: 'a2', type: 'content-update', page: '/beer/bac-calculator/', status: 'kept' }),
+      ],
+    }
+    expect(shouldEscalateApproach(log, '/beer/bac-calculator/')).toBe(false)
+  })
+
+  test('ignores no-improvement entries for other pages', () => {
+    const log: ActionLog = {
+      actions: [
+        makeActionEntry({ id: 'a1', type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+        makeActionEntry({ id: 'a2', type: 'content-update', page: '/beer/homebrew-recipe-calculator/', status: 'no-improvement' }),
+      ],
+    }
+    expect(shouldEscalateApproach(log, '/beer/bac-calculator/')).toBe(false)
+  })
+
+  test('respects a custom threshold', () => {
+    const log: ActionLog = {
+      actions: [
+        makeActionEntry({ id: 'a1', type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+        makeActionEntry({ id: 'a2', type: 'content-update', page: '/beer/bac-calculator/', status: 'no-improvement' }),
+      ],
+    }
+    expect(shouldEscalateApproach(log, '/beer/bac-calculator/', 3)).toBe(false)
   })
 })
