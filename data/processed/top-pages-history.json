@@ -50,6 +50,23 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-08-22",
+      "pages": [
+        {
+          "page": "/baby/temperament-quiz/",
+          "clicks": 1
+        },
+        {
+          "page": "/travel/flight-delay-compensation/",
+          "clicks": 1
+        },
+        {
+          "page": "/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }

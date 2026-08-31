@@ -1,1 +1,4 @@
 2026년 08월 4주차: 클릭 2건→3건(+50%), 노출 644회, 세션 0 유지 / beer 카테고리(homebrew-recipe-calculator·hydrometer-temperature-correction·bac-calculator·standard-drinks-calculator) 노출 대비 클릭 0 패턴 지속, "hydrometer temperature" 순위 84→91위 하락 / hydrometer-temperature-correction 타이틀·설명·H1·FAQ 재작성 승인 및 진행 / 결과는 CTR 재확인 후 다음 리포트에 반영 예정
+
+
+2026년 08월 5주차: 클릭 3건 유지(+0.0%), 노출 634회, 세션 0 유지 / beer·baby·travel 카테고리 다수 페이지에서 노출 대비 클릭 0 패턴 지속 / hydrometer-temperature-correction 관련 쿼리 "hydrometer temperature" 순위 93→84위(+9), "jwt 디코딩" 64→58위(+6) 반등 — 지난주 진행한 타이틀·FAQ 재작성 효과 초기 신호로 추정 / 다음 주 CTR 실제 반영 여부 재확인 필요, homebrew-recipe-calculator 리라이트 신규 후보로 제안
