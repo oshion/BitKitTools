@@ -356,8 +356,11 @@ ${historySection}
   }
 
   if (isTruncated(json)) {
-    console.warn(
-      `[generate-tool-research-spec] Anthropic response was cut off by max_tokens for query "${candidate.query}" — spec may be incomplete.`
+    // A truncated spec is worse than no spec — see generate-improvement-spec.ts
+    // for the full rationale. Throw so safeRunStep() drops this candidate
+    // instead of publishing broken content into the weekly report.
+    throw new Error(
+      `[generate-tool-research-spec] Anthropic response was cut off by max_tokens for query "${candidate.query}" — refusing to return a truncated spec.`
     )
   }
 
@@ -530,8 +533,11 @@ NONE
   }
 
   if (isTruncated(json)) {
-    console.warn(
-      '[generate-tool-research-spec] Anthropic response was cut off by max_tokens for new category spec — spec may be incomplete.'
+    // A truncated spec is worse than no spec — see generate-improvement-spec.ts
+    // for the full rationale. Throw so safeRunStep() drops this candidate
+    // instead of publishing broken content into the weekly report.
+    throw new Error(
+      '[generate-tool-research-spec] Anthropic response was cut off by max_tokens for new category spec — refusing to return a truncated spec.'
     )
   }
 

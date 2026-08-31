@@ -9,6 +9,10 @@ import {
   parseNewCategorySpecResponse,
   selectNewCategoryCandidate,
   selectToolResearchCandidates,
+  generateToolResearchSpec,
+  generateNewCategorySpec,
+  type ToolResearchCandidate,
+  type NewCategoryCandidate,
 } from '../../generate-tool-research-spec'
 
 // ── Fixtures ──────────────────────────────────────────────────────────────────
@@ -266,5 +270,71 @@ describe('parseNewCategorySpecResponse', () => {
   it('returns trimmed spec text', () => {
     const result = parseNewCategorySpecResponse('  ## 제안\n\n내용  ')
     expect(result).toBe('## 제안\n\n내용')
+  })
+})
+
+// ── generateToolResearchSpec / generateNewCategorySpec (truncation guard) ─────
+
+describe('generateToolResearchSpec and generateNewCategorySpec truncation handling', () => {
+  const researchCandidate: ToolResearchCandidate = {
+    query: 'mortgage calculator',
+    impressions: 50,
+    evidence: '2주 이상 연속으로 기존 tool과 매칭되지 않는 GSC 쿼리 (최근 노출수: 50)',
+  }
+
+  const categoryCandidate: NewCategoryCandidate = {
+    queries: ['mortgage calculator', 'car loan estimator'],
+    evidence: '2개의 기존 카테고리 외 반복 쿼리',
+  }
+
+  function makeFetchResponse(text: string, stopReason: string): Response {
+    return {
+      ok: true,
+      json: async () => ({
+        content: [{ type: 'text', text }],
+        stop_reason: stopReason,
+      }),
+    } as unknown as Response
+  }
+
+  let originalFetch: typeof global.fetch
+
+  beforeEach(() => {
+    originalFetch = global.fetch
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    jest.restoreAllMocks()
+  })
+
+  it('generateToolResearchSpec returns the spec text when the response finishes normally', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 리서치 spec 본문', 'end_turn'))
+    const result = await generateToolResearchSpec(researchCandidate, '', 'dummy-key')
+    expect(result).toBe('## 리서치 spec 본문')
+  })
+
+  it('generateToolResearchSpec throws instead of returning a truncated spec', async () => {
+    global.fetch = jest
+      .fn()
+      .mockResolvedValueOnce(makeFetchResponse('## 리서치 spec 본문 (미완', 'max_tokens'))
+    await expect(generateToolResearchSpec(researchCandidate, '', 'dummy-key')).rejects.toThrow(
+      /cut off by max_tokens/
+    )
+  })
+
+  it('generateNewCategorySpec returns the spec text when the response finishes normally', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 카테고리 spec 본문', 'end_turn'))
+    const result = await generateNewCategorySpec(categoryCandidate, '', 'dummy-key')
+    expect(result).toBe('## 카테고리 spec 본문')
+  })
+
+  it('generateNewCategorySpec throws instead of returning a truncated spec', async () => {
+    global.fetch = jest
+      .fn()
+      .mockResolvedValueOnce(makeFetchResponse('## 카테고리 spec 본문 (미완', 'max_tokens'))
+    await expect(generateNewCategorySpec(categoryCandidate, '', 'dummy-key')).rejects.toThrow(
+      /cut off by max_tokens/
+    )
   })
 })

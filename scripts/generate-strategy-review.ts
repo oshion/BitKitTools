@@ -123,6 +123,7 @@ async function main(): Promise<void> {
   console.log('[generate-strategy-review] Calling Anthropic API...')
 
   let strategyReview: string
+  let responseWasTruncated = false
   try {
     const response = await fetch(ANTHROPIC_API_URL, {
       method: 'POST',
@@ -161,6 +162,7 @@ async function main(): Promise<void> {
       console.warn(
         '[generate-strategy-review] Anthropic response was cut off by max_tokens — review may be incomplete.'
       )
+      responseWasTruncated = true
     }
   } catch (err) {
     console.error('[generate-strategy-review] Network error calling Anthropic API:', err)
@@ -182,8 +184,14 @@ async function main(): Promise<void> {
   }
 
   const existingReport = readFileSync(reportPath, 'utf-8')
+  // See generate-report.ts for the rationale: a truncated review is still
+  // appended (dropping it entirely loses the analysis), but visibly flagged
+  // so a reader doesn't trust it at face value.
+  const truncationNote = responseWasTruncated
+    ? '\n\n**⚠️ 이 섹션은 API 응답이 max_tokens로 잘려 일부 내용이 누락됐을 수 있습니다.**'
+    : ''
   const section =
-    '\n\n## 전략 재검토 (트래픽 정체 감지)\n\n' + strategyReview.trim()
+    '\n\n## 전략 재검토 (트래픽 정체 감지)\n\n' + strategyReview.trim() + truncationNote
   writeFileSync(reportPath, existingReport + section, 'utf-8')
 
   console.log(

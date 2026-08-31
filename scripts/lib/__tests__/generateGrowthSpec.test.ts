@@ -6,6 +6,7 @@ import type { TopPagesHistory, WeeklyTopPagesPoint } from '../topPagesHistory'
 import type { ProposalLog, ProposalEntry } from '../proposalTracking'
 import {
   selectGrowthCandidates,
+  generateGrowthSpec,
   DEFAULT_MIN_CONSECUTIVE_WEEKS,
   type GrowthSpecCandidate,
 } from '../../generate-growth-spec'
@@ -245,5 +246,51 @@ describe('selectGrowthCandidates', () => {
     expect(typeof c.consecutiveWeeks).toBe('number')
     expect(c.consecutiveWeeks).toBeGreaterThanOrEqual(DEFAULT_MIN_CONSECUTIVE_WEEKS)
     expect(c.evidence.trim().length).toBeGreaterThan(0)
+  })
+})
+
+// ── generateGrowthSpec ────────────────────────────────────────────────────────
+
+describe('generateGrowthSpec', () => {
+  const candidate: GrowthSpecCandidate = {
+    page: '/travel/flight-delay-compensation/',
+    consecutiveWeeks: 2,
+    evidence: '최근 2주 연속 클릭 상위 페이지 (2026-08-15: 1클릭, 2026-08-22: 1클릭)',
+  }
+
+  function makeFetchResponse(text: string, stopReason: string): Response {
+    return {
+      ok: true,
+      json: async () => ({
+        content: [{ type: 'text', text }],
+        stop_reason: stopReason,
+      }),
+    } as unknown as Response
+  }
+
+  let originalFetch: typeof global.fetch
+
+  beforeEach(() => {
+    originalFetch = global.fetch
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    jest.restoreAllMocks()
+  })
+
+  it('returns the spec text when the response finishes normally', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 확장 spec 본문', 'end_turn'))
+    const result = await generateGrowthSpec(candidate, '', 'dummy-key')
+    expect(result).toBe('## 확장 spec 본문')
+  })
+
+  it('throws instead of returning a truncated spec (stop_reason: max_tokens) — regression test for the 2026-08-31 incident where this reached data/reports/2026/2026-08-31.md mid-sentence', async () => {
+    global.fetch = jest
+      .fn()
+      .mockResolvedValueOnce(makeFetchResponse('## 확장 spec 본문 (미완', 'max_tokens'))
+    await expect(generateGrowthSpec(candidate, '', 'dummy-key')).rejects.toThrow(
+      /cut off by max_tokens/
+    )
   })
 })

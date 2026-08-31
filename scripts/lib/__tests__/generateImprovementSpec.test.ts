@@ -11,6 +11,7 @@ import {
 import {
   selectImprovementCandidates,
   buildImprovementSpecPrompt,
+  generateImprovementSpec,
   MAX_IMPROVEMENT_SPECS_PER_WEEK,
   type ImprovementSpecCandidate,
 } from '../../generate-improvement-spec'
@@ -322,5 +323,51 @@ describe('ImprovementSpecCandidate interface', () => {
     expect(c.page).toBeDefined()
     expect(c.reason).toBeDefined()
     expect(c.evidence).toBeDefined()
+  })
+})
+
+// ── generateImprovementSpec ──────────────────────────────────────────────────
+
+describe('generateImprovementSpec', () => {
+  const candidate: ImprovementSpecCandidate = {
+    page: '/beer/bac-calculator/',
+    reason: 'CTR이 벤치마크 대비 낮음',
+    evidence: "쿼리 'bac calculator': CTR 0.0%",
+  }
+
+  function makeFetchResponse(text: string, stopReason: string): Response {
+    return {
+      ok: true,
+      json: async () => ({
+        content: [{ type: 'text', text }],
+        stop_reason: stopReason,
+      }),
+    } as unknown as Response
+  }
+
+  let originalFetch: typeof global.fetch
+
+  beforeEach(() => {
+    originalFetch = global.fetch
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    jest.restoreAllMocks()
+  })
+
+  it('returns the spec text when the response finishes normally', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 개선 spec 본문', 'end_turn'))
+    const result = await generateImprovementSpec(candidate, '', 'dummy-key')
+    expect(result).toBe('## 개선 spec 본문')
+  })
+
+  it('throws instead of returning a truncated spec (stop_reason: max_tokens)', async () => {
+    global.fetch = jest
+      .fn()
+      .mockResolvedValueOnce(makeFetchResponse('## 개선 spec 본문 (미완', 'max_tokens'))
+    await expect(generateImprovementSpec(candidate, '', 'dummy-key')).rejects.toThrow(
+      /cut off by max_tokens/
+    )
   })
 })
