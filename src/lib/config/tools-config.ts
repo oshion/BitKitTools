@@ -435,12 +435,12 @@ export const toolsConfig: ToolConfig[] = [
     slug: 'homebrew-recipe-calculator',
     category: 'beer',
     title: {
-      en: 'Homebrew Gravity & ABV Calculator',
-      ko: '홈브루 비중(Gravity) & 도수 계산기',
+      en: 'Homebrew ABV Calculator – Instant & Free',
+      ko: '홈브루 도수(ABV) 계산기 – 무료·즉시 결과',
     },
     description: {
-      en: 'Calculate estimated ABV from Original Gravity (OG) and Final Gravity (FG) using the standard homebrewing formula. Includes a dilution calculator to hit your target alcohol percentage. All calculations run in your browser — no login, no uploads.',
-      ko: '초기 비중(OG)과 최종 비중(FG)으로 예상 도수(ABV)를 계산합니다. 목표 도수로 희석할 때 필요한 물의 양도 자동으로 계산됩니다. 모든 계산은 브라우저에서 처리되며 로그인이 필요 없습니다.',
+      en: 'Calculate your homebrew\'s ABV instantly from Original Gravity (OG) and Final Gravity (FG) — plus a built-in dilution calculator to hit your target strength. Free, instant, and runs entirely in your browser — no login, no uploads.',
+      ko: '초기 비중(OG)과 최종 비중(FG)만 입력하면 홈브루 도수(ABV)를 즉시 계산합니다. 목표 도수에 맞춰 희석에 필요한 물의 양도 함께 계산됩니다. 회원가입 없이 무료로, 모든 계산은 브라우저에서 즉시 처리됩니다.',
     },
     keywords: {
       en: [
