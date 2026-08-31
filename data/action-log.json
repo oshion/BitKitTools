@@ -17,6 +17,26 @@
       "description": "Title/description rewrite (question-hook framing + personalized schedule callout) for \"jet lag recovery calculator\" query (CTR 0.0% at 20 impressions, rank 43->47); likely rank-limited so expected impact is smaller than the hydrometer fix",
       "baselineCtr": 0,
       "status": "in-progress"
+    },
+    {
+      "id": "content-update-beer-homebrew-recipe-calculator-1",
+      "type": "content-update",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "deployedAt": "2026-08-31T05:11:02Z",
+      "description": "Title/description rewrite to signal free/instant calculator for CTR-0 pages (146 impressions, 0 clicks over 2 consecutive weeks) — same pattern as hydrometer-temperature-correction and jetlag-recovery-calculator",
+      "baselineCtr": 0,
+      "status": "in-progress",
+      "attemptNumber": 1
+    },
+    {
+      "id": "content-update-baby-height-predictor-1",
+      "type": "content-update",
+      "page": "/baby/height-predictor/",
+      "deployedAt": "2026-08-31T05:14:30Z",
+      "description": "Added Tanner-Goldstein-Whitehouse formula explanation (FAQ + About section) to target ambiguous-intent queries (\"tanner formula\", \"mid parental height formula\") that were reaching the page with 0% CTR at 72 impressions",
+      "baselineCtr": 0,
+      "status": "in-progress",
+      "attemptNumber": 1
     }
   ]
 }
