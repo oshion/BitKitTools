@@ -740,6 +740,16 @@ export const toolsConfig: ToolConfig[] = [
     faq: [
       {
         question: {
+          en: 'What is the Tanner-Goldstein-Whitehouse (Mid-Parental Height) formula?',
+          ko: 'Tanner-Goldstein-Whitehouse(중간부모키) 공식이란 무엇인가요?',
+        },
+        answer: {
+          en: "The formula estimates a child's predicted adult height from both parents' heights: for boys, (mother's height + father's height + 13) ÷ 2; for girls, (mother's height + father's height − 13) ÷ 2 — all in centimetres. The ±13cm offset accounts for the average adult height difference between men and women. Developed by Tanner, Goldstein & Whitehouse (1970, Archives of Disease in Childhood), it remains the most widely used mid-parental height formula in paediatric growth references.",
+          ko: '이 공식은 부모의 키로 자녀의 예상 성인 키를 추정합니다: 남아는 (어머니 키 + 아버지 키 + 13) ÷ 2, 여아는 (어머니 키 + 아버지 키 − 13) ÷ 2로 계산합니다(단위: cm). ±13cm는 성인 남녀의 평균 키 차이를 반영한 보정값입니다. Tanner, Goldstein & Whitehouse(1970, Archives of Disease in Childhood)가 개발했으며, 현재도 소아 성장 참고자료에서 가장 널리 쓰이는 중간부모키 공식입니다.',
+        },
+      },
+      {
+        question: {
           en: 'How accurate is this height prediction?',
           ko: '이 키 예측은 얼마나 정확한가요?',
         },

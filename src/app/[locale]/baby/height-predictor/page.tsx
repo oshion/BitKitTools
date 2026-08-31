@@ -117,14 +117,19 @@ export default async function HeightPredictorPage({ params }: Props) {
         {isKo ? (
           <p className="text-sm text-neutral-300 leading-relaxed">
             이 계산기는 소아내분비학에서 표준으로 인용되는 중간부모키(Mid-Parental Height) 방법을
-            사용합니다. 근거 논문: Tanner JM, Goldstein H, Whitehouse RH. &quot;Standards for
+            사용합니다. <strong className="text-neutral-200">Tanner-Goldstein-Whitehouse 공식</strong>은
+            남아의 경우 (어머니 키 + 아버지 키 + 13) ÷ 2, 여아의 경우 (어머니 키 + 아버지 키 − 13) ÷ 2로
+            계산합니다(단위: cm). 근거 논문: Tanner JM, Goldstein H, Whitehouse RH. &quot;Standards for
             children&apos;s height at ages 2–9 years allowing for heights of parents.&quot;{' '}
             <em>Archives of Disease in Childhood</em>, 1970.
           </p>
         ) : (
           <p className="text-sm text-neutral-300 leading-relaxed">
             This calculator uses the Mid-Parental Height method, the standard approach cited in
-            paediatric endocrinology. Reference: Tanner JM, Goldstein H, Whitehouse RH.
+            paediatric endocrinology. The{' '}
+            <strong className="text-neutral-200">Tanner-Goldstein-Whitehouse formula</strong>{' '}
+            is: (mother&apos;s height + father&apos;s height + 13) ÷ 2 for boys, or − 13 ÷ 2 for
+            girls, all in centimetres. Reference: Tanner JM, Goldstein H, Whitehouse RH.
             &quot;Standards for children&apos;s height at ages 2–9 years allowing for heights of
             parents.&quot; <em>Archives of Disease in Childhood</em>, 1970.
           </p>
