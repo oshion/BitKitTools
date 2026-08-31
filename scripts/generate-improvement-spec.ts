@@ -298,8 +298,13 @@ export async function generateImprovementSpec(
   }
 
   if (isTruncated(json)) {
-    console.warn(
-      `[generate-improvement-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — spec may be incomplete.`
+    // A truncated spec is worse than no spec — it can end mid-sentence and
+    // get committed straight into the weekly report. Throw so the caller's
+    // safeRunStep() isolation drops this candidate for the week instead of
+    // publishing broken content (see report-review session, 2026-08-31,
+    // where this exact pattern produced a truncated growth spec in prod).
+    throw new Error(
+      `[generate-improvement-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — refusing to return a truncated spec.`
     )
   }
 

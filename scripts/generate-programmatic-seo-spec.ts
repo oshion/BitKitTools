@@ -519,8 +519,11 @@ ${faqList}
   }
 
   if (isTruncated(json)) {
-    console.warn(
-      `[generate-programmatic-seo-spec] Anthropic response was cut off by max_tokens for "${candidate.variantQuery}" — spec may be incomplete.`
+    // A truncated spec is worse than no spec — see generate-improvement-spec.ts
+    // for the full rationale. Throw so safeRunStep() drops this candidate
+    // instead of publishing broken content into the weekly report.
+    throw new Error(
+      `[generate-programmatic-seo-spec] Anthropic response was cut off by max_tokens for "${candidate.variantQuery}" — refusing to return a truncated spec.`
     )
   }
 

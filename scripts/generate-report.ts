@@ -424,6 +424,7 @@ ${lighthouseSection}
   console.log('[generate-report] Calling Anthropic API...')
 
   let apiResponseText: string
+  let responseWasTruncated = false
   try {
     const response = await fetch(ANTHROPIC_API_URL, {
       method: 'POST',
@@ -455,6 +456,7 @@ ${lighthouseSection}
       console.warn(
         '[generate-report] Anthropic response was cut off by max_tokens — the report may be incomplete.'
       )
+      responseWasTruncated = true
     }
 
     if (!apiResponseText.trim()) {
@@ -486,7 +488,18 @@ ${lighthouseSection}
   const actionLog = readActionLog()
   const titleExperimentSection = buildTitleExperimentSection(actionLog)
 
+  // Unlike the per-candidate spec generators (generate-improvement-spec.ts
+  // etc.), a truncated main report is not discarded — the weekly report file
+  // and Slack post are the primary artifact, and no report is worse than a
+  // partial one. Instead, a visible banner is prepended so a reader (and the
+  // /report-review skill) sees the problem immediately instead of it being
+  // buried in a CI log nobody checks.
+  const truncationWarning = responseWasTruncated
+    ? '## ⚠️ 리포트 응답 잘림\n\n이 리포트는 Anthropic API 응답이 max_tokens 한도에 걸려 일부 내용이 누락됐을 수 있습니다. 아래 내용을 신뢰하기 전에 원본 데이터로 재검증하세요.'
+    : null
+
   const reportParts = [aiReport]
+  if (truncationWarning) reportParts.unshift(truncationWarning)
   if (performanceWarning) reportParts.push(performanceWarning)
   if (titleExperimentSection) reportParts.push(titleExperimentSection)
   const report = reportParts.join('\n\n')

@@ -206,7 +206,11 @@ ${historySection}
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 4096,
+      // Was 4096 — observed truncating mid-sentence in production
+      // (report-review session, 2026-08-31, /travel/flight-delay-compensation/
+      // growth spec). Growth specs cover a 3-4 section structured expansion
+      // plan and can run long in Korean; matches generate-report.ts's limit.
+      max_tokens: 8192,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -231,8 +235,11 @@ ${historySection}
   }
 
   if (isTruncated(json)) {
-    console.warn(
-      `[generate-growth-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — spec may be incomplete.`
+    // A truncated spec is worse than no spec — see generate-improvement-spec.ts
+    // for the full rationale. Throw so safeRunStep() drops this candidate
+    // instead of publishing broken content into the weekly report.
+    throw new Error(
+      `[generate-growth-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — refusing to return a truncated spec.`
     )
   }
 

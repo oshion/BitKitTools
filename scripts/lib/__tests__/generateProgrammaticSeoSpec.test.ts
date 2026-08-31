@@ -9,6 +9,7 @@ import {
   findNearMissQueries,
   selectProgrammaticSeoCandidates,
   draftAndValidateVariant,
+  generateProgrammaticSeoSpec,
   NEAR_MISS_MIN_TOKEN_OVERLAP_RATIO,
   type ProgrammaticSeoCandidate,
   type ProgrammaticSeoDraft,
@@ -558,5 +559,66 @@ describe('draftAndValidateVariant', () => {
     const retryPrompt = retryBody.messages[0].content
     // The retry prompt should contain a feedback note (injected via modified evidence)
     expect(retryPrompt).toContain('재시도')
+  })
+})
+
+// ── generateProgrammaticSeoSpec (truncation guard) ────────────────────────────
+
+describe('generateProgrammaticSeoSpec', () => {
+  const apiKey = 'test-api-key'
+
+  const relatedTool = makeMinimalTool({
+    title_en: 'JPG to PNG Converter',
+    description_en: 'Convert JPG images to PNG format easily.',
+    keywords_en: ['jpg to png', 'image converter'],
+    faq: [],
+  })
+
+  const candidate: ProgrammaticSeoCandidate = {
+    variantQuery: 'png to jpg converter',
+    relatedTool,
+    evidence: 'test evidence 50% token overlap',
+  }
+
+  const draft: ProgrammaticSeoDraft = {
+    title: { en: 'PNG to JPG Converter', ko: 'PNG to JPG 변환기' },
+    description: { en: 'Convert PNG to JPG online.', ko: 'PNG를 JPG로 변환하세요.' },
+    faqHighlights: ['Does this preserve transparency?'],
+  }
+
+  function makeFetchResponse(text: string, stopReason: string): Response {
+    return {
+      ok: true,
+      json: async () => ({
+        content: [{ type: 'text', text }],
+        stop_reason: stopReason,
+      }),
+    } as unknown as Response
+  }
+
+  let originalFetch: typeof global.fetch
+
+  beforeEach(() => {
+    originalFetch = global.fetch
+  })
+
+  afterEach(() => {
+    global.fetch = originalFetch
+    jest.restoreAllMocks()
+  })
+
+  it('returns the spec text when the response finishes normally', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 프로그래매틱 SEO spec 본문', 'end_turn'))
+    const result = await generateProgrammaticSeoSpec(candidate, draft, apiKey)
+    expect(result).toBe('## 프로그래매틱 SEO spec 본문')
+  })
+
+  it('throws instead of returning a truncated spec (stop_reason: max_tokens)', async () => {
+    global.fetch = jest
+      .fn()
+      .mockResolvedValueOnce(makeFetchResponse('## 프로그래매틱 SEO spec 본문 (미완', 'max_tokens'))
+    await expect(generateProgrammaticSeoSpec(candidate, draft, apiKey)).rejects.toThrow(
+      /cut off by max_tokens/
+    )
   })
 })
