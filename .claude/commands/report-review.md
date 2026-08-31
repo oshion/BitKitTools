@@ -7,6 +7,7 @@
 - `scripts/generate-report.ts` (리포트 생성 프롬프트 — 이 리포트가 어떤 데이터를 근거로 뭘 쓰라고 지시받았는지)
 - `data/proposals.json` (이번 주 리포트 파일 하단에 `generate-weekly-specs.ts`가 자동으로 append한 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안들의 추적 상태 — pending/rejected/implemented)
 - `data/action-log.json` (title-experiment 및 content-update 액션들의 배포 이력 — Step 0이 지난 content-update 액션의 효과를 검증하는 데 사용)
+- `scripts/lib/detectStagnation.ts` (`countContentUpdateAttempts`/`shouldEscalateApproach` — 페이지별 content-update 시도 횟수와 접근 전환 임계치 로직)
 
 ## 배경 지식 (세션 간 반복 설명을 피하기 위해 여기 고정)
 
@@ -33,7 +34,15 @@
    "
    ```
 3. `entry.baselineCtr`과 비교한다: 개선됐으면 `status`를 `'kept'`로, 개선되지 않았으면 `'no-improvement'`로 `data/action-log.json`에 직접 Edit한다 (별도 스크립트 없음 — title-experiment의 자동 롤백과 달리 content-update는 자동으로 되돌리지 않는다). 표본이 너무 작아 판단이 어려우면 상태를 바꾸지 말고 `in-progress`를 유지한다.
-4. 이 결과를 Step 8 최종 보고에 "지난 실행 효과" 섹션으로 반드시 포함한다 (예: "jetlag-recovery-calculator FAQ 추가 — CTR 0.0%→1.2%로 개선, kept로 기록").
+4. `'no-improvement'`로 바뀐 직후에는 반드시 그 페이지가 **접근 전환 임계치**에 도달했는지 확인한다 — `scripts/lib/detectStagnation.ts`가 export하는 `shouldEscalateApproach(log, page)`를 그대로 재사용한다 (기본 임계치 2회 연속 `no-improvement`; 로직을 직접 재구현하지 말 것):
+   ```bash
+   npx tsx -e "
+   import { readActionLog, shouldEscalateApproach } from './scripts/lib/detectStagnation'
+   console.log(shouldEscalateApproach(readActionLog(), '/해당/경로/'))
+   "
+   ```
+   `true`면 이 페이지는 Step 7에서 더 이상 "문구 재수정"을 제안하지 않는다 — 대신 접근 자체를 재고해야 한다는 신호로 Step 8에 명시한다.
+5. 이 결과를 Step 8 최종 보고에 "지난 실행 효과" 섹션으로 반드시 포함한다 (예: "jetlag-recovery-calculator FAQ 추가 — CTR 0.0%→1.2%로 개선, kept로 기록", 또는 "hydrometer-temperature-correction — 2회 연속 content-update 효과 없음, 접근 전환 검토 필요").
 
 ## Step 1: 대상 리포트 식별 및 최신성 확인
 
@@ -87,12 +96,15 @@ print(total_clicks, total_impr)
 
 **먼저 중복/재제안 여부부터 확인한다**: `data/proposals.json`을 읽어 이번 주 리포트 파일 하단에 자동 append된 스펙 섹션(개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO)의 대상(page/query)이 이미 `pending`으로 추적 중인지, 혹은 과거에 `rejected`로 기록된 적 있는지 확인한다. `pending` 항목은 새로 만들지 말고 "N주째 대기 중" 상태로만 요약한다. `rejected` 항목은 그때와 다른 새로운 근거(다른 데이터 신호, 시간 경과에 따른 상황 변화)가 없는 한 다시 제안하지 않는다 — 왜 거절됐었는지 `data/history.md`에서 사유를 확인하고, 그 사유가 지금도 유효한지 판단한다.
 
-이렇게 걸러진 뒤, 리포트의 "추가 아이디어 제안" 섹션과, 이 스킬이 Step 2~5에서 직접 발견한 이상 신호들을 모아 아래 네 카테고리로 분류한다:
+**두 번째로 접근 전환 대상 페이지를 확인한다**: Step 0에서 `shouldEscalateApproach()`가 `true`를 반환한 페이지가 있으면, 그 페이지는 아래 "기존 tool SEO 보완"(타이틀/설명 재수정) 카테고리로 다시 초안을 만들지 않는다. 대신 별도로 **"⚠️ 접근 전환 필요"** 카테고리를 만들어 왜 문구 수정이 안 먹혔는지(타겟 키워드 자체가 순위 밖이라 CTR 개선이 무의미한 경우가 많다 — Step 2~5에서 확인한 실제 순위를 근거로 판단할 것)와, 문구 수정이 아닌 대안(타겟 키워드 재설정, 페이지 통합/분리, 정리 후보 재평가 등)을 제안한다.
 
-- **기존 tool SEO 보완**: 타이틀/설명/keywords가 실제 GSC 쿼리와 어긋나는 경우 (참고: `tools-config.ts`의 `keywords`는 SERP 노출에 영향 없음 — title/description에 반영해야 실효가 있다)
+이렇게 걸러진 뒤, 리포트의 "추가 아이디어 제안" 섹션과, 이 스킬이 Step 2~5에서 직접 발견한 이상 신호들을 모아 아래 다섯 카테고리로 분류한다:
+
+- **⚠️ 접근 전환 필요**: 위에서 확인한, `shouldEscalateApproach()`가 `true`인 페이지
+- **기존 tool SEO 보완**: 타이틀/설명/keywords가 실제 GSC 쿼리와 어긋나는 경우 (참고: `tools-config.ts`의 `keywords`는 SERP 노출에 영향 없음 — title/description에 반영해야 실효가 있다). **단, 접근 전환 대상 페이지는 여기 포함하지 않는다.**
 - **기존 tool 개선**: Lighthouse 점수 저하, `toolEngagement` 참여율 저조, `claritySignals`(특히 `ScriptErrorCount`)로 드러난 UX/버그 이슈
 - **콘텐츠 구조 개선**: 여러 tool에 걸친 내부 링크·카테고리 구성·홈페이지 노출 방식 등
-- **기타 UX/콘텐츠 개선**: 위 세 카테고리에 안 들어가는 나머지
+- **기타 UX/콘텐츠 개선**: 위 카테고리에 안 들어가는 나머지
 
 각 카테고리마다 **실행 가치가 있다고 판단되는 항목만** 골라, 다음 형식으로 개발 초안을 작성한다 (실제 코드 변경은 여기서 하지 않는다 — 이 skill의 역할은 검증된 근거와 구체적인 변경안을 사람이 바로 판단할 수 있는 형태로 제시하는 것까지다):
 
@@ -119,4 +131,4 @@ Step 0~7 결과를 종합해 사용자에게 보고한다:
 
 **사용자가 특정 항목의 진행을 승인하면**, 그 항목에 한해 TDD(테스트 먼저) → `npm run lint && npm test && npm run build` 검증 → 커밋 → PR → auto-merge 흐름으로 진행한다 (이 프로젝트의 기존 브랜치 보호 정책상 `master` 직접 push는 하지 않는다 — `gh pr create` 후 `gh pr merge --auto --merge`). CLAUDE.md rule 17에 따라, 스펙이 실질적으로 바뀌는 큰 범위의 작업(신규 tool 추가 등)이라면 여기서 멈추고 `docs/screens/` 설계부터 사용자와 논의한다.
 
-**병합이 끝나면 (콘텐츠/문구 성격의 변경이고, CTR로 효과 판단이 가능할 때)**, 다음 주 이후의 Step 0이 효과를 검증할 수 있도록 `data/action-log.json`에 항목을 추가한다: `type: 'content-update'`, `page`(영향받은 경로), `deployedAt`(병합 시각 ISO), `description`(무엇을 바꿨는지 한 줄), `baselineCtr`(변경 직전 — 이번 주 데이터 기준 그 페이지의 CTR, 0이어도 명시적으로 기록), `status: 'in-progress'`. 신규 tool 추가나 순수 버그 수정처럼 CTR로 효과를 판단하기 어려운 변경에는 이 로그를 남기지 않는다.
+**병합이 끝나면 (콘텐츠/문구 성격의 변경이고, CTR로 효과 판단이 가능할 때)**, 다음 주 이후의 Step 0이 효과를 검증할 수 있도록 `data/action-log.json`에 항목을 추가한다: `type: 'content-update'`, `page`(영향받은 경로), `deployedAt`(병합 시각 ISO), `description`(무엇을 바꿨는지 한 줄), `baselineCtr`(변경 직전 — 이번 주 데이터 기준 그 페이지의 CTR, 0이어도 명시적으로 기록), `status: 'in-progress'`, `attemptNumber`(이 페이지의 몇 번째 content-update 시도인지 — `scripts/lib/detectStagnation.ts`의 `countContentUpdateAttempts(log, page) + 1`을 그대로 재사용해 계산할 것, 직접 세지 말 것). "⚠️ 접근 전환 필요" 카테고리에서 나온 항목(즉 `shouldEscalateApproach()`가 이미 `true`였던 페이지)을 다시 승인해 배포하는 경우, `description`에 반드시 "접근 전환: {이전과 뭐가 다른지}"를 명시해 단순 재시도가 아님을 기록에 남긴다. 신규 tool 추가나 순수 버그 수정처럼 CTR로 효과를 판단하기 어려운 변경에는 이 로그를 남기지 않는다.
