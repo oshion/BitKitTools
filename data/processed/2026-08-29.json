@@ -237,6 +237,16 @@
       "position": 73
     },
     {
+      "query": "correction temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "tha",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 95
+    },
+    {
       "query": "final gravity calculator",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "phl",
@@ -275,6 +285,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 92
+    },
+    {
+      "query": "gravity reading to abv",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "idn",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 77
     },
     {
       "query": "homebrew calculator alcohol",
@@ -325,6 +345,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 75
+    },
+    {
+      "query": "how to calculate temperature correction factor",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 67
     },
     {
       "query": "hydrometer temperature",
@@ -427,6 +457,16 @@
       "position": 74
     },
     {
+      "query": "specific gravity correction",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "ind",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 93
+    },
+    {
       "query": "standard drink calculator",
       "page": "/beer/standard-drinks-calculator/",
       "country": "aus",
@@ -445,6 +485,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 7
+    },
+    {
+      "query": "temperature correction factor calculator",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "mex",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 87
     },
     {
       "query": "temperature correction for hydrometer",
