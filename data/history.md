@@ -4,3 +4,5 @@
 2026년 08월 5주차: 클릭 3건 유지(+0.0%), 노출 634회, 세션 0 유지 / beer·baby·travel 카테고리 다수 페이지에서 노출 대비 클릭 0 패턴 지속 / hydrometer-temperature-correction 관련 쿼리 "hydrometer temperature" 순위 93→84위(+9), "jwt 디코딩" 64→58위(+6) 반등 — 지난주 진행한 타이틀·FAQ 재작성 효과 초기 신호로 추정 / 다음 주 CTR 실제 반영 여부 재확인 필요, homebrew-recipe-calculator 리라이트 신규 후보로 제안
 
 2026년 09월 1주차: 클릭 3건→1건(-66.7%), 노출 489회, 세션 0 유지 / EN hydrometer-temperature-correction 노출75·클릭0 지속되는 반면 KO 버전은 노출4·클릭1(CTR25%)로 이번 주 유일한 클릭 발생 / "hydrometer temperature" 쿼리 순위 87→93위로 재하락(직전 2주 개선분 반전), "alcohol measurement"는 85→76위로 지속 개선 / 다음 주 KO 타이틀 패턴의 EN 적용 검토 및 hydrometer temperature 순위 재하락 원인 점검 필요
+
+2026년 09월 1주차: 제안했으나 거절 — jetlag-recovery-calculator 타이틀/설명 2차 재작성(자동 생성 개선 spec) / 사유: (1) spec이 "현재 타이틀은 일반형"이라고 가정했으나 실제로는 08-24에 이미 1차 재작성을 마쳤고 이번 리뷰의 Step 0에서 14일 경과 후 CTR 0%(180회 노출)로 no-improvement 판정됨 — 같은 접근의 반복 제안이었음. (2) 실제 검색 순위가 51~70위(페이지 6~7)로, 벤치마크 CTR이 사실상 0에 수렴하는 구간이라 문구 개선으로는 구조적으로 해결 불가. (3) spec이 근거로 든 hydrometer-temperature-correction의 "93→84위 개선" 선례도 매주 노출 1건짜리 표본이었고 이번 주 다시 93위로 반전 — 애초에 노이즈였을 가능성이 높음. 접근 전환(타겟 키워드 재검토 또는 랭킹 개선 우선)이 필요하나, 아직 no-improvement 1회뿐이라 공식 에스컬레이션 임계치(2회)에는 도달하지 않음.
