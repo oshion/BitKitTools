@@ -67,6 +67,15 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-08-29",
+      "pages": [
+        {
+          "page": "/ko/beer/hydrometer-temperature-correction/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }
