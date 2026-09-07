@@ -999,6 +999,26 @@ export const toolsConfig: ToolConfig[] = [
           ko: '이 테스트는 4–12개월(영아기), 13–36개월(유아기), 37–84개월(3–7세, 유치원기)의 세 가지 연령 구간을 지원합니다. 0–3개월은 아직 기질 차이가 뚜렷하게 나타나기 전이라 지원하지 않습니다. 아기가 생후 4개월이 안 됐다면, 조금 더 기다렸다가 해보세요!',
         },
       },
+      {
+        question: {
+          en: 'Why do my twins have different temperament results?',
+          ko: '쌍둥이 자녀의 기질이 다르게 나오는 이유는 무엇인가요?',
+        },
+        answer: {
+          en: "Even identical twins can have noticeably different temperaments. Temperament is shaped by both genetics and the unique environment each child experiences from birth — including subtle differences in birth order, sleep patterns, and how caregivers respond to each child individually. Thomas & Chess's own research found meaningful temperament variation even between siblings raised in the same household. Different results for your twins are completely normal and simply reflect that each child is developing their own distinct personality.",
+          ko: '일란성 쌍둥이도 기질이 눈에 띄게 다를 수 있습니다. 기질은 유전뿐 아니라 각 아이가 태어난 순간부터 겪는 고유한 환경(출생 순서, 수면 패턴, 양육자가 각 아이에게 다르게 반응하는 방식 등)의 영향을 받습니다. Thomas & Chess의 연구에서도 같은 가정에서 자란 형제자매 사이에서 의미 있는 기질 차이가 관찰됐습니다. 쌍둥이의 결과가 다르게 나오는 것은 지극히 정상이며, 각 아이가 고유한 성격을 만들어가고 있다는 신호일 뿐입니다.',
+        },
+      },
+      {
+        question: {
+          en: "Should I use a different parenting approach based on my child's temperament type?",
+          ko: '기질 유형에 따라 훈육 방식을 다르게 해야 하나요?',
+        },
+        answer: {
+          en: "Many parenting researchers suggest that adapting your general approach to fit your child's temperament — rather than using a one-size-fits-all style — tends to work better, an idea often called \"goodness of fit.\" For example, a slower-to-warm-up child may benefit from extra transition time before new activities, while a highly active child may need more structured outlets for energy. That said, this is general guidance, not a personalised prescription — every child is more than their quiz result, and a paediatrician or child development specialist can offer advice tailored to your specific situation.",
+          ko: '많은 육아 연구자들은 획일적인 방식보다 아이의 기질에 맞춰 접근 방식을 조정하는 것이 더 효과적이라고 제안하며, 이를 "적합도(goodness of fit)"라고 부릅니다. 예를 들어 새로운 환경에 적응이 느린 아이는 새로운 활동 전에 여유 시간을 주는 것이, 활동성이 높은 아이는 에너지를 발산할 구조화된 활동이 도움이 될 수 있습니다. 다만 이는 일반적인 가이드일 뿐 개인 맞춤 처방이 아니며, 아이는 테스트 결과 이상의 존재입니다. 구체적인 상황에 맞는 조언은 소아과 전문의나 아동발달 전문가와 상담하세요.',
+        },
+      },
     ],
     relatedToolIds: ['growth-percentile', 'sleep-schedule', 'height-predictor'],
     adSlots: [
