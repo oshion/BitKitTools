@@ -33,11 +33,11 @@
       "lastReminderAt": "2026-08-31"
     },
     {
-      "id": "improvement-travel-jetlag-recovery-calculator",
+      "id": "improvement-travel-jetlag-recovery-calculator-2",
       "type": "improvement",
       "target": "/travel/jetlag-recovery-calculator/",
       "firstProposedAt": "2026-09-07",
-      "status": "pending",
+      "status": "rejected",
       "lastReminderAt": "2026-09-07"
     }
   ]
