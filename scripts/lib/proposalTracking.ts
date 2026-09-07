@@ -96,6 +96,13 @@ export function findRejectedProposal(
  * - Otherwise, adds a new entry with `lastReminderAt = asOf` and returns `{ log, isNew: true }`.
  *
  * `asOf` must be passed explicitly — never calls `new Date()` internally.
+ *
+ * A new entry's id is normally just `{type}-{slugify(target)}` — but if this
+ * (type, target) already has prior entries (e.g. an earlier cycle that was
+ * implemented or rejected), that id would collide with an existing array
+ * entry. Since markImplemented()/markRejected() match by id, a colliding id
+ * would cause a later call to silently mutate both the old and new entry at
+ * once. Disambiguate by appending the 1-based occurrence count.
  */
 export function upsertProposal(
   log: ProposalLog,
@@ -103,7 +110,6 @@ export function upsertProposal(
   asOf: Date
 ): { log: ProposalLog; isNew: boolean } {
   const dateStr = toDateString(asOf)
-  const id = makeId(entry.type, entry.target)
   const existing = findPendingProposal(log, entry.type, entry.target)
 
   if (existing) {
@@ -112,6 +118,12 @@ export function upsertProposal(
     )
     return { log: { ...log, proposals }, isNew: false }
   }
+
+  const baseId = makeId(entry.type, entry.target)
+  const priorCount = log.proposals.filter(
+    (p) => p.type === entry.type && p.target === entry.target
+  ).length
+  const id = priorCount > 0 ? `${baseId}-${priorCount + 1}` : baseId
 
   const newEntry: ProposalEntry = {
     ...entry,

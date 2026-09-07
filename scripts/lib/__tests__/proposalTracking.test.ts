@@ -262,6 +262,48 @@ describe('upsertProposal', () => {
     upsertProposal(log, entry, asOf)
     expect(log.proposals).toHaveLength(0) // original unchanged
   })
+
+  it('generates a disambiguated id when re-proposing after a prior implemented cycle, instead of colliding', () => {
+    // Regression test: before this fix, upsertProposal always recomputed the
+    // same deterministic id from (type, target), so a second proposal cycle
+    // for a page that was already 'implemented' would get pushed with the
+    // SAME id as the old entry — two array entries sharing one id, which
+    // corrupts markImplemented()/markRejected() (they match by id, so a call
+    // would silently mutate both the old and new entry at once).
+    const implemented: ProposalEntry = {
+      id: 'improvement-travel-jetlag-recovery-calculator',
+      type: 'improvement',
+      target: '/travel/jetlag-recovery-calculator/',
+      firstProposedAt: '2026-08-17',
+      status: 'implemented',
+      lastReminderAt: '2026-08-17',
+    }
+    const log: ProposalLog = { proposals: [implemented] }
+    const asOf = new Date('2026-09-07T00:00:00Z')
+    const entry = makeEntry({
+      id: 'improvement-travel-jetlag-recovery-calculator',
+      type: 'improvement',
+      target: '/travel/jetlag-recovery-calculator/',
+      firstProposedAt: '2026-09-07',
+    })
+
+    const { log: newLog, isNew } = upsertProposal(log, entry, asOf)
+
+    expect(isNew).toBe(true)
+    expect(newLog.proposals).toHaveLength(2)
+    const ids = newLog.proposals.map((p) => p.id)
+    expect(new Set(ids).size).toBe(2) // no duplicate ids
+    expect(ids).toContain('improvement-travel-jetlag-recovery-calculator')
+    expect(ids).toContain('improvement-travel-jetlag-recovery-calculator-2')
+  })
+
+  it('does not disambiguate the very first proposal for a (type, target) — keeps the plain id', () => {
+    const log: ProposalLog = { proposals: [] }
+    const asOf = new Date('2026-01-05T00:00:00Z')
+    const entry = makeEntry()
+    const { log: newLog } = upsertProposal(log, entry, asOf)
+    expect(newLog.proposals[0]!.id).toBe('improvement-beer-bac-calculator')
+  })
 })
 
 // ── weeksPending ──────────────────────────────────────────────────────────────
