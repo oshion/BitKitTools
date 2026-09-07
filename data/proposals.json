@@ -21,7 +21,7 @@
       "type": "growth",
       "target": "/baby/temperament-quiz/",
       "firstProposedAt": "2026-08-31",
-      "status": "pending",
+      "status": "implemented",
       "lastReminderAt": "2026-08-31"
     },
     {
@@ -29,7 +29,7 @@
       "type": "growth",
       "target": "/travel/flight-delay-compensation/",
       "firstProposedAt": "2026-08-31",
-      "status": "pending",
+      "status": "rejected",
       "lastReminderAt": "2026-08-31"
     },
     {
