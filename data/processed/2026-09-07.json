@@ -202,6 +202,16 @@
       "position": 75
     },
     {
+      "query": "brewing hydrometer calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 76
+    },
+    {
       "query": "connection time",
       "page": "/travel/layover-connection-calculator/",
       "country": "swe",
@@ -240,6 +250,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 83
+    },
+    {
+      "query": "hydrometer correction chart",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 85
     },
     {
       "query": "hydrometer temp adjustment",
@@ -380,6 +400,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 87
+    },
+    {
+      "query": "부모 키 자식 키",
+      "page": "/ko/baby/height-predictor/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 52
     },
     {
       "query": "혈중알코올농도 계산기",
