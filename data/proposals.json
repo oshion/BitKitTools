@@ -39,6 +39,14 @@
       "firstProposedAt": "2026-09-07",
       "status": "rejected",
       "lastReminderAt": "2026-09-07"
+    },
+    {
+      "id": "growth-ko-beer-hydrometer-temperature-correction",
+      "type": "growth",
+      "target": "/ko/beer/hydrometer-temperature-correction/",
+      "firstProposedAt": "2026-09-14",
+      "status": "pending",
+      "lastReminderAt": "2026-09-14"
     }
   ]
 }

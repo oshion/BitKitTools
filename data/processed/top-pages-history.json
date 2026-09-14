@@ -76,6 +76,19 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-09-05",
+      "pages": [
+        {
+          "page": "/baby/temperament-quiz/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/beer/hydrometer-temperature-correction/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }
