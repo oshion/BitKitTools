@@ -191,16 +191,6 @@
       "position": 93
     },
     {
-      "query": "calculate og",
-      "page": "/beer/homebrew-recipe-calculator/",
-      "country": "usa",
-      "device": "DESKTOP",
-      "impressions": 1,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 76
-    },
-    {
       "query": "homebrew calculator alcohol",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "usa",
@@ -279,6 +269,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 75
+    },
+    {
+      "query": "sg calculator temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 77
     },
     {
       "query": "sg temp correction",

@@ -1,7 +1,246 @@
 {
   "date": "2026-09-18",
-  "pages": [],
-  "queries": [],
+  "pages": [
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 5.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 6,
+      "gscClicks": 0,
+      "gscAvgPosition": 16.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 62,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 8,
+      "gscClicks": 0,
+      "gscAvgPosition": 75.25,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 80.66666666666667,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 27,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 11,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 52,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 11.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/jwt-decoder/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 50,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 48,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 7,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/visa-requirement-checker/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 5,
+      "bounceRate": null
+    }
+  ],
+  "queries": [
+    {
+      "query": "alcohol measurement",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "query": "baby personality test",
+      "page": "/baby/temperament-quiz/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 36
+    },
+    {
+      "query": "bac calculator qld",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "query": "extract og calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "query": "final gravity alcohol calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 71
+    },
+    {
+      "query": "infant temperament quiz",
+      "page": "/baby/temperament-quiz/",
+      "country": "ecu",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 36
+    },
+    {
+      "query": "jet lag recovery calculator",
+      "page": "/travel/jetlag-recovery-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 51
+    },
+    {
+      "query": "jet lag recovery calculator",
+      "page": "/travel/jetlag-recovery-calculator/",
+      "country": "tha",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 42
+    },
+    {
+      "query": "jwt 디코딩",
+      "page": "/ko/developer/jwt-decoder/",
+      "country": "kor",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 50
+    },
+    {
+      "query": "og calculator extract",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 5,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 76.4
+    },
+    {
+      "query": "성장 계산기",
+      "page": "/ko/baby/growth-percentile/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 45
+    },
+    {
+      "query": "혈중 알콜 농도 계산기",
+      "page": "/ko/beer/bac-calculator/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 52
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",
