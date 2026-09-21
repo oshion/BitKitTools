@@ -1,0 +1,161 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "alcohol measurement",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 90
+    },
+    {
+      "keys": [
+        "alcohol temperature correction",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "keys": [
+        "alcohol temperature correction",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "irl",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 82
+    },
+    {
+      "keys": [
+        "baby sleep schedule generator",
+        "https://bitkittools.com/baby/sleep-schedule/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 97
+    },
+    {
+      "keys": [
+        "beer calculator",
+        "https://bitkittools.com/beer/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 78.5
+    },
+    {
+      "keys": [
+        "brew gravity calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 85
+    },
+    {
+      "keys": [
+        "cdc growth chart calculator",
+        "https://bitkittools.com/baby/growth-percentile/",
+        "isr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 43
+    },
+    {
+      "keys": [
+        "extract og calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "keys": [
+        "hydrometer temperature correction calculator",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73
+    },
+    {
+      "keys": [
+        "jet lag recovery calculator",
+        "https://bitkittools.com/travel/jetlag-recovery-calculator/",
+        "can",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "keys": [
+        "json to sql",
+        "https://bitkittools.com/developer/json-to-sql/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 72
+    },
+    {
+      "keys": [
+        "jwt 디코딩",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 54
+    },
+    {
+      "keys": [
+        "standard drink calculator",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 83
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
