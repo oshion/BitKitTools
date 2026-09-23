@@ -140,6 +140,16 @@
       "position": 87
     },
     {
+      "query": "homebrew attenuation calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
+    },
+    {
       "query": "hydrometer calibration",
       "page": "/beer/hydrometer-temperature-correction/",
       "country": "ind",
