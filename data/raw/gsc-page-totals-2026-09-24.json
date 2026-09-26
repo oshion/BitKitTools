@@ -1,0 +1,131 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "https://bitkittools.com/baby/growth-percentile/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 11.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/sleep-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 79
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/temperament-quiz/"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 37.1
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/bac-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 79.66666666666667
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/standard-drinks-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 84
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/developer/json-to-sql/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 71
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 51
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 17
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 4.333333333333334
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/developer/jwt-decoder/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/travel/visa-requirement-checker/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 17.142857142857142
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
