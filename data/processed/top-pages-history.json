@@ -98,6 +98,19 @@
           "clicks": 3
         }
       ]
+    },
+    {
+      "weekStart": "2026-09-19",
+      "pages": [
+        {
+          "page": "/ko/baby/sleep-schedule/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/travel/layover-connection-calculator/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }

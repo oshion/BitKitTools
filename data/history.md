@@ -15,3 +15,6 @@
 2026년 09월 3주차: 제안했으나 거절 — 홈페이지 Lighthouse Performance 86점 조사(리포트 §9) / 사유: 우선순위 낮음, 조사하지 않기로 결정. 필요 시 재론.
 
 2026년 09월 3주차: 리포트 오류 기록 — §8 "JSON to SQL 도구 신규 제작" 제안은 오류(json-to-sql 이미 존재, 71.6위·노출 24). homebrew-recipe-calculator content-update는 14일 후 CTR 0%(노출 149, 76위 부근)로 no-improvement 판정.
+
+
+2026년 09월 4주차: 클릭 3→2건(-33.3%), 노출 268회, 세션 0 유지 / 이번 주 클릭은 KO baby/sleep-schedule·KO travel/layover-connection에서만 발생, EN 버전은 여전히 CTR 0 지속(hydrometer-temperature-correction·homebrew-recipe-calculator 포함) / "alcohol measurement" 쿼리 90→84위 개선, 09월 1주차(85→76위) 추세와 연속성 확인 / highBouncePages·ctrDeviations·toolEngagement·claritySignals 데이터 전무, 정리 후보 없음 / 신규 제안: "og calculator extract" 키워드 갭(OG 추출기 도구 존재 여부 확인) 제기, Lighthouse는 Accessibility 95~96점 공통 패턴만 포착·조사는 보류
