@@ -1,0 +1,101 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "blood alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "keys": [
+        "calculate bac",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 79.5
+    },
+    {
+      "keys": [
+        "calculating bac",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 82
+    },
+    {
+      "keys": [
+        "homebrew calculator abv",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 77
+    },
+    {
+      "keys": [
+        "hydrometer calculator",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 81
+    },
+    {
+      "keys": [
+        "mean parental height",
+        "https://bitkittools.com/baby/height-predictor/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 87.33333333333333
+    },
+    {
+      "keys": [
+        "yes",
+        "https://bitkittools.com/travel/layover-connection-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "맥주 비중 평가 방법",
+        "https://bitkittools.com/ko/beer/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 20
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
