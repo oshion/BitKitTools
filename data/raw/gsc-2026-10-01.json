@@ -1,0 +1,125 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "9 temperament traits quiz",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "usa",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18
+    },
+    {
+      "keys": [
+        "alcohol calculator",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "can",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 93
+    },
+    {
+      "keys": [
+        "baby sleep calculator",
+        "https://bitkittools.com/baby/sleep-schedule/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 68
+    },
+    {
+      "keys": [
+        "brix hydrometer conversion",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "keys": [
+        "fg calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 72
+    },
+    {
+      "keys": [
+        "home brewing alcohol calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 77
+    },
+    {
+      "keys": [
+        "hydrometer temperature",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "keys": [
+        "jwt 디코딩",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "keys": [
+        "og calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73
+    },
+    {
+      "keys": [
+        "temperature correction factor",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 93
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
