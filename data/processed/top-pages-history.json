@@ -111,6 +111,23 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-09-26",
+      "pages": [
+        {
+          "page": "/baby/temperament-quiz/",
+          "clicks": 2
+        },
+        {
+          "page": "/travel/layover-connection-calculator/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/baby/sleep-schedule/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }

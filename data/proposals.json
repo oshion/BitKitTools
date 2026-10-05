@@ -47,6 +47,14 @@
       "firstProposedAt": "2026-09-14",
       "status": "rejected",
       "lastReminderAt": "2026-09-14"
+    },
+    {
+      "id": "growth-ko-baby-sleep-schedule",
+      "type": "growth",
+      "target": "/ko/baby/sleep-schedule/",
+      "firstProposedAt": "2026-10-05",
+      "status": "pending",
+      "lastReminderAt": "2026-10-05"
     }
   ]
 }
