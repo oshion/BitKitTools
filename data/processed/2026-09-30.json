@@ -250,6 +250,16 @@
       "position": 100
     },
     {
+      "query": "standard drinks converter",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 82
+    },
+    {
       "query": "temp correction hydrometer",
       "page": "/beer/hydrometer-temperature-correction/",
       "country": "usa",
