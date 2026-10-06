@@ -1,6 +1,6 @@
 {
-  "collectedAt": "2026-08-07T04:46:30.970Z",
-  "collectionDate": "2026-08-06",
+  "collectedAt": "2026-10-06T09:32:27.585Z",
+  "collectionDate": "2026-10-05",
   "note": "Clarity Data Export API returns rolling last-24h aggregates; specific calendar-date queries are not supported by the API.",
   "data": [
     {
