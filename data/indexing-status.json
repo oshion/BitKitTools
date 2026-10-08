@@ -7,7 +7,7 @@
   "https://bitkittools.com/ko/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-10-07T09:29:14.213Z"
+    "lastCheckedAt": "2026-10-08T09:40:57.221Z"
   },
   "https://bitkittools.com/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
@@ -17,33 +17,33 @@
   "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-10-07T09:29:27.607Z"
+    "lastCheckedAt": "2026-10-08T09:41:15.716Z"
   },
   "https://bitkittools.com/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-10-07T09:29:33.844Z"
+    "lastCheckedAt": "2026-10-08T09:41:49.165Z"
   },
   "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-10-07T09:29:40.052Z"
+    "lastCheckedAt": "2026-10-08T09:41:55.531Z"
   },
   "https://bitkittools.com/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-10-07T09:29:46.313Z",
+    "lastCheckedAt": "2026-10-08T09:42:01.666Z",
     "lastCrawlTime": "2026-09-24T06:42:29Z"
   },
   "https://bitkittools.com/ko/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-10-07T09:29:52.648Z"
+    "lastCheckedAt": "2026-10-08T09:42:08.007Z"
   },
   "https://bitkittools.com/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-10-07T09:29:58.872Z",
+    "lastCheckedAt": "2026-10-08T09:42:53.373Z",
     "lastCrawlTime": "2026-09-19T08:54:36Z"
   },
   "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
