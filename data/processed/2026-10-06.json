@@ -23,9 +23,9 @@
       "path": "/baby/temperament-quiz/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 2,
       "gscClicks": 0,
-      "gscAvgPosition": 11,
+      "gscAvgPosition": 8.5,
       "bounceRate": null
     },
     {
@@ -41,18 +41,18 @@
       "path": "/beer/homebrew-recipe-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 15,
+      "gscImpressions": 16,
       "gscClicks": 0,
-      "gscAvgPosition": 86.53333333333333,
+      "gscAvgPosition": 86.5625,
       "bounceRate": null
     },
     {
       "path": "/beer/hydrometer-temperature-correction/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 2,
+      "gscImpressions": 3,
       "gscClicks": 0,
-      "gscAvgPosition": 43.5,
+      "gscAvgPosition": 29.333333333333332,
       "bounceRate": null
     },
     {
@@ -95,9 +95,9 @@
       "path": "/ko/beer/homebrew-recipe-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 2,
       "gscClicks": 0,
-      "gscAvgPosition": 1,
+      "gscAvgPosition": 16,
       "bounceRate": null
     },
     {
@@ -158,22 +158,32 @@
       "path": "/travel/jetlag-recovery-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 2,
       "gscClicks": 0,
-      "gscAvgPosition": 9,
+      "gscAvgPosition": 16,
       "bounceRate": null
     },
     {
       "path": "/travel/layover-connection-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 9,
+      "gscImpressions": 11,
       "gscClicks": 0,
-      "gscAvgPosition": 6.777777777777778,
+      "gscAvgPosition": 7.545454545454546,
       "bounceRate": null
     }
   ],
   "queries": [
+    {
+      "query": "abv",
+      "page": "/ko/beer/homebrew-recipe-calculator/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 31
+    },
     {
       "query": "alcohol equivalency chart",
       "page": "/beer/standard-drinks-calculator/",
@@ -249,10 +259,10 @@
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "aus",
       "device": "DESKTOP",
-      "impressions": 15,
+      "impressions": 16,
       "clicks": 0,
       "ctr": 0,
-      "position": 86.53333333333333
+      "position": 86.5625
     },
     {
       "query": "units of alcohol converter",

@@ -32,9 +32,9 @@
         "https://bitkittools.com/baby/temperament-quiz/"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 11
+      "position": 8.5
     },
     {
       "keys": [
@@ -50,18 +50,18 @@
         "https://bitkittools.com/beer/homebrew-recipe-calculator/"
       ],
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 16,
       "ctr": 0,
-      "position": 86.53333333333333
+      "position": 86.5625
     },
     {
       "keys": [
         "https://bitkittools.com/beer/hydrometer-temperature-correction/"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 43.5
+      "position": 29.333333333333332
     },
     {
       "keys": [
@@ -104,9 +104,9 @@
         "https://bitkittools.com/ko/beer/homebrew-recipe-calculator/"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 1
+      "position": 16
     },
     {
       "keys": [
@@ -158,18 +158,18 @@
         "https://bitkittools.com/travel/jetlag-recovery-calculator/"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 9
+      "position": 16
     },
     {
       "keys": [
         "https://bitkittools.com/travel/layover-connection-calculator/"
       ],
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 11,
       "ctr": 0,
-      "position": 6.777777777777778
+      "position": 7.545454545454546
     }
   ],
   "responseAggregationType": "byPage"

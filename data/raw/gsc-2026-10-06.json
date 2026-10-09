@@ -2,6 +2,18 @@
   "rows": [
     {
       "keys": [
+        "abv",
+        "https://bitkittools.com/ko/beer/homebrew-recipe-calculator/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 31
+    },
+    {
+      "keys": [
         "alcohol equivalency chart",
         "https://bitkittools.com/beer/standard-drinks-calculator/",
         "usa",
@@ -92,9 +104,9 @@
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 16,
       "ctr": 0,
-      "position": 86.53333333333333
+      "position": 86.5625
     },
     {
       "keys": [
