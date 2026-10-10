@@ -1,0 +1,104 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "https://bitkittools.com/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/temperament-quiz/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 17
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/bac-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 79.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 55.666666666666664
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 96.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/standard-drinks-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/baby/temperament-quiz/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/developer/jwt-decoder/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/jetlag-recovery-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 21.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 8
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
