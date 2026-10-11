@@ -5,45 +5,54 @@
       "path": "/baby/height-predictor/",
       "sessions": 0,
       "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 8.333333333333332,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
       "gscImpressions": 1,
       "gscClicks": 0,
-      "gscAvgPosition": 5,
+      "gscAvgPosition": 100,
       "bounceRate": null
     },
     {
       "path": "/baby/temperament-quiz/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 4,
       "gscClicks": 0,
-      "gscAvgPosition": 17,
+      "gscAvgPosition": 12.75,
       "bounceRate": null
     },
     {
       "path": "/beer/bac-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 2,
+      "gscImpressions": 6,
       "gscClicks": 0,
-      "gscAvgPosition": 79.5,
+      "gscAvgPosition": 78.66666666666667,
       "bounceRate": null
     },
     {
       "path": "/beer/homebrew-recipe-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 3,
+      "gscImpressions": 5,
       "gscClicks": 0,
-      "gscAvgPosition": 55.666666666666664,
+      "gscAvgPosition": 47.6,
       "bounceRate": null
     },
     {
       "path": "/beer/hydrometer-temperature-correction/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 2,
+      "gscImpressions": 3,
       "gscClicks": 0,
-      "gscAvgPosition": 96.5,
+      "gscAvgPosition": 64.66666666666666,
       "bounceRate": null
     },
     {
@@ -53,6 +62,33 @@
       "gscImpressions": 1,
       "gscClicks": 0,
       "gscAvgPosition": 11,
+      "bounceRate": null
+    },
+    {
+      "path": "/developer/jwt-decoder/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 8,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 2.333333333333333,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 9,
       "bounceRate": null
     },
     {
@@ -77,9 +113,18 @@
       "path": "/ko/developer/jwt-decoder/",
       "sessions": 0,
       "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 59.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
       "gscImpressions": 1,
       "gscClicks": 0,
-      "gscAvgPosition": 58,
+      "gscAvgPosition": 5,
       "bounceRate": null
     },
     {
@@ -95,13 +140,43 @@
       "path": "/travel/layover-connection-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 4,
-      "gscClicks": 0,
-      "gscAvgPosition": 8,
+      "gscImpressions": 11,
+      "gscClicks": 1,
+      "gscAvgPosition": 7,
       "bounceRate": null
     }
   ],
   "queries": [
+    {
+      "query": "baby personality quiz",
+      "page": "/baby/temperament-quiz/",
+      "country": "usa",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 18
+    },
+    {
+      "query": "blood alcohol calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78.5
+    },
+    {
+      "query": "blood alcohol calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "MOBILE",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    },
     {
       "query": "blood alcohol estimator",
       "page": "/beer/bac-calculator/",
@@ -121,6 +196,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 41
+    },
+    {
+      "query": "jwt decode",
+      "page": "/ko/developer/jwt-decoder/",
+      "country": "kor",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 61
     },
     {
       "query": "jwt 디코딩",

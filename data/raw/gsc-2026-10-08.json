@@ -2,6 +2,42 @@
   "rows": [
     {
       "keys": [
+        "baby personality quiz",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "usa",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18
+    },
+    {
+      "keys": [
+        "blood alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 78.5
+    },
+    {
+      "keys": [
+        "blood alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "keys": [
         "blood alcohol estimator",
         "https://bitkittools.com/beer/bac-calculator/",
         "usa",
@@ -23,6 +59,18 @@
       "impressions": 1,
       "ctr": 0,
       "position": 41
+    },
+    {
+      "keys": [
+        "jwt decode",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 61
     },
     {
       "keys": [
