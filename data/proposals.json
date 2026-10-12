@@ -55,6 +55,22 @@
       "firstProposedAt": "2026-10-05",
       "status": "pending",
       "lastReminderAt": "2026-10-05"
+    },
+    {
+      "id": "growth-baby-temperament-quiz-2",
+      "type": "growth",
+      "target": "/baby/temperament-quiz/",
+      "firstProposedAt": "2026-10-12",
+      "status": "pending",
+      "lastReminderAt": "2026-10-12"
+    },
+    {
+      "id": "growth-travel-layover-connection-calculator",
+      "type": "growth",
+      "target": "/travel/layover-connection-calculator/",
+      "firstProposedAt": "2026-10-12",
+      "status": "pending",
+      "lastReminderAt": "2026-10-12"
     }
   ]
 }
