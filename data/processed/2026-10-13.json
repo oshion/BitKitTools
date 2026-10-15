@@ -1,7 +1,166 @@
 {
   "date": "2026-10-13",
-  "pages": [],
-  "queries": [],
+  "pages": [
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 9,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 2,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 1,
+      "gscAvgPosition": 12.4,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 69,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 68.6,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 95,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 10,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 9,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 1.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 8,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/flight-delay-compensation/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 10,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 5,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 6,
+      "gscClicks": 1,
+      "gscAvgPosition": 6.166666666666667,
+      "bounceRate": null
+    }
+  ],
+  "queries": [
+    {
+      "query": "alc percent",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 95
+    },
+    {
+      "query": "homebrew abv calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "query": "hydrometer temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 4,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 71.75
+    },
+    {
+      "query": "og calculator extract",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",

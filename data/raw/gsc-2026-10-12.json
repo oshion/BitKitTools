@@ -2,6 +2,18 @@
   "rows": [
     {
       "keys": [
+        "alcohol calculator",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 87
+    },
+    {
+      "keys": [
         "baby temperament quiz",
         "https://bitkittools.com/baby/temperament-quiz/",
         "gbr",
@@ -14,6 +26,18 @@
     },
     {
       "keys": [
+        "blood alcohol estimation",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "keys": [
         "extract og calculator",
         "https://bitkittools.com/beer/homebrew-recipe-calculator/",
         "aus",
@@ -23,6 +47,18 @@
       "impressions": 1,
       "ctr": 0,
       "position": 80
+    },
+    {
+      "keys": [
+        "gravity correction calculator",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 70
     },
     {
       "keys": [
@@ -83,6 +119,18 @@
       "impressions": 1,
       "ctr": 0,
       "position": 10
+    },
+    {
+      "keys": [
+        "temperature correction specific gravity",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
     }
   ],
   "responseAggregationType": "byPage"

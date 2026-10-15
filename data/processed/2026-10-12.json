@@ -5,27 +5,36 @@
       "path": "/baby/height-predictor/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 4,
+      "gscImpressions": 5,
       "gscClicks": 0,
-      "gscAvgPosition": 24.5,
+      "gscAvgPosition": 20.6,
       "bounceRate": null
     },
     {
       "path": "/baby/sleep-schedule/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 3,
       "gscClicks": 0,
-      "gscAvgPosition": 11,
+      "gscAvgPosition": 10.333333333333334,
       "bounceRate": null
     },
     {
       "path": "/baby/temperament-quiz/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 3,
+      "gscImpressions": 5,
       "gscClicks": 0,
-      "gscAvgPosition": 16,
+      "gscAvgPosition": 18.8,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 92,
       "bounceRate": null
     },
     {
@@ -41,18 +50,18 @@
       "path": "/beer/hydrometer-temperature-correction/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 3,
       "gscClicks": 0,
-      "gscAvgPosition": 73,
+      "gscAvgPosition": 73.66666666666667,
       "bounceRate": null
     },
     {
       "path": "/beer/standard-drinks-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 2,
       "gscClicks": 0,
-      "gscAvgPosition": 84,
+      "gscAvgPosition": 85.5,
       "bounceRate": null
     },
     {
@@ -62,6 +71,15 @@
       "gscImpressions": 1,
       "gscClicks": 0,
       "gscAvgPosition": 10,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/json-to-sql/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 9.5,
       "bounceRate": null
     },
     {
@@ -92,6 +110,15 @@
       "bounceRate": null
     },
     {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 3,
+      "bounceRate": null
+    },
+    {
       "path": "/travel/layover-connection-calculator/",
       "sessions": 0,
       "events": {},
@@ -103,6 +130,16 @@
   ],
   "queries": [
     {
+      "query": "alcohol calculator",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 87
+    },
+    {
       "query": "baby temperament quiz",
       "page": "/baby/temperament-quiz/",
       "country": "gbr",
@@ -113,6 +150,16 @@
       "position": 19
     },
     {
+      "query": "blood alcohol estimation",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 92
+    },
+    {
       "query": "extract og calculator",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "aus",
@@ -121,6 +168,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 80
+    },
+    {
+      "query": "gravity correction calculator",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
     },
     {
       "query": "how do you calculate alcohol content",
@@ -171,6 +228,16 @@
       "clicks": 0,
       "ctr": 0,
       "position": 10
+    },
+    {
+      "query": "temperature correction specific gravity",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 78
     }
   ],
   "clarity": [

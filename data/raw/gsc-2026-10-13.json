@@ -1,0 +1,53 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "alc percent",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 95
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "keys": [
+        "hydrometer temperature",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 71.75
+    },
+    {
+      "keys": [
+        "og calculator extract",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
