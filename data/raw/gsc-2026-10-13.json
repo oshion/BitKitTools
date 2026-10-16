@@ -14,6 +14,30 @@
     },
     {
       "keys": [
+        "alcometer temperature correction",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "keys": [
+        "calculate abv homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 68
+    },
+    {
+      "keys": [
         "homebrew abv calculator",
         "https://bitkittools.com/beer/homebrew-recipe-calculator/",
         "gbr",
@@ -32,9 +56,21 @@
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 7,
       "ctr": 0,
-      "position": 71.75
+      "position": 71.42857142857143
+    },
+    {
+      "keys": [
+        "json to sql",
+        "https://bitkittools.com/developer/json-to-sql/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 80
     },
     {
       "keys": [
@@ -44,9 +80,9 @@
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 78
+      "position": 80
     }
   ],
   "responseAggregationType": "byPage"

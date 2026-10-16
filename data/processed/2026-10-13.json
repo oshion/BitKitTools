@@ -23,27 +23,27 @@
       "path": "/baby/temperament-quiz/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 5,
+      "gscImpressions": 6,
       "gscClicks": 1,
-      "gscAvgPosition": 12.4,
+      "gscAvgPosition": 11.666666666666666,
       "bounceRate": null
     },
     {
       "path": "/beer/homebrew-recipe-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 2,
+      "gscImpressions": 4,
       "gscClicks": 0,
-      "gscAvgPosition": 69,
+      "gscAvgPosition": 72,
       "bounceRate": null
     },
     {
       "path": "/beer/hydrometer-temperature-correction/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 5,
+      "gscImpressions": 10,
       "gscClicks": 0,
-      "gscAvgPosition": 68.6,
+      "gscAvgPosition": 67.8,
       "bounceRate": null
     },
     {
@@ -53,6 +53,15 @@
       "gscImpressions": 1,
       "gscClicks": 0,
       "gscAvgPosition": 95,
+      "bounceRate": null
+    },
+    {
+      "path": "/developer/json-to-sql/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 80,
       "bounceRate": null
     },
     {
@@ -86,9 +95,9 @@
       "path": "/ko/beer/standard-drinks-calculator/",
       "sessions": 0,
       "events": {},
-      "gscImpressions": 1,
+      "gscImpressions": 2,
       "gscClicks": 0,
-      "gscAvgPosition": 8,
+      "gscAvgPosition": 9,
       "bounceRate": null
     },
     {
@@ -107,6 +116,15 @@
       "gscImpressions": 4,
       "gscClicks": 0,
       "gscAvgPosition": 5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/visa-requirement-checker/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 5.5,
       "bounceRate": null
     },
     {
@@ -131,6 +149,26 @@
       "position": 95
     },
     {
+      "query": "alcometer temperature correction",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "query": "calculate abv homebrew",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 68
+    },
+    {
       "query": "homebrew abv calculator",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "gbr",
@@ -145,20 +183,30 @@
       "page": "/beer/hydrometer-temperature-correction/",
       "country": "gbr",
       "device": "DESKTOP",
-      "impressions": 4,
+      "impressions": 7,
       "clicks": 0,
       "ctr": 0,
-      "position": 71.75
+      "position": 71.42857142857143
+    },
+    {
+      "query": "json to sql",
+      "page": "/developer/json-to-sql/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 80
     },
     {
       "query": "og calculator extract",
       "page": "/beer/homebrew-recipe-calculator/",
       "country": "aus",
       "device": "DESKTOP",
-      "impressions": 1,
+      "impressions": 2,
       "clicks": 0,
       "ctr": 0,
-      "position": 78
+      "position": 80
     }
   ],
   "clarity": [
