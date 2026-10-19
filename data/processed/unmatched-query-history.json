@@ -39,6 +39,10 @@
     {
       "weekStart": "2026-10-03",
       "queries": []
+    },
+    {
+      "weekStart": "2026-10-10",
+      "queries": []
     }
   ]
 }

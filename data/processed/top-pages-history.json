@@ -145,6 +145,31 @@
           "clicks": 1
         }
       ]
+    },
+    {
+      "weekStart": "2026-10-10",
+      "pages": [
+        {
+          "page": "/baby/temperament-quiz/",
+          "clicks": 3
+        },
+        {
+          "page": "/ko/baby/temperament-quiz/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/beer/hydrometer-temperature-correction/",
+          "clicks": 1
+        },
+        {
+          "page": "/travel/layover-connection-calculator/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/beer/bac-calculator/",
+          "clicks": 1
+        }
+      ]
     }
   ]
 }

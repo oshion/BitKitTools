@@ -18,3 +18,5 @@
 
 
 2026년 09월 4주차: 클릭 3→2건(-33.3%), 노출 268회, 세션 0 유지 / 이번 주 클릭은 KO baby/sleep-schedule·KO travel/layover-connection에서만 발생, EN 버전은 여전히 CTR 0 지속(hydrometer-temperature-correction·homebrew-recipe-calculator 포함) / "alcohol measurement" 쿼리 90→84위 개선, 09월 1주차(85→76위) 추세와 연속성 확인 / highBouncePages·ctrDeviations·toolEngagement·claritySignals 데이터 전무, 정리 후보 없음 / 신규 제안: "og calculator extract" 키워드 갭(OG 추출기 도구 존재 여부 확인) 제기, Lighthouse는 Accessibility 95~96점 공통 패턴만 포착·조사는 보류
+
+2026년 10월 2주차: 클릭 3→8건(+166.7%), 노출 379회, 세션 0 유지(수개월째 0 — 트래킹 수집 오류 의심) / temperament-quiz(EN 3건+KO 1건) 클릭 집중이 이번 주 증가 견인, KO bac-calculator·KO hydrometer-temperature-correction에서도 소액 클릭 발생, KO travel layover는 반대로 CTR 0(EN만 클릭) / "og calculator extract" 84→82위 소폭 개선되었으나 단일 표본 노이즈 가능성 큼 / 신규 제안: GA 세션 트래킹 점검(우선), temperament-quiz에 Chess&Thomas 기질유형 설명 섹션 추가(tutorial 의도 쿼리 대응) / highBouncePages·ctrDeviations·toolEngagement·claritySignals 전무
