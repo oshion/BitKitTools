@@ -328,6 +328,16 @@
       "position": 90
     },
     {
+      "query": "standard drink calc aus",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "cze",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 69
+    },
+    {
       "query": "standard drink calculator",
       "page": "/beer/standard-drinks-calculator/",
       "country": "aus",
