@@ -103,7 +103,7 @@ function TimelineBar({ naps, bedtime, wakeUpTime }: TimelineBarProps) {
       </div>
 
       {/* Timeline labels */}
-      <div className="flex justify-between text-xs text-neutral-600">
+      <div className="flex justify-between text-sm text-neutral-600">
         <span>{to12h(wakeUpTime)}</span>
         <span className="text-neutral-500">← awake (white) · nap (amber) →</span>
         <span>{to12h(bedtime)}</span>
@@ -206,13 +206,13 @@ export default function SleepScheduleTool() {
     <div className="space-y-6">
       {/* ── Input Panel ───────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Baby&apos;s Information
         </h2>
 
         {/* Age */}
         <div className="space-y-1.5">
-          <label htmlFor="age-input" className="block text-sm text-neutral-400">
+          <label htmlFor="age-input" className="block text-base text-neutral-400">
             Age (months, 0–24)
           </label>
           <div className="flex items-center gap-3">
@@ -230,25 +230,25 @@ export default function SleepScheduleTool() {
                 setHasCalculated(false)
               }}
               placeholder="e.g. 6"
-              className={`w-32 rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-32 rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 ageInput && !ageValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {/* Age range hint */}
             {ageValid && result && (
-              <span className="text-xs text-neutral-500 leading-relaxed">
+              <span className="text-sm text-neutral-500 leading-relaxed">
                 {result.ageRangeLabel.en}
               </span>
             )}
           </div>
           {ageInput && !ageValid && (
-            <p className="text-xs text-red-400">Enter a value between 0 and 24 months</p>
+            <p className="text-sm text-red-400">Enter a value between 0 and 24 months</p>
           )}
         </div>
 
         {/* Wake-up time */}
         <div className="space-y-1.5">
-          <label htmlFor="wakeup-input" className="block text-sm text-neutral-400">
+          <label htmlFor="wakeup-input" className="block text-base text-neutral-400">
             Today&apos;s wake-up time
           </label>
           <input
@@ -261,7 +261,7 @@ export default function SleepScheduleTool() {
               setResult(null)
               setHasCalculated(false)
             }}
-            className="w-40 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors"
+            className="w-40 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors"
           />
         </div>
 
@@ -275,14 +275,14 @@ export default function SleepScheduleTool() {
               setResult(null)
               setHasCalculated(false)
             }}
-            className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors underline underline-offset-2"
+            className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors underline underline-offset-2"
           >
             {showLastNapInput ? '− Hide last nap time' : '+ I know when the last nap ended (optional)'}
           </button>
 
           {showLastNapInput && (
             <div className="space-y-1.5">
-              <label htmlFor="last-nap-input" className="block text-xs text-neutral-400">
+              <label htmlFor="last-nap-input" className="block text-sm text-neutral-400">
                 Last nap ended at
               </label>
               <input
@@ -294,9 +294,9 @@ export default function SleepScheduleTool() {
                   setResult(null)
                   setHasCalculated(false)
                 }}
-                className="w-40 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors"
+                className="w-40 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors"
               />
-              <p className="text-xs text-neutral-600 leading-relaxed">
+              <p className="text-sm text-neutral-600 leading-relaxed">
                 Remaining naps and bedtime will be recalculated from this point.
               </p>
             </div>
@@ -312,7 +312,7 @@ export default function SleepScheduleTool() {
               onChange={(e) => handleSaveToggle(e.target.checked)}
               className="mt-0.5 w-4 h-4 rounded accent-[#f59e0b] cursor-pointer"
             />
-            <span className="text-xs text-neutral-500 leading-relaxed">
+            <span className="text-sm text-neutral-500 leading-relaxed">
               Save age and wake-up time in this browser for next visit.{' '}
               <span className="text-neutral-600">
                 (Optional. Data stays on your device — never sent to any server.)
@@ -327,7 +327,7 @@ export default function SleepScheduleTool() {
         type="button"
         onClick={handleCalculate}
         disabled={!canCalculate}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Calculate Sleep Schedule
       </button>
@@ -339,15 +339,15 @@ export default function SleepScheduleTool() {
           aria-label="Sleep schedule results"
         >
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+            <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
               Today&apos;s Schedule
             </h2>
             <div className="flex items-center gap-3">
-              <span className="text-xs text-neutral-600">{result.ageRangeLabel.en}</span>
+              <span className="text-sm text-neutral-600">{result.ageRangeLabel.en}</span>
               <button
                 type="button"
                 onClick={handleShare}
-                className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors underline underline-offset-2"
+                className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors underline underline-offset-2"
               >
                 Share
               </button>
@@ -360,7 +360,7 @@ export default function SleepScheduleTool() {
           {/* Nap list */}
           {result.naps.length > 0 ? (
             <div className="space-y-3">
-              <h3 className="text-xs font-medium text-neutral-500 uppercase tracking-wide">
+              <h3 className="text-sm font-medium text-neutral-500 uppercase tracking-wide">
                 Naps ({result.naps.length})
               </h3>
               <div className="space-y-2">
@@ -371,13 +371,13 @@ export default function SleepScheduleTool() {
                       key={i}
                       className="flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3"
                     >
-                      <span className="text-sm text-neutral-300">
+                      <span className="text-base text-neutral-300">
                         Nap {i + 1}
                       </span>
-                      <span className="text-sm font-medium text-white tabular-nums">
+                      <span className="text-base font-medium text-white tabular-nums">
                         {to12h(nap.start)} – {to12h(nap.end)}
                       </span>
-                      <span className="text-xs text-neutral-500 tabular-nums">
+                      <span className="text-sm text-neutral-500 tabular-nums">
                         {Math.floor(dur / 60) > 0 ? `${Math.floor(dur / 60)}h ` : ''}
                         {dur % 60 > 0 ? `${dur % 60}m` : ''}
                       </span>
@@ -387,27 +387,27 @@ export default function SleepScheduleTool() {
               </div>
             </div>
           ) : (
-            <p className="text-sm text-neutral-500">
+            <p className="text-base text-neutral-500">
               No remaining naps based on the provided last nap time.
             </p>
           )}
 
           {/* Bedtime */}
           <div className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-4 flex items-center justify-between">
-            <span className="text-sm text-neutral-400">Recommended bedtime</span>
+            <span className="text-base text-neutral-400">Recommended bedtime</span>
             <span className="text-3xl font-bold text-[#f59e0b] tabular-nums">
               {to12h(result.bedtime)}
             </span>
           </div>
 
           {/* Pattern summary */}
-          <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-xs text-neutral-500 leading-relaxed">
+          <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-500 leading-relaxed">
             <strong className="text-neutral-400">Typical pattern for this age: </strong>
             {result.summary.en}
           </div>
 
           {/* Mandatory guideline note — always visible, cannot be hidden */}
-          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-xs text-amber-300 leading-relaxed">
+          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-sm text-amber-300 leading-relaxed">
             <strong>General guideline only.</strong> Every baby is different. This schedule
             is based on average recommendations for the age group and may not suit your
             baby&apos;s individual needs. If you have concerns about your child&apos;s sleep

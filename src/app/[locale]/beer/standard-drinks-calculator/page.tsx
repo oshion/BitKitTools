@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,25 +96,19 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <StandardDrinksCalculatorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             표준잔의 정의는 나라마다 다릅니다. 미국은 순수 알코올 14g(NIAAA), 영국은 8g(NHS
             &ldquo;유닛&rdquo;), 호주·싱가포르는 10g, 캐나다는 13.45g(CCSA)을 기준으로
             합니다. 이 도구는 음료의 용량(mL 또는 fl oz)과 도수(ABV%)를 입력하면 각 나라
@@ -123,7 +116,7 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
             환산합니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             Standard drink definitions vary by country. The US defines one standard drink as 14 g of
             pure alcohol (NIAAA), the UK as 8 g (one &ldquo;unit&rdquo;, NHS), Australia and
             Singapore as 10 g, and Canada as 13.45 g (CCSA). This tool converts any drink&apos;s
@@ -131,7 +124,7 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
             alcohol-derived calories under each country&apos;s definition.
           </p>
         )}
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {isKo
             ? '이 도구는 혈중 알코올 농도(BAC)나 운전 가능 여부와 무관한 순수 알코올 환산 도구입니다. BAC 추정이 필요하다면 BAC 계산기를 이용하세요.'
             : 'This tool is a pure alcohol conversion reference — it does not estimate blood alcohol concentration (BAC) or assess fitness to drive. Use the BAC Calculator if you need an estimated BAC.'}
@@ -140,10 +133,10 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -188,16 +181,16 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '계산 예시' : 'Example Calculation'}
         </h2>
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시: 레귤러 맥주 355 mL, ABV 5% — 미국·영국 기준 비교'
               : 'Example: Regular beer 355 mL, 5% ABV — comparing US and UK standards'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-1">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-1">
             <p>
               {isKo ? '• 순수 알코올 = ' : '• Pure alcohol = '}
               355 mL × 5% × 0.789 g/mL ≈ 14.01 g
@@ -218,7 +211,7 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
                 : '• Alcohol calories ≈ 14.01 × 7 ≈ 98 kcal'}
             </p>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? '같은 음료라도 국가 기준에 따라 표준잔 수가 달라집니다. 칼로리는 알코올(에탄올) 성분에서 유래한 열량만이며 당분·탄수화물 등 나머지 음료 성분의 칼로리는 포함되지 않습니다.'
               : 'The same drink counts differently depending on which country standard you use. Calories shown are from alcohol (ethanol) only — calories from sugar, carbohydrates, and other beverage components are not included.'}
@@ -226,24 +219,18 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -254,7 +241,7 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
       {/* Tool-specific disclaimer paragraph (confirmed by user 2026-07-21) */}
       <div className="rounded-lg border border-amber-900/50 bg-amber-950/20 px-4 py-4 space-y-3">
         {isKo ? (
-          <p className="text-sm text-amber-200 leading-relaxed">
+          <p className="text-base text-amber-200 leading-relaxed">
             본 계산 결과는 의학적 조언이나 진단이 아니며, 순수 알코올 함량을 환산한 참고용
             근사치입니다. 실제 건강에 미치는 영향은 체질, 건강 상태, 복용 중인 약물 등에 따라 다를
             수 있습니다. 임신 중이거나 간질환 등 건강상 이유로 음주에 주의가 필요한 경우, 또는
@@ -262,7 +249,7 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
             음주를 권장하거나 특정 음주량을 권고하지 않습니다.
           </p>
         ) : (
-          <p className="text-sm text-amber-200 leading-relaxed">
+          <p className="text-base text-amber-200 leading-relaxed">
             This calculator provides approximate reference figures based on alcohol unit conversion
             formulas — it is not medical advice or a clinical assessment. The actual health impact of
             alcohol varies by individual constitution, health status, and medications. If you are
@@ -280,15 +267,12 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

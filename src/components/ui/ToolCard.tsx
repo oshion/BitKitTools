@@ -23,8 +23,8 @@ export default function ToolCard({ tool, locale, prefetch }: ToolCardProps) {
       prefetch={prefetch}
       className="block rounded-lg bg-[#141414] border border-neutral-800 p-6 hover:bg-[#1a1a1a] transition-colors"
     >
-      <h3 className="text-sm font-medium text-neutral-400 mb-2">{tool.title[locale]}</h3>
-      <p className="text-sm text-neutral-300 leading-relaxed">{tool.description[locale]}</p>
+      <h3 className="text-base font-medium text-neutral-400 mb-2">{tool.title[locale]}</h3>
+      <p className="text-base text-neutral-300 leading-relaxed">{tool.description[locale]}</p>
     </Link>
   )
 }

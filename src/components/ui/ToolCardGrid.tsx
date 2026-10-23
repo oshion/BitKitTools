@@ -12,7 +12,7 @@ type ToolCardGridProps = {
 export default function ToolCardGrid({ tools, locale, emptyMessage, prefetch }: ToolCardGridProps) {
   if (tools.length === 0) {
     return emptyMessage ? (
-      <p className="text-sm text-neutral-500">{emptyMessage}</p>
+      <p className="text-base text-neutral-500">{emptyMessage}</p>
     ) : null
   }
 

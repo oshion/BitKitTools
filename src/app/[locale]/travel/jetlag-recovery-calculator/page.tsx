@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,25 +96,19 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <JetlagRecoveryCalculatorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             이 계산기의 회복일수 추정치는 수면의학 연구에서 널리 인용되는 근사치에 기반합니다:{' '}
             동쪽 이동 시 시간대당 약 1일, 서쪽 이동 시 시간대당 약 0.67일(1.5시간대당 1일).
             이 수치는{' '}
@@ -131,7 +124,7 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
             개인의 연령·일주기 유형·빛 노출 전략에 따라 실제 회복 기간은 크게 다를 수 있습니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             The recovery-day estimates in this calculator are based on widely-cited approximations
             from sleep medicine research: roughly 1 day per time zone for eastward travel, and
             roughly 1 day per 1.5 time zones for westward travel. These rates are grounded in
@@ -152,10 +145,10 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
 
       {/* How to Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -194,29 +187,29 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '실제 사례 예시' : 'Example Scenarios'}
         </h2>
         <div className="space-y-4">
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '사례 1: 뉴욕(UTC-5) → 서울(UTC+9), 동쪽으로 14시간 차이 → 최단 경로 서쪽 10시간대'
                 : 'Case 1: New York (UTC-5) → Seoul (UTC+9), 14-hour raw difference → shortest path 10 zones westward'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? '뉴욕에서 서울까지 태평양을 건너는 최단 경로는 서쪽으로 10개 시간대입니다(동쪽 경로 14시간대보다 짧음). 서쪽 이동 10시간대: ceil(10 ÷ 1.5) = 7일 회복 예상.'
                 : 'The shortest route from New York to Seoul crosses 10 time zones westward via the Pacific (shorter than the 14-zone eastward path via Europe). Westward 10 zones: ceil(10 ÷ 1.5) = 7 estimated recovery days.'}
             </p>
           </div>
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '사례 2: 런던(UTC+0) → 두바이(UTC+4), 동쪽으로 4시간대'
                 : 'Case 2: London (UTC+0) → Dubai (UTC+4), 4 zones eastward'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? '동쪽으로 4개 시간대 이동: ceil(4 × 1.0) = 4일 회복 예상. 동쪽 이동은 체내시계를 앞당겨야 하므로 서쪽 이동(같은 시간대 수: ceil(4 ÷ 1.5) = 3일)보다 일반적으로 더 오래 걸립니다.'
                 : 'Moving 4 time zones eastward: ceil(4 × 1.0) = 4 estimated recovery days. Eastward travel requires advancing the body clock, which generally takes longer than westward travel at the same zone count (ceil(4 ÷ 1.5) = 3 days).'}
@@ -225,29 +218,23 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">{item.question[safeLocale]}</dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
+              <dt className="text-base font-medium text-neutral-200">{item.question[safeLocale]}</dt>
+              <dd className="text-base text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
             </div>
           ))}
         </dl>
       </section>
 
       {/* Safety note specific to this tool (CLAUDE.md: general disclaimerType + extra safety paragraph) */}
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900/50 px-4 py-3 text-sm text-neutral-400 leading-relaxed">
+      <div className="rounded-lg border border-neutral-800 bg-neutral-900/50 px-4 py-3 text-base text-neutral-400 leading-relaxed">
         {isKo
           ? '수면장애나 기분장애(계절성 우울증, 양극성 장애 등)가 있다면 빛 노출 습관을 크게 바꾸기 전 전문의와 상담하세요. 특정 정신건강 상태에서는 빛 노출 타이밍이 증상에 영향을 줄 수 있습니다.'
           : 'If you have a sleep disorder or mood disorder (such as seasonal depression or bipolar disorder), consult a doctor before making significant changes to your light-exposure routine. In certain mental-health conditions, the timing of light exposure can affect symptoms.'}
@@ -259,15 +246,12 @@ export default async function JetlagRecoveryCalculatorPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

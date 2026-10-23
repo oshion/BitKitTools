@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,25 +96,19 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <LayoverConnectionCalculatorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             MCT(최소 환승 시간) 데이터는{' '}
             <a
               href="https://www.iata.org/en/publications/manuals/station-standard-minimum-connecting-time-mct/"
@@ -129,7 +122,7 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
             실제 예약 전에 항공사 또는 공항 공식 채널에서 최신 MCT를 확인하시기 바랍니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             The MCT data in this tool is a static reference table derived from{' '}
             <a
               href="https://www.iata.org/en/publications/manuals/station-standard-minimum-connecting-time-mct/"
@@ -148,10 +141,10 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
 
       {/* How to Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -201,29 +194,29 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '실제 사례 예시' : 'Example Scenarios'}
         </h2>
         <div className="space-y-4">
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '사례 1: 인천(ICN) 경유, 국제선 → 국제선, 환승 시간 2시간'
                 : 'Case 1: Connecting at Seoul Incheon (ICN), International → International, 2-hour layover'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? 'ICN의 국제선→국제선 MCT는 90분입니다. 2시간(120분)은 90분의 1.5배인 135분에 미치지 못하므로 "빡빡함" 판정입니다. 수하물 지연이나 게이트 이동 시 위험할 수 있으므로, 가능하다면 2시간 15분 이상 확보를 권장합니다.'
                 : 'ICN\'s MCT for international-to-international connections is 90 minutes. A 2-hour (120 min) layover meets the minimum but falls short of the 1.5× comfortable threshold (135 min), so the verdict is Tight. Consider aiming for at least 2h 15min to allow for baggage delays or gate changes.'}
             </p>
           </div>
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '사례 2: 암스테르담(AMS) 경유, 국제선 → 국제선, 환승 시간 45분'
                 : 'Case 2: Connecting at Amsterdam Schiphol (AMS), International → International, 45-minute layover'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? 'AMS는 단일 터미널 구조로 MCT가 40분입니다. 45분 환승은 MCT를 충족하지만 1.5배(60분)에는 미치지 못해 "빡빡함" 판정입니다. AMS는 쉥겐/비쉥겐 구역 간 이동이 필요한 경우 추가 시간이 소요될 수 있습니다.'
                 : 'AMS has a single-terminal layout with an MCT of 40 minutes. A 45-minute layover meets the minimum but is below the comfortable threshold (60 min), yielding a Tight verdict. Note that Schengen/non-Schengen zone changes at AMS may add extra time not reflected in the MCT.'}
@@ -232,22 +225,16 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">{item.question[safeLocale]}</dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
+              <dt className="text-base font-medium text-neutral-200">{item.question[safeLocale]}</dt>
+              <dd className="text-base text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
             </div>
           ))}
         </dl>
@@ -259,15 +246,12 @@ export default async function LayoverConnectionCalculatorPage({ params }: Props)
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

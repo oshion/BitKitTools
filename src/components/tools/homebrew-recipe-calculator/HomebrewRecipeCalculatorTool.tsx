@@ -142,13 +142,13 @@ export default function HomebrewRecipeCalculatorTool() {
     <div className="space-y-6">
       {/* ── ABV Input Panel ───────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Recipe Details
         </h2>
 
         {/* Batch size */}
         <div className="space-y-1.5">
-          <label htmlFor="batch-size" className="block text-sm text-neutral-400">
+          <label htmlFor="batch-size" className="block text-base text-neutral-400">
             Batch Size
           </label>
           <div className="flex gap-2">
@@ -163,7 +163,7 @@ export default function HomebrewRecipeCalculatorTool() {
                 const v = parseFloat(e.target.value)
                 if (!isNaN(v)) { fireInputEnterOnce(); setBatchSizeValue(clamp(v, 0.1, 1000)) }
               }}
-              className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
+              className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
             />
             <div className="flex rounded-lg border border-neutral-800 overflow-hidden">
               {(['L', 'gal'] as VolumeUnit[]).map((unit) => (
@@ -180,7 +180,7 @@ export default function HomebrewRecipeCalculatorTool() {
                     )
                     setBatchSizeUnit(unit)
                   }}
-                  className={`px-3 py-2 text-sm transition-colors ${
+                  className={`px-3 py-2 text-base transition-colors ${
                     batchSizeUnit === unit
                       ? 'bg-neutral-700 text-white'
                       : 'bg-neutral-900 text-neutral-400 hover:bg-neutral-800'
@@ -196,7 +196,7 @@ export default function HomebrewRecipeCalculatorTool() {
         {/* Gravity inputs */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <label htmlFor="og-input" className="block text-sm text-neutral-400">
+            <label htmlFor="og-input" className="block text-base text-neutral-400">
               Original Gravity (OG)
             </label>
             <input
@@ -212,17 +212,17 @@ export default function HomebrewRecipeCalculatorTool() {
                 if (!isNaN(v)) setOgInput(clamp(v, 1.0, 1.2).toFixed(3))
               }}
               placeholder="e.g. 1.050"
-              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 ogInput && !ogValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {ogInput && !ogValid && (
-              <p className="text-xs text-red-400">Enter a value between 1.000 and 1.200</p>
+              <p className="text-sm text-red-400">Enter a value between 1.000 and 1.200</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="fg-input" className="block text-sm text-neutral-400">
+            <label htmlFor="fg-input" className="block text-base text-neutral-400">
               Final Gravity (FG)
             </label>
             <input
@@ -238,18 +238,18 @@ export default function HomebrewRecipeCalculatorTool() {
                 if (!isNaN(v)) setFgInput(clamp(v, 1.0, 1.15).toFixed(3))
               }}
               placeholder="e.g. 1.010"
-              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 fgInput && !fgValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {fgInput && !fgValid && (
-              <p className="text-xs text-red-400">Enter a value between 1.000 and 1.150</p>
+              <p className="text-sm text-red-400">Enter a value between 1.000 and 1.150</p>
             )}
           </div>
         </div>
 
         {/* Hydrometer temperature correction link */}
-        <p className="text-xs text-neutral-500 leading-relaxed">
+        <p className="text-sm text-neutral-500 leading-relaxed">
           Measure gravity with a hydrometer or refractometer. OG is measured before
           fermentation; FG after fermentation is complete.{' '}
           <Link
@@ -262,14 +262,14 @@ export default function HomebrewRecipeCalculatorTool() {
 
         {/* Formula toggle */}
         <div className="space-y-1.5">
-          <span className="block text-sm text-neutral-400">ABV Formula</span>
+          <span className="block text-base text-neutral-400">ABV Formula</span>
           <div className="flex rounded-lg border border-neutral-800 overflow-hidden w-fit">
             {(['standard', 'high-gravity'] as AbvFormula[]).map((f) => (
               <button
                 key={f}
                 type="button"
                 onClick={() => { fireInputEnterOnce(); setFormula(f) }}
-                className={`px-4 py-2 text-sm transition-colors ${
+                className={`px-4 py-2 text-base transition-colors ${
                   formula === f
                     ? 'bg-neutral-700 text-white'
                     : 'bg-neutral-900 text-neutral-400 hover:bg-neutral-800'
@@ -280,11 +280,11 @@ export default function HomebrewRecipeCalculatorTool() {
             ))}
           </div>
           {suggestHighGravity && (
-            <p className="text-xs text-amber-400">
+            <p className="text-sm text-amber-400">
               OG ≥ 1.070 detected — consider switching to the high-gravity formula for better accuracy.
             </p>
           )}
-          <p className="text-xs text-neutral-600">
+          <p className="text-sm text-neutral-600">
             {formula === 'standard'
               ? 'ABV ≈ (OG − FG) × 131.25 — best for most beers (OG below 1.070).'
               : 'ABV = (76.08 × (OG − FG) / (1.775 − OG)) × (FG / 0.794) — better for barleywine, imperial stout, etc.'}
@@ -297,7 +297,7 @@ export default function HomebrewRecipeCalculatorTool() {
         type="button"
         onClick={handleCalculate}
         disabled={!gravityValid}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Calculate ABV
       </button>
@@ -308,7 +308,7 @@ export default function HomebrewRecipeCalculatorTool() {
         aria-label="ABV result"
       >
         <div className="space-y-1">
-          <p className="text-xs text-neutral-500 uppercase tracking-wide">
+          <p className="text-sm text-neutral-500 uppercase tracking-wide">
             Estimated Alcohol By Volume
           </p>
           {abv !== null && gravityValid ? (
@@ -327,21 +327,21 @@ export default function HomebrewRecipeCalculatorTool() {
           <div className="space-y-2 border-t border-neutral-800 pt-3">
             <div className="grid grid-cols-3 gap-3 text-center">
               <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-3">
-                <p className="text-xs text-neutral-500 mb-1">OG</p>
-                <p className="text-sm font-semibold text-neutral-200 tabular-nums">{og.toFixed(3)}</p>
+                <p className="text-sm text-neutral-500 mb-1">OG</p>
+                <p className="text-base font-semibold text-neutral-200 tabular-nums">{og.toFixed(3)}</p>
               </div>
               <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-3">
-                <p className="text-xs text-neutral-500 mb-1">FG</p>
-                <p className="text-sm font-semibold text-neutral-200 tabular-nums">{fg.toFixed(3)}</p>
+                <p className="text-sm text-neutral-500 mb-1">FG</p>
+                <p className="text-base font-semibold text-neutral-200 tabular-nums">{fg.toFixed(3)}</p>
               </div>
               <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-3">
-                <p className="text-xs text-neutral-500 mb-1">Attenuation</p>
-                <p className="text-sm font-semibold text-neutral-200 tabular-nums">
+                <p className="text-sm text-neutral-500 mb-1">Attenuation</p>
+                <p className="text-base font-semibold text-neutral-200 tabular-nums">
                   {(((og - fg) / (og - 1.0)) * 100).toFixed(1)}%
                 </p>
               </div>
             </div>
-            <p className="text-xs text-neutral-500 leading-relaxed">
+            <p className="text-sm text-neutral-500 leading-relaxed">
               Formula used:{' '}
               <span className="text-neutral-400">
                 {formula === 'standard'
@@ -357,7 +357,7 @@ export default function HomebrewRecipeCalculatorTool() {
           <button
             type="button"
             onClick={handleCopyResult}
-            className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+            className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
           >
             {hasCopied ? '✓ Copied' : 'Copy result'}
           </button>
@@ -369,7 +369,7 @@ export default function HomebrewRecipeCalculatorTool() {
         <button
           type="button"
           onClick={() => setShowDilution((v) => !v)}
-          className="w-full rounded-lg border border-dashed border-neutral-700 py-2.5 text-sm text-neutral-500 hover:border-neutral-600 hover:text-neutral-400 transition-colors"
+          className="w-full rounded-lg border border-dashed border-neutral-700 py-2.5 text-base text-neutral-500 hover:border-neutral-600 hover:text-neutral-400 transition-colors"
         >
           {showDilution ? '▲ Hide dilution calculator' : '▼ Dilute to target ABV'}
         </button>
@@ -378,10 +378,10 @@ export default function HomebrewRecipeCalculatorTool() {
       {/* ── Dilution Panel ───────────────────────────────────────────────── */}
       {showDilution && (
         <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4 animate-fade-in">
-          <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+          <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
             Dilution Calculator
           </h2>
-          <p className="text-xs text-neutral-500 leading-relaxed">
+          <p className="text-sm text-neutral-500 leading-relaxed">
             Enter a target ABV below your current estimated ABV to find out how much
             water to add to your{' '}
             <span className="text-neutral-400 tabular-nums">
@@ -391,7 +391,7 @@ export default function HomebrewRecipeCalculatorTool() {
           </p>
 
           <div className="space-y-1.5">
-            <label htmlFor="target-abv" className="block text-sm text-neutral-400">
+            <label htmlFor="target-abv" className="block text-base text-neutral-400">
               Target ABV (%)
             </label>
             <div className="flex items-center gap-3">
@@ -405,12 +405,12 @@ export default function HomebrewRecipeCalculatorTool() {
                 onChange={(e) => setTargetAbvInput(e.target.value)}
                 placeholder={abv !== null ? `< ${abv.toFixed(2)}` : 'Calculate ABV first'}
                 disabled={abv === null || !gravityValid}
-                className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums disabled:opacity-40 disabled:cursor-not-allowed"
               />
-              <span className="text-sm text-neutral-500">%</span>
+              <span className="text-base text-neutral-500">%</span>
             </div>
             {targetAbvInput && abv !== null && !targetAbvValid && (
-              <p className="text-xs text-red-400">
+              <p className="text-sm text-red-400">
                 Target ABV must be between 0.1% and {(abv - 0.01).toFixed(2)}%
               </p>
             )}
@@ -423,28 +423,28 @@ export default function HomebrewRecipeCalculatorTool() {
                 <span className="text-2xl font-bold text-[#f59e0b] tabular-nums">
                   +{dilutionResult.waterToAddL} L
                 </span>
-                <span className="text-sm text-neutral-400">water to add</span>
+                <span className="text-base text-neutral-400">water to add</span>
               </div>
               <div className="grid grid-cols-2 gap-3 text-center">
                 <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-3">
-                  <p className="text-xs text-neutral-500 mb-1">Final Volume</p>
-                  <p className="text-sm font-semibold text-neutral-200 tabular-nums">
+                  <p className="text-sm text-neutral-500 mb-1">Final Volume</p>
+                  <p className="text-base font-semibold text-neutral-200 tabular-nums">
                     {dilutionResult.finalVolumeL} L
                     {batchSizeUnit === 'gal' && (
-                      <span className="text-neutral-500 text-xs ml-1">
+                      <span className="text-neutral-500 text-sm ml-1">
                         ({toDisplayVolume(dilutionResult.finalVolumeL, 'gal').toFixed(2)} gal)
                       </span>
                     )}
                   </p>
                 </div>
                 <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-3">
-                  <p className="text-xs text-neutral-500 mb-1">Target ABV</p>
-                  <p className="text-sm font-semibold text-neutral-200 tabular-nums">
+                  <p className="text-sm text-neutral-500 mb-1">Target ABV</p>
+                  <p className="text-base font-semibold text-neutral-200 tabular-nums">
                     {targetAbv.toFixed(2)}%
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-neutral-600 leading-relaxed">
+              <p className="text-sm text-neutral-600 leading-relaxed">
                 Using dilution formula C₁V₁ = C₂V₂. Add water gradually and re-measure
                 gravity to confirm target ABV. Dilution may affect body and flavour.
               </p>

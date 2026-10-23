@@ -150,7 +150,7 @@ export default function LayoverConnectionCalculatorTool() {
     <div className="space-y-6">
       {/* Step 1: Airport */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Step 1 — Connecting Airport
         </h2>
         <div className="relative">
@@ -161,14 +161,14 @@ export default function LayoverConnectionCalculatorTool() {
             onFocus={() => setShowDropdown(true)}
             onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
             placeholder="Search airport (e.g. ICN, Incheon, Frankfurt…)"
-            className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600"
+            className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600"
             aria-label="Connecting airport"
             aria-autocomplete="list"
           />
           {showDropdown && (
             <div className="absolute z-20 top-full mt-1 w-full rounded-lg border border-neutral-800 bg-[#141414] shadow-lg max-h-56 overflow-y-auto">
               {filteredAirports.length === 0 ? (
-                <p className="px-4 py-3 text-sm text-neutral-500">
+                <p className="px-4 py-3 text-base text-neutral-500">
                   Airport not in database — enter the IATA code above and the general recommended
                   MCT will be used.
                 </p>
@@ -177,7 +177,7 @@ export default function LayoverConnectionCalculatorTool() {
                   <button
                     key={a.code}
                     onMouseDown={() => handleAirportSelect(a.code)}
-                    className="w-full text-left px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-800 transition-colors"
+                    className="w-full text-left px-4 py-2.5 text-base text-neutral-300 hover:bg-neutral-800 transition-colors"
                   >
                     <span className="font-mono font-medium text-white">{a.code}</span>
                     <span className="ml-2 text-neutral-500">{a.name.en}</span>
@@ -188,7 +188,7 @@ export default function LayoverConnectionCalculatorTool() {
           )}
         </div>
         {form.airportCode && !selectedAirport && form.airportCode.length >= 3 && (
-          <p className="text-xs text-neutral-500 leading-relaxed">
+          <p className="text-sm text-neutral-500 leading-relaxed">
             <span className="text-amber-400 font-medium">{form.airportCode}</span> is not in our
             database — general industry-recommended MCT values will be used instead.
           </p>
@@ -197,7 +197,7 @@ export default function LayoverConnectionCalculatorTool() {
 
       {/* Step 2: Connection type */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Step 2 — Connection Type
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -209,14 +209,14 @@ export default function LayoverConnectionCalculatorTool() {
                 setForm((prev) => ({ ...prev, connectionType: ct.id }))
                 setResult(null)
               }}
-              className={`text-left rounded-lg border px-4 py-3 text-sm transition-colors ${
+              className={`text-left rounded-lg border px-4 py-3 text-base transition-colors ${
                 form.connectionType === ct.id
                   ? 'border-[#f59e0b] bg-amber-950/20 text-white'
                   : 'border-neutral-800 bg-neutral-900 text-neutral-300 hover:border-neutral-700'
               }`}
             >
               <span className="block font-medium">{ct.label}</span>
-              <span className="text-xs text-neutral-500">{ct.desc}</span>
+              <span className="text-sm text-neutral-500">{ct.desc}</span>
             </button>
           ))}
         </div>
@@ -224,12 +224,12 @@ export default function LayoverConnectionCalculatorTool() {
 
       {/* Step 3: Available time */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Step 3 — Available Layover Time
         </h2>
         <div className="flex items-end gap-3">
           <div className="space-y-1.5">
-            <label className="text-xs text-neutral-500">Hours</label>
+            <label className="text-sm text-neutral-500">Hours</label>
             <input
               type="number"
               min={0}
@@ -240,13 +240,13 @@ export default function LayoverConnectionCalculatorTool() {
                 setForm((prev) => ({ ...prev, hours: Math.max(0, Math.min(24, Number(e.target.value))) }))
                 setResult(null)
               }}
-              className="w-20 rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white text-center focus:outline-none focus:border-neutral-600"
+              className="w-20 rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-base text-white text-center focus:outline-none focus:border-neutral-600"
               aria-label="Hours"
             />
           </div>
           <span className="text-neutral-600 pb-2.5 text-lg">:</span>
           <div className="space-y-1.5">
-            <label className="text-xs text-neutral-500">Minutes</label>
+            <label className="text-sm text-neutral-500">Minutes</label>
             <input
               type="number"
               min={0}
@@ -257,11 +257,11 @@ export default function LayoverConnectionCalculatorTool() {
                 setForm((prev) => ({ ...prev, minutes: Math.max(0, Math.min(59, Number(e.target.value))) }))
                 setResult(null)
               }}
-              className="w-20 rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white text-center focus:outline-none focus:border-neutral-600"
+              className="w-20 rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-base text-white text-center focus:outline-none focus:border-neutral-600"
               aria-label="Minutes"
             />
           </div>
-          <span className="text-neutral-500 text-xs pb-2.5 ml-1">
+          <span className="text-neutral-500 text-sm pb-2.5 ml-1">
             = {totalAvailableMinutes} min total
           </span>
         </div>
@@ -271,7 +271,7 @@ export default function LayoverConnectionCalculatorTool() {
       <button
         onClick={handleCalculate}
         disabled={!isInputValid}
-        className="w-full px-4 py-3 rounded-lg bg-white text-black text-sm font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full px-4 py-3 rounded-lg bg-white text-black text-base font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Check Connection Time
       </button>
@@ -286,41 +286,41 @@ export default function LayoverConnectionCalculatorTool() {
           {/* Verdict headline */}
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-1">
-              <p className="text-xs text-neutral-500 uppercase tracking-wide">Verdict</p>
+              <p className="text-sm text-neutral-500 uppercase tracking-wide">Verdict</p>
               <p className={`text-4xl font-bold ${VERDICT_CONFIG[result.verdict].textClass}`}>
                 {VERDICT_CONFIG[result.verdict].label}
               </p>
             </div>
             <span
-              className={`mt-1 shrink-0 px-2 py-1 rounded text-xs font-medium ${VERDICT_CONFIG[result.verdict].badgeClass}`}
+              className={`mt-1 shrink-0 px-2 py-1 rounded text-sm font-medium ${VERDICT_CONFIG[result.verdict].badgeClass}`}
             >
               {totalAvailableMinutes} min available
             </span>
           </div>
 
           {/* Sublabel */}
-          <p className="text-sm text-neutral-400 leading-relaxed">
+          <p className="text-base text-neutral-400 leading-relaxed">
             {VERDICT_CONFIG[result.verdict].sublabel}
           </p>
 
           {/* MCT reference */}
           <div className="border-t border-neutral-800 pt-4 space-y-2">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs text-neutral-500">
+              <span className="text-sm text-neutral-500">
                 Recommended minimum connecting time:
               </span>
-              <span className="text-sm font-semibold text-neutral-300">
+              <span className="text-base font-semibold text-neutral-300">
                 {result.mctMinutes} min
               </span>
               {!result.isKnownAirport && (
-                <span className="px-2 py-0.5 rounded text-xs bg-neutral-800 text-neutral-500">
+                <span className="px-2 py-0.5 rounded text-sm bg-neutral-800 text-neutral-500">
                   General default
                 </span>
               )}
             </div>
 
             {/* Mandatory disclaimer */}
-            <p className="text-xs text-neutral-500 leading-relaxed">
+            <p className="text-sm text-neutral-500 leading-relaxed">
               This is a reference guide only. Actual transit time depends on terminal layout,
               queue lengths, and real-time conditions. Even a{' '}
               <strong className="text-neutral-400">&ldquo;Comfortable&rdquo;</strong> result does not
@@ -329,7 +329,7 @@ export default function LayoverConnectionCalculatorTool() {
 
             {/* Source */}
             {result.isKnownAirport && selectedAirport ? (
-              <p className="text-xs text-neutral-600">
+              <p className="text-sm text-neutral-600">
                 Source:{' '}
                 <a
                   href={selectedAirport.sourceUrl}
@@ -341,7 +341,7 @@ export default function LayoverConnectionCalculatorTool() {
                 </a>
               </p>
             ) : (
-              <p className="text-xs text-neutral-600">
+              <p className="text-sm text-neutral-600">
                 Source:{' '}
                 <a
                   href="https://www.iata.org/en/publications/manuals/station-standard-minimum-connecting-time-mct/"

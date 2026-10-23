@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function PasswordGeneratorPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,34 +96,28 @@ export default async function PasswordGeneratorPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <PasswordGeneratorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
-            이 생성기는 Web Crypto API의 <code className="text-neutral-200 font-mono text-xs">crypto.getRandomValues</code>를 사용합니다.
-            예측 가능성이 있는 <code className="text-neutral-200 font-mono text-xs">Math.random()</code>과 달리
+          <p className="text-base text-neutral-300 leading-relaxed">
+            이 생성기는 Web Crypto API의 <code className="text-neutral-200 font-mono text-sm">crypto.getRandomValues</code>를 사용합니다.
+            예측 가능성이 있는 <code className="text-neutral-200 font-mono text-sm">Math.random()</code>과 달리
             암호학적으로 안전한 난수를 생성하므로 보안이 중요한 상황에서 신뢰할 수 있습니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             This generator uses the Web Crypto API&apos;s{' '}
-            <code className="text-neutral-200 font-mono text-xs">crypto.getRandomValues</code> — unlike
-            the predictable <code className="text-neutral-200 font-mono text-xs">Math.random()</code>,
+            <code className="text-neutral-200 font-mono text-sm">crypto.getRandomValues</code> — unlike
+            the predictable <code className="text-neutral-200 font-mono text-sm">Math.random()</code>,
             this produces cryptographically secure random numbers that cannot be predicted even if an
             attacker observes previous outputs.
           </p>
@@ -133,10 +126,10 @@ export default async function PasswordGeneratorPage({ params }: Props) {
 
       {/* How to Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -186,17 +179,17 @@ export default async function PasswordGeneratorPage({ params }: Props) {
 
       {/* Example — length vs strength table */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '길이별 비밀번호 강도 비교' : 'Password Length vs. Strength'}
         </h2>
-        <p className="text-sm text-neutral-400 leading-relaxed">
+        <p className="text-base text-neutral-400 leading-relaxed">
           {isKo
             ? '아래 표는 대/소문자 + 숫자 + 특수문자를 모두 포함했을 때 길이별 엔트로피와 권장 용도를 보여줍니다.'
             : 'The table below shows entropy and recommended use cases at each length when using all character types (uppercase, lowercase, numbers, symbols).'}
         </p>
 
         <div className="rounded-lg border border-neutral-800 overflow-hidden">
-          <table className="w-full text-sm">
+          <table className="w-full text-base">
             <thead>
               <tr className="border-b border-neutral-800 bg-neutral-900/50">
                 <th className="px-4 py-3 text-left text-neutral-400 font-medium">
@@ -251,22 +244,16 @@ export default async function PasswordGeneratorPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">{item.question[safeLocale]}</dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
+              <dt className="text-base font-medium text-neutral-200">{item.question[safeLocale]}</dt>
+              <dd className="text-base text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
             </div>
           ))}
         </dl>
@@ -278,15 +265,12 @@ export default async function PasswordGeneratorPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

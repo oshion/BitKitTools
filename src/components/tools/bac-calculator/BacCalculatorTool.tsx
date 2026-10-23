@@ -77,10 +77,10 @@ function BacReferenceTable({ currentBac }: { currentBac: number }) {
   return (
     <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-3">
       <div className="space-y-0.5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           BAC Level Reference
         </h2>
-        <p className="text-xs text-neutral-600">
+        <p className="text-sm text-neutral-600">
           General physical effects at various BAC levels. For reference only —
           no threshold indicates safe driving.{' '}
           <span className="italic">Source: NIAAA, CDC.</span>
@@ -90,7 +90,7 @@ function BacReferenceTable({ currentBac }: { currentBac: number }) {
         {BAC_RANGES.map((range, i) => (
           <div
             key={range.label}
-            className={`rounded-lg px-3 py-2.5 text-xs leading-relaxed transition-colors ${
+            className={`rounded-lg px-3 py-2.5 text-sm leading-relaxed transition-colors ${
               i === activeIndex
                 ? 'border border-neutral-500 bg-neutral-800 text-neutral-200 font-medium'
                 : 'border border-neutral-800 bg-neutral-900/40 text-neutral-500'
@@ -289,20 +289,20 @@ export default function BacCalculatorTool() {
 
       {/* ── Input panel ─────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Your Information
         </h2>
 
         {/* Gender selector */}
         <div className="space-y-1.5">
-          <label className="block text-sm text-neutral-400">Biological Sex</label>
+          <label className="block text-base text-neutral-400">Biological Sex</label>
           <div className="flex gap-3">
             {(['male', 'female'] as const).map((g) => (
               <button
                 key={g}
                 type="button"
                 onClick={() => { fireInputEnterOnce(); dispatch({ type: 'SET_GENDER', value: g }) }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
+                className={`px-4 py-2 rounded-lg text-base font-medium border transition-colors ${
                   state.gender === g
                     ? 'bg-neutral-700 border-neutral-500 text-white'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:border-neutral-700'
@@ -312,14 +312,14 @@ export default function BacCalculatorTool() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-neutral-600">
+          <p className="text-sm text-neutral-600">
             Used to determine the Widmark distribution factor (r).
           </p>
         </div>
 
         {/* Weight */}
         <div className="space-y-1.5">
-          <label htmlFor="weight-input" className="block text-sm text-neutral-400">
+          <label htmlFor="weight-input" className="block text-base text-neutral-400">
             Body Weight
           </label>
           <div className="flex gap-2">
@@ -340,7 +340,7 @@ export default function BacCalculatorTool() {
                   })
                 }
               }}
-              className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
+              className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
             />
             <div className="flex rounded-lg border border-neutral-800 overflow-hidden">
               {(['kg', 'lbs'] as WeightUnit[]).map((unit) => (
@@ -348,7 +348,7 @@ export default function BacCalculatorTool() {
                   key={unit}
                   type="button"
                   onClick={() => { fireInputEnterOnce(); dispatch({ type: 'SET_WEIGHT_UNIT', value: unit }) }}
-                  className={`px-3 py-2 text-sm transition-colors ${
+                  className={`px-3 py-2 text-base transition-colors ${
                     state.weightUnit === unit
                       ? 'bg-neutral-700 text-white'
                       : 'bg-neutral-900 text-neutral-400 hover:bg-neutral-800'
@@ -363,7 +363,7 @@ export default function BacCalculatorTool() {
 
         {/* Hours elapsed */}
         <div className="space-y-1.5">
-          <label htmlFor="hours-input" className="block text-sm text-neutral-400">
+          <label htmlFor="hours-input" className="block text-base text-neutral-400">
             Hours since you started drinking
           </label>
           <div className="flex items-center gap-3">
@@ -380,7 +380,7 @@ export default function BacCalculatorTool() {
               }}
               className="flex-1 accent-[#f59e0b]"
             />
-            <span className="w-16 text-right text-sm font-semibold text-[#f59e0b] tabular-nums">
+            <span className="w-16 text-right text-base font-semibold text-[#f59e0b] tabular-nums">
               {state.hoursElapsed % 1 === 0
                 ? `${state.hoursElapsed}h`
                 : `${state.hoursElapsed}h`}
@@ -391,7 +391,7 @@ export default function BacCalculatorTool() {
 
       {/* ── Drinks panel ─────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Drinks Consumed
         </h2>
 
@@ -402,14 +402,14 @@ export default function BacCalculatorTool() {
               className="rounded-lg border border-neutral-700 bg-neutral-900/50 p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs text-neutral-500 font-medium">
+                <span className="text-sm text-neutral-500 font-medium">
                   Drink {index + 1}
                 </span>
                 {state.drinks.length > 1 && (
                   <button
                     type="button"
                     onClick={() => { fireInputEnterOnce(); dispatch({ type: 'REMOVE_DRINK', id: drink.id }) }}
-                    className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors"
+                    className="text-sm text-neutral-600 hover:text-neutral-400 transition-colors"
                     aria-label={`Remove drink ${index + 1}`}
                   >
                     Remove
@@ -419,7 +419,7 @@ export default function BacCalculatorTool() {
 
               {/* Preset selector */}
               <div className="space-y-1.5">
-                <label htmlFor={`type-select-${drink.id}`} className="block text-xs text-neutral-500">Type</label>
+                <label htmlFor={`type-select-${drink.id}`} className="block text-sm text-neutral-500">Type</label>
                 <select
                   id={`type-select-${drink.id}`}
                   value={drink.presetKey}
@@ -432,7 +432,7 @@ export default function BacCalculatorTool() {
                       value: e.target.value,
                     })
                   }}
-                  className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white focus:border-neutral-600 outline-none transition-colors"
+                  className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-base text-white focus:border-neutral-600 outline-none transition-colors"
                 >
                   {Object.entries(DRINK_PRESETS).map(([key, preset]) => (
                     <option key={key} value={key}>
@@ -445,7 +445,7 @@ export default function BacCalculatorTool() {
               {/* ABV + Volume */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label htmlFor={`abv-input-${drink.id}`} className="block text-xs text-neutral-500">ABV (%)</label>
+                  <label htmlFor={`abv-input-${drink.id}`} className="block text-sm text-neutral-500">ABV (%)</label>
                   <input
                     id={`abv-input-${drink.id}`}
                     type="number"
@@ -465,11 +465,11 @@ export default function BacCalculatorTool() {
                         })
                       }
                     }}
-                    className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
+                    className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor={`volume-input-${drink.id}`} className="block text-xs text-neutral-500">Volume (mL)</label>
+                  <label htmlFor={`volume-input-${drink.id}`} className="block text-sm text-neutral-500">Volume (mL)</label>
                   <input
                     id={`volume-input-${drink.id}`}
                     type="number"
@@ -489,7 +489,7 @@ export default function BacCalculatorTool() {
                         })
                       }
                     }}
-                    className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
+                    className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
                   />
                 </div>
               </div>
@@ -500,7 +500,7 @@ export default function BacCalculatorTool() {
         <button
           type="button"
           onClick={() => { fireInputEnterOnce(); dispatch({ type: 'ADD_DRINK' }) }}
-          className="w-full rounded-lg border border-dashed border-neutral-700 py-2.5 text-sm text-neutral-500 hover:border-neutral-600 hover:text-neutral-400 transition-colors"
+          className="w-full rounded-lg border border-dashed border-neutral-700 py-2.5 text-base text-neutral-500 hover:border-neutral-600 hover:text-neutral-400 transition-colors"
         >
           + Add another drink
         </button>
@@ -510,7 +510,7 @@ export default function BacCalculatorTool() {
       <button
         type="button"
         onClick={handleCalculate}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors"
       >
         Calculate Estimated BAC
       </button>
@@ -521,7 +521,7 @@ export default function BacCalculatorTool() {
         aria-label="BAC estimate result"
       >
         <div className="space-y-1">
-          <p className="text-xs text-neutral-500 uppercase tracking-wide">
+          <p className="text-sm text-neutral-500 uppercase tracking-wide">
             Estimated BAC (Blood Alcohol Concentration)
           </p>
           {/* Neutral number display only — NO color coding, NO pass/fail indicators (ADR-014) */}
@@ -529,7 +529,7 @@ export default function BacCalculatorTool() {
             {bacResult.bacPercent.toFixed(3)}
             <span className="text-2xl font-normal text-neutral-400 ml-1">%</span>
           </p>
-          <p className="text-xs text-neutral-500">
+          <p className="text-sm text-neutral-500">
             = {(bacResult.bacPercent * 10).toFixed(2)} g/L &nbsp;·&nbsp;{' '}
             {(bacResult.bacPercent * 1000).toFixed(1)} mg/dL
           </p>
@@ -537,14 +537,14 @@ export default function BacCalculatorTool() {
 
         {/* hoursUntilZeroPercent — secondary info, clearly labelled as metabolism estimate only */}
         <div className="border-t border-neutral-800 pt-3 space-y-0.5">
-          <p className="text-xs text-neutral-500 uppercase tracking-wide">
+          <p className="text-sm text-neutral-500 uppercase tracking-wide">
             Estimated hours until 0%
           </p>
           <p className="text-2xl font-semibold text-neutral-300 tabular-nums">
             {bacResult.hoursUntilZeroPercent.toFixed(1)}
-            <span className="text-sm font-normal text-neutral-500 ml-1">hrs</span>
+            <span className="text-base font-normal text-neutral-500 ml-1">hrs</span>
           </p>
-          <p className="text-xs text-neutral-600 leading-relaxed">
+          <p className="text-sm text-neutral-600 leading-relaxed">
             Time for BAC to reach 0% at the standard elimination rate of 0.015 g/dL/hr.
             This is a rough metabolic estimate only — not a clearance time for driving.
           </p>
@@ -552,11 +552,11 @@ export default function BacCalculatorTool() {
 
         {/* Widmark formula display — E-E-A-T trust signal (screen spec) */}
         <div className="border-t border-neutral-800 pt-3 space-y-1">
-          <p className="text-xs text-neutral-500 uppercase tracking-wide">Widmark Formula</p>
-          <p className="font-mono text-xs text-neutral-400 leading-relaxed">
+          <p className="text-sm text-neutral-500 uppercase tracking-wide">Widmark Formula</p>
+          <p className="font-mono text-sm text-neutral-400 leading-relaxed">
             BAC (%) = [A × 100 / (W × r)] − (β × t)
           </p>
-          <p className="text-xs text-neutral-600 leading-relaxed">
+          <p className="text-sm text-neutral-600 leading-relaxed">
             A = alcohol (g), W = body weight (g), r = 0.68 (male) / 0.55 (female),
             β = 0.015 g/dL/hr, t = hours elapsed.{' '}
             <span className="italic">Source: Widmark EMP, 1932.</span>
@@ -564,7 +564,7 @@ export default function BacCalculatorTool() {
         </div>
 
         {/* Mandatory safety reminder — always shown, never conditional on BAC value (ADR-014) */}
-        <div className="rounded-lg border border-red-900/50 bg-red-950/20 px-3 py-2.5 text-xs text-red-300 leading-relaxed">
+        <div className="rounded-lg border border-red-900/50 bg-red-950/20 px-3 py-2.5 text-sm text-red-300 leading-relaxed">
           This estimate is for informational reference only. Do not drive or operate machinery
           after consuming alcohol. The only safe BAC for driving is 0.000%.
         </div>

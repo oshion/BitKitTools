@@ -11,7 +11,7 @@ export default function Header({ locale }: HeaderProps) {
 
   return (
     <header className="border-b border-neutral-800 bg-[#0a0a0a]">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         <Link href={homeHref} className="text-white font-semibold text-lg">
           BitKitTools
         </Link>

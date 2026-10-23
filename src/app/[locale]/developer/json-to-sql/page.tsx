@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function JsonToSqlPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,32 +96,26 @@ export default async function JsonToSqlPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <JsonToSqlTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             MySQL/MariaDB는 백틱(`)으로, PostgreSQL과 Oracle은 큰따옴표(&quot;)로, MSSQL은 대괄호([])로
             식별자를 감싸 방언별 올바른 구문을 생성합니다. Boolean 값은 MySQL/PostgreSQL에서
             TRUE/FALSE, Oracle과 MSSQL에서 1/0으로 처리됩니다. 중첩 객체와 배열은 JSON 전용
             컬럼 타입(JSONB, JSON, CLOB, NVARCHAR(MAX))에 문자열로 저장됩니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             The converter applies dialect-correct identifier quoting — backticks for MySQL/MariaDB,
             double quotes for PostgreSQL and Oracle, and square brackets for MSSQL. Booleans are
             rendered as TRUE/FALSE for MySQL and PostgreSQL, and as 1/0 for Oracle and MSSQL.
@@ -134,10 +127,10 @@ export default async function JsonToSqlPage({ params }: Props) {
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -190,15 +183,15 @@ export default async function JsonToSqlPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '변환 예시' : 'Example'}
         </h2>
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-4">
           <div className="space-y-1">
-            <p className="text-xs text-neutral-500 uppercase tracking-wide">
+            <p className="text-sm text-neutral-500 uppercase tracking-wide">
               {isKo ? '입력 JSON' : 'Input JSON'}
             </p>
-            <pre className="text-sm font-mono text-neutral-300 leading-relaxed whitespace-pre-wrap">
+            <pre className="text-base font-mono text-neutral-300 leading-relaxed whitespace-pre-wrap">
 {`[
   { "id": 1, "name": "Alice", "active": true },
   { "id": 2, "name": "Bob",   "active": false }
@@ -206,15 +199,15 @@ export default async function JsonToSqlPage({ params }: Props) {
             </pre>
           </div>
           <div className="space-y-1 border-t border-neutral-800 pt-4">
-            <p className="text-xs text-neutral-500 uppercase tracking-wide">
+            <p className="text-sm text-neutral-500 uppercase tracking-wide">
               {isKo ? 'PostgreSQL 출력 (INSERT only)' : 'PostgreSQL output (INSERT only)'}
             </p>
-            <pre className="text-sm font-mono text-neutral-300 leading-relaxed whitespace-pre-wrap">
+            <pre className="text-base font-mono text-neutral-300 leading-relaxed whitespace-pre-wrap">
 {`INSERT INTO "users" ("id", "name", "active") VALUES (1, 'Alice', TRUE);
 INSERT INTO "users" ("id", "name", "active") VALUES (2, 'Bob', FALSE);`}
             </pre>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? 'Oracle 방언을 선택하고 배치 옵션을 켜면 INSERT ALL ... SELECT * FROM dual 구문이 생성됩니다.'
               : 'Selecting Oracle dialect with batching enabled generates INSERT ALL … SELECT * FROM dual syntax instead.'}
@@ -222,24 +215,18 @@ INSERT INTO "users" ("id", "name", "active") VALUES (2, 'Bob', FALSE);`}
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -253,15 +240,12 @@ INSERT INTO "users" ("id", "name", "active") VALUES (2, 'Bob', FALSE);`}
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

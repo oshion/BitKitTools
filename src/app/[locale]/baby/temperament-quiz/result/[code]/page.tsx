@@ -95,7 +95,7 @@ export default async function TemperamentResultPage({ params }: Props) {
   ]
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <SchemaBreadcrumb items={breadcrumbItems} />
 
       {/* Result preview card */}
@@ -106,7 +106,7 @@ export default async function TemperamentResultPage({ params }: Props) {
         <div className="text-7xl">{persona.emoji}</div>
         <div className="space-y-2">
           <h1 className="text-3xl font-bold text-white">{persona.name[safeLocale]}</h1>
-          <p className="text-sm text-neutral-400">
+          <p className="text-base text-neutral-400">
             {isKo ? 'Baby Temperament Type' : '아기 기질 유형'}
           </p>
         </div>
@@ -117,14 +117,14 @@ export default async function TemperamentResultPage({ params }: Props) {
 
       {/* Parenting tips */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 성향 아이에게 맞는 육아 팁' : 'Parenting Tips for This Temperament'}
         </h2>
         <ul className="space-y-3">
           {persona.tips[safeLocale].map((tip, i) => (
             <li
               key={i}
-              className="flex gap-3 rounded-lg border border-neutral-800 bg-[#141414] p-4 text-sm text-neutral-300 leading-relaxed"
+              className="flex gap-3 rounded-lg border border-neutral-800 bg-[#141414] p-4 text-base text-neutral-300 leading-relaxed"
             >
               <span className="text-[#f59e0b] font-medium shrink-0">{i + 1}.</span>
               <span>{tip}</span>
@@ -134,7 +134,7 @@ export default async function TemperamentResultPage({ params }: Props) {
       </section>
 
       {/* Disclaimer */}
-      <p className="text-sm text-neutral-500 leading-relaxed rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3">
+      <p className="text-base text-neutral-500 leading-relaxed rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3">
         {isKo
           ? '이 유형은 Thomas & Chess의 기질 연구 개념을 재미있게 재구성한 것이며, 임상적 진단이 아닙니다.'
           : 'This type is a fun reinterpretation of Thomas & Chess\'s temperament research concepts and is not a clinical diagnosis.'}

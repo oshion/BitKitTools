@@ -7,7 +7,7 @@ type DisclaimerBannerProps = {
   disclaimerType: DisclaimerType
 }
 
-const BASE_CLASS = 'rounded-lg border px-4 py-3 text-sm leading-relaxed'
+const BASE_CLASS = 'rounded-lg border px-4 py-3 text-base leading-relaxed'
 
 const TYPE_CLASS: Record<Exclude<DisclaimerType, 'none'>, string> = {
   general: 'border-neutral-800 bg-neutral-900 text-neutral-400',

@@ -175,7 +175,7 @@ export default function HydrometerCorrectionTool() {
       {/* ── Input Panel ───────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+          <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
             Hydrometer Reading
           </h2>
           {/* °F / °C toggle */}
@@ -185,7 +185,7 @@ export default function HydrometerCorrectionTool() {
                 key={unit}
                 type="button"
                 onClick={() => handleUnitToggle(unit)}
-                className={`px-3 py-1.5 text-sm transition-colors ${
+                className={`px-3 py-1.5 text-base transition-colors ${
                   tempUnit === unit
                     ? 'bg-neutral-700 text-white'
                     : 'bg-neutral-900 text-neutral-400 hover:bg-neutral-800'
@@ -199,7 +199,7 @@ export default function HydrometerCorrectionTool() {
 
         {/* Measured gravity */}
         <div className="space-y-1.5">
-          <label htmlFor="measured-gravity" className="block text-sm text-neutral-400">
+          <label htmlFor="measured-gravity" className="block text-base text-neutral-400">
             Measured Gravity (SG)
           </label>
           <input
@@ -215,12 +215,12 @@ export default function HydrometerCorrectionTool() {
               if (!isNaN(v)) setMeasuredInput(Math.min(Math.max(v, 0.99), 1.2).toFixed(3))
             }}
             placeholder="e.g. 1.052"
-            className={`w-40 rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+            className={`w-40 rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
               measuredInput && !measuredValid ? 'border-red-800' : 'border-neutral-800'
             }`}
           />
           {measuredInput && !measuredValid && (
-            <p className="text-xs text-red-400">Enter a value between 0.990 and 1.200</p>
+            <p className="text-sm text-red-400">Enter a value between 0.990 and 1.200</p>
           )}
         </div>
 
@@ -228,7 +228,7 @@ export default function HydrometerCorrectionTool() {
         <div className="grid grid-cols-2 gap-4">
           {/* Sample temperature */}
           <div className="space-y-1.5">
-            <label htmlFor="sample-temp" className="block text-sm text-neutral-400">
+            <label htmlFor="sample-temp" className="block text-base text-neutral-400">
               Sample Temperature ({tempUnit})
             </label>
             <input
@@ -238,12 +238,12 @@ export default function HydrometerCorrectionTool() {
               value={sampleTempInput}
               onChange={(e) => { fireInputEnterOnce(); setSampleTempInput(e.target.value) }}
               placeholder={tempUnit === '°F' ? 'e.g. 75' : 'e.g. 24'}
-              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 sampleTempInput && !sampleValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {sampleTempInput && !sampleValid && (
-              <p className="text-xs text-red-400">
+              <p className="text-sm text-red-400">
                 Enter a valid temperature ({tempUnit === '°F' ? '32–212°F' : '0–100°C'})
               </p>
             )}
@@ -251,7 +251,7 @@ export default function HydrometerCorrectionTool() {
 
           {/* Calibration temperature */}
           <div className="space-y-1.5">
-            <label htmlFor="calib-temp" className="block text-sm text-neutral-400">
+            <label htmlFor="calib-temp" className="block text-base text-neutral-400">
               Calibration Temperature ({tempUnit})
             </label>
             <input
@@ -261,12 +261,12 @@ export default function HydrometerCorrectionTool() {
               value={calibTempInput}
               onChange={(e) => handleCalibInputChange(e.target.value)}
               placeholder={tempUnit === '°F' ? 'e.g. 59' : 'e.g. 15'}
-              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 calibTempInput && !calibValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {calibTempInput && !calibValid && (
-              <p className="text-xs text-red-400">
+              <p className="text-sm text-red-400">
                 Enter a valid calibration temperature
               </p>
             )}
@@ -279,7 +279,7 @@ export default function HydrometerCorrectionTool() {
                     key={fahrenheit}
                     type="button"
                     onClick={() => handlePreset(fahrenheit)}
-                    className={`flex-1 rounded-md border px-2 py-1.5 text-xs transition-colors ${
+                    className={`flex-1 rounded-md border px-2 py-1.5 text-sm transition-colors ${
                       isActive
                         ? 'border-neutral-600 bg-neutral-700 text-white'
                         : 'border-neutral-800 bg-neutral-900 text-neutral-500 hover:border-neutral-700 hover:text-neutral-400'
@@ -301,7 +301,7 @@ export default function HydrometerCorrectionTool() {
             onChange={(e) => handleSaveCalibToggle(e.target.checked)}
             className="rounded border-neutral-700 bg-neutral-900 accent-neutral-400"
           />
-          <span className="text-xs text-neutral-500">
+          <span className="text-sm text-neutral-500">
             Remember my calibration temperature for next visit
           </span>
         </label>
@@ -312,7 +312,7 @@ export default function HydrometerCorrectionTool() {
         type="button"
         onClick={handleCalculate}
         disabled={!canCalculate}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Correct Gravity
       </button>
@@ -322,7 +322,7 @@ export default function HydrometerCorrectionTool() {
         className="rounded-lg border border-neutral-700 bg-[#141414] p-5 space-y-4 animate-fade-in"
         aria-label="Corrected gravity result"
       >
-        <p className="text-xs text-neutral-500 uppercase tracking-wide">
+        <p className="text-sm text-neutral-500 uppercase tracking-wide">
           Corrected Specific Gravity
         </p>
 
@@ -331,11 +331,11 @@ export default function HydrometerCorrectionTool() {
             <p className="text-5xl font-bold text-[#f59e0b] tabular-nums leading-none">
               {result.correctedGravity.toFixed(4)}
             </p>
-            <p className="text-sm text-neutral-400 tabular-nums">
+            <p className="text-base text-neutral-400 tabular-nums">
               {deltaSign}
               {result.deltaFromMeasured.toFixed(4)} from measured ({measuredInput})
             </p>
-            <p className="text-xs text-neutral-600 leading-relaxed border-t border-neutral-800 pt-3">
+            <p className="text-sm text-neutral-600 leading-relaxed border-t border-neutral-800 pt-3">
               Formula: CG = MG × f(ST) / f(CT), where f(T) is the standard brewing
               temperature correction polynomial. This is the brewing industry&apos;s established
               standard correction method — widely used by professional and homebrewing references.

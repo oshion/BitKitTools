@@ -3,7 +3,8 @@
 ## 디자인 원칙
 1. 도구처럼 보여야 한다 — 마케팅 랜딩 페이지가 아니라 계산기/유틸리티 대시보드.
 2. 속도가 기능이다 — 입력 즉시 결과가 반영되어야 하며, 불필요한 로딩 상태를 만들지 않는다.
-3. 광고는 방해 요소가 아니라 레이아웃의 일부다 — 콘텐츠와 명확히 구분하되 CLS 없이 고정된 자리에 배치한다.
+3. 광고는 방해 요소가 아니라 레이아웃의 일부다 — 콘텐츠와 명확히 구분하되 CLS 없이 고정된 자리에 배치한다. (현재 AdSense 승인 전이라 모든 페이지에서 광고 슬롯을 제거한 상태 → `docs/tech-debt-tracker.md` TD-001)
+4. 콘텐츠가 크고 시원해야 한다 — 본문 16px(`text-base`) 이상, 넉넉한 섹션 간격, 넓은 컨테이너로 가독성을 우선한다.
 
 ## AI 슬롭 안티패턴 — 하지 마라
 | 금지 사항 | 이유 |
@@ -59,6 +60,8 @@ rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 focus:border-neutr
 ```
 
 ### 광고 슬롯 (`components/ui/AdSlot.tsx`)
+> **현재 미사용** — AdSense 승인 전까지 어떤 페이지에도 배치하지 않는다. 컴포넌트와 `tools-config.ts`의 `adSlots`는 재도입을 위해 남겨둔다. 재도입 전 TD-001 해결 필수.
+
 CLS 방지를 위해 IAB 표준 사이즈 기준 `min-height`를 고정한다. 툴 페이지는 아래 5개 위치(`tools-config.ts`의 `adSlots`)를 기본으로 한다.
 
 | 위치 (`AdSlotConfig.position`) | 규격 | min-height |
@@ -89,19 +92,20 @@ rounded-lg border-2 border-red-900/60 bg-red-950/30 text-red-200 px-4 py-3 text-
 초록색/체크 아이콘 등 "통과·안전"을 암시하는 색상·아이콘은 이 툴 어디에도 사용하지 않는다.
 
 ## 레이아웃
-- 전체 너비: `max-w-5xl`
+- 전체 너비: `max-w-6xl` (Header/Footer/페이지 동일), 좌우 여백 `px-4 sm:px-6`
 - 정렬: 좌측 정렬 기본. 중앙 정렬 금지 (히어로 섹션 없음)
-- 간격: `gap-3~4`, 섹션 간 `space-y-8`
-- 툴 페이지 구조: `<h1>` 툴 이름 → 입력 영역 → 결과 영역(가장 눈에 띄게) → 상단 광고 슬롯 → 설명/FAQ(SEO 콘텐츠) → 하단 광고 슬롯
+- 간격: `gap-3~4`, 페이지 컨테이너 `py-10`, 섹션 간 `space-y-12`
+- 툴 페이지 구조: `<h1>` 툴 이름 → 입력 영역 → 결과 영역(가장 눈에 띄게) → 설명/사용법/예시/FAQ(SEO 콘텐츠) → 면책조항 → 관련 도구
 
 ## 타이포그래피
 | 용도 | 스타일 |
 |------|--------|
 | 페이지 제목 (`<h1>`) | `text-4xl font-semibold text-white` |
-| 섹션 제목 (`<h2>`) | `text-xl font-medium text-white` |
-| 카드 제목 | `text-sm font-medium text-neutral-400` |
+| 섹션 제목 (`<h2>`) | `text-2xl font-semibold text-white` |
+| 카드 제목 / 입력 라벨 | `text-base font-medium text-neutral-400` |
 | 결과 값 강조 | `text-3xl font-bold text-[#f59e0b]` |
-| 본문 | `text-sm text-neutral-300 leading-relaxed` |
+| 본문 / 입력 필드 | `text-base text-neutral-300 leading-relaxed` (입력 필드 16px 미만 금지 — iOS 자동 확대 방지) |
+| 보조 문구(힌트, 에러, 단위) | `text-sm` — `text-xs`는 사용하지 않는다 |
 
 ## 애니메이션
 - `fade-in` (0.4s) — 결과 값이 갱신될 때

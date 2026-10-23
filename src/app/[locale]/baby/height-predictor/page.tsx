@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function HeightPredictorPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,25 +96,19 @@ export default async function HeightPredictorPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <HeightPredictorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             이 계산기는 소아내분비학에서 표준으로 인용되는 중간부모키(Mid-Parental Height) 방법을
             사용합니다. <strong className="text-neutral-200">Tanner-Goldstein-Whitehouse 공식</strong>은
             남아의 경우 (어머니 키 + 아버지 키 + 13) ÷ 2, 여아의 경우 (어머니 키 + 아버지 키 − 13) ÷ 2로
@@ -124,7 +117,7 @@ export default async function HeightPredictorPage({ params }: Props) {
             <em>Archives of Disease in Childhood</em>, 1970.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             This calculator uses the Mid-Parental Height method, the standard approach cited in
             paediatric endocrinology. The{' '}
             <strong className="text-neutral-200">Tanner-Goldstein-Whitehouse formula</strong>{' '}
@@ -138,10 +131,10 @@ export default async function HeightPredictorPage({ params }: Props) {
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -194,17 +187,17 @@ export default async function HeightPredictorPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '계산 예시' : 'Example'}
         </h2>
 
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시: 아버지 178cm, 어머니 165cm, 아들(남아)'
               : 'Example: Father 178cm, Mother 165cm, Son (boy)'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-1">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-1">
             <p>
               {isKo
                 ? '공식 (남아): (165 + 178 + 13) / 2 = 356 / 2 = 178cm'
@@ -221,7 +214,7 @@ export default async function HeightPredictorPage({ params }: Props) {
                 : '→ Predicted adult height ~178cm, range 169.5–186.5cm'}
             </p>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? '이 값은 통계적 추정이며 확정된 성인 키가 아닙니다. 실제 성장은 영양, 수면, 건강 상태 등 다양한 요인에 따라 달라질 수 있습니다.'
               : 'This is a statistical estimate, not a guaranteed adult height. Actual growth depends on nutrition, sleep, health, and many other factors.'}
@@ -229,24 +222,18 @@ export default async function HeightPredictorPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -260,15 +247,12 @@ export default async function HeightPredictorPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

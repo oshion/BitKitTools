@@ -119,11 +119,11 @@ function HeightInputField({
   const hasError = Boolean(errorMsg)
   const borderClass = hasError ? 'border-red-800' : 'border-neutral-800'
   const inputBase =
-    'rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums'
+    'rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums'
 
   return (
     <div className="space-y-1.5">
-      <label className="block text-sm text-neutral-400">{label}</label>
+      <label className="block text-base text-neutral-400">{label}</label>
       {unit === 'cm' ? (
         <div className="flex items-center gap-2">
           <input
@@ -136,7 +136,7 @@ function HeightInputField({
             placeholder="e.g. 165"
             className={`w-28 ${inputBase} ${borderClass}`}
           />
-          <span className="text-xs text-neutral-600">cm</span>
+          <span className="text-sm text-neutral-600">cm</span>
         </div>
       ) : (
         <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ function HeightInputField({
             placeholder="ft"
             className={`w-20 ${inputBase} ${borderClass}`}
           />
-          <span className="text-xs text-neutral-600">ft</span>
+          <span className="text-sm text-neutral-600">ft</span>
           <input
             type="number"
             min={0}
@@ -161,10 +161,10 @@ function HeightInputField({
             placeholder="in"
             className={`w-20 ${inputBase} ${borderClass}`}
           />
-          <span className="text-xs text-neutral-600">in</span>
+          <span className="text-sm text-neutral-600">in</span>
         </div>
       )}
-      {hasError && <p className="text-xs text-red-400">{errorMsg}</p>}
+      {hasError && <p className="text-sm text-red-400">{errorMsg}</p>}
     </div>
   )
 }
@@ -444,13 +444,13 @@ export default function HeightPredictorTool() {
     <div className="space-y-6">
       {/* ── Input Panel ───────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Parents&apos; Information
         </h2>
 
         {/* Sex selection */}
         <div className="space-y-1.5">
-          <span className="block text-sm text-neutral-400">Child&apos;s Sex</span>
+          <span className="block text-base text-neutral-400">Child&apos;s Sex</span>
           <div className="flex gap-2">
             {(['male', 'female'] as Sex[]).map((s) => (
               <button
@@ -460,7 +460,7 @@ export default function HeightPredictorTool() {
                   setSex(s)
                   resetResult()
                 }}
-                className={`px-4 py-2 rounded-lg text-sm border transition-colors ${
+                className={`px-4 py-2 rounded-lg text-base border transition-colors ${
                   sex === s
                     ? 'bg-neutral-700 border-neutral-600 text-white'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:bg-neutral-800'
@@ -474,14 +474,14 @@ export default function HeightPredictorTool() {
 
         {/* Unit toggle */}
         <div className="space-y-1.5">
-          <span className="block text-sm text-neutral-400">Unit</span>
+          <span className="block text-base text-neutral-400">Unit</span>
           <div className="flex gap-2">
             {(['cm', 'ft-in'] as Unit[]).map((u) => (
               <button
                 key={u}
                 type="button"
                 onClick={() => handleUnitChange(u)}
-                className={`px-4 py-2 rounded-lg text-sm border transition-colors ${
+                className={`px-4 py-2 rounded-lg text-base border transition-colors ${
                   unit === u
                     ? 'bg-neutral-700 border-neutral-600 text-white'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:bg-neutral-800'
@@ -528,7 +528,7 @@ export default function HeightPredictorTool() {
               onChange={(e) => handleSaveToggle(e.target.checked)}
               className="mt-0.5 w-4 h-4 rounded accent-[#f59e0b] cursor-pointer"
             />
-            <span className="text-xs text-neutral-500 leading-relaxed">
+            <span className="text-sm text-neutral-500 leading-relaxed">
               Save parent heights and child&apos;s sex in this browser for next visit.{' '}
               <span className="text-neutral-600">
                 (Optional. Data stays on your device — never sent to any server.)
@@ -543,7 +543,7 @@ export default function HeightPredictorTool() {
         type="button"
         onClick={handleCalculate}
         disabled={!canCalculate || isCalculating}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {isCalculating ? (
           <>
@@ -566,13 +566,13 @@ export default function HeightPredictorTool() {
           aria-label="Height prediction results"
         >
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+            <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
               Predicted Adult Height
             </h2>
             <button
               type="button"
               onClick={handleShare}
-              className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors underline underline-offset-2"
+              className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors underline underline-offset-2"
             >
               Share
             </button>
@@ -584,19 +584,19 @@ export default function HeightPredictorTool() {
               {displayCm}
               <span className="text-2xl font-normal text-neutral-400 ml-2">cm</span>
             </p>
-            <p className="text-sm text-neutral-400 mt-2">
+            <p className="text-base text-neutral-400 mt-2">
               {cmToFeetInches(result.predictedHeightCm).feet}&apos;{cmToFeetInches(result.predictedHeightCm).inches}&quot;
             </p>
-            <p className="text-xs text-neutral-600 mt-3">
+            <p className="text-sm text-neutral-600 mt-3">
               Typical range: {formatCmWithFtIn(result.rangeLowCm)} – {formatCmWithFtIn(result.rangeHighCm)}
             </p>
-            <p className="text-xs text-neutral-600 mt-1">
+            <p className="text-sm text-neutral-600 mt-1">
               (3rd–97th percentile of expected adult height · Tanner et al., 1970)
             </p>
           </div>
 
           {/* Mandatory disclaimer note — always visible */}
-          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-xs text-amber-300 leading-relaxed">
+          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-sm text-amber-300 leading-relaxed">
             <strong>Statistical estimate only.</strong> This is based on parent heights using the
             Mid-Parental Height method (Tanner, Goldstein &amp; Whitehouse, 1970,{' '}
             <em>Archives of Disease in Childhood</em>). Actual growth depends on nutrition, sleep,
@@ -609,17 +609,17 @@ export default function HeightPredictorTool() {
       <section className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-4">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
-            <h2 className="text-sm font-medium text-neutral-300 uppercase tracking-wide">
+            <h2 className="text-base font-medium text-neutral-300 uppercase tracking-wide">
               Supporting Your Child&apos;s Genetic Potential
             </h2>
-            <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
+            <p className="text-sm text-neutral-600 mt-1 leading-relaxed">
               Reference checklist only — these factors do not affect the predicted height above.
             </p>
           </div>
           {/* Tree animation */}
           <div className="flex flex-col items-center gap-1" aria-hidden="true">
             <TreeStage count={checkedCount} />
-            <span className="text-xs text-neutral-600">{checkedCount}/4</span>
+            <span className="text-sm text-neutral-600">{checkedCount}/4</span>
           </div>
         </div>
 
@@ -638,7 +638,7 @@ export default function HeightPredictorTool() {
                   }}
                   className="mt-0.5 w-4 h-4 rounded accent-[#f59e0b] cursor-pointer"
                 />
-                <span className="text-sm text-neutral-300 flex-1">{item.label}</span>
+                <span className="text-base text-neutral-300 flex-1">{item.label}</span>
                 <button
                   type="button"
                   onClick={(e) => {
@@ -648,7 +648,7 @@ export default function HeightPredictorTool() {
                     setExpandedItems(next)
                   }}
                   aria-expanded={expandedItems[i]}
-                  className="text-neutral-600 hover:text-neutral-400 transition-colors text-xs ml-2 shrink-0"
+                  className="text-neutral-600 hover:text-neutral-400 transition-colors text-sm ml-2 shrink-0"
                 >
                   {expandedItems[i] ? '▲' : '▼'}
                 </button>
@@ -656,7 +656,7 @@ export default function HeightPredictorTool() {
 
               {/* Accordion */}
               {expandedItems[i] && (
-                <div className="px-4 pb-3 text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3 space-y-1">
+                <div className="px-4 pb-3 text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3 space-y-1">
                   <p>{item.description}</p>
                   {item.source && <p className="text-neutral-600">{item.source}</p>}
                 </div>

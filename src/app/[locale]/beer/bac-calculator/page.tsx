@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -90,7 +89,7 @@ export default async function BacCalculatorPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -107,37 +106,31 @@ export default async function BacCalculatorPage({ params }: Props) {
       */}
       <BacSafetyWarning />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <BacCalculatorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
           <>
-            <p className="text-sm text-neutral-300 leading-relaxed">
+            <p className="text-base text-neutral-300 leading-relaxed">
               계산에 사용되는 Widmark 공식은 1932년 스웨덴 의사 Erik MP Widmark가 발표한
               공식입니다. 법의학 및 연구 분야에서 표준적으로 활용되지만 어디까지나 추정치이며,
               실제 혈중 알코올 농도는 음식 섭취 여부·복용 약물·피로도·유전적 요인에 따라
               크게 달라질 수 있습니다.
             </p>
             <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 space-y-1">
-              <p className="text-xs text-neutral-500 uppercase tracking-wide">Widmark 공식</p>
-              <p className="font-mono text-sm text-neutral-300">
+              <p className="text-sm text-neutral-500 uppercase tracking-wide">Widmark 공식</p>
+              <p className="font-mono text-base text-neutral-300">
                 BAC (%) = [A × 100 / (W × r)] − (β × t)
               </p>
-              <p className="text-xs text-neutral-500 leading-relaxed">
+              <p className="text-sm text-neutral-500 leading-relaxed">
                 A = 알코올(g), W = 체중(g), r = 0.68 (남성) / 0.55 (여성),
                 β = 0.015 g/dL/시간, t = 경과 시간(시간)
               </p>
@@ -145,7 +138,7 @@ export default async function BacCalculatorPage({ params }: Props) {
           </>
         ) : (
           <>
-            <p className="text-sm text-neutral-300 leading-relaxed">
+            <p className="text-base text-neutral-300 leading-relaxed">
               The calculation uses the{' '}
               <strong className="text-neutral-200">Widmark formula</strong> (Widmark EMP, 1932), a
               standard method used in forensic and research contexts. It is an approximation — actual
@@ -153,11 +146,11 @@ export default async function BacCalculatorPage({ params }: Props) {
               function, and may differ significantly from the calculated estimate.
             </p>
             <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 space-y-1">
-              <p className="text-xs text-neutral-500 uppercase tracking-wide">Widmark Formula</p>
-              <p className="font-mono text-sm text-neutral-300">
+              <p className="text-sm text-neutral-500 uppercase tracking-wide">Widmark Formula</p>
+              <p className="font-mono text-base text-neutral-300">
                 BAC (%) = [A × 100 / (W × r)] − (β × t)
               </p>
-              <p className="text-xs text-neutral-500 leading-relaxed">
+              <p className="text-sm text-neutral-500 leading-relaxed">
                 A = alcohol consumed (g), W = body weight (g), r = 0.68 (male) / 0.55 (female),
                 β = 0.015 g/dL/hr, t = hours elapsed.{' '}
                 <em>Source: Widmark EMP, 1932.</em>
@@ -169,10 +162,10 @@ export default async function BacCalculatorPage({ params }: Props) {
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -220,16 +213,16 @@ export default async function BacCalculatorPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '계산 예시' : 'Example Calculation'}
         </h2>
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시: 80 kg 남성, 맥주 2캔(355 mL × 5%), 2시간 경과'
               : 'Example: 80 kg male, 2 regular beers (355 mL × 5%), 2 hours elapsed'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-1">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-1">
             <p>
               {isKo ? '• 총 알코올 = ' : '• Total alcohol = '}
               {isKo
@@ -247,7 +240,7 @@ export default async function BacCalculatorPage({ params }: Props) {
                 : '• After 2 hours = 0.052 − (0.015 × 2) ≈ 0.022%'}
             </p>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? '이 수치는 참고용 추정치입니다. 실제 혈중 알코올 농도는 음식 섭취 여부, 음주 속도, 개인의 대사 능력에 따라 크게 다를 수 있습니다. 어떤 수치이든 음주 후에는 운전하지 마세요.'
               : 'This figure is an estimate for reference only. Actual BAC can differ significantly based on food intake, drinking pace, and individual metabolic rate. Regardless of the calculated result, never drive after consuming alcohol.'}
@@ -255,24 +248,18 @@ export default async function BacCalculatorPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -286,15 +273,12 @@ export default async function BacCalculatorPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

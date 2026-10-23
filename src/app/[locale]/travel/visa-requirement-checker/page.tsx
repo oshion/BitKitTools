@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,25 +96,19 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <VisaRequirementCheckerTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             비자 요건 데이터는{' '}
             <a
               href="https://www.iata.org/en/services/travel-centre/"
@@ -138,7 +131,7 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
             데이터가 아니므로 출국 전 반드시 해당 국가의 공식 기관에서 확인하세요.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             Visa requirement data is sourced from a static reference snapshot based on{' '}
             <a
               href="https://www.iata.org/en/services/travel-centre/"
@@ -165,10 +158,10 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
 
       {/* How to Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -217,41 +210,41 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
 
       {/* Example scenarios */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 검색하는 예시' : 'Common Examples'}
         </h2>
         <div className="space-y-4">
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '예시 1: 한국 → 일본 (단기 관광)'
                 : 'Example 1: South Korea → Japan (short-term tourism)'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? '한국 여권 소지자는 일본을 90일까지 무비자로 방문할 수 있습니다. 사전 신청이나 비용이 필요 없으며, 여권 유효기간만 확인하면 됩니다.'
                 : 'Korean passport holders can visit Japan for up to 90 days without a visa. No pre-application or fee required — just ensure your passport is valid for the duration of your stay.'}
             </p>
           </div>
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '예시 2: 미국 → 독일 (솅겐 여행)'
                 : 'Example 2: United States → Germany (Schengen trip)'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? '미국 여권 소지자는 솅겐 지역(독일 포함) 내에서 180일 중 최대 90일간 비자 없이 체류할 수 있습니다. EU의 ETIAS(전자여행허가) 시스템이 도입되면 사전 신청이 필요할 수 있으므로 출발 전 확인하세요.'
                 : 'US passport holders can stay in the Schengen Area (including Germany) for up to 90 days in any 180-day period without a visa. Once ETIAS (EU Electronic Travel Authorization) launches, a quick online pre-authorization may be required — verify before travel.'}
             </p>
           </div>
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-2">
-            <p className="text-sm font-medium text-neutral-200">
+            <p className="text-base font-medium text-neutral-200">
               {isKo
                 ? '예시 3: 한국 → 미국 (ESTA 필요)'
                 : 'Example 3: South Korea → United States (ESTA needed)'}
             </p>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-base text-neutral-400 leading-relaxed">
               {isKo
                 ? '한국은 미국 비자면제 프로그램(VWP) 대상국입니다. 미국 방문 시 비자는 필요 없지만, 출발 최소 72시간 전에 ESTA(전자여행허가)를 온라인으로 신청해야 합니다. ESTA는 2년간 유효하며 1회 방문 최대 90일까지 체류할 수 있습니다.'
                 : "South Korea is a Visa Waiver Program (VWP) country. No US visa is needed, but you must apply for ESTA (Electronic System for Travel Authorization) online at esta.cbp.dhs.gov at least 72 hours before departure. ESTA is valid for 2 years and allows stays of up to 90 days per visit."}
@@ -260,24 +253,18 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -291,15 +278,12 @@ export default async function VisaRequirementCheckerPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

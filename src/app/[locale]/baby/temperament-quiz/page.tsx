@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function TemperamentQuizPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,39 +96,33 @@ export default async function TemperamentQuizPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <TemperamentQuizTool locale={safeLocale} />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 테스트에 대하여' : 'About This Quiz'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             이 테스트는 Alexander Thomas와 Stella Chess의 《Temperament and Development》(1977)에서 제안한
             기질 연구를 바탕으로, 9개 원 차원 중 4개 축(활동성, 사회성, 적응력, 감정반응)을 재미있게
             재구성한 콘텐츠입니다. 모든 유형은 동등하게 긍정적이며 어떤 결과도 발달 지연이나 문제를
             시사하지 않습니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             This quiz is a playful adaptation of research by Alexander Thomas and Stella Chess
             (Temperament and Development, 1977), reorganising four of their nine temperament dimensions
             into a fun format. All 16 result types are described equally positively — no outcome
             implies a developmental concern of any kind.
           </p>
         )}
-        <p className="text-sm text-amber-200 leading-relaxed rounded-lg border border-amber-900/50 bg-amber-950/20 px-4 py-3">
+        <p className="text-base text-amber-200 leading-relaxed rounded-lg border border-amber-900/50 bg-amber-950/20 px-4 py-3">
           {isKo
             ? '이 테스트는 재미를 위한 콘텐츠이며 의학적·심리학적 진단이 아닙니다. 아이의 발달이나 행동에 대해 걱정되는 부분이 있다면 소아과 전문의와 상담하세요.'
             : 'This quiz is for entertainment and general reflection only — it is not a medical or psychological diagnostic tool. If you have any concerns about your child\'s development or behaviour, please consult a qualified paediatrician.'}
@@ -138,10 +131,10 @@ export default async function TemperamentQuizPage({ params }: Props) {
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -186,17 +179,17 @@ export default async function TemperamentQuizPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '결과 예시' : 'Example Result'}
         </h2>
 
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시: 🧭 명랑한 모험가 (Cheerful Adventurer)'
               : 'Example: 🧭 Cheerful Adventurer (명랑한 모험가)'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-2">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-2">
             <p>
               {isKo
                 ? '활발하고 사교적이며, 새로운 상황에 유연하게 적응하고, 감정을 솔직하게 드러내는 아이에게 나오는 유형입니다.'
@@ -208,7 +201,7 @@ export default async function TemperamentQuizPage({ params }: Props) {
                 : '→ For example: a child who immediately starts exploring a new place, approaches unfamiliar children first, and openly shows joy or frustration.'}
             </p>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? '모든 유형은 동등하게 긍정적입니다. 어떤 결과가 나오더라도 발달상의 문제를 의미하지 않습니다.'
               : 'All 16 types are equally positive. No result implies any developmental concern.'}
@@ -216,24 +209,18 @@ export default async function TemperamentQuizPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -247,15 +234,12 @@ export default async function TemperamentQuizPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

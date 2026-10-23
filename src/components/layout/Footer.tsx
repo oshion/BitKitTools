@@ -19,7 +19,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-neutral-800 bg-[#0a0a0a] mt-auto">
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-4">
         {/* Category links */}
         <nav aria-label="footer categories" className="flex flex-wrap gap-4">
           {TOOL_CATEGORIES.map((category) => (

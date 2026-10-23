@@ -8,7 +8,6 @@ import {
   getToolsByCategory,
 } from '@/lib/config/tools-config'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
-import AdSlot from '@/components/ui/AdSlot'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -61,14 +60,14 @@ export default async function HomePage({ params }: Props) {
   const recentTools = getRecentTools(4)
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">
         {tCommon('tagline')}
       </h1>
 
       {popularTools.length > 0 && (
         <section>
-          <h2 className="text-xl font-medium text-white mb-4">
+          <h2 className="text-2xl font-semibold text-white mb-4">
             {t('popularTools')}
           </h2>
           <ToolCardGrid tools={popularTools} locale={safeLocale} prefetch={false} />
@@ -79,7 +78,7 @@ export default async function HomePage({ params }: Props) {
         const tools = getToolsByCategory(category)
         return (
           <section key={category}>
-            <h2 className="text-xl font-medium text-white mb-4">
+            <h2 className="text-2xl font-semibold text-white mb-4">
               {tNav(category)}
             </h2>
             <ToolCardGrid
@@ -92,11 +91,9 @@ export default async function HomePage({ params }: Props) {
         )
       })}
 
-      <AdSlot position="mid-content" minHeightPx={280} />
-
       {recentTools.length > 0 && (
         <section>
-          <h2 className="text-xl font-medium text-white mb-4">
+          <h2 className="text-2xl font-semibold text-white mb-4">
             {t('recentlyAdded')}
           </h2>
           <ToolCardGrid tools={recentTools} locale={safeLocale} prefetch={false} />

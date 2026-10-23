@@ -141,7 +141,7 @@ function LoadingAnimation({ reduced }: { reduced: boolean }) {
         >
           🍼
         </div>
-        <p className="text-sm text-neutral-400">
+        <p className="text-base text-neutral-400">
           Analysing your little one&apos;s temperament…
         </p>
         <div className="flex gap-1.5">
@@ -167,10 +167,10 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-neutral-500">
+        <span className="text-sm text-neutral-500">
           {current} / {total}
         </span>
-        <span className="text-xs text-neutral-600">{pct}%</span>
+        <span className="text-sm text-neutral-600">{pct}%</span>
       </div>
       <div className="h-1.5 rounded-full bg-neutral-800 overflow-hidden">
         <div
@@ -322,7 +322,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
     return (
       <div className="space-y-6">
         <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4">
-          <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+          <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
             {locale === 'ko' ? '아이의 나이를 선택하세요' : "Select your baby's age"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -333,7 +333,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
                 onClick={() => handleAgeBandSelect(opt.value)}
                 className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-4 text-left hover:border-neutral-500 hover:bg-neutral-800 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-500"
               >
-                <span className="block text-sm font-medium text-white">
+                <span className="block text-base font-medium text-white">
                   {opt.label[locale]}
                 </span>
               </button>
@@ -342,7 +342,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
 
           {/* Too-young message */}
           {tooYoung && (
-            <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-sm text-amber-300 leading-relaxed animate-fade-in">
+            <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-base text-amber-300 leading-relaxed animate-fade-in">
               {locale === 'ko'
                 ? '이 시기는 아직 기질 차이가 뚜렷하게 나타나기 전이에요. 생후 4개월 이후에 다시 해보세요!'
                 : 'Temperament differences aren\'t yet clearly visible at this age. Come back when your baby is 4 months or older!'}
@@ -351,7 +351,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
         </section>
 
         {/* Context note */}
-        <p className="text-xs text-neutral-600 leading-relaxed px-1">
+        <p className="text-sm text-neutral-600 leading-relaxed px-1">
           {locale === 'ko'
             ? '이 테스트는 재미와 참고를 위한 콘텐츠이며 임상적 진단이 아닙니다. Thomas & Chess(1977) 기질 연구 개념을 재구성했습니다.'
             : 'This quiz is for fun and reference only — not a clinical diagnostic tool. Based on concepts from Thomas & Chess, Temperament and Development (1977).'}
@@ -396,7 +396,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
               {persona.emoji}
             </div>
             <h2 className="text-2xl font-semibold text-white">{name}</h2>
-            <p className="text-sm text-neutral-300 leading-relaxed max-w-prose mx-auto">
+            <p className="text-base text-neutral-300 leading-relaxed max-w-prose mx-auto">
               {description}
             </p>
           </div>
@@ -404,14 +404,14 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
           {/* Parenting tips */}
           {tips.length > 0 && (
             <div className="relative z-10 space-y-2">
-              <h3 className="text-xs font-medium text-neutral-400 uppercase tracking-wide">
+              <h3 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
                 {locale === 'ko' ? '이 아이에게 잘 맞는 방법' : 'What tends to work well'}
               </h3>
               <ul className="space-y-2">
                 {tips.map((tip, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-sm text-neutral-300 leading-relaxed"
+                    className="flex items-start gap-2 text-base text-neutral-300 leading-relaxed"
                   >
                     <span className="mt-0.5 text-[#f59e0b] shrink-0" aria-hidden="true">
                       ✦
@@ -424,7 +424,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
           )}
 
           {/* Mandatory disclaimer */}
-          <p className="relative z-10 text-xs text-neutral-500 leading-relaxed border-t border-neutral-700/50 pt-4">
+          <p className="relative z-10 text-sm text-neutral-500 leading-relaxed border-t border-neutral-700/50 pt-4">
             {locale === 'ko'
               ? '이 유형은 Thomas & Chess의 기질 연구 개념을 재미있게 재구성한 것이며, 임상적 진단이 아닙니다.'
               : 'This type is a fun reinterpretation of Thomas & Chess temperament concepts and is not a clinical diagnosis.'}
@@ -436,21 +436,21 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
           <button
             type="button"
             onClick={handleShare}
-            className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2.5 text-sm text-neutral-300 hover:border-neutral-500 hover:text-white transition-colors"
+            className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2.5 text-base text-neutral-300 hover:border-neutral-500 hover:text-white transition-colors"
           >
             {locale === 'ko' ? '결과 공유하기' : 'Share'}
           </button>
           <button
             type="button"
             onClick={handleRestart}
-            className="rounded-lg bg-white text-black px-4 py-2.5 text-sm font-medium hover:bg-neutral-200 transition-colors"
+            className="rounded-lg bg-white text-black px-4 py-2.5 text-base font-medium hover:bg-neutral-200 transition-colors"
           >
             {locale === 'ko' ? '다시 테스트하기' : 'Take the quiz again'}
           </button>
         </div>
 
         {/* General disclaimer */}
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-xs text-neutral-400 leading-relaxed">
+        <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-400 leading-relaxed">
           {locale === 'ko'
             ? '이 테스트는 재미를 위한 콘텐츠이며 의학적·심리학적 진단이 아닙니다. 아이의 발달이나 행동에 대해 걱정되는 부분이 있다면 소아과 전문의와 상담하세요.'
             : 'This quiz is for entertainment purposes only and is not a medical or psychological diagnosis. If you have concerns about your child\'s development or behaviour, please consult a qualified paediatrician.'}
@@ -476,7 +476,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
         >
           {/* Axis badge */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-neutral-600 uppercase tracking-wide">
+            <span className="text-sm text-neutral-600 uppercase tracking-wide">
               {currentQuestion.axis}
             </span>
           </div>
@@ -493,7 +493,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
                 key={i}
                 type="button"
                 onClick={() => handleAnswer(option.pole)}
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-4 text-left text-sm text-neutral-300 hover:border-neutral-500 hover:bg-neutral-800 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-500 leading-relaxed"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-4 text-left text-base text-neutral-300 hover:border-neutral-500 hover:bg-neutral-800 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-500 leading-relaxed"
               >
                 {option.label[locale]}
               </button>
@@ -505,7 +505,7 @@ export default function TemperamentQuizTool({ locale = 'en' }: Props) {
         <button
           type="button"
           onClick={handleRestart}
-          className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors underline underline-offset-2"
+          className="text-sm text-neutral-600 hover:text-neutral-400 transition-colors underline underline-offset-2"
         >
           {locale === 'ko' ? '처음으로' : 'Start over'}
         </button>

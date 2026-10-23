@@ -82,7 +82,7 @@ function CountryCombobox({
 
   return (
     <div ref={containerRef} className="relative space-y-1.5">
-      <label className="block text-sm text-neutral-400">{label}</label>
+      <label className="block text-base text-neutral-400">{label}</label>
       <div className="relative">
         <input
           type="text"
@@ -96,11 +96,11 @@ function CountryCombobox({
             setOpen(true)
           }}
           placeholder={placeholder}
-          className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors"
+          className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors"
           autoComplete="off"
         />
         {value && !open && (
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-xs text-neutral-500">
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-sm text-neutral-500">
             {value}
           </span>
         )}
@@ -109,16 +109,16 @@ function CountryCombobox({
       {open && (
         <div className="absolute z-20 mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-900 shadow-lg max-h-56 overflow-y-auto">
           {filtered.length === 0 ? (
-            <p className="px-4 py-3 text-sm text-neutral-500">No matches found</p>
+            <p className="px-4 py-3 text-base text-neutral-500">No matches found</p>
           ) : (
             filtered.map((country) => (
               <button
                 key={country.code}
                 type="button"
-                className="w-full text-left px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-800 flex items-center gap-3 transition-colors"
+                className="w-full text-left px-4 py-2.5 text-base text-neutral-300 hover:bg-neutral-800 flex items-center gap-3 transition-colors"
                 onMouseDown={() => handleSelect(country)}
               >
-                <span className="font-mono text-xs text-neutral-500 w-7 shrink-0">
+                <span className="font-mono text-sm text-neutral-500 w-7 shrink-0">
                   {country.code}
                 </span>
                 <span>{country.name.en}</span>
@@ -196,7 +196,7 @@ export default function VisaRequirementCheckerTool() {
     <div className="space-y-6">
       {/* Country selectors */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-4">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Select Countries
         </h2>
 
@@ -218,7 +218,7 @@ export default function VisaRequirementCheckerTool() {
         </div>
 
         {countries.from && countries.to && (
-          <p className="text-xs text-neutral-500">
+          <p className="text-sm text-neutral-500">
             {fromCountry?.name.en ?? countries.from} passport → entering{' '}
             {toCountry?.name.en ?? countries.to}
           </p>
@@ -232,7 +232,7 @@ export default function VisaRequirementCheckerTool() {
             {/* Badge + headline */}
             <div className="flex items-start justify-between gap-4 flex-wrap">
               <div className="space-y-1">
-                <p className="text-xs text-neutral-500 uppercase tracking-wide">
+                <p className="text-sm text-neutral-500 uppercase tracking-wide">
                   Visa requirement
                 </p>
                 <p className="text-2xl font-bold text-white">
@@ -240,7 +240,7 @@ export default function VisaRequirementCheckerTool() {
                 </p>
               </div>
               <span
-                className={`shrink-0 mt-1 px-2.5 py-1 rounded text-xs font-medium border ${BADGE_CLASS[result.requirementType]}`}
+                className={`shrink-0 mt-1 px-2.5 py-1 rounded text-sm font-medium border ${BADGE_CLASS[result.requirementType]}`}
               >
                 {BADGE_LABEL[result.requirementType]}
               </span>
@@ -249,7 +249,7 @@ export default function VisaRequirementCheckerTool() {
             {/* Max stay progress bar */}
             {result.maxStayDays !== undefined && (
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-sm">
                   <span className="text-neutral-400">Maximum stay</span>
                   <span className="font-semibold text-[#f59e0b] tabular-nums">
                     {result.maxStayDays} days
@@ -266,19 +266,19 @@ export default function VisaRequirementCheckerTool() {
                     aria-label={`Maximum stay: ${result.maxStayDays} days`}
                   />
                 </div>
-                <p className="text-xs text-neutral-600">
+                <p className="text-sm text-neutral-600">
                   Bar shows days relative to 180-day reference
                 </p>
               </div>
             )}
 
             {/* Note */}
-            <p className="text-sm text-neutral-300 leading-relaxed border-t border-neutral-800 pt-4">
+            <p className="text-base text-neutral-300 leading-relaxed border-t border-neutral-800 pt-4">
               {result.note}
             </p>
 
             {/* Mandatory always-visible notice — do not remove */}
-            <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-3 py-2.5 text-xs text-amber-200 leading-relaxed">
+            <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-3 py-2.5 text-sm text-amber-200 leading-relaxed">
               <strong>Always verify before travel.</strong> Visa policies change frequently.
               Confirm requirements with the official embassy, consulate, or government travel
               portal of your destination country. This tool uses a static data snapshot and is
@@ -288,19 +288,19 @@ export default function VisaRequirementCheckerTool() {
 
           {/* Travel insurance recommendation */}
           <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-            <h3 className="text-sm font-medium text-neutral-300">Travel Insurance Guidance</h3>
-            <p className="text-xs text-neutral-400 leading-relaxed">
+            <h3 className="text-base font-medium text-neutral-300">Travel Insurance Guidance</h3>
+            <p className="text-sm text-neutral-400 leading-relaxed">
               Regardless of visa requirements, travel insurance is strongly recommended for all
               international trips. Consider coverage that includes:
             </p>
-            <ul className="text-xs text-neutral-400 space-y-1.5">
+            <ul className="text-sm text-neutral-400 space-y-1.5">
               <li>• Medical emergencies and emergency evacuation</li>
               <li>• Trip cancellation and interruption</li>
               <li>• Lost, stolen, or delayed baggage</li>
               <li>• Travel delay expenses (accommodation, meals)</li>
               <li>• Personal liability</li>
             </ul>
-            <p className="text-xs text-neutral-500 leading-relaxed">
+            <p className="text-sm text-neutral-500 leading-relaxed">
               Some destinations (particularly EU/Schengen visa applicants) require proof of
               travel medical insurance covering at least €30,000 as part of the visa application.
               Compare plans from multiple insurers to find coverage suited to your trip length
@@ -313,14 +313,14 @@ export default function VisaRequirementCheckerTool() {
       {/* Empty state prompt */}
       {!countries.from && !countries.to && (
         <div className="rounded-lg border border-dashed border-neutral-800 bg-neutral-900/40 p-6 text-center">
-          <p className="text-sm text-neutral-500">
+          <p className="text-base text-neutral-500">
             Select your passport country and destination above to see visa requirements.
           </p>
         </div>
       )}
 
       {/* Data source note — always visible */}
-      <p className="text-xs text-neutral-600 leading-relaxed">
+      <p className="text-sm text-neutral-600 leading-relaxed">
         Data based on a static reference snapshot (last reviewed 2026-07-03). Sources include
         official embassy and consulate pages, IATA Travel Centre, and Henley Passport Index.
         Not a live government data feed — always reconfirm before booking.

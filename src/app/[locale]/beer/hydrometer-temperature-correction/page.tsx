@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,25 +96,19 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <HydrometerCorrectionTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             비중계는 특정 기준온도(보통 59°F/15°C 또는 68°F/20°C)에서 정확하도록 제작됩니다.
             시료 온도가 기준온도와 다르면 물의 밀도 변화로 인해 수치가 실제와 달라집니다.
             이 도구는 브루잉 업계에서 수십 년간 사용된 표준 보정 공식을 적용해 보정된 비중을
@@ -123,7 +116,7 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
             계산하는 데 필수적입니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             A hydrometer is manufactured to be accurate at a specific calibration temperature
             — typically 59°F (15°C) or 68°F (20°C). When your sample temperature differs from
             that reference, the density of water itself has changed, causing the raw reading to
@@ -137,10 +130,10 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -189,16 +182,16 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '계산 예시' : 'Example Calculation'}
         </h2>
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시: 측정값 1.052, 시료온도 75°F(23.9°C), 기준온도 60°F(15.6°C)'
               : 'Example: Measured gravity 1.052, sample temperature 75°F (23.9°C), calibration temperature 60°F (15.6°C)'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-1.5">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-1.5">
             <p>
               {isKo
                 ? '• 보정 계수 f(75°F) = 1.00130346 − 0.000134722124 × 75 + ... ≈ 1.001695'
@@ -220,7 +213,7 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
                 : '• Delta from measured: +0.0017 (the sample was warmer than calibration, so the true gravity is slightly higher than the raw reading)'}
             </p>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? '시료 온도가 기준온도보다 높을수록 보정값이 측정값보다 커지고, 시료 온도가 더 낮으면 보정값이 작아집니다.'
               : 'When the sample is warmer than the calibration temperature, the corrected value will be higher than the measured reading. When the sample is cooler, the corrected value will be lower.'}
@@ -228,24 +221,18 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -259,15 +246,12 @@ export default async function HydrometerTemperatureCorrectionPage({ params }: Pr
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

@@ -16,7 +16,7 @@ export default function BacSafetyWarning() {
     <div
       role="alert"
       aria-live="polite"
-      className="rounded-lg border-2 border-red-900/60 bg-red-950/30 text-red-200 px-4 py-3 text-sm font-medium leading-relaxed"
+      className="rounded-lg border-2 border-red-900/60 bg-red-950/30 text-red-200 px-4 py-3 text-base font-medium leading-relaxed"
     >
       <p>
         ⚠️{' '}

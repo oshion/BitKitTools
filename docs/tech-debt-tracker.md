@@ -4,6 +4,7 @@
 
 | ID | 영역 | 내용 | 심각도 | 발견일 |
 |----|------|------|--------|--------|
+| TD-001 | 광고 (`components/ui/AdSlot.tsx`) | AdSense 승인 전까지 모든 페이지에서 AdSlot 배치를 제거함(2026-10-23). 광고를 다시 넣을 때 해결할 것: (1) `<ins>`에 `data-ad-slot`이 없고 `adsbygoogle.push({})` 호출도 없어 수동 광고 단위가 채워지지 않음 (2) 슬롯마다 `adsense-script-${position}`로 스크립트를 중복 삽입함 (3) 페이지가 `tools-config.ts`의 `adSlots`를 읽지 않고 위치를 하드코딩했었음 → config 기반 렌더링으로 바꿀 것 (4) `mid-content`와 `above-faq`가 사이 콘텐츠 없이 붙어 있었음 | 중 | 2026-10-23 |
 
 ## 해결된 부채
 

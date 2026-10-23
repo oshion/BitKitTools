@@ -124,13 +124,13 @@ export default function JsonToSqlTool() {
   return (
     <div className="space-y-6">
       {/* Trust message */}
-      <p className="text-xs text-neutral-500">
+      <p className="text-sm text-neutral-500">
         Processed entirely in your browser — JSON never leaves your device.
       </p>
 
       {/* JSON input */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-400" htmlFor="json-input">
+        <label className="text-base font-medium text-neutral-400" htmlFor="json-input">
           JSON Input
         </label>
         <textarea
@@ -146,7 +146,7 @@ export default function JsonToSqlTool() {
           placeholder={'Paste JSON here…\n\nExample:\n{"id": 1, "name": "Alice", "active": true}'}
           rows={8}
           spellCheck={false}
-          className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-200 font-mono leading-relaxed focus:border-neutral-600 focus:outline-none resize-y"
+          className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-200 font-mono leading-relaxed focus:border-neutral-600 focus:outline-none resize-y"
         />
       </div>
 
@@ -154,13 +154,13 @@ export default function JsonToSqlTool() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Dialect selector */}
         <div className="space-y-2">
-          <p className="text-sm font-medium text-neutral-400">SQL Dialect</p>
+          <p className="text-base font-medium text-neutral-400">SQL Dialect</p>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(DIALECT_LABELS) as SqlDialect[]).map((d) => (
               <button
                 key={d}
                 onClick={() => setDialect(d)}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                   dialect === d
                     ? 'bg-white text-black'
                     : 'bg-neutral-900 border border-neutral-700 text-neutral-300 hover:border-neutral-500'
@@ -174,7 +174,7 @@ export default function JsonToSqlTool() {
 
         {/* Table name */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-neutral-400" htmlFor="table-name">
+          <label className="text-base font-medium text-neutral-400" htmlFor="table-name">
             Table Name <span className="text-red-400">*</span>
           </label>
           <input
@@ -183,20 +183,20 @@ export default function JsonToSqlTool() {
             value={tableName}
             onChange={(e) => setTableName(e.target.value)}
             placeholder="e.g. users"
-            className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-2.5 text-sm text-neutral-200 focus:border-neutral-600 focus:outline-none"
+            className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-2.5 text-base text-neutral-200 focus:border-neutral-600 focus:outline-none"
           />
         </div>
       </div>
 
       {/* Output mode */}
       <div className="space-y-2">
-        <p className="text-sm font-medium text-neutral-400">Output Mode</p>
+        <p className="text-base font-medium text-neutral-400">Output Mode</p>
         <div className="flex flex-wrap gap-2">
           {(Object.keys(OUTPUT_MODE_LABELS) as OutputMode[]).map((mode) => (
             <button
               key={mode}
               onClick={() => setOutputMode(mode)}
-              className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                 outputMode === mode
                   ? 'bg-white text-black'
                   : 'bg-neutral-900 border border-neutral-700 text-neutral-300 hover:border-neutral-500'
@@ -217,11 +217,11 @@ export default function JsonToSqlTool() {
             onChange={(e) => setBatchEnabled(e.target.checked)}
             className="rounded border-neutral-700 bg-neutral-900 text-white"
           />
-          <span className="text-sm text-neutral-300">Batch multiple rows into one INSERT statement</span>
+          <span className="text-base text-neutral-300">Batch multiple rows into one INSERT statement</span>
         </label>
         {batchEnabled && (
           <div className="flex items-center gap-3 pl-6">
-            <label className="text-sm text-neutral-400" htmlFor="batch-size">
+            <label className="text-base text-neutral-400" htmlFor="batch-size">
               Rows per batch:
             </label>
             <input
@@ -231,10 +231,10 @@ export default function JsonToSqlTool() {
               max={1000}
               value={batchSize}
               onChange={(e) => setBatchSize(Math.max(2, parseInt(e.target.value) || 2))}
-              className="w-24 rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-1.5 text-sm text-neutral-200 focus:border-neutral-600 focus:outline-none"
+              className="w-24 rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-1.5 text-base text-neutral-200 focus:border-neutral-600 focus:outline-none"
             />
             {dialect === 'oracle' && (
-              <span className="text-xs text-neutral-500">Oracle: uses INSERT ALL syntax</span>
+              <span className="text-sm text-neutral-500">Oracle: uses INSERT ALL syntax</span>
             )}
           </div>
         )}
@@ -244,7 +244,7 @@ export default function JsonToSqlTool() {
       <button
         onClick={handleConvert}
         disabled={!inputJson.trim()}
-        className="rounded-lg bg-white text-black px-6 py-2.5 text-sm font-medium hover:bg-neutral-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="rounded-lg bg-white text-black px-6 py-2.5 text-base font-medium hover:bg-neutral-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
       >
         Convert to SQL
       </button>
@@ -254,9 +254,9 @@ export default function JsonToSqlTool() {
         <div ref={resultRef} className="space-y-3">
           {result.type === 'error' ? (
             <div className="rounded-lg border border-red-900/60 bg-red-950/20 p-4 space-y-2">
-              <p className="text-sm font-medium text-red-300">{result.message}</p>
+              <p className="text-base font-medium text-red-300">{result.message}</p>
               {result.isJsonInvalid && (
-                <p className="text-xs text-neutral-400">
+                <p className="text-sm text-neutral-400">
                   Need to clean up your JSON first?{' '}
                   <Link
                     href={localeHref(locale, '/developer/json-formatter')}
@@ -270,16 +270,16 @@ export default function JsonToSqlTool() {
           ) : (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-neutral-400">Generated SQL</p>
+                <p className="text-base font-medium text-neutral-400">Generated SQL</p>
                 <button
                   onClick={handleCopy}
-                  className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+                  className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
                 >
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
               </div>
               <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-6 overflow-x-auto">
-                <pre className="text-sm font-mono text-neutral-200 leading-relaxed whitespace-pre-wrap break-words">
+                <pre className="text-base font-mono text-neutral-200 leading-relaxed whitespace-pre-wrap break-words">
                   {result.sql}
                 </pre>
               </div>

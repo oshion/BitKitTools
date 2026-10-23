@@ -91,11 +91,11 @@ export default function PasswordGeneratorTool() {
       {/* Password display */}
       <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 space-y-3">
         <div className="flex items-center justify-between gap-2">
-          <label className="text-sm font-medium text-neutral-400">Generated Password</label>
+          <label className="text-base font-medium text-neutral-400">Generated Password</label>
           <button
             onClick={handleCopy}
             disabled={!password}
-            className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {copied ? 'Copied!' : 'Copy'}
           </button>
@@ -110,8 +110,8 @@ export default function PasswordGeneratorTool() {
         {/* Strength gauge */}
         <div className="space-y-1">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-neutral-500">Strength</span>
-            <span className="text-xs font-medium" style={{ color: strengthInfo.color }}>
+            <span className="text-sm text-neutral-500">Strength</span>
+            <span className="text-sm font-medium" style={{ color: strengthInfo.color }}>
               {strengthInfo.en}
             </span>
           </div>
@@ -130,8 +130,8 @@ export default function PasswordGeneratorTool() {
         {/* Length slider */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-neutral-300">Length</label>
-            <span className="text-sm font-medium text-[#f59e0b] tabular-nums">{options.length}</span>
+            <label className="text-base font-medium text-neutral-300">Length</label>
+            <span className="text-base font-medium text-[#f59e0b] tabular-nums">{options.length}</span>
           </div>
           <input
             type="range"
@@ -141,7 +141,7 @@ export default function PasswordGeneratorTool() {
             onChange={(e) => updateOption('length', Number(e.target.value))}
             className="w-full accent-[#f59e0b] cursor-pointer"
           />
-          <div className="flex justify-between text-xs text-neutral-600">
+          <div className="flex justify-between text-sm text-neutral-600">
             <span>8</span>
             <span>64</span>
           </div>
@@ -149,7 +149,7 @@ export default function PasswordGeneratorTool() {
 
         {/* Character type checkboxes */}
         <div className="space-y-2">
-          <p className="text-sm font-medium text-neutral-300">Character Types</p>
+          <p className="text-base font-medium text-neutral-300">Character Types</p>
           <div className="grid grid-cols-2 gap-2">
             {(
               [
@@ -169,7 +169,7 @@ export default function PasswordGeneratorTool() {
                   onChange={(e) => updateOption(key, e.target.checked)}
                   className="w-4 h-4 rounded border-neutral-600 bg-neutral-800 accent-[#f59e0b] cursor-pointer"
                 />
-                <span className="text-sm text-neutral-300 group-hover:text-neutral-200 transition-colors">
+                <span className="text-base text-neutral-300 group-hover:text-neutral-200 transition-colors">
                   {label}
                 </span>
               </label>
@@ -185,7 +185,7 @@ export default function PasswordGeneratorTool() {
             onChange={(e) => updateOption('excludeAmbiguous', e.target.checked)}
             className="w-4 h-4 rounded border-neutral-600 bg-neutral-800 accent-[#f59e0b] cursor-pointer"
           />
-          <span className="text-sm text-neutral-300 group-hover:text-neutral-200 transition-colors">
+          <span className="text-base text-neutral-300 group-hover:text-neutral-200 transition-colors">
             Exclude ambiguous characters{' '}
             <span className="text-neutral-500">(0, O, o, 1, l, I, |)</span>
           </span>
@@ -194,7 +194,7 @@ export default function PasswordGeneratorTool() {
         {/* Regenerate button */}
         <button
           onClick={() => regenerate(options)}
-          className="w-full px-4 py-2.5 rounded-lg bg-white text-black text-sm font-medium hover:bg-neutral-200 transition-colors"
+          className="w-full px-4 py-2.5 rounded-lg bg-white text-black text-base font-medium hover:bg-neutral-200 transition-colors"
         >
           Regenerate Password
         </button>

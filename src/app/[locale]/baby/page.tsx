@@ -3,7 +3,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolsByCategory } from '@/lib/config/tools-config'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
-import AdSlot from '@/components/ui/AdSlot'
 import SchemaBreadcrumb from '@/components/seo/SchemaBreadcrumb'
 
 type Props = {
@@ -74,20 +73,16 @@ export default async function BabyCategoryPage({ params }: Props) {
   ]
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tNav(CATEGORY)}</h1>
 
       <SchemaBreadcrumb items={breadcrumbItems} />
 
-      <p className="text-sm text-neutral-300 leading-relaxed max-w-2xl">
+      <p className="text-base text-neutral-300 leading-relaxed max-w-2xl">
         {tCategory(`description.${CATEGORY}`)}
       </p>
 
-      <AdSlot position="header" minHeightPx={90} />
-
       <ToolCardGrid tools={tools} locale={safeLocale} emptyMessage={tCategory('comingSoon')} />
-
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

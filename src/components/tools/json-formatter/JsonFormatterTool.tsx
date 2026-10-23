@@ -104,7 +104,7 @@ export default function JsonFormatterTool() {
         <div className="flex rounded-lg border border-neutral-800 overflow-hidden">
           <button
             onClick={() => setMode('format')}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-base font-medium transition-colors ${
               mode === 'format'
                 ? 'bg-white text-black'
                 : 'bg-neutral-900 text-neutral-400 hover:text-neutral-300'
@@ -114,7 +114,7 @@ export default function JsonFormatterTool() {
           </button>
           <button
             onClick={() => setMode('minify')}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-base font-medium transition-colors ${
               mode === 'minify'
                 ? 'bg-white text-black'
                 : 'bg-neutral-900 text-neutral-400 hover:text-neutral-300'
@@ -127,13 +127,13 @@ export default function JsonFormatterTool() {
         {/* Indent selector — only relevant in format mode */}
         {mode === 'format' && (
           <div className="flex items-center gap-2">
-            <span className="text-sm text-neutral-500">Indent:</span>
+            <span className="text-base text-neutral-500">Indent:</span>
             <div className="flex rounded-lg border border-neutral-800 overflow-hidden">
               {([2, 4] as Indent[]).map((n) => (
                 <button
                   key={n}
                   onClick={() => setIndent(n)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 text-base font-medium transition-colors ${
                     indent === n
                       ? 'bg-white text-black'
                       : 'bg-neutral-900 text-neutral-400 hover:text-neutral-300'
@@ -150,7 +150,7 @@ export default function JsonFormatterTool() {
         <button
           onClick={run}
           disabled={input.trim() === ''}
-          className="px-4 py-2 rounded-lg bg-white text-black text-sm font-medium hover:bg-neutral-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-4 py-2 rounded-lg bg-white text-black text-base font-medium hover:bg-neutral-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           {mode === 'format' ? 'Format' : 'Minify'}
         </button>
@@ -161,8 +161,8 @@ export default function JsonFormatterTool() {
         {/* Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-neutral-400">Input</label>
-            <span className="text-xs text-neutral-500">
+            <label className="text-base font-medium text-neutral-400">Input</label>
+            <span className="text-sm text-neutral-500">
               {charCount} chars · {lineCount} lines
             </span>
           </div>
@@ -177,31 +177,31 @@ export default function JsonFormatterTool() {
             }}
             placeholder='Paste JSON here, e.g. {"name":"Alice","age":30}'
             spellCheck={false}
-            className="w-full h-64 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono leading-relaxed resize-y focus:outline-none focus:border-neutral-600 placeholder-neutral-600"
+            className="w-full h-64 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed resize-y focus:outline-none focus:border-neutral-600 placeholder-neutral-600"
           />
         </div>
 
         {/* Output */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-neutral-400">Output</label>
+            <label className="text-base font-medium text-neutral-400">Output</label>
             {result.type === 'success' && (
               <div className="flex gap-2">
                 <button
                   onClick={handleCopy}
-                  className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+                  className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
                 >
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
                 <button
                   onClick={handleDownload}
-                  className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+                  className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
                 >
                   Download .json
                 </button>
                 <button
                   onClick={handleConvertToSql}
-                  className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+                  className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
                 >
                   Convert to SQL →
                 </button>
@@ -212,7 +212,7 @@ export default function JsonFormatterTool() {
           <div ref={resultRef} className="h-64">
             {result.type === 'idle' && (
               <div className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 flex items-center justify-center">
-                <p className="text-sm text-neutral-600">
+                <p className="text-base text-neutral-600">
                   Result will appear here after you click Format or Minify.
                 </p>
               </div>
@@ -220,13 +220,13 @@ export default function JsonFormatterTool() {
 
             {result.type === 'error' && (
               <div className="h-full rounded-lg border border-[#ef4444]/40 bg-red-950/20 px-4 py-3 overflow-auto">
-                <p className="text-sm font-medium text-[#ef4444] mb-1">
+                <p className="text-base font-medium text-[#ef4444] mb-1">
                   Invalid JSON
                   {result.line !== undefined ? ` — line ${result.line}` : ''}
                 </p>
-                <p className="text-sm text-red-300/80">{result.message}</p>
+                <p className="text-base text-red-300/80">{result.message}</p>
                 {result.errorContext !== undefined && (
-                  <pre className="mt-2 text-sm text-red-300/80 font-mono whitespace-pre-wrap break-all">
+                  <pre className="mt-2 text-base text-red-300/80 font-mono whitespace-pre-wrap break-all">
                     {result.errorContext}
                   </pre>
                 )}
@@ -237,7 +237,7 @@ export default function JsonFormatterTool() {
               <pre
                 onClick={handleCopy}
                 title="Click to copy"
-                className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono leading-relaxed overflow-auto whitespace-pre-wrap break-all cursor-pointer hover:border-neutral-600 transition-colors"
+                className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed overflow-auto whitespace-pre-wrap break-all cursor-pointer hover:border-neutral-600 transition-colors"
               >
                 {result.output}
               </pre>

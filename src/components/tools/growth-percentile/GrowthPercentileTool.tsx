@@ -33,7 +33,7 @@ function PercentileGauge({ label, percentile }: PercentileGaugeProps) {
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-baseline">
-        <span className="text-sm text-neutral-400">{label}</span>
+        <span className="text-base text-neutral-400">{label}</span>
         <span className="text-3xl font-bold text-[#f59e0b] tabular-nums">
           {pct.toFixed(1)}
           <span className="text-base font-normal text-neutral-400 ml-1">th %ile</span>
@@ -50,7 +50,7 @@ function PercentileGauge({ label, percentile }: PercentileGaugeProps) {
           aria-label={`${label}: ${pct.toFixed(1)}th percentile`}
         />
       </div>
-      <div className="flex justify-between text-xs text-neutral-600">
+      <div className="flex justify-between text-sm text-neutral-600">
         <span>0th</span>
         <span>50th</span>
         <span>100th</span>
@@ -152,13 +152,13 @@ export default function GrowthPercentileTool() {
     <div className="space-y-6">
       {/* ── Input Panel ───────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Child&apos;s Information
         </h2>
 
         {/* Gender */}
         <div className="space-y-1.5">
-          <span className="block text-sm text-neutral-400">Sex</span>
+          <span className="block text-base text-neutral-400">Sex</span>
           <div className="flex gap-2">
             {(['male', 'female'] as Gender[]).map((g) => (
               <button
@@ -169,7 +169,7 @@ export default function GrowthPercentileTool() {
                   setResult(null)
                   setHasCalculated(false)
                 }}
-                className={`px-4 py-2 rounded-lg text-sm border transition-colors ${
+                className={`px-4 py-2 rounded-lg text-base border transition-colors ${
                   gender === g
                     ? 'bg-neutral-700 border-neutral-600 text-white'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:bg-neutral-800'
@@ -183,7 +183,7 @@ export default function GrowthPercentileTool() {
 
         {/* Age */}
         <div className="space-y-1.5">
-          <label htmlFor="age-input" className="block text-sm text-neutral-400">
+          <label htmlFor="age-input" className="block text-base text-neutral-400">
             Age (months)
           </label>
           <input
@@ -200,19 +200,19 @@ export default function GrowthPercentileTool() {
               setHasCalculated(false)
             }}
             placeholder="e.g. 12"
-            className={`w-36 rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+            className={`w-36 rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
               ageInput && !ageValid ? 'border-red-800' : 'border-neutral-800'
             }`}
           />
           {ageInput && !ageValid && (
-            <p className="text-xs text-red-400">Enter a value between 0 and 60 months</p>
+            <p className="text-sm text-red-400">Enter a value between 0 and 60 months</p>
           )}
         </div>
 
         {/* Weight & Height */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <label htmlFor="weight-input" className="block text-sm text-neutral-400">
+            <label htmlFor="weight-input" className="block text-base text-neutral-400">
               Weight (kg)
             </label>
             <input
@@ -229,17 +229,17 @@ export default function GrowthPercentileTool() {
                 setHasCalculated(false)
               }}
               placeholder="e.g. 9.5"
-              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 weightInput && !weightValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {weightInput && !weightValid && (
-              <p className="text-xs text-red-400">Enter a valid weight (0–50 kg)</p>
+              <p className="text-sm text-red-400">Enter a valid weight (0–50 kg)</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="height-input" className="block text-sm text-neutral-400">
+            <label htmlFor="height-input" className="block text-base text-neutral-400">
               Height / Length (cm)
             </label>
             <input
@@ -256,19 +256,19 @@ export default function GrowthPercentileTool() {
                 setHasCalculated(false)
               }}
               placeholder="e.g. 75"
-              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
+              className={`w-full rounded-lg bg-neutral-900 border px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums ${
                 heightInput && !heightValid ? 'border-red-800' : 'border-neutral-800'
               }`}
             />
             {heightInput && !heightValid && (
-              <p className="text-xs text-red-400">Enter a valid height (30–130 cm)</p>
+              <p className="text-sm text-red-400">Enter a valid height (30–130 cm)</p>
             )}
           </div>
         </div>
 
         {/* Reference standard */}
         <div className="space-y-1.5">
-          <span className="block text-sm text-neutral-400">Growth Reference</span>
+          <span className="block text-base text-neutral-400">Growth Reference</span>
           <div className="flex gap-2">
             {(['WHO', 'CDC'] as GrowthStandard[]).map((s) => (
               <button
@@ -279,7 +279,7 @@ export default function GrowthPercentileTool() {
                   setResult(null)
                   setHasCalculated(false)
                 }}
-                className={`px-4 py-2 rounded-lg text-sm border transition-colors ${
+                className={`px-4 py-2 rounded-lg text-base border transition-colors ${
                   standard === s
                     ? 'bg-neutral-700 border-neutral-600 text-white'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:bg-neutral-800'
@@ -289,7 +289,7 @@ export default function GrowthPercentileTool() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-neutral-600 leading-relaxed">
+          <p className="text-sm text-neutral-600 leading-relaxed">
             WHO is recommended for children 0–2 years worldwide; CDC is commonly
             used for US children 2 years and older.
           </p>
@@ -304,7 +304,7 @@ export default function GrowthPercentileTool() {
               onChange={(e) => handleSaveToggle(e.target.checked)}
               className="mt-0.5 w-4 h-4 rounded accent-[#f59e0b] cursor-pointer"
             />
-            <span className="text-xs text-neutral-500 leading-relaxed">
+            <span className="text-sm text-neutral-500 leading-relaxed">
               Save age, weight, and height in this browser for next visit.{' '}
               <span className="text-neutral-600">
                 (Optional. Data stays on your device — never sent to any server.)
@@ -319,7 +319,7 @@ export default function GrowthPercentileTool() {
         type="button"
         onClick={handleCalculate}
         disabled={!canCalculate}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Calculate Percentile
       </button>
@@ -331,10 +331,10 @@ export default function GrowthPercentileTool() {
           aria-label="Growth percentile results"
         >
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+            <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
               Percentile Results
             </h2>
-            <span className="text-xs text-neutral-600">
+            <span className="text-sm text-neutral-600">
               {standard} reference · {gender === 'male' ? 'Boy' : 'Girl'} · {age}m
             </span>
           </div>
@@ -343,7 +343,7 @@ export default function GrowthPercentileTool() {
           <PercentileGauge label="Height / Length for Age" percentile={result.heightPercentile} />
 
           {/* Mandatory reference note — always visible, cannot be hidden */}
-          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-xs text-amber-300 leading-relaxed">
+          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 px-4 py-3 text-sm text-amber-300 leading-relaxed">
             <strong>For reference only.</strong> These results are based on population
             statistics and do not indicate whether your child&apos;s growth is healthy or
             concerning. A wide range of percentiles (approximately 3rd to 97th) is
@@ -352,7 +352,7 @@ export default function GrowthPercentileTool() {
           </div>
 
           {/* Source attribution */}
-          <p className="text-xs text-neutral-600 leading-relaxed">
+          <p className="text-sm text-neutral-600 leading-relaxed">
             Source:{' '}
             {standard === 'WHO'
               ? 'WHO Child Growth Standards (2006). World Health Organization.'

@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -89,7 +88,7 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -97,31 +96,25 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <HomebrewRecipeCalculatorTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             ABV 계산에 사용되는 표준 공식 <strong className="text-neutral-200">ABV ≈ (OG − FG) × 131.25</strong>는
             홈브루잉 커뮤니티에서 가장 널리 쓰이는 근사식입니다. 도수 3~10% 범위의 일반적인 맥주에서
             충분히 정확하며, 비중계 또는 굴절계로 측정한 비중값을 입력하면 됩니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             ABV is calculated using the standard homebrewing approximation:{' '}
             <strong className="text-neutral-200">ABV ≈ (OG − FG) × 131.25</strong> (Fix &amp; Fix,
             1997; Daniels, 1996). This formula is accurate to within ±0.1–0.3% for
@@ -133,10 +126,10 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
 
       {/* How To Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>
@@ -190,18 +183,18 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '계산 예시' : 'Example Calculations'}
         </h2>
 
         {/* Example 1: standard session beer */}
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시 1: 일반 에일 — OG 1.050, FG 1.010'
               : 'Example 1: Standard Pale Ale — OG 1.050, FG 1.010'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-1 font-mono">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-1 font-mono">
             <p>ABV = (1.050 − 1.010) × 131.25</p>
             <p>ABV = 0.040 × 131.25</p>
             <p className="text-[#f59e0b] font-semibold">ABV ≈ 5.25%</p>
@@ -210,18 +203,18 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
 
         {/* Example 2: dilution */}
         <div className="rounded-lg border border-neutral-800 bg-[#141414] p-5 space-y-3">
-          <p className="text-sm font-medium text-neutral-200">
+          <p className="text-base font-medium text-neutral-200">
             {isKo
               ? '예시 2: 희석 — 5.25% ABV × 20 L 배치를 4.5%로 낮추기'
               : 'Example 2: Dilution — lower a 5.25% ABV × 20 L batch to 4.5%'}
           </p>
-          <div className="text-sm text-neutral-400 leading-relaxed space-y-1 font-mono">
+          <div className="text-base text-neutral-400 leading-relaxed space-y-1 font-mono">
             <p>Final volume = (5.25 / 4.5) × 20 = 23.33 L</p>
             <p className="text-[#f59e0b] font-semibold">
               {isKo ? '추가할 물 = 23.33 − 20 = 3.33 L' : 'Water to add = 23.33 − 20 = 3.33 L'}
             </p>
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
+          <p className="text-sm text-neutral-500 leading-relaxed border-t border-neutral-800 pt-3">
             {isKo
               ? '희석 후 바디감과 홉 쓴맛이 비례적으로 줄어들 수 있습니다. 전체 배치를 희석하기 전에 소량으로 블렌딩 테스트를 권장합니다.'
               : 'Dilution will proportionally reduce body and hop bitterness. A small test blend before diluting the full batch is recommended.'}
@@ -229,24 +222,18 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">
+              <dt className="text-base font-medium text-neutral-200">
                 {item.question[safeLocale]}
               </dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">
+              <dd className="text-base text-neutral-400 leading-relaxed">
                 {item.answer[safeLocale]}
               </dd>
             </div>
@@ -260,15 +247,12 @@ export default async function HomebrewRecipeCalculatorPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }

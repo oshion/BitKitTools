@@ -166,17 +166,17 @@ export default function StandardDrinksCalculatorTool() {
     <div className="space-y-6">
       {/* ── Input panel ──────────────────────────────────────────────────── */}
       <section className="rounded-lg bg-[#141414] border border-neutral-800 p-5 space-y-5">
-        <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide">
+        <h2 className="text-base font-medium text-neutral-400 uppercase tracking-wide">
           Drink Details
         </h2>
 
         {/* Drink type preset */}
         <div className="space-y-1.5">
-          <label className="block text-sm text-neutral-400">Drink Type</label>
+          <label className="block text-base text-neutral-400">Drink Type</label>
           <select
             value={presetKey}
             onChange={(e) => handlePresetChange(e.target.value)}
-            className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white focus:border-neutral-600 outline-none transition-colors"
+            className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-base text-white focus:border-neutral-600 outline-none transition-colors"
           >
             {Object.entries(DRINK_PRESETS).map(([key, preset]) => (
               <option key={key} value={key}>
@@ -188,7 +188,7 @@ export default function StandardDrinksCalculatorTool() {
 
         {/* ABV */}
         <div className="space-y-1.5">
-          <label htmlFor="abv-input" className="block text-sm text-neutral-400">
+          <label htmlFor="abv-input" className="block text-base text-neutral-400">
             ABV (%)
           </label>
           <input
@@ -202,13 +202,13 @@ export default function StandardDrinksCalculatorTool() {
               const v = parseFloat(e.target.value)
               if (!isNaN(v)) handleAbvChange(Math.min(Math.max(v, 0), 100))
             }}
-            className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
+            className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
           />
         </div>
 
         {/* Volume */}
         <div className="space-y-1.5">
-          <label htmlFor="volume-input" className="block text-sm text-neutral-400">
+          <label htmlFor="volume-input" className="block text-base text-neutral-400">
             Volume
           </label>
           <div className="flex gap-2">
@@ -222,7 +222,7 @@ export default function StandardDrinksCalculatorTool() {
                 const v = parseFloat(e.target.value)
                 if (!isNaN(v) && v >= 0) handleVolumeChange(v)
               }}
-              className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
+              className="w-32 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-white focus:border-neutral-600 outline-none transition-colors tabular-nums"
             />
             {/* Unit toggle */}
             <div className="flex rounded-lg border border-neutral-800 overflow-hidden">
@@ -231,7 +231,7 @@ export default function StandardDrinksCalculatorTool() {
                   key={unit}
                   type="button"
                   onClick={() => handleVolumeUnitToggle(unit)}
-                  className={`px-3 py-2 text-sm transition-colors ${
+                  className={`px-3 py-2 text-base transition-colors ${
                     volumeUnit === unit
                       ? 'bg-neutral-700 text-white'
                       : 'bg-neutral-900 text-neutral-400 hover:bg-neutral-800'
@@ -246,7 +246,7 @@ export default function StandardDrinksCalculatorTool() {
 
         {/* Standard selector */}
         <div className="space-y-2">
-          <label className="block text-sm text-neutral-400">
+          <label className="block text-base text-neutral-400">
             Country Standard
           </label>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -255,7 +255,7 @@ export default function StandardDrinksCalculatorTool() {
                 key={s}
                 type="button"
                 onClick={() => { fireInputEnterOnce(); setStandard(s) }}
-                className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors text-center ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium border transition-colors text-center ${
                   standard === s
                     ? 'bg-neutral-700 border-neutral-500 text-white'
                     : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:border-neutral-700'
@@ -265,7 +265,7 @@ export default function StandardDrinksCalculatorTool() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-neutral-600">
+          <p className="text-sm text-neutral-600">
             Standard drink definitions differ by country. Select the one that applies to you.
           </p>
         </div>
@@ -275,7 +275,7 @@ export default function StandardDrinksCalculatorTool() {
       <button
         type="button"
         onClick={handleCalculate}
-        className="w-full rounded-lg bg-white text-black py-3 text-sm font-medium hover:bg-neutral-200 transition-colors"
+        className="w-full rounded-lg bg-white text-black py-3 text-base font-medium hover:bg-neutral-200 transition-colors"
       >
         Calculate Standard Drinks
       </button>
@@ -287,7 +287,7 @@ export default function StandardDrinksCalculatorTool() {
       >
         {/* Primary result: standard drinks count */}
         <div className="space-y-1">
-          <p className="text-xs text-neutral-500 uppercase tracking-wide">
+          <p className="text-sm text-neutral-500 uppercase tracking-wide">
             Standard Drinks ({STANDARD_LABELS[standard]})
           </p>
           <p className="text-5xl font-bold text-[#f59e0b] tabular-nums">
@@ -299,24 +299,24 @@ export default function StandardDrinksCalculatorTool() {
         {/* Secondary info */}
         <div className="grid grid-cols-2 gap-4 border-t border-neutral-800 pt-4">
           <div className="space-y-0.5">
-            <p className="text-xs text-neutral-500 uppercase tracking-wide">Pure Alcohol</p>
+            <p className="text-sm text-neutral-500 uppercase tracking-wide">Pure Alcohol</p>
             <p className="text-lg font-semibold text-neutral-200 tabular-nums">
               {result.pureAlcoholGrams.toFixed(2)}
-              <span className="text-sm font-normal text-neutral-400 ml-1">g</span>
+              <span className="text-base font-normal text-neutral-400 ml-1">g</span>
             </p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-xs text-neutral-500 uppercase tracking-wide">Calories (alcohol only)</p>
+            <p className="text-sm text-neutral-500 uppercase tracking-wide">Calories (alcohol only)</p>
             <p className="text-lg font-semibold text-neutral-200 tabular-nums">
               {result.caloriesKcal.toFixed(0)}
-              <span className="text-sm font-normal text-neutral-400 ml-1">kcal</span>
+              <span className="text-base font-normal text-neutral-400 ml-1">kcal</span>
             </p>
-            <p className="text-xs text-neutral-600">approx. — alcohol only, not total beverage</p>
+            <p className="text-sm text-neutral-600">approx. — alcohol only, not total beverage</p>
           </div>
         </div>
 
         {/* Weekly recommended limit reference */}
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900/50 px-4 py-3 text-xs text-neutral-400 leading-relaxed space-y-1">
+        <div className="rounded-lg border border-neutral-800 bg-neutral-900/50 px-4 py-3 text-sm text-neutral-400 leading-relaxed space-y-1">
           <p className="font-medium text-neutral-300">
             Weekly recommended upper limit — {standard === 'uk' ? 'UK' : standard === 'au-sg' ? 'AU/SG' : standard === 'canada' ? 'Canada' : 'US'} ({weeklyLimit.source})
           </p>
@@ -336,7 +336,7 @@ export default function StandardDrinksCalculatorTool() {
       </section>
 
       {/* ── Link to BAC Calculator ───────────────────────────────────────── */}
-      <p className="text-sm text-neutral-400 leading-relaxed">
+      <p className="text-base text-neutral-400 leading-relaxed">
         This tool converts alcohol content to standard drinks only — it does not estimate blood
         alcohol concentration (BAC).{' '}
         <Link

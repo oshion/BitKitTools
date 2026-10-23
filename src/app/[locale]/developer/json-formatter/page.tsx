@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
-import AdSlot from '@/components/ui/AdSlot'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
@@ -85,7 +84,7 @@ export default async function JsonFormatterPage({ params }: Props) {
   const isKo = safeLocale === 'ko'
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-4 py-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
       <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
       {/* Schema.org structured data */}
@@ -93,31 +92,25 @@ export default async function JsonFormatterPage({ params }: Props) {
       <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* Header ad */}
-      <AdSlot position="header" minHeightPx={90} />
-
       {/* The tool */}
       <JsonFormatterTool />
 
-      {/* Result ad */}
-      <AdSlot position="result" minHeightPx={250} />
-
       {/* Description */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '이 도구에 대하여' : 'About This Tool'}
         </h2>
-        <p className="text-sm text-neutral-300 leading-relaxed">
+        <p className="text-base text-neutral-300 leading-relaxed">
           {tool.description[safeLocale]}
         </p>
         {isKo ? (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             JSON(JavaScript Object Notation)은 API 응답, 설정 파일, 데이터 교환에 가장 널리 쓰이는 형식입니다.
             이 포매터는 JSON.parse를 브라우저에서 직접 실행해 서버로 데이터를 전송하지 않습니다.
             민감한 API 응답이나 토큰이 포함된 JSON도 안전하게 붙여넣을 수 있습니다.
           </p>
         ) : (
-          <p className="text-sm text-neutral-300 leading-relaxed">
+          <p className="text-base text-neutral-300 leading-relaxed">
             JSON (JavaScript Object Notation) is the most widely used format for API responses,
             configuration files, and data interchange. This formatter runs JSON.parse directly
             in your browser — your data never leaves your machine, making it safe to paste
@@ -128,10 +121,10 @@ export default async function JsonFormatterPage({ params }: Props) {
 
       {/* How to Use */}
       <section className="space-y-3">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '사용 방법' : 'How To Use'}
         </h2>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300 leading-relaxed">
+        <ol className="list-decimal list-inside space-y-2 text-base text-neutral-300 leading-relaxed">
           {isKo ? (
             <>
               <li>왼쪽 <strong className="text-neutral-200">Input</strong> 영역에 JSON 원문을 붙여넣습니다.</li>
@@ -156,32 +149,32 @@ export default async function JsonFormatterPage({ params }: Props) {
 
       {/* Example */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '예시' : 'Example'}
         </h2>
 
         <div className="space-y-2">
-          <p className="text-sm font-medium text-neutral-400">
+          <p className="text-base font-medium text-neutral-400">
             {isKo ? '유효한 JSON — Format 전/후:' : 'Valid JSON — before and after Format:'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <pre className="rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono overflow-auto">
+            <pre className="rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono overflow-auto">
               {`{"user":{"name":"Alice","age":30},"active":true}`}
             </pre>
-            <pre className="rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-sm text-neutral-300 font-mono overflow-auto">
+            <pre className="rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono overflow-auto">
               {`{\n  "user": {\n    "name": "Alice",\n    "age": 30\n  },\n  "active": true\n}`}
             </pre>
           </div>
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-medium text-neutral-400">
+          <p className="text-base font-medium text-neutral-400">
             {isKo ? '오류 예시 — trailing comma:' : 'Error example — trailing comma:'}
           </p>
-          <pre className="rounded-lg border border-[#ef4444]/30 bg-red-950/10 px-4 py-3 text-sm text-red-300 font-mono">
+          <pre className="rounded-lg border border-[#ef4444]/30 bg-red-950/10 px-4 py-3 text-base text-red-300 font-mono">
             {`{"name": "Alice", "age": 30,}  ← trailing comma`}
           </pre>
-          <p className="text-sm text-neutral-400">
+          <p className="text-base text-neutral-400">
             {isKo
               ? '마지막 항목 뒤의 쉼표는 JSON 명세에서 허용되지 않습니다. 이 포매터는 해당 위치를 명확히 알려줍니다.'
               : 'A comma after the last item is not allowed by the JSON spec. This formatter will clearly identify the issue.'}
@@ -189,22 +182,16 @@ export default async function JsonFormatterPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mid-content ad */}
-      <AdSlot position="mid-content" minHeightPx={280} />
-
-      {/* Above-FAQ ad */}
-      <AdSlot position="above-faq" minHeightPx={250} />
-
       {/* FAQ */}
       <section className="space-y-4">
-        <h2 className="text-xl font-medium text-white">
+        <h2 className="text-2xl font-semibold text-white">
           {isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}
         </h2>
         <dl className="space-y-6">
           {tool.faq.map((item, i) => (
             <div key={i} className="space-y-2">
-              <dt className="text-sm font-medium text-neutral-200">{item.question[safeLocale]}</dt>
-              <dd className="text-sm text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
+              <dt className="text-base font-medium text-neutral-200">{item.question[safeLocale]}</dt>
+              <dd className="text-base text-neutral-400 leading-relaxed">{item.answer[safeLocale]}</dd>
             </div>
           ))}
         </dl>
@@ -216,15 +203,12 @@ export default async function JsonFormatterPage({ params }: Props) {
       {/* Related Tools */}
       {relatedTools.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-medium text-white">
+          <h2 className="text-2xl font-semibold text-white">
             {isKo ? '관련 도구' : 'Related Tools'}
           </h2>
           <ToolCardGrid tools={relatedTools} locale={safeLocale} />
         </section>
       )}
-
-      {/* Footer ad */}
-      <AdSlot position="footer" minHeightPx={90} />
     </div>
   )
 }
