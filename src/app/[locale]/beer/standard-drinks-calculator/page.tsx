@@ -4,6 +4,7 @@ import { routing } from '@/i18n/routing'
 import { getToolBySlug, getRelatedTools } from '@/lib/config/tools-config'
 import { localeHref } from '@/lib/utils/locale-href'
 import DisclaimerBanner from '@/components/ui/DisclaimerBanner'
+import ToolStage from '@/components/ui/ToolStage'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
 import SchemaWebApplication from '@/components/seo/SchemaWebApplication'
 import SchemaFaqPage from '@/components/seo/SchemaFaqPage'
@@ -89,15 +90,17 @@ export default async function StandardDrinksCalculatorPage({ params }: Props) {
 
   return (
     <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 space-y-12">
-      <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
+      <ToolStage>
+        <h1 className="text-4xl font-semibold text-white">{tool.title[safeLocale]}</h1>
 
-      {/* Schema.org structured data */}
-      <SchemaBreadcrumb items={breadcrumbItems} />
-      <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
-      <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
+        {/* Schema.org structured data */}
+        <SchemaBreadcrumb items={breadcrumbItems} />
+        <SchemaWebApplication tool={tool} locale={safeLocale} url={pageUrl} />
+        <SchemaFaqPage faq={tool.faq} locale={safeLocale} />
 
-      {/* The tool */}
-      <StandardDrinksCalculatorTool />
+        {/* The tool */}
+        <StandardDrinksCalculatorTool />
+      </ToolStage>
 
       {/* Description */}
       <section className="space-y-3">

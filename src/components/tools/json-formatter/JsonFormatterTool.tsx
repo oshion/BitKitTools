@@ -177,7 +177,7 @@ export default function JsonFormatterTool() {
             }}
             placeholder='Paste JSON here, e.g. {"name":"Alice","age":30}'
             spellCheck={false}
-            className="w-full h-64 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed resize-y focus:outline-none focus:border-neutral-600 placeholder-neutral-600"
+            className="w-full h-[420px] md:h-[700px] rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed resize-y focus:outline-none focus:border-neutral-600 placeholder-neutral-600"
           />
         </div>
 
@@ -209,7 +209,7 @@ export default function JsonFormatterTool() {
             )}
           </div>
 
-          <div ref={resultRef} className="h-64">
+          <div ref={resultRef} className="h-[420px] md:h-[700px]">
             {result.type === 'idle' && (
               <div className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 flex items-center justify-center">
                 <p className="text-base text-neutral-600">

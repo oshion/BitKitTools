@@ -28,6 +28,19 @@ afterEach(() => {
   })
 })
 
+describe('JsonFormatterTool — editor size', () => {
+  it('renders input and output areas at 700px tall on desktop', () => {
+    const { getByPlaceholderText, getByText } = render(<JsonFormatterTool />)
+
+    const textarea = getByPlaceholderText('Paste JSON here, e.g. {"name":"Alice","age":30}')
+    expect(textarea).toHaveClass('md:h-[700px]')
+
+    const outputBox = getByText('Result will appear here after you click Format or Minify.')
+      .parentElement?.parentElement
+    expect(outputBox).toHaveClass('md:h-[700px]')
+  })
+})
+
 describe('JsonFormatterTool — input_enter event', () => {
   it('fires input_enter exactly once on first input change', () => {
     const mockGtag = setupGtag()
