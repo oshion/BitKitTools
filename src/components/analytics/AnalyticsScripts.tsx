@@ -2,11 +2,13 @@
 
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
+import { isAnalyticsAllowed } from '@/lib/utils/consentStatus'
 
 // Subscribes to Google's Funding Choices consent-mode callback queue (the CMP
 // configured in AdSense "Privacy & messaging"). GA4 and Clarity scripts are
-// inserted into the DOM ONLY after analytics consent is granted — never before.
-// This satisfies GDPR/Consent Mode v2 requirements for EEA/UK traffic.
+// inserted into the DOM ONLY after the CMP reports that analytics may run: either the
+// visitor granted consent, or no consent requirement applies to them (see
+// isAnalyticsAllowed). This satisfies GDPR/Consent Mode v2 requirements for EEA/UK traffic.
 // https://developers.google.com/funding-choices/fc-api-docs
 export default function AnalyticsScripts() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID
@@ -21,8 +23,12 @@ export default function AnalyticsScripts() {
     fc.callbackQueue.push({
       CONSENT_MODE_DATA_READY: () => {
         const consentStatus = window.googlefc?.getGoogleConsentModeValues?.()
-        const granted = window.googlefc?.ConsentModePurposeStatusEnum?.GRANTED
-        if (consentStatus?.analyticsStoragePurposeConsentStatus === granted) {
+        if (
+          isAnalyticsAllowed(
+            consentStatus?.analyticsStoragePurposeConsentStatus,
+            window.googlefc?.ConsentModePurposeStatusEnum
+          )
+        ) {
           setAnalyticsConsented(true)
           // Update Consent Mode v2 — GA4 will begin sending data from this point
           if (typeof window.gtag === 'function') {
