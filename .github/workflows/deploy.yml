@@ -13,6 +13,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # NEXT_PUBLIC_* 값은 빌드 시점에 JS 번들에 문자열로 인라인된다.
+    # .env.production은 git에 없으므로 CI 빌드에서는 여기서 넘겨주지 않으면 값이 비어
+    # GA4/Clarity/AdSense/Google CMP가 전부 로드되지 않는다 (2026-10-26 발견).
+    # 브라우저에 그대로 노출되는 공개값이라 Secrets가 아닌 repo Variables로 관리한다.
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+      NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+      NEXT_PUBLIC_CLARITY_ID: ${{ vars.NEXT_PUBLIC_CLARITY_ID }}
+      NEXT_PUBLIC_ADSENSE_CLIENT_ID: ${{ vars.NEXT_PUBLIC_ADSENSE_CLIENT_ID }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,10 +36,38 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify public env vars are set
+        # 하나라도 비어 있으면 빌드 전에 실패시켜 분석/광고 코드 없는 사이트가 배포되는 걸 막는다.
+        run: |
+          missing=0
+          for v in NEXT_PUBLIC_SITE_URL NEXT_PUBLIC_GA_ID NEXT_PUBLIC_CLARITY_ID NEXT_PUBLIC_ADSENSE_CLIENT_ID; do
+            if [ -z "${!v}" ]; then
+              echo "::error::$v is empty — register it under Settings > Secrets and variables > Actions > Variables"
+              missing=1
+            fi
+          done
+          exit $missing
+
       - name: Build
         # npm run build 실행 — next build + postbuild + generate-rss 전부 포함
         # 절대 next build를 직접 호출하지 않는다 (postbuild/RSS 누락 방지)
         run: npm run build
+
+      - name: Verify IDs are inlined in build output
+        # 값이 설정돼 있어도 빌드에 실제로 박혔는지 산출물에서 한 번 더 확인한다.
+        run: |
+          missing=0
+          for v in NEXT_PUBLIC_GA_ID NEXT_PUBLIC_CLARITY_ID; do
+            if ! grep -rqF "${!v}" out/_next/static; then
+              echo "::error::$v value not found in out/_next/static JS bundles"
+              missing=1
+            fi
+          done
+          if ! grep -qF "${NEXT_PUBLIC_ADSENSE_CLIENT_ID#ca-}" out/index.html; then
+            echo "::error::AdSense publisher ID not found in out/index.html (Google CMP script missing)"
+            missing=1
+          fi
+          exit $missing
 
       - name: Deploy to EC2 via rsync
         # ⚠️ --delete 주의사항:
