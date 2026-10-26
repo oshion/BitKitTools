@@ -1271,6 +1271,26 @@ export const toolsConfig: ToolConfig[] = [
           ko: '반드시 그렇지는 않습니다. MCT는 정상 조건에서의 최솟값으로, 긴 입국심사 줄, 보안검색 지연, 게이트 변경, 도착 지연, 터미널 간 먼 거리 등을 반영하지 않습니다. MCT는 최솟값이지 보장이 아닙니다. "여유로움(Comfortable)" 결과(MCT의 1.5배 이상)는 의미 있는 여유를 제공하지만, 실제 상황에 따라 놓칠 수도 있습니다. 중요한 여행이라면 MCT보다 훨씬 긴 환승 시간을 선택하는 것이 더 안전합니다.',
         },
       },
+      {
+        question: {
+          en: 'If my layover is tight, will my checked bag make the connection?',
+          ko: '환승 시간이 촉박하면 위탁수하물도 연결편에 실리나요?',
+        },
+        answer: {
+          en: 'On a single booking (all flights on one ticket), checked bags are normally tagged through to your final destination and transferred by the airlines — you do not collect them during the layover. If the bag misses the connection, the airline forwards it on a later flight. On separate tickets (a self-transfer), you usually have to collect your bags at baggage claim, clear immigration and customs if required, check in again and re-drop them, which takes far longer than the airport MCT. Some countries also require you to collect and re-check bags at your first point of entry even on a single ticket — for example, when arriving in the United States on an international flight. Confirm baggage handling with your airline when booking.',
+          ko: '모든 항공편이 하나의 예약(한 장의 티켓)으로 묶여 있다면, 위탁수하물은 보통 최종 목적지까지 연결 태그가 붙어 항공사가 옮겨 실으므로 환승 중에 직접 찾을 필요가 없습니다. 수하물이 연결편에 실리지 못하면 항공사가 다음 항공편으로 보내줍니다. 반면 티켓을 따로 구매한 경우(셀프 환승)에는 보통 수하물을 찾고, 필요하면 입국심사·세관을 거친 뒤 다시 체크인해 부쳐야 하므로 공항 MCT보다 훨씬 긴 시간이 필요합니다. 일부 국가는 한 장의 티켓이라도 첫 입국 공항에서 수하물을 찾아 다시 부치도록 합니다(예: 국제선으로 미국에 도착하는 경우). 예매 시 항공사에 수하물 처리 방식을 확인하세요.',
+        },
+      },
+      {
+        question: {
+          en: 'Can I leave the airport during my layover?',
+          ko: '환승 대기 중에 공항 밖으로 나갈 수 있나요?',
+        },
+        answer: {
+          en: 'It depends on two things. First, entry rules: leaving the airport means formally entering that country, so you need whatever visa, eVisa or travel authorization your passport requires — some countries offer visa-free transit programs, others do not. You can check entry requirements for your nationality with our Visa Requirement Checker. Second, time: you must clear immigration on the way out, then pass security (and possibly check in again) on the way back, so a layover only slightly longer than the MCT is not enough. Many travelers only consider leaving when the layover is several hours long. Always confirm with the official immigration authority and your airline.',
+          ko: '두 가지에 달려 있습니다. 첫째, 입국 요건입니다. 공항 밖으로 나가는 것은 그 나라에 정식으로 입국하는 것이므로, 여권 국적에 따라 필요한 비자·전자비자·사전여행허가를 갖춰야 합니다. 무비자 환승 프로그램을 운영하는 나라도 있고 그렇지 않은 나라도 있습니다. 국적별 입국 요건은 이 사이트의 비자 요건 확인기(Visa Requirement Checker)로 확인할 수 있습니다. 둘째, 시간입니다. 나갈 때 입국심사를, 돌아올 때 보안검색(경우에 따라 재체크인)을 다시 거쳐야 하므로 MCT보다 조금 긴 환승 시간으로는 부족합니다. 보통 환승 대기가 몇 시간 이상일 때 외출을 고려합니다. 반드시 해당 국가 출입국 당국과 항공사에 확인하세요.',
+        },
+      },
     ],
     relatedToolIds: ['flight-delay-compensation', 'visa-requirement-checker', 'jetlag-recovery-calculator'],
     adSlots: [
