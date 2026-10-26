@@ -37,6 +37,16 @@
       "baselineCtr": 0,
       "status": "no-improvement",
       "attemptNumber": 1
+    },
+    {
+      "id": "content-update-travel-layover-connection-calculator-1",
+      "type": "content-update",
+      "page": "/travel/layover-connection-calculator/",
+      "deployedAt": "2026-10-26T07:25:34Z",
+      "description": "Added 2 FAQ entries (checked baggage on tight/self-transfer connections, leaving the airport during a layover → Visa Requirement Checker) from the 2026-10-12 growth spec, EN+KO (PR #40). Baseline via getPageCtr (query-level) is 0 — only 4 of 68 weekly impressions are query-visible; page-level that week was 1 click / 68 impressions at avg position 12. KO page (0/65 over 4 weeks at pos 5-10) also gets the FAQ",
+      "baselineCtr": 0,
+      "status": "in-progress",
+      "attemptNumber": 1
     }
   ]
 }
