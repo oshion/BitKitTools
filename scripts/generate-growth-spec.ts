@@ -22,6 +22,8 @@ import { findConsecutiveTopPerformers } from './lib/topPagesHistory'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
+import type { ToolConfig } from '../src/types/tool'
+import { toolsConfig } from '../src/lib/config/tools-config'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -148,6 +150,43 @@ export function selectGrowthCandidates(
 // ── API Call ──────────────────────────────────────────────────────────────────
 
 /**
+ * Builds the "already implemented" facts for the prompt, so the model stops
+ * re-proposing things every tool page already has. Without this, all four growth
+ * specs pending on 2026-10-26 proposed internal links / FAQ Schema / hreflang that
+ * were already live (report-review 2026-10-26).
+ *
+ * @param page   - Target path, e.g. '/ko/baby/temperament-quiz/'
+ * @param tools  - All ToolConfig entries (tools-config.ts)
+ */
+export function buildImplementedFeaturesSection(page: string, tools: ToolConfig[]): string {
+  const siteWide = [
+    '- 모든 툴 페이지: EN/KO hreflang + x-default, canonical (generateMetadata에서 자동 생성)',
+    '- 모든 툴 페이지: JSON-LD 구조화 데이터 — WebApplication, FAQPage(tools-config의 faq), BreadcrumbList',
+    '- 모든 툴 페이지 하단: "관련 도구" 블록 (tools-config의 relatedToolIds로 같은 카테고리 툴 3개에 링크)',
+    '- 카테고리 허브 페이지(/developer, /travel, /beer, /baby)에서 해당 카테고리의 모든 툴에 링크',
+  ]
+
+  const isKo = page.startsWith('/ko/')
+  const [category, slug] = page.replace(/^\/ko\//, '/').split('/').filter(Boolean)
+  const tool = tools.find((t) => t.category === category && t.slug === slug)
+  if (!tool) return `## 이미 구현된 사항\n\n${siteWide.join('\n')}`
+
+  const inbound = tools.filter((t) => t.relatedToolIds.includes(tool.id)).map((t) => t.id)
+  const locale = isKo ? 'ko' : 'en'
+  const faqLines = tool.faq.map((item) => `  - ${item.question[locale]}`)
+
+  return [
+    '## 이미 구현된 사항',
+    '',
+    ...siteWide,
+    `- 이 페이지에서 링크하는 관련 도구(relatedToolIds): ${tool.relatedToolIds.join(', ') || '(없음)'}`,
+    `- 이 페이지로 링크하는 다른 툴(관련 도구 블록): ${inbound.join(', ') || '(없음)'}`,
+    `- 기존 FAQ (${locale.toUpperCase()}, ${tool.faq.length}개):`,
+    ...faqLines,
+  ].join('\n')
+}
+
+/**
  * Calls the Anthropic API to generate a growth spec for one candidate.
  *
  * The prompt instructs the model to produce an expansion spec — not a problem
@@ -179,6 +218,8 @@ export async function generateGrowthSpec(
 - 연속 상위 기록: ${candidate.consecutiveWeeks}주 연속 클릭 상위 페이지
 - 근거 수치: ${candidate.evidence}
 
+${buildImplementedFeaturesSection(candidate.page, toolsConfig)}
+
 ${historySection}
 
 ---
@@ -195,7 +236,8 @@ ${historySection}
 4. **기대 효과**: 어떤 지표가 어느 방향으로 움직일 것인지
 
 근거를 명시할 수 없는 제안은 포함하지 마세요.
-과거 이력에 이미 시도한 방향은 반복 제안하지 마세요.`
+과거 이력에 이미 시도한 방향은 반복 제안하지 마세요.
+"이미 구현된 사항"에 있는 것(hreflang, FAQPage/WebApplication/Breadcrumb Schema, 이미 있는 내부링크, 이미 있는 FAQ 질문)은 다시 제안하지 마세요. 내부링크는 위 목록에 없는 페이지에서의 링크만, FAQ는 기존 질문과 겹치지 않는 것만 제안하세요.`
 
   const response = await fetch(ANTHROPIC_API_URL, {
     method: 'POST',

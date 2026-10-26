@@ -7,9 +7,11 @@ import type { ProposalLog, ProposalEntry } from '../proposalTracking'
 import {
   selectGrowthCandidates,
   generateGrowthSpec,
+  buildImplementedFeaturesSection,
   DEFAULT_MIN_CONSECUTIVE_WEEKS,
   type GrowthSpecCandidate,
 } from '../../generate-growth-spec'
+import { toolsConfig } from '../../../src/lib/config/tools-config'
 
 // ── Fixtures ──────────────────────────────────────────────────────────────────
 
@@ -292,5 +294,65 @@ describe('generateGrowthSpec', () => {
     await expect(generateGrowthSpec(candidate, '', 'dummy-key')).rejects.toThrow(
       /cut off by max_tokens/
     )
+  })
+})
+
+
+describe('buildImplementedFeaturesSection', () => {
+  it('lists site-wide features that every tool page already has', () => {
+    const section = buildImplementedFeaturesSection('/baby/temperament-quiz/', toolsConfig)
+    expect(section).toMatch(/hreflang/)
+    expect(section).toMatch(/FAQPage/)
+    expect(section).toMatch(/BreadcrumbList/)
+  })
+
+  it('lists the tools that already link to the target page (inbound related links)', () => {
+    const section = buildImplementedFeaturesSection('/ko/baby/temperament-quiz/', toolsConfig)
+    expect(section).toMatch(/growth-percentile/)
+    expect(section).toMatch(/sleep-schedule/)
+    expect(section).toMatch(/height-predictor/)
+  })
+
+  it('lists existing FAQ questions in the page locale', () => {
+    const ko = buildImplementedFeaturesSection('/ko/travel/layover-connection-calculator/', toolsConfig)
+    expect(ko).toMatch(/MCT\(최소환승시간\)란 무엇인가요\?/)
+    const en = buildImplementedFeaturesSection('/travel/layover-connection-calculator/', toolsConfig)
+    expect(en).toMatch(/What is MCT \(Minimum Connecting Time\)\?/)
+  })
+
+  it('still returns the site-wide facts for a non-tool page', () => {
+    const section = buildImplementedFeaturesSection('/baby/', toolsConfig)
+    expect(section).toMatch(/hreflang/)
+    expect(section).not.toMatch(/기존 FAQ/)
+  })
+})
+
+describe('generateGrowthSpec prompt', () => {
+  let originalFetch: typeof global.fetch
+  beforeEach(() => {
+    originalFetch = global.fetch
+  })
+  afterEach(() => {
+    global.fetch = originalFetch
+  })
+
+  it('includes the already-implemented section and tells the model not to re-propose it', async () => {
+    const fetchMock = jest.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ content: [{ type: 'text', text: 'spec' }], stop_reason: 'end_turn' }),
+    } as unknown as Response)
+    global.fetch = fetchMock
+    await generateGrowthSpec(
+      { page: '/baby/temperament-quiz/', consecutiveWeeks: 2, evidence: 'x' },
+      '',
+      'dummy-key'
+    )
+    const body = JSON.parse((fetchMock.mock.calls[0] as [string, { body: string }])[1].body) as {
+      messages: Array<{ content: string }>
+    }
+    const prompt = body.messages[0]?.content ?? ''
+    expect(prompt).toMatch(/이미 구현된 사항/)
+    expect(prompt).toMatch(/growth-percentile/)
+    expect(prompt).toMatch(/이미 구현된 사항[\s\S]*제안하지 마세요/)
   })
 })
