@@ -53,7 +53,7 @@
       "type": "growth",
       "target": "/ko/baby/sleep-schedule/",
       "firstProposedAt": "2026-10-05",
-      "status": "pending",
+      "status": "rejected",
       "lastReminderAt": "2026-10-05"
     },
     {
@@ -61,7 +61,7 @@
       "type": "growth",
       "target": "/baby/temperament-quiz/",
       "firstProposedAt": "2026-10-12",
-      "status": "pending",
+      "status": "rejected",
       "lastReminderAt": "2026-10-12"
     },
     {
@@ -77,7 +77,7 @@
       "type": "growth",
       "target": "/ko/baby/temperament-quiz/",
       "firstProposedAt": "2026-10-26",
-      "status": "pending",
+      "status": "rejected",
       "lastReminderAt": "2026-10-26"
     }
   ]
