@@ -197,3 +197,21 @@ describe('getRelatedTools', () => {
     })
   })
 })
+
+describe('layover-connection-calculator FAQ', () => {
+  const layover = getToolBySlug('travel', 'layover-connection-calculator')
+
+  it('answers whether checked baggage makes a tight connection', () => {
+    const q = layover?.faq.find((item) => /checked bag/i.test(item.question.en))
+    expect(q).toBeDefined()
+    expect(q?.question.ko).toMatch(/수하물/)
+    expect(q?.answer.en).toMatch(/separate tickets/i)
+  })
+
+  it('answers whether you can leave the airport during a layover', () => {
+    const q = layover?.faq.find((item) => /leave the airport/i.test(item.question.en))
+    expect(q).toBeDefined()
+    expect(q?.question.ko).toMatch(/공항 밖/)
+    expect(q?.answer.en).toMatch(/visa/i)
+  })
+})
