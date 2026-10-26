@@ -35,7 +35,7 @@
       "deployedAt": "2026-08-31T05:14:30Z",
       "description": "Added Tanner-Goldstein-Whitehouse formula explanation (FAQ + About section) to target ambiguous-intent queries (\"tanner formula\", \"mid parental height formula\") that were reaching the page with 0% CTR at 72 impressions",
       "baselineCtr": 0,
-      "status": "in-progress",
+      "status": "no-improvement",
       "attemptNumber": 1
     }
   ]
