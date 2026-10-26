@@ -54,6 +54,11 @@
       "weekStart": "2026-10-10",
       "organicSessions": 0,
       "organicClicks": 8
+    },
+    {
+      "weekStart": "2026-10-17",
+      "organicSessions": 0,
+      "organicClicks": 6
     }
   ]
 }

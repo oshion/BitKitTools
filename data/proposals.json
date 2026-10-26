@@ -71,6 +71,14 @@
       "firstProposedAt": "2026-10-12",
       "status": "pending",
       "lastReminderAt": "2026-10-12"
+    },
+    {
+      "id": "growth-ko-baby-temperament-quiz",
+      "type": "growth",
+      "target": "/ko/baby/temperament-quiz/",
+      "firstProposedAt": "2026-10-26",
+      "status": "pending",
+      "lastReminderAt": "2026-10-26"
     }
   ]
 }
