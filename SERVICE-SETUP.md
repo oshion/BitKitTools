@@ -73,6 +73,8 @@ BitKitTools.com 운영에 필요한 외부 서비스 계정을 왜 만들었는�
 
 Next.js 로딩 우선순위: `.env.local` > `.env.production` > `.env`. **로컬에서 배포용 `npm run build`를 돌릴 때 `.env.local`에 값이 남아있으면 `.env.production` 값을 덮어쓴다.** 배포 직전 실제 빌드 전엔 `.env.local`을 비우거나 지우고 빌드할 것. (지금은 `.env.local` 자체가 없는 상태 — 필요해지면 다시 만들 것.)
 
+**CI(GitHub Actions) 배포 빌드는 `.env.production`을 쓰지 않는다** — 이 파일은 git에 없다. 배포 빌드의 `NEXT_PUBLIC_*` 값은 repo **Variables**(Settings → Secrets and variables → Actions → Variables 탭)의 `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_GA_ID` / `NEXT_PUBLIC_CLARITY_ID` / `NEXT_PUBLIC_ADSENSE_CLIENT_ID`에서 `deploy.yml`이 주입한다. 값이 비어 있거나 빌드 산출물에 인라인되지 않으면 `deploy.yml`의 검사 단계가 배포를 실패시킨다. (2026-10-26 이전에는 이 주입이 없어 GA4/Clarity/AdSense/Google CMP가 실사이트에 한 번도 로드되지 않았다 — 그 기간 GA4 세션 0·Clarity 0은 동의 게이팅이 아니라 이 누락 때문.)
+
 ## 배포 현황
 
 - `bitkittools.com` / `www.bitkittools.com` HTTPS로 라이브 (AWS EC2 + Nginx + Let's Encrypt)
