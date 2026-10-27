@@ -1,7 +1,392 @@
 {
   "date": "2026-10-25",
-  "pages": [],
-  "queries": [],
+  "pages": [
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 3.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 6,
+      "gscClicks": 0,
+      "gscAvgPosition": 10.666666666666666,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 74.66666666666667,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 46.8,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 53,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 14,
+      "gscClicks": 0,
+      "gscAvgPosition": 76.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/developer/json-to-sql/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 80,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 28,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 10,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 1,
+      "gscAvgPosition": 13,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 1,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 6,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/json-to-sql/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 8,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 4,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 3.6666666666666665,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/flight-delay-compensation/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 51,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 8,
+      "gscClicks": 0,
+      "gscAvgPosition": 8.625,
+      "bounceRate": null
+    }
+  ],
+  "queries": [
+    {
+      "query": "혈중알코올농도 계산기",
+      "page": "/ko/beer/bac-calculator/",
+      "country": "kor",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 1,
+      "ctr": 1,
+      "position": 13
+    },
+    {
+      "query": "1 unit alcohol in ml",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "ind",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 67
+    },
+    {
+      "query": "alcohol measurement",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "query": "alcohol unit calculator",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 87
+    },
+    {
+      "query": "baby temperament quiz",
+      "page": "/baby/temperament-quiz/",
+      "country": "nor",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "query": "bac blood alcohol",
+      "page": "/beer/bac-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "query": "blood alcohol calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "can",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 55
+    },
+    {
+      "query": "blood alcohol measurement units",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "idn",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 47
+    },
+    {
+      "query": "calculate abv homebrew",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 65
+    },
+    {
+      "query": "calculate drink units",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 72
+    },
+    {
+      "query": "drinks units calculator",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 71
+    },
+    {
+      "query": "eu261 compensation calculator",
+      "page": "/travel/flight-delay-compensation/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 3,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 51
+    },
+    {
+      "query": "homebrew abv calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "query": "how to calculate units of alcohol",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 81
+    },
+    {
+      "query": "hydrometer temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 69
+    },
+    {
+      "query": "hydrometer temperature correction table pdf",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 75
+    },
+    {
+      "query": "json to sql",
+      "page": "/developer/json-to-sql/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "query": "thomas and chess temperament categories",
+      "page": "/baby/temperament-quiz/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 23
+    },
+    {
+      "query": "thomas and chess temperament chart",
+      "page": "/baby/temperament-quiz/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 19
+    },
+    {
+      "query": "units of alcohol calculator",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 87
+    },
+    {
+      "query": "units of alcohol converter",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 90
+    },
+    {
+      "query": "ذكر",
+      "page": "/baby/growth-percentile/",
+      "country": "sau",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "query": "성장 발달 계산기",
+      "page": "/ko/baby/growth-percentile/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 46
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",

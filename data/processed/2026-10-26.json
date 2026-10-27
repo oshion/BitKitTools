@@ -1,8 +1,23 @@
 {
-  "collectedAt": "2026-08-28T14:40:32.549Z",
-  "collectionDate": "2026-08-27",
-  "note": "Clarity Data Export API returns rolling last-24h aggregates; specific calendar-date queries are not supported by the API.",
-  "data": [
+  "date": "2026-10-26",
+  "pages": [
+    {
+      "path": "/",
+      "sessions": 1,
+      "events": {
+        "first_visit": 1,
+        "page_view": 2,
+        "session_start": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    }
+  ],
+  "queries": [],
+  "clarity": [
     {
       "metricName": "DeadClickCount",
       "information": []
