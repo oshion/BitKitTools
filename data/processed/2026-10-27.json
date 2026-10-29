@@ -2,6 +2,24 @@
   "date": "2026-10-27",
   "pages": [
     {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 8,
+      "gscClicks": 0,
+      "gscAvgPosition": 52.125,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 7.5,
+      "bounceRate": null
+    },
+    {
       "path": "/baby/temperament-quiz/",
       "sessions": 2,
       "events": {
@@ -12,13 +30,145 @@
         "first_visit": 1,
         "input_enter": 1
       },
-      "gscImpressions": 0,
+      "gscImpressions": 4,
       "gscClicks": 0,
-      "gscAvgPosition": null,
+      "gscAvgPosition": 5.25,
       "bounceRate": 0.5
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 83,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 83,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 55,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 13,
+      "gscClicks": 0,
+      "gscAvgPosition": 75.46153846153847,
+      "bounceRate": null
+    },
+    {
+      "path": "/developer/json-to-sql/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 73,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 3.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 6,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/visa-requirement-checker/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 7,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 17,
+      "gscClicks": 0,
+      "gscAvgPosition": 10.352941176470589,
+      "bounceRate": null
     }
   ],
-  "queries": [],
+  "queries": [
+    {
+      "query": "airport connection times data",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 68
+    },
+    {
+      "query": "baby temperament quiz",
+      "page": "/baby/temperament-quiz/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "can i drive alcohol calculator australia",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "arg",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "query": "json to sql",
+      "page": "/developer/json-to-sql/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 73
+    },
+    {
+      "query": "og calculator extract",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",
