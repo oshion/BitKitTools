@@ -1,0 +1,70 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "pagePath"
+    }
+  ],
+  "metricHeaders": [
+    {
+      "name": "bounceRate",
+      "type": "TYPE_FLOAT"
+    },
+    {
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "/baby/temperament-quiz/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/travel/layover-connection-calculator/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/travel/layover-connection-calculator/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "2"
+        }
+      ]
+    }
+  ],
+  "rowCount": 3,
+  "metadata": {
+    "currencyCode": "KRW",
+    "timeZone": "Asia/Seoul"
+  },
+  "kind": "analyticsData#runReport"
+}

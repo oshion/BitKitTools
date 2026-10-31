@@ -1,0 +1,138 @@
+{
+  "week": "2026-W31",
+  "dateRange": {
+    "start": "2026-08-01",
+    "end": "2026-08-01"
+  },
+  "totalSessions": 0,
+  "totalGscImpressions": 22,
+  "totalGscClicks": 0,
+  "avgGscPosition": 59.22727272727273,
+  "topPages": [
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 77.8
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 58
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 83.33333333333333
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 49
+    },
+    {
+      "path": "/developer/jwt-decoder/",
+      "sessions": 0,
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 56
+    },
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 46
+    },
+    {
+      "path": "/developer/json-to-sql/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 50
+    },
+    {
+      "path": "/ko/developer/password-generator/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 8
+    },
+    {
+      "path": "/ko/travel/flight-delay-compensation/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 11
+    }
+  ],
+  "topQueries": [
+    {
+      "query": "jet lag recovery time formula",
+      "impressions": 4,
+      "clicks": 0,
+      "avgPosition": 60.25
+    },
+    {
+      "query": "jwt decoder",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 56
+    },
+    {
+      "query": "airport connection times data",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 76
+    },
+    {
+      "query": "alcohol measurement",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 81
+    },
+    {
+      "query": "alcohol unit calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 82
+    },
+    {
+      "query": "brew gravity calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 83
+    },
+    {
+      "query": "cdc baby percentile calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 46
+    },
+    {
+      "query": "extract og calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 78
+    },
+    {
+      "query": "flight connection times data",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 65
+    },
+    {
+      "query": "homebrew calculator abv",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 65
+    }
+  ]
+}
