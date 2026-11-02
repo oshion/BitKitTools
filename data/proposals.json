@@ -79,6 +79,14 @@
       "firstProposedAt": "2026-10-26",
       "status": "rejected",
       "lastReminderAt": "2026-10-26"
+    },
+    {
+      "id": "growth-travel-layover-connection-calculator-2",
+      "type": "growth",
+      "target": "/travel/layover-connection-calculator/",
+      "firstProposedAt": "2026-11-02",
+      "status": "pending",
+      "lastReminderAt": "2026-11-02"
     }
   ]
 }

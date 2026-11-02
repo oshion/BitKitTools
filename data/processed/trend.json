@@ -1,11 +1,6 @@
 {
   "weeks": [
     {
-      "weekStart": "2026-08-03",
-      "organicSessions": 0,
-      "organicClicks": 6
-    },
-    {
       "weekStart": "2026-08-08",
       "organicSessions": 0,
       "organicClicks": 2
@@ -59,6 +54,11 @@
       "weekStart": "2026-10-17",
       "organicSessions": 0,
       "organicClicks": 6
+    },
+    {
+      "weekStart": "2026-10-24",
+      "organicSessions": 8,
+      "organicClicks": 5
     }
   ]
 }

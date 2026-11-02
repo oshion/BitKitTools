@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-02",
+  "scores": [
+    {
+      "url": "https://bitkittools.com/",
+      "performance": 74,
+      "accessibility": 95,
+      "bestPractices": 79,
+      "seo": 100
+    },
+    {
+      "url": "https://bitkittools.com/developer/json-formatter/",
+      "performance": 60,
+      "accessibility": 96,
+      "bestPractices": 79,
+      "seo": 100
+    },
+    {
+      "url": "https://bitkittools.com/travel/flight-delay-compensation/",
+      "performance": 89,
+      "accessibility": 96,
+      "bestPractices": 79,
+      "seo": 100
+    },
+    {
+      "url": "https://bitkittools.com/beer/bac-calculator/",
+      "performance": 60,
+      "accessibility": 96,
+      "bestPractices": 79,
+      "seo": 100
+    },
+    {
+      "url": "https://bitkittools.com/baby/growth-percentile/",
+      "performance": 60,
+      "accessibility": 96,
+      "bestPractices": 61,
+      "seo": 100
+    }
+  ]
+}
