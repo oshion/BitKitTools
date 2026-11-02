@@ -1,0 +1,500 @@
+{
+  "date": "2026-11-01",
+  "pages": [],
+  "queries": [],
+  "clarity": [
+    {
+      "metricName": "DeadClickCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": [
+        {
+          "averageScrollDepth": 100,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "averageScrollDepth": 100,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "averageScrollDepth": 25,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "averageScrollDepth": 85,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "averageScrollDepth": 100,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "averageScrollDepth": 16,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "averageScrollDepth": 100,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "Traffic",
+      "information": [
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": [
+        {
+          "totalTime": 6,
+          "activeTime": 6,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalTime": 7,
+          "activeTime": 7,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "totalTime": 3,
+          "activeTime": 3,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "totalTime": 7,
+          "activeTime": 7,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "totalTime": 6,
+          "activeTime": 6,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "totalTime": 257,
+          "activeTime": 257,
+          "Url": "https://bitkittools.com/baby/temperament-quiz/"
+        },
+        {
+          "totalTime": 8,
+          "activeTime": 8,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    }
+  ]
+}

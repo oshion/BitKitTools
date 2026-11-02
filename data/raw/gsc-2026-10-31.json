@@ -1,0 +1,125 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "alcohol measurement",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "keys": [
+        "approximate blood alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "can",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 47
+    },
+    {
+      "keys": [
+        "baby growth percentile calculator",
+        "https://bitkittools.com/baby/growth-percentile/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 94
+    },
+    {
+      "keys": [
+        "baby sleep schedule calculator",
+        "https://bitkittools.com/baby/sleep-schedule/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 65
+    },
+    {
+      "keys": [
+        "bac calculator online",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 88
+    },
+    {
+      "keys": [
+        "brew gravity calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 96
+    },
+    {
+      "keys": [
+        "jwt 디코딩",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 45
+    },
+    {
+      "keys": [
+        "layover calculator",
+        "https://bitkittools.com/travel/layover-connection-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 48
+    },
+    {
+      "keys": [
+        "og calculator extract",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 91
+    }
+  ],
+  "responseAggregationType": "byPage"
+}

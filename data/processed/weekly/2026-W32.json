@@ -1,0 +1,120 @@
+{
+  "week": "2026-W32",
+  "dateRange": {
+    "start": "2026-08-03",
+    "end": "2026-08-03"
+  },
+  "totalSessions": 0,
+  "totalGscImpressions": 20,
+  "totalGscClicks": 2,
+  "avgGscPosition": 37.2,
+  "topPages": [
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 83.4
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 30.666666666666668
+    },
+    {
+      "path": "/ko/baby/sleep-schedule/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 2,
+      "gscAvgPosition": 6.666666666666667
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 5.333333333333333
+    },
+    {
+      "path": "/travel/flight-delay-compensation/",
+      "sessions": 0,
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 59
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 9
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 8
+    },
+    {
+      "path": "/ko/developer/jwt-decoder/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 61
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 3
+    }
+  ],
+  "topQueries": [
+    {
+      "query": "gravity calculator beer",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 89
+    },
+    {
+      "query": "alcohol calculator homebrew",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 82
+    },
+    {
+      "query": "brew gravity calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 81
+    },
+    {
+      "query": "eu261 compensation calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 62
+    },
+    {
+      "query": "extract og calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 76
+    },
+    {
+      "query": "flight delay compensation calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 56
+    },
+    {
+      "query": "jwt 디코딩",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 61
+    }
+  ]
+}
