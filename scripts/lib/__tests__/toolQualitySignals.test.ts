@@ -64,6 +64,19 @@ describe('computeEngagementRates', () => {
 })
 
 describe('summarizeClaritySignals', () => {
+  // Row shape verified against real Clarity Data Export rows (data/raw/clarity-2026-10-29.json):
+  // one row per URL, with the share of that URL's sessions in which the metric occurred.
+  function row(url: string, sessionsCount: number, pct: number): Record<string, unknown> {
+    return {
+      sessionsCount,
+      sessionsWithMetricPercentage: pct,
+      sessionsWithoutMetricPercentage: 100 - pct,
+      pagesViews: 0,
+      subTotal: 0,
+      Url: url,
+    }
+  }
+
   test('returns an empty array when every day has only empty information arrays', () => {
     const days = [
       [
@@ -71,86 +84,80 @@ describe('summarizeClaritySignals', () => {
         { metricName: 'RageClickCount', information: [] },
       ],
     ]
-
     expect(summarizeClaritySignals(days)).toEqual([])
   })
 
   test('ignores unwatched metrics (e.g. EngagementTime, Traffic)', () => {
-    const days = [
-      [{ metricName: 'EngagementTime', information: [{ URL: 'https://bitkittools.com/' }] }],
-    ]
-
+    const days = [[{ metricName: 'Traffic', information: [{ totalSessionCount: 3, Url: 'https://bitkittools.com/' }] }]]
     expect(summarizeClaritySignals(days)).toEqual([])
   })
 
-  test('counts affected rows and extracts distinct URLs for a watched metric', () => {
+  test('does not report a metric whose rows all have 0% of sessions affected — regression for the 2026-11-02 report that called 5 zero-percent ScriptErrorCount rows "5 script errors"', () => {
     const days = [
+      [{ metricName: 'ScriptErrorCount', information: [row('https://bitkittools.com/baby/temperament-quiz/', 1, 0)] }],
       [
         {
-          metricName: 'RageClickCount',
+          metricName: 'ScriptErrorCount',
           information: [
-            { URL: 'https://bitkittools.com/beer/bac-calculator/', 'Country/Region': 'USA' },
-            { URL: 'https://bitkittools.com/beer/bac-calculator/', 'Country/Region': 'KOR' },
+            row('https://bitkittools.com/travel/layover-connection-calculator/', 2, 0),
+            row('https://bitkittools.com/ko/travel/layover-connection-calculator/', 1, 0),
           ],
         },
       ],
     ]
+    expect(summarizeClaritySignals(days)).toEqual([])
+  })
 
+  test('counts affected sessions (sessionsCount x percentage) and lists only affected pages from the Url field', () => {
+    const days = [
+      [
+        {
+          metricName: 'DeadClickCount',
+          information: [
+            row('https://bitkittools.com/travel/layover-connection-calculator/', 2, 0),
+            row('https://bitkittools.com/ko/travel/layover-connection-calculator/', 1, 100),
+          ],
+        },
+      ],
+    ]
     expect(summarizeClaritySignals(days)).toEqual([
       {
-        metricName: 'RageClickCount',
-        affectedRowCount: 2,
-        samplePages: ['https://bitkittools.com/beer/bac-calculator/'],
+        metricName: 'DeadClickCount',
+        affectedSessionCount: 1,
+        samplePages: ['https://bitkittools.com/ko/travel/layover-connection-calculator/'],
       },
     ])
   })
 
-  test('accumulates the same metric across multiple days', () => {
+  test('accumulates the same metric across multiple days and rounds partial percentages', () => {
     const days = [
-      [{ metricName: 'DeadClickCount', information: [{ URL: 'https://bitkittools.com/a/' }] }],
-      [{ metricName: 'DeadClickCount', information: [{ URL: 'https://bitkittools.com/b/' }] }],
+      [{ metricName: 'RageClickCount', information: [row('https://bitkittools.com/a/', 4, 50)] }],
+      [{ metricName: 'RageClickCount', information: [row('https://bitkittools.com/b/', 3, 33.33)] }],
     ]
-
-    const result = summarizeClaritySignals(days)
-
-    expect(result).toEqual([
+    expect(summarizeClaritySignals(days)).toEqual([
       {
-        metricName: 'DeadClickCount',
-        affectedRowCount: 2,
-        samplePages: expect.arrayContaining([
-          'https://bitkittools.com/a/',
-          'https://bitkittools.com/b/',
-        ]),
+        metricName: 'RageClickCount',
+        affectedSessionCount: 3,
+        samplePages: ['https://bitkittools.com/a/', 'https://bitkittools.com/b/'],
       },
     ])
   })
 
   test('caps samplePages at 5 distinct URLs', () => {
-    const information = Array.from({ length: 8 }, (_, i) => ({
-      URL: `https://bitkittools.com/page-${i}/`,
-    }))
-    const days = [[{ metricName: 'ScriptErrorCount', information }]]
-
-    const result = summarizeClaritySignals(days)
-
-    expect(result[0]?.affectedRowCount).toBe(8)
+    const information = Array.from({ length: 8 }, (_, i) => row(`https://bitkittools.com/page-${i}/`, 1, 100))
+    const result = summarizeClaritySignals([[{ metricName: 'ScriptErrorCount', information }]])
+    expect(result[0]?.affectedSessionCount).toBe(8)
     expect(result[0]?.samplePages).toHaveLength(5)
   })
 
-  test('sorts by affectedRowCount descending', () => {
+  test('sorts by affectedSessionCount descending', () => {
     const days = [
       [
-        { metricName: 'DeadClickCount', information: [{ URL: 'a' }] },
-        {
-          metricName: 'RageClickCount',
-          information: [{ URL: 'a' }, { URL: 'b' }, { URL: 'c' }],
-        },
+        { metricName: 'DeadClickCount', information: [row('a', 1, 100)] },
+        { metricName: 'RageClickCount', information: [row('a', 3, 100)] },
       ],
     ]
-
-    const result = summarizeClaritySignals(days)
-
-    expect(result.map((r) => r.metricName)).toEqual(['RageClickCount', 'DeadClickCount'])
+    expect(summarizeClaritySignals(days).map((r) => r.metricName)).toEqual(['RageClickCount', 'DeadClickCount'])
   })
 
   test('is defensive against malformed/unexpected day entries', () => {
@@ -159,14 +166,17 @@ describe('summarizeClaritySignals', () => {
       undefined,
       'not-an-array',
       [null, { metricName: 'DeadClickCount' }, { information: [] }],
-      [{ metricName: 'RageClickCount', information: [{ URL: 42 }, 'not-an-object'] }],
+      [
+        {
+          metricName: 'RageClickCount',
+          information: [{ Url: 42, sessionsCount: 2, sessionsWithMetricPercentage: 100 }, 'not-an-object', { Url: 'x' }],
+        },
+      ],
     ]
-
-    // Should not throw, and rows without a usable URL contribute to the
-    // count but not to samplePages.
-    const result = summarizeClaritySignals(days)
-    expect(result).toEqual([
-      { metricName: 'RageClickCount', affectedRowCount: 2, samplePages: [] },
+    // Rows without numeric counts contribute nothing; a row with counts but no usable Url
+    // still counts sessions but adds no sample page.
+    expect(summarizeClaritySignals(days)).toEqual([
+      { metricName: 'RageClickCount', affectedSessionCount: 2, samplePages: [] },
     ])
   })
 })

@@ -62,9 +62,9 @@ export function computeEngagementRates(
 
 export interface ClarityIssueSummary {
   metricName: string
-  /** Number of dimensioned rows Clarity returned for this metric this week (a distinct URL x Country/Region combination per row). */
-  affectedRowCount: number
-  /** Up to 5 distinct page URLs pulled from the rows, when a `URL` field is present. */
+  /** Sessions this week in which the metric actually occurred (sum of round(sessionsCount x sessionsWithMetricPercentage / 100) over rows). */
+  affectedSessionCount: number
+  /** Up to 5 distinct page URLs (row `Url` field) that had at least one affected session. */
   samplePages: string[]
 }
 
@@ -85,15 +85,15 @@ const WATCHED_CLARITY_METRICS = new Set([
  * Summarizes Clarity's raw per-day metric data (ProcessedDay.clarity) into a
  * small set of UX-issue counts.
  *
- * Defensive against unknown/malformed shapes: `ProcessedDay.clarity` is
- * stored as `unknown` because the exact field names for Clarity's per-row
- * counts haven't been verified against real populated data yet (Clarity
- * requires visitor cookie consent, and consented traffic has been ~0 so
- * far — every raw file observed so far has empty `information` arrays). This
- * only relies on two structural assumptions that are safe regardless of
- * exact field naming: (1) `information.length` is the number of affected
- * dimensioned rows, and (2) a `URL` field is present per row, since
- * dimension1='URL' was explicitly requested from the Clarity API.
+ * Row shape (verified against real populated data, data/raw/clarity-2026-10-29.json):
+ * one row per URL — `{ sessionsCount, sessionsWithMetricPercentage, ..., Url }`.
+ * Clarity returns a row for every URL that had traffic, even when the metric never
+ * occurred (percentage 0), so the row count is NOT an issue count — counting rows
+ * produced a false "5 script errors" alarm in the 2026-11-02 report. Only sessions
+ * where the metric occurred are counted, and only those URLs become samplePages.
+ *
+ * Still defensive against unknown/malformed shapes since `ProcessedDay.clarity`
+ * is stored as `unknown`.
  */
 export function summarizeClaritySignals(clarityDataPerDay: unknown[]): ClarityIssueSummary[] {
   const totals = new Map<string, { count: number; pages: Set<string> }>()
@@ -106,25 +106,29 @@ export function summarizeClaritySignals(clarityDataPerDay: unknown[]): ClarityIs
       const metricName = (entry as Record<string, unknown>).metricName
       const information = (entry as Record<string, unknown>).information
       if (typeof metricName !== 'string' || !WATCHED_CLARITY_METRICS.has(metricName)) continue
-      if (!Array.isArray(information) || information.length === 0) continue
+      if (!Array.isArray(information)) continue
 
-      const acc = totals.get(metricName) ?? { count: 0, pages: new Set<string>() }
-      acc.count += information.length
       for (const row of information) {
-        if (typeof row === 'object' && row !== null) {
-          const url = (row as Record<string, unknown>).URL
-          if (typeof url === 'string') acc.pages.add(url)
-        }
+        if (typeof row !== 'object' || row === null) continue
+        const { sessionsCount, sessionsWithMetricPercentage, Url } = row as Record<string, unknown>
+        if (typeof sessionsCount !== 'number' || typeof sessionsWithMetricPercentage !== 'number') continue
+
+        const affected = Math.round((sessionsCount * sessionsWithMetricPercentage) / 100)
+        if (affected <= 0) continue
+
+        const acc = totals.get(metricName) ?? { count: 0, pages: new Set<string>() }
+        acc.count += affected
+        if (typeof Url === 'string') acc.pages.add(Url)
+        totals.set(metricName, acc)
       }
-      totals.set(metricName, acc)
     }
   }
 
   return Array.from(totals.entries())
     .map(([metricName, acc]) => ({
       metricName,
-      affectedRowCount: acc.count,
+      affectedSessionCount: acc.count,
       samplePages: Array.from(acc.pages).slice(0, 5),
     }))
-    .sort((a, b) => b.affectedRowCount - a.affectedRowCount)
+    .sort((a, b) => b.affectedSessionCount - a.affectedSessionCount)
 }

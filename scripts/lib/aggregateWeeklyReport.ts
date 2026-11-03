@@ -49,9 +49,11 @@ export interface TopPerformingPage {
 export interface QueryPositionChange {
   query: string
   page: string
-  earliestPosition: number
-  latestPosition: number
-  /** earliestPosition - latestPosition. Positive = rank improved (lower number = better) */
+  /** Impressions-weighted average position over the whole previous week */
+  previousWeekPosition: number
+  /** Impressions-weighted average position over the whole report week */
+  thisWeekPosition: number
+  /** previousWeekPosition - thisWeekPosition. Positive = rank improved (lower number = better) */
   positionChange: number
 }
 
@@ -69,7 +71,7 @@ export interface WeeklyReportData {
   highBouncePages: HighBouncePage[]
   /** Segments with significant CTR deviation from the page overall CTR */
   ctrDeviations: CtrDeviation[]
-  /** Queries that rose most in rank (positionChange desc, top 10) */
+  /** Queries that rose most in rank week-over-week (positionChange desc, top 10). Empty without previous-week data. */
   risingQueries: QueryPositionChange[]
   /** Queries that fell most in rank (positionChange asc, top 10) */
   fallingQueries: QueryPositionChange[]
@@ -190,7 +192,38 @@ const TOP_PERFORMING_LIMIT = 5
 
 // ── Main Function ─────────────────────────────────────────────────────────────
 
-export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
+/**
+ * Minimum impressions a (query, page) needs in BOTH weeks to appear in rising/falling
+ * queries. Below this the weekly average position is a 1-2 sample number and rank
+ * "changes" are noise.
+ */
+export const MIN_IMPRESSIONS_FOR_RANK_CHANGE = 3
+
+/** Impressions-weighted average position per `${query}:::${page}` across all given days. */
+function weeklyPositions(days: ProcessedDay[]): Map<string, { weightedSum: number; impressions: number }> {
+  const acc = new Map<string, { weightedSum: number; impressions: number }>()
+  for (const day of days) {
+    for (const q of day.queries) {
+      if (q.impressions <= 0) continue
+      const key = `${q.query}:::${q.page}`
+      const existing = acc.get(key) ?? { weightedSum: 0, impressions: 0 }
+      existing.weightedSum += q.position * q.impressions
+      existing.impressions += q.impressions
+      acc.set(key, existing)
+    }
+  }
+  return acc
+}
+
+/**
+ * @param days          The report week's processed days
+ * @param previousDays  The previous week's processed days — used only for week-over-week
+ *                      rank changes (risingQueries/fallingQueries). Omit to skip them.
+ */
+export function aggregateWeeklyReport(
+  days: ProcessedDay[],
+  previousDays: ProcessedDay[] = []
+): WeeklyReportData {
   // Sort days by date so "earliest" and "latest" are well-defined
   const sorted = [...days].sort((a, b) => a.date.localeCompare(b.date))
 
@@ -349,67 +382,37 @@ export function aggregateWeeklyReport(days: ProcessedDay[]): WeeklyReportData {
   let risingQueries: QueryPositionChange[] = []
   let fallingQueries: QueryPositionChange[] = []
 
-  if (sorted.length >= 2) {
-    const earliestDate = sorted[0]!.date
-    const latestDate = sorted[sorted.length - 1]!.date
-
-    // Build impressions-weighted average position per (query, page) per date
-    // Key: `${query}:::${page}`
-    type PositionAccum = { weightedSum: number; totalImpressions: number }
-
-    const earliest = new Map<string, PositionAccum>()
-    const latest = new Map<string, PositionAccum>()
-
-    for (const day of sorted) {
-      const isEarliest = day.date === earliestDate
-      const isLatest = day.date === latestDate
-
-      if (!isEarliest && !isLatest) continue
-
-      const target = isEarliest ? earliest : latest
-
-      for (const q of day.queries) {
-        const key = `${q.query}:::${q.page}`
-        const existing = target.get(key) ?? { weightedSum: 0, totalImpressions: 0 }
-        existing.weightedSum += q.position * q.impressions
-        existing.totalImpressions += q.impressions
-        target.set(key, existing)
-      }
-    }
-
+  if (previousDays.length > 0) {
+    const thisWeek = weeklyPositions(sorted)
+    const previousWeek = weeklyPositions(previousDays)
     const positionChanges: QueryPositionChange[] = []
 
-    for (const [key, earlyAccum] of earliest) {
-      const lateAccum = latest.get(key)
-      if (!lateAccum) continue // not in latest day → skip
-
-      if (earlyAccum.totalImpressions === 0 || lateAccum.totalImpressions === 0) continue
-
-      const earlyPos = earlyAccum.weightedSum / earlyAccum.totalImpressions
-      const latePos = lateAccum.weightedSum / lateAccum.totalImpressions
+    for (const [key, curr] of thisWeek) {
+      const prev = previousWeek.get(key)
+      if (!prev) continue
+      if (curr.impressions < MIN_IMPRESSIONS_FOR_RANK_CHANGE || prev.impressions < MIN_IMPRESSIONS_FOR_RANK_CHANGE) continue
 
       const sepIdx = key.indexOf(':::')
-      if (sepIdx === -1) continue
-
-      const query = key.slice(0, sepIdx)
-      const page = key.slice(sepIdx + 3)
-
+      const previousWeekPosition = prev.weightedSum / prev.impressions
+      const thisWeekPosition = curr.weightedSum / curr.impressions
       positionChanges.push({
-        query,
-        page,
-        earliestPosition: earlyPos,
-        latestPosition: latePos,
-        positionChange: earlyPos - latePos, // positive = rank improved
+        query: key.slice(0, sepIdx),
+        page: key.slice(sepIdx + 3),
+        previousWeekPosition,
+        thisWeekPosition,
+        positionChange: previousWeekPosition - thisWeekPosition, // positive = rank improved
       })
     }
 
     // Rising: largest positionChange first (most improved)
-    risingQueries = [...positionChanges]
+    risingQueries = positionChanges
+      .filter((q) => q.positionChange > 0)
       .sort((a, b) => b.positionChange - a.positionChange)
       .slice(0, 10)
 
     // Falling: smallest positionChange first (most degraded)
-    fallingQueries = [...positionChanges]
+    fallingQueries = positionChanges
+      .filter((q) => q.positionChange < 0)
       .sort((a, b) => a.positionChange - b.positionChange)
       .slice(0, 10)
   }

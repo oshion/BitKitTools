@@ -3,7 +3,11 @@
  */
 
 import type { ProcessedDay, ProcessedPage, ProcessedQuery } from '../../process-analytics'
-import { aggregateWeeklyReport, buildTitleExperimentSection } from '../aggregateWeeklyReport'
+import {
+  aggregateWeeklyReport,
+  buildTitleExperimentSection,
+  MIN_IMPRESSIONS_FOR_RANK_CHANGE,
+} from '../aggregateWeeklyReport'
 import type { ActionLog } from '../detectStagnation'
 
 // ── Test Fixtures ─────────────────────────────────────────────────────────────
@@ -337,7 +341,9 @@ describe('aggregateWeeklyReport — claritySignals', () => {
       clarity: [
         {
           metricName: 'RageClickCount',
-          information: [{ URL: 'https://bitkittools.com/beer/bac-calculator/' }],
+          information: [
+            { sessionsCount: 1, sessionsWithMetricPercentage: 100, Url: 'https://bitkittools.com/beer/bac-calculator/' },
+          ],
         },
       ],
     })
@@ -345,7 +351,7 @@ describe('aggregateWeeklyReport — claritySignals', () => {
     expect(result.claritySignals).toEqual([
       {
         metricName: 'RageClickCount',
-        affectedRowCount: 1,
+        affectedSessionCount: 1,
         samplePages: ['https://bitkittools.com/beer/bac-calculator/'],
       },
     ])
@@ -457,7 +463,57 @@ describe('aggregateWeeklyReport — ctrDeviations', () => {
 
 // ── risingQueries / fallingQueries ────────────────────────────────────────────
 
-describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
+describe('aggregateWeeklyReport — risingQueries / fallingQueries (week-over-week)', () => {
+  // day1 = previous week, day2 = this week. Rank change compares the impressions-weighted
+  // average position over each whole week — not the first vs last single day of one week,
+  // which produced noise like "73 -> 55, biggest gain" from 1-impression days (2026-11-02 report).
+
+  test('returns empty rising/falling when no previous-week data is given', () => {
+    const day = makeDay('2026-08-08', { pages: [], queries: [makeQuery({ query: 'q', impressions: 10, position: 3 })] })
+    const result = aggregateWeeklyReport([day])
+    expect(result.risingQueries).toEqual([])
+    expect(result.fallingQueries).toEqual([])
+  })
+
+  test('averages every day of each week, not just the first and last day', () => {
+    const prev = [
+      makeDay('2026-08-01', { pages: [], queries: [makeQuery({ query: 'q', page: '/p/', impressions: 5, position: 20 })] }),
+      makeDay('2026-08-03', { pages: [], queries: [makeQuery({ query: 'q', page: '/p/', impressions: 5, position: 10 })] }),
+    ]
+    const curr = [
+      makeDay('2026-08-08', { pages: [], queries: [makeQuery({ query: 'q', page: '/p/', impressions: 5, position: 2 })] }),
+      makeDay('2026-08-10', { pages: [], queries: [makeQuery({ query: 'q', page: '/p/', impressions: 5, position: 8 })] }),
+      makeDay('2026-08-14', { pages: [], queries: [] }),
+    ]
+    const result = aggregateWeeklyReport(curr, prev)
+    expect(result.risingQueries).toHaveLength(1)
+    expect(result.risingQueries[0]!.previousWeekPosition).toBeCloseTo(15)
+    expect(result.risingQueries[0]!.thisWeekPosition).toBeCloseTo(5)
+    expect(result.risingQueries[0]!.positionChange).toBeCloseTo(10)
+  })
+
+  test('excludes queries with fewer than MIN_IMPRESSIONS_FOR_RANK_CHANGE impressions in either week', () => {
+    const prev = makeDay('2026-08-01', {
+      pages: [],
+      queries: [
+        makeQuery({ query: 'thin-prev', page: '/a/', impressions: MIN_IMPRESSIONS_FOR_RANK_CHANGE - 1, position: 73 }),
+        makeQuery({ query: 'thin-curr', page: '/b/', impressions: 10, position: 73 }),
+        makeQuery({ query: 'solid', page: '/c/', impressions: MIN_IMPRESSIONS_FOR_RANK_CHANGE, position: 73 }),
+      ],
+    })
+    const curr = makeDay('2026-08-08', {
+      pages: [],
+      queries: [
+        makeQuery({ query: 'thin-prev', page: '/a/', impressions: 10, position: 55 }),
+        makeQuery({ query: 'thin-curr', page: '/b/', impressions: 1, position: 55 }),
+        makeQuery({ query: 'solid', page: '/c/', impressions: MIN_IMPRESSIONS_FOR_RANK_CHANGE, position: 55 }),
+      ],
+    })
+    const result = aggregateWeeklyReport([curr], [prev])
+    const names = [...result.risingQueries, ...result.fallingQueries].map((q) => q.query)
+    expect(names).toEqual(['solid'])
+  })
+
   test('excludes queries that only appear on one day (cannot compare)', () => {
     // "only-early" appears only in day1, "only-late" appears only in day2
     const day1 = makeDay('2026-08-01', {
@@ -468,7 +524,7 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
       pages: [],
       queries: [makeQuery({ query: 'only-late', page: '/b/', impressions: 10, position: 3 })],
     })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     const allQueries = [...result.risingQueries, ...result.fallingQueries]
     expect(allQueries.find((q) => q.query === 'only-early')).toBeUndefined()
     expect(allQueries.find((q) => q.query === 'only-late')).toBeUndefined()
@@ -484,11 +540,11 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
       pages: [],
       queries: [makeQuery({ query: 'rising', page: '/page/', impressions: 10, position: 3 })],
     })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     expect(result.risingQueries).toHaveLength(1)
     expect(result.risingQueries[0]!.positionChange).toBeCloseTo(7)
-    expect(result.risingQueries[0]!.earliestPosition).toBeCloseTo(10)
-    expect(result.risingQueries[0]!.latestPosition).toBeCloseTo(3)
+    expect(result.risingQueries[0]!.previousWeekPosition).toBeCloseTo(10)
+    expect(result.risingQueries[0]!.thisWeekPosition).toBeCloseTo(3)
   })
 
   test('positionChange is negative when rank fell (higher position number)', () => {
@@ -501,7 +557,7 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
       pages: [],
       queries: [makeQuery({ query: 'falling', page: '/page/', impressions: 10, position: 10 })],
     })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     expect(result.fallingQueries).toHaveLength(1)
     expect(result.fallingQueries[0]!.positionChange).toBeCloseTo(-7)
   })
@@ -520,13 +576,13 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
     })
     const day2 = makeDay('2026-08-02', {
       pages: [],
-      queries: [makeQuery({ query: 'test', page: '/page/', impressions: 40, position: 2 })],
+      queries: [makeQuery({ query: 'test', page: '/page/', impressions: 40, position: 1 })],
     })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     const allQueries = [...result.risingQueries, ...result.fallingQueries]
     const entry = allQueries.find((q) => q.query === 'test' && q.page === '/page/')
     expect(entry).toBeDefined()
-    expect(entry!.earliestPosition).toBeCloseTo(2.0)
+    expect(entry!.previousWeekPosition).toBeCloseTo(2.0)
   })
 
   test('risingQueries is sorted by positionChange descending', () => {
@@ -546,7 +602,7 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
         makeQuery({ query: 'query-b', page: '/b/', impressions: 10, position: 4 }),
       ],
     })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     expect(result.risingQueries[0]!.query).toBe('query-a')
     expect(result.risingQueries[1]!.query).toBe('query-b')
   })
@@ -568,7 +624,7 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
         makeQuery({ query: 'query-d', page: '/d/', impressions: 10, position: 5 }),
       ],
     })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     expect(result.fallingQueries[0]!.query).toBe('query-c')
     expect(result.fallingQueries[1]!.query).toBe('query-d')
   })
@@ -582,7 +638,7 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
     )
     const day1 = makeDay('2026-08-01', { pages: [], queries: day1Queries })
     const day2 = makeDay('2026-08-02', { pages: [], queries: day2Queries })
-    const result = aggregateWeeklyReport([day1, day2])
+    const result = aggregateWeeklyReport([day2], [day1])
     expect(result.risingQueries.length).toBeLessThanOrEqual(10)
     expect(result.fallingQueries.length).toBeLessThanOrEqual(10)
   })
@@ -605,8 +661,8 @@ describe('aggregateWeeklyReport — risingQueries / fallingQueries', () => {
       ],
     })
     // Should not throw
-    expect(() => aggregateWeeklyReport([day1, day2])).not.toThrow()
-    const result = aggregateWeeklyReport([day1, day2])
+    expect(() => aggregateWeeklyReport([day2], [day1])).not.toThrow()
+    const result = aggregateWeeklyReport([day2], [day1])
     const zeroEntry = [...result.risingQueries, ...result.fallingQueries].find(
       (q) => q.query === 'zero-impr'
     )
