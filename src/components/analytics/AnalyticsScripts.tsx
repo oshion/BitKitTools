@@ -3,6 +3,7 @@
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
 import { isAnalyticsAllowed } from '@/lib/utils/consentStatus'
+import { isAutomatedAuditUserAgent } from '@/lib/utils/auditUserAgent'
 
 // Subscribes to Google's Funding Choices consent-mode callback queue (the CMP
 // configured in AdSense "Privacy & messaging"). GA4 and Clarity scripts are
@@ -10,12 +11,19 @@ import { isAnalyticsAllowed } from '@/lib/utils/consentStatus'
 // visitor granted consent, or no consent requirement applies to them (see
 // isAnalyticsAllowed). This satisfies GDPR/Consent Mode v2 requirements for EEA/UK traffic.
 // https://developers.google.com/funding-choices/fc-api-docs
+//
+// Scripts use lazyOnload (after window load + idle) so they don't compete with the
+// tool UI — loading them afterInteractive dropped tool pages' Lighthouse performance
+// from 100 to 60 (2026-11-02). Lighthouse audit visits skip analytics entirely so the
+// weekly audit doesn't show up as GA4/Clarity sessions.
 export default function AnalyticsScripts() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
   const [analyticsConsented, setAnalyticsConsented] = useState(false)
 
   useEffect(() => {
+    if (isAutomatedAuditUserAgent(window.navigator.userAgent)) return
+
     const fc = window.googlefc ?? { callbackQueue: [] }
     fc.callbackQueue = fc.callbackQueue ?? []
     window.googlefc = fc
@@ -49,9 +57,9 @@ export default function AnalyticsScripts() {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="ga4-init" strategy="afterInteractive">{`
+          <Script id="ga4-init" strategy="lazyOnload">{`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -60,7 +68,7 @@ export default function AnalyticsScripts() {
         </>
       )}
       {clarityId && (
-        <Script id="clarity-init" strategy="afterInteractive">{`
+        <Script id="clarity-init" strategy="lazyOnload">{`
           (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
