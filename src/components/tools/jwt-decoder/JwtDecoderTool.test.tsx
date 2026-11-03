@@ -51,18 +51,27 @@ describe('JwtDecoderTool — input_enter event', () => {
   })
 })
 
-describe('JwtDecoderTool — indent rainbow output', () => {
-  it('colors indent levels of the decoded header and payload', () => {
-    const b64 = (o: unknown) => btoa(JSON.stringify(o)).replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_')
-    const token = `${b64({ alg: 'HS256', typ: 'JWT' })}.${b64({ sub: '1', ctx: { role: 'admin' } })}.sig`
+describe('JwtDecoderTool — syntax highlighting', () => {
+  const b64 = (o: unknown) => btoa(JSON.stringify(o)).replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_')
+  const token = `${b64({ alg: 'HS256', typ: 'JWT' })}.${b64({ sub: '1', ctx: { role: 'admin' } })}.sig`
+
+  it('colors the decoded header and payload JSON by token type', () => {
     const { getByRole, getByText, container } = render(<JwtDecoderTool locale="en" />)
     fireEvent.change(getByRole('textbox'), { target: { value: token } })
     fireEvent.click(getByText('Decode'))
 
-    const levels = Array.from(container.querySelectorAll('[data-indent-level]')).map((el) =>
-      el.getAttribute('data-indent-level')
+    const keys = Array.from(container.querySelectorAll('pre:not([aria-hidden]) [data-token="key"]')).map(
+      (e) => e.textContent
     )
-    // header: 2 level-0 lines / payload: sub, ctx, role(level 1), closing brace
-    expect(levels).toEqual(['0', '0', '0', '0', '0', '1', '0'])
+    expect(keys).toEqual(['"alg"', '"typ"', '"sub"', '"ctx"', '"role"'])
+  })
+
+  it('colors the token input by segment (header / payload / signature)', () => {
+    const { getByRole, container } = render(<JwtDecoderTool locale="en" />)
+    fireEvent.change(getByRole('textbox'), { target: { value: 'aaa.bbb.ccc' } })
+    const layer = container.querySelector('pre[aria-hidden="true"]')!
+    expect(layer.querySelector('[data-token="jwt-header"]')?.textContent).toBe('aaa')
+    expect(layer.querySelector('[data-token="jwt-payload"]')?.textContent).toBe('bbb')
+    expect(layer.querySelector('[data-token="jwt-signature"]')?.textContent).toBe('ccc')
   })
 })
