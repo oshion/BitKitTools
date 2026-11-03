@@ -71,3 +71,23 @@ describe('JsonFormatterTool — input_enter event', () => {
     expect(inputEnterCalls).toHaveLength(1)
   })
 })
+
+describe('JsonFormatterTool — indent rainbow output', () => {
+  it('colors indent levels of the formatted output while keeping the text intact', () => {
+    const { getByPlaceholderText, getAllByText, container } = render(<JsonFormatterTool />)
+    fireEvent.change(getByPlaceholderText('Paste JSON here, e.g. {"name":"Alice","age":30}'), {
+      target: { value: '{"a":{"b":1}}' },
+    })
+    // 'Format' is both the mode tab and the run button — the run button comes last
+    const formatButtons = getAllByText('Format')
+    fireEvent.click(formatButtons[formatButtons.length - 1]!)
+
+    const levels = Array.from(container.querySelectorAll('[data-indent-level]')).map((el) =>
+      el.getAttribute('data-indent-level')
+    )
+    expect(levels).toEqual(['0', '0', '1', '0'])
+    expect(container.querySelector('pre[title="Click to copy"]')?.textContent).toBe(
+      '{\n  "a": {\n    "b": 1\n  }\n}'
+    )
+  })
+})

@@ -50,3 +50,19 @@ describe('JwtDecoderTool — input_enter event', () => {
     expect(inputEnterCalls).toHaveLength(1)
   })
 })
+
+describe('JwtDecoderTool — indent rainbow output', () => {
+  it('colors indent levels of the decoded header and payload', () => {
+    const b64 = (o: unknown) => btoa(JSON.stringify(o)).replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_')
+    const token = `${b64({ alg: 'HS256', typ: 'JWT' })}.${b64({ sub: '1', ctx: { role: 'admin' } })}.sig`
+    const { getByRole, getByText, container } = render(<JwtDecoderTool locale="en" />)
+    fireEvent.change(getByRole('textbox'), { target: { value: token } })
+    fireEvent.click(getByText('Decode'))
+
+    const levels = Array.from(container.querySelectorAll('[data-indent-level]')).map((el) =>
+      el.getAttribute('data-indent-level')
+    )
+    // header: 2 level-0 lines / payload: sub, ctx, role(level 1), closing brace
+    expect(levels).toEqual(['0', '0', '0', '0', '0', '1', '0'])
+  })
+})

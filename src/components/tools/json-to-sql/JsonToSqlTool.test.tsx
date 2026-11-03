@@ -60,3 +60,15 @@ describe('JsonToSqlTool — input_enter event', () => {
     expect(inputEnterCalls).toHaveLength(1)
   })
 })
+
+describe('JsonToSqlTool — indent rainbow output', () => {
+  it('colors the indented column lines of CREATE TABLE output', () => {
+    const { getByLabelText, getByText, container } = render(<JsonToSqlTool />)
+    fireEvent.change(getByLabelText('JSON Input'), { target: { value: '[{"id":1,"name":"a"}]' } })
+    fireEvent.change(getByLabelText(/Table Name/), { target: { value: 'users' } })
+    fireEvent.click(getByText('CREATE only'))
+    fireEvent.click(getByText('Convert to SQL'))
+
+    expect(container.querySelectorAll('[data-indent-level="0"]').length).toBeGreaterThanOrEqual(2)
+  })
+})

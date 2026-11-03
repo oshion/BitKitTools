@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import { formatJson, minifyJson } from '@/lib/utils/jsonFormatter'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+import IndentRainbowPre from '@/components/ui/IndentRainbowPre'
 import { localeHref } from '@/lib/utils/locale-href'
 
 // sessionStorage key shared by convention with JsonToSqlTool (same string literal,
@@ -234,13 +235,12 @@ export default function JsonFormatterTool() {
             )}
 
             {result.type === 'success' && (
-              <pre
+              <IndentRainbowPre
+                text={result.output}
                 onClick={handleCopy}
                 title="Click to copy"
                 className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed overflow-auto whitespace-pre-wrap break-all cursor-pointer hover:border-neutral-600 transition-colors"
-              >
-                {result.output}
-              </pre>
+              />
             )}
           </div>
         </div>
