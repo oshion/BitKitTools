@@ -1,4 +1,4 @@
-import { getWeeklyReportWindow } from '../weeklyReportWindow'
+import { getWeeklyReportWindow, getPreviousWeeklyWindow } from '../weeklyReportWindow'
 
 describe('getWeeklyReportWindow', () => {
   test('Monday cron run resolves to the just-completed Sat-Fri week', () => {
@@ -54,5 +54,21 @@ describe('getWeeklyReportWindow', () => {
     expect(diffDays).toBe(6)
     expect(startDate.getUTCDay()).toBe(6) // Saturday
     expect(endDate.getUTCDay()).toBe(5) // Friday
+  })
+})
+
+describe('getPreviousWeeklyWindow', () => {
+  it('returns the Sat-Fri week immediately before the given window', () => {
+    expect(getPreviousWeeklyWindow({ start: '2026-10-24', end: '2026-10-30' })).toEqual({
+      start: '2026-10-17',
+      end: '2026-10-23',
+    })
+  })
+
+  it('crosses month and year boundaries', () => {
+    expect(getPreviousWeeklyWindow({ start: '2027-01-02', end: '2027-01-08' })).toEqual({
+      start: '2026-12-26',
+      end: '2027-01-01',
+    })
   })
 })

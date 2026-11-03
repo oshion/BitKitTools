@@ -355,4 +355,22 @@ describe('generateGrowthSpec prompt', () => {
     expect(prompt).toMatch(/growth-percentile/)
     expect(prompt).toMatch(/이미 구현된 사항[\s\S]*제안하지 마세요/)
   })
+
+  it('tells the model not to propose schema types Google no longer shows as rich results (HowTo) — the 2026-11-02 layover spec proposed HowTo', async () => {
+    const fetchMock = jest.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ content: [{ type: 'text', text: 'spec' }], stop_reason: 'end_turn' }),
+    } as unknown as Response)
+    global.fetch = fetchMock
+    await generateGrowthSpec(
+      { page: '/travel/layover-connection-calculator/', consecutiveWeeks: 5, evidence: 'x' },
+      '',
+      'dummy-key'
+    )
+    const body = JSON.parse((fetchMock.mock.calls[0] as [string, { body: string }])[1].body) as {
+      messages: Array<{ content: string }>
+    }
+    const prompt = body.messages[0]?.content ?? ''
+    expect(prompt).toMatch(/HowTo[\s\S]*제안하지 마세요/)
+  })
 })

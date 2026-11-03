@@ -41,3 +41,15 @@ export function getWeeklyReportWindow(today: Date): WeeklyReportWindow {
     end: end.toISOString().slice(0, 10),
   }
 }
+
+/** Shifts a YYYY-MM-DD date string by `days` using UTC arithmetic (timezone-independent). */
+function shiftDate(date: string, days: number): string {
+  const d = new Date(`${date}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + days)
+  return d.toISOString().slice(0, 10)
+}
+
+/** The Sat-Fri week immediately before `window` — used for week-over-week rank changes. */
+export function getPreviousWeeklyWindow(window: WeeklyReportWindow): WeeklyReportWindow {
+  return { start: shiftDate(window.start, -7), end: shiftDate(window.end, -7) }
+}

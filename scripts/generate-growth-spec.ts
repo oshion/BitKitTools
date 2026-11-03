@@ -237,7 +237,8 @@ ${historySection}
 
 근거를 명시할 수 없는 제안은 포함하지 마세요.
 과거 이력에 이미 시도한 방향은 반복 제안하지 마세요.
-"이미 구현된 사항"에 있는 것(hreflang, FAQPage/WebApplication/Breadcrumb Schema, 이미 있는 내부링크, 이미 있는 FAQ 질문)은 다시 제안하지 마세요. 내부링크는 위 목록에 없는 페이지에서의 링크만, FAQ는 기존 질문과 겹치지 않는 것만 제안하세요.`
+"이미 구현된 사항"에 있는 것(hreflang, FAQPage/WebApplication/Breadcrumb Schema, 이미 있는 내부링크, 이미 있는 FAQ 질문)은 다시 제안하지 마세요. 내부링크는 위 목록에 없는 페이지에서의 링크만, FAQ는 기존 질문과 겹치지 않는 것만 제안하세요.
+Google이 리치 결과를 더 이상 보여주지 않는 Schema(HowTo — 2023년 종료, FAQ 리치 결과 — 정부·의료 사이트로 제한)를 CTR 개선 수단으로 제안하지 마세요.`
 
   const response = await fetch(ANTHROPIC_API_URL, {
     method: 'POST',

@@ -12,14 +12,19 @@
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, resolve } from 'path'
 import type { ProcessedDay } from './process-analytics'
-import { aggregateWeeklyReport, buildTitleExperimentSection } from './lib/aggregateWeeklyReport'
+import {
+  aggregateWeeklyReport,
+  buildTitleExperimentSection,
+  MIN_IMPRESSIONS_FOR_RANK_CHANGE,
+} from './lib/aggregateWeeklyReport'
 import {
   classifyAmbiguousQueries,
   classifyIntentRuleBased,
   type IntentClassification,
 } from './lib/classifyIntent'
 import { appendTrendPoint, readActionLog, readTrend, writeTrend } from './lib/detectStagnation'
-import { getWeeklyReportWindow } from './lib/weeklyReportWindow'
+import { getWeeklyReportWindow, getPreviousWeeklyWindow } from './lib/weeklyReportWindow'
+import { buildCleanupSection, type CleanupCandidate } from './lib/cleanupSection'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
@@ -79,12 +84,6 @@ function readHistory(): string {
 }
 
 // ── Cleanup Candidates ────────────────────────────────────────────────────────
-
-interface CleanupCandidate {
-  slug: string
-  addedAt: string
-  sessions: number
-}
 
 /**
  * Returns tools that are ≥90 days old and had fewer than 5 sessions
@@ -286,7 +285,11 @@ async function main(): Promise<void> {
 
   // ── 2. Aggregate weekly data ─────────────────────────────────────────────────
 
-  const weeklyData = aggregateWeeklyReport(days)
+  // Previous Sat-Fri week, only for week-over-week rank changes (risingQueries/fallingQueries).
+  const previousWindow = getPreviousWeeklyWindow({ start: windowStart, end: windowEnd })
+  const previousDays = readProcessedDaysInWindow(previousWindow.start, previousWindow.end)
+
+  const weeklyData = aggregateWeeklyReport(days, previousDays)
 
   // ── 3. Classify search intent for top queries ────────────────────────────────
 
@@ -362,12 +365,7 @@ async function main(): Promise<void> {
     .map(([q, intent]) => `- "${q}": ${intent}`)
     .join('\n')
 
-  const cleanupSection =
-    cleanupCandidates.length === 0
-      ? '해당 없음 (현재 게시 90일 이상 + 최근 7일 세션 5 미만인 tool 없음)'
-      : cleanupCandidates
-          .map((c) => `- slug: ${c.slug}, addedAt: ${c.addedAt}, 최근7일 세션: ${c.sessions}`)
-          .join('\n')
+  const cleanupSection = buildCleanupSection(cleanupCandidates, toolsConfig.length)
 
   const lighthouseSection = lighthouseSnapshot
     ? `## Lighthouse 점수 (${lighthouseSnapshot.date} 기준)\n\n\`\`\`json\n${JSON.stringify(lighthouseSnapshot.scores, null, 2)}\n\`\`\``
@@ -408,9 +406,9 @@ ${lighthouseSection}
 3. **이탈률 높은 페이지 분석**: highBouncePages 주요 항목 분석 및 개선 방향
 4. **국가/기기별 CTR 편차**: ctrDeviations 주요 항목 해설
 5. **검색 의도 분류 요약**: 분류 결과에서 발견되는 패턴과 콘텐츠 전략 시사점
-6. **순위 변동 쿼리**: risingQueries/fallingQueries 주요 항목 해설(순위가 오른 쿼리도 "잘 되고 있는 것"의 연장선으로 긍정적으로 조명)
+6. **순위 변동 쿼리**: risingQueries/fallingQueries 주요 항목 해설. 이 값은 지난주 대비 이번 주의 노출 가중 평균 순위(previousWeekPosition → thisWeekPosition)이며, 양쪽 주 모두 노출 ${MIN_IMPRESSIONS_FOR_RANK_CHANGE}회 이상인 쿼리만 포함된다. 둘 다 비어 있으면 "비교할 만큼 노출이 쌓인 쿼리 없음"이라고만 쓰고, 노출이 적은 쿼리의 순위를 따로 추정해 서술하지 말 것
 7. **정리 후보**: 위에 제공된 데이터를 그대로 요약 (해당 없으면 "현재 해당 없음" 명시)
-8. **툴 품질 신호** (toolEngagement/claritySignals 데이터가 있을 때만): toolEngagement는 페이지별 "세션 대비 실제로 입력값을 건드려본 비율"(engagementRate)이다 — 세션은 있는데 engagementRate가 낮은 페이지는 검색 의도 불일치나 UX 문제로 방문자가 도구를 쓰지도 않고 이탈했다는 신호이니 원인 후보를 짧게 짚는다. claritySignals는 DeadClickCount(반응 없는 요소 클릭)/RageClickCount(반복 클릭)/ScriptErrorCount(실제 JS 에러)/QuickbackClick(들어왔다 바로 이탈) 같은 UX 이상 신호이며, 특히 ScriptErrorCount는 볼륨과 무관하게 실제 버그일 가능성이 있으니 발견 시 반드시 명시한다. 둘 다 데이터가 없으면(빈 배열) 이 항목은 생략한다.
+8. **툴 품질 신호** (toolEngagement/claritySignals 데이터가 있을 때만): toolEngagement는 페이지별 "세션 대비 실제로 입력값을 건드려본 비율"(engagementRate)이다 — 세션은 있는데 engagementRate가 낮은 페이지는 검색 의도 불일치나 UX 문제로 방문자가 도구를 쓰지도 않고 이탈했다는 신호이니 원인 후보를 짧게 짚는다. claritySignals는 DeadClickCount(반응 없는 요소 클릭)/RageClickCount(반복 클릭)/ScriptErrorCount(실제 JS 에러)/QuickbackClick(들어왔다 바로 이탈) 같은 UX 이상 신호이며, affectedSessionCount는 그 신호가 실제로 발생한 세션 수, samplePages는 발생한 페이지다(발생 0건인 지표는 목록에 아예 없다). 특히 ScriptErrorCount는 볼륨과 무관하게 실제 버그일 가능성이 있으니 발견 시 페이지와 함께 반드시 명시한다. 둘 다 데이터가 없으면(빈 배열) 이 항목은 생략한다.
 9. **추가 아이디어 제안** (필수 — 최소 1개): 신규 콘텐츠 방향, 놓치고 있는 키워드, 경쟁사 벤치마킹 아이디어 등. 위에서 발견된 문제와 별개로 반드시 포함한다. **과거 이력(history.md)에 이미 시도했던 접근은 반복 제안하지 말 것.**
 10. **Lighthouse 성능 분석** (Lighthouse 점수 데이터가 있을 때만): 점수가 낮은 페이지의 원인 후보(무거운 JS, 이미지 최적화 부족, 서드파티 스크립트 영향 등)를 짧게 언급하고 개선 방향을 제안. 데이터가 없으면 이 항목은 생략한다.
 
@@ -435,7 +433,9 @@ ${lighthouseSection}
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 8192,
+        // Was 8192 — the 2026-10-26 and 2026-11-02 reports were both cut off by it
+        // (sections and the ===HISTORY=== block lost).
+        max_tokens: 16000,
         messages: [{ role: 'user', content: prompt }],
       }),
     })
