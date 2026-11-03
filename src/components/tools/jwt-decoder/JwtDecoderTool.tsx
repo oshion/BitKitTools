@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { decodeJwt, explainStandardClaims } from '@/lib/utils/jwtDecoder'
 import type { ClaimExplanation } from '@/lib/utils/jwtDecoder'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+import IndentRainbowPre from '@/components/ui/IndentRainbowPre'
 
 type Locale = 'en' | 'ko'
 
@@ -175,9 +176,10 @@ export default function JwtDecoderTool({ locale }: Props) {
                   {headerCopied ? (isKo ? '복사됨!' : 'Copied!') : (isKo ? '복사' : 'Copy')}
                 </button>
               </div>
-              <pre className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 text-base text-neutral-300 font-mono overflow-auto leading-relaxed">
-                {JSON.stringify(state.header, null, 2)}
-              </pre>
+              <IndentRainbowPre
+                text={JSON.stringify(state.header, null, 2)}
+                className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 text-base text-neutral-300 font-mono overflow-auto leading-relaxed"
+              />
             </div>
 
             {/* Payload */}
@@ -195,9 +197,10 @@ export default function JwtDecoderTool({ locale }: Props) {
                   {payloadCopied ? (isKo ? '복사됨!' : 'Copied!') : (isKo ? '복사' : 'Copy')}
                 </button>
               </div>
-              <pre className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 text-base text-neutral-300 font-mono overflow-auto leading-relaxed">
-                {JSON.stringify(state.payload, null, 2)}
-              </pre>
+              <IndentRainbowPre
+                text={JSON.stringify(state.payload, null, 2)}
+                className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 text-base text-neutral-300 font-mono overflow-auto leading-relaxed"
+              />
             </div>
           </div>
 

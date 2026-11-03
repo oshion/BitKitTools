@@ -74,6 +74,9 @@ CLS 방지를 위해 IAB 표준 사이즈 기준 `min-height`를 고정한다. �
 
 로딩 전에는 `bg-neutral-900 border border-dashed border-neutral-800` 스켈레톤을 표시한다. 광고 스크립트는 Lazy Load로 삽입한다.
 
+### 들여쓰기 색 띠 출력 (`components/ui/IndentRainbowPre.tsx`)
+JSON·SQL처럼 들여쓰기가 있는 **결과 출력**은 `<pre>` 대신 `IndentRainbowPre`로 그린다(현재 JSON Formatter, JWT Decoder, JSON to SQL). 들여쓰기 단계마다 옅은 배경 띠(`bg-{amber|emerald|sky|rose|lime|orange}-400/10` 순환)를 넣고, 들여쓰기 폭은 텍스트에서 자동 감지한다. 텍스트 내용은 원본과 동일하게 유지해 선택·복사 결과가 바뀌지 않는다. 5,000줄 초과 출력은 성능 때문에 일반 텍스트로 표시한다. 입력 textarea에는 적용하지 않는다(부분 색칠 불가).
+
 ### 면책조항 배너 (`components/ui/DisclaimerBanner.tsx`)
 `disclaimerType`별로 톤을 구분하되 과도하게 위협적이지 않게 한다.
 

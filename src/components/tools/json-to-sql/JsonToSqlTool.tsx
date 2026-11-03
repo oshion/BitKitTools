@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useLocale } from 'next-intl'
 import { convertJsonToSql } from '@/lib/utils/jsonToSql'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
+import IndentRainbowPre from '@/components/ui/IndentRainbowPre'
 import { localeHref } from '@/lib/utils/locale-href'
 import type { SqlDialect, OutputMode } from '@/lib/utils/jsonToSql'
 
@@ -279,9 +280,10 @@ export default function JsonToSqlTool() {
                 </button>
               </div>
               <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-6 overflow-x-auto">
-                <pre className="text-base font-mono text-neutral-200 leading-relaxed whitespace-pre-wrap break-words">
-                  {result.sql}
-                </pre>
+                <IndentRainbowPre
+                  text={result.sql}
+                  className="text-base font-mono text-neutral-200 leading-relaxed whitespace-pre-wrap break-words"
+                />
               </div>
             </div>
           )}
