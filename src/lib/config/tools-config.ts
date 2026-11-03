@@ -1209,11 +1209,11 @@ export const toolsConfig: ToolConfig[] = [
     category: 'travel',
     title: {
       en: 'Layover & Connection Time Calculator',
-      ko: '환승 시간 계산기',
+      ko: '환승 시간 계산기 – 최소환승시간 기준 충분한지 바로 확인',
     },
     description: {
       en: 'Check whether your layover is long enough based on the official Minimum Connecting Time (MCT) for your airport and connection type. Covers 22 major hubs — plus general industry defaults for all other airports. Reference only; always confirm with your airline.',
-      ko: '공항별 공식 최소환승시간(MCT)을 기준으로 보유한 환승 시간이 충분한지 확인하세요. 22개 주요 허브 공항 데이터와 그 외 공항을 위한 업계 일반 기준을 제공합니다. 참고용이며 실제 여부는 항공사에 확인하세요.',
+      ko: '내 환승 시간이 충분한지 바로 확인하세요. 인천·나리타·두바이·싱가포르 등 22개 주요 허브 공항의 공식 최소환승시간(MCT)과 국내선·국제선 연결 유형별 기준으로 비교해 드립니다. 그 외 공항은 업계 일반 기준을 적용합니다. 참고용이며 실제 여부는 항공사에 확인하세요.',
     },
     keywords: {
       en: [

@@ -215,3 +215,21 @@ describe('layover-connection-calculator FAQ', () => {
     expect(q?.answer.en).toMatch(/visa/i)
   })
 })
+
+describe('layover-connection-calculator KO search snippet', () => {
+  // KO page sat at avg position 5-10 for 5 weeks with 1 click in 87 impressions
+  // (report-review 2026-11-02): the KO title/description must state the concrete value.
+  const layover = getToolBySlug('travel', 'layover-connection-calculator')
+
+  it('KO title names minimum connecting time and the "is it enough" check', () => {
+    expect(layover?.title.ko).toMatch(/환승 시간 계산기/)
+    expect(layover?.title.ko).toMatch(/최소환승시간/)
+    expect(layover?.title.ko).toMatch(/충분한지/)
+  })
+
+  it('KO description leads with the user question and names major hubs', () => {
+    expect(layover?.description.ko.startsWith('내 환승 시간이 충분한지')).toBe(true)
+    expect(layover?.description.ko).toMatch(/인천/)
+    expect(layover?.description.ko).toMatch(/항공사에 확인/)
+  })
+})
