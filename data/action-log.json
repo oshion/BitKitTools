@@ -47,6 +47,16 @@
       "baselineCtr": 0,
       "status": "in-progress",
       "attemptNumber": 1
+    },
+    {
+      "id": "content-update-ko-travel-layover-connection-calculator-1",
+      "type": "content-update",
+      "page": "/ko/travel/layover-connection-calculator/",
+      "deployedAt": "2026-11-03T00:31:20Z",
+      "description": "KO title/description rewrite (PR #45): title '환승 시간 계산기' -> '환승 시간 계산기 – 최소환승시간 기준 충분한지 바로 확인', description leads with '내 환승 시간이 충분한지' + names ICN/NRT/DXB/SIN hubs. EVALUATE WITH PAGE-LEVEL GSC TOTALS (data/processed pages[].gscClicks/gscImpressions), not getPageCtr: this page has zero query-visible rows (all queries redacted), so getPageCtr returns null. baselineCtr = page-level 5-week cumulative 2026-09-26~10-30: 1 click / 87 impressions at avg position 5-10",
+      "baselineCtr": 0.0115,
+      "status": "in-progress",
+      "attemptNumber": 1
     }
   ]
 }
