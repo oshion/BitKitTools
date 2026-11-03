@@ -33,7 +33,8 @@ describe('JsonFormatterTool — editor size', () => {
     const { getByPlaceholderText, getByText } = render(<JsonFormatterTool />)
 
     const textarea = getByPlaceholderText('Paste JSON here, e.g. {"name":"Alice","age":30}')
-    expect(textarea).toHaveClass('md:h-[700px]')
+    // The textarea fills the CodeEditor wrapper, which carries the height
+    expect(textarea.parentElement).toHaveClass('md:h-[700px]')
 
     const outputBox = getByText('Result will appear here after you click Format or Minify.')
       .parentElement?.parentElement
@@ -72,22 +73,37 @@ describe('JsonFormatterTool — input_enter event', () => {
   })
 })
 
-describe('JsonFormatterTool — indent rainbow output', () => {
-  it('colors indent levels of the formatted output while keeping the text intact', () => {
+describe('JsonFormatterTool — syntax highlighting', () => {
+  const PLACEHOLDER = 'Paste JSON here, e.g. {"name":"Alice","age":30}'
+
+  it('colors the formatted output by token type while keeping the text intact', () => {
     const { getByPlaceholderText, getAllByText, container } = render(<JsonFormatterTool />)
-    fireEvent.change(getByPlaceholderText('Paste JSON here, e.g. {"name":"Alice","age":30}'), {
-      target: { value: '{"a":{"b":1}}' },
-    })
+    fireEvent.change(getByPlaceholderText(PLACEHOLDER), { target: { value: '{"a":{"b":1}}' } })
     // 'Format' is both the mode tab and the run button — the run button comes last
     const formatButtons = getAllByText('Format')
     fireEvent.click(formatButtons[formatButtons.length - 1]!)
 
-    const levels = Array.from(container.querySelectorAll('[data-indent-level]')).map((el) =>
-      el.getAttribute('data-indent-level')
-    )
-    expect(levels).toEqual(['0', '0', '1', '0'])
-    expect(container.querySelector('pre[title="Click to copy"]')?.textContent).toBe(
-      '{\n  "a": {\n    "b": 1\n  }\n}'
-    )
+    const output = container.querySelector('pre[title="Click to copy"]')!
+    expect(output.textContent).toBe('{\n  "a": {\n    "b": 1\n  }\n}')
+    expect(Array.from(output.querySelectorAll('[data-token="key"]')).map((e) => e.textContent)).toEqual(['"a"', '"b"'])
+    expect(output.querySelector('[data-token="number"]')?.textContent).toBe('1')
+  })
+
+  it('colors the input as you type', () => {
+    const { getByPlaceholderText, container } = render(<JsonFormatterTool />)
+    fireEvent.change(getByPlaceholderText(PLACEHOLDER), { target: { value: '{"name": "Alice"}' } })
+    const layer = container.querySelector('pre[aria-hidden="true"]')!
+    expect(layer.querySelector('[data-token="key"]')?.textContent).toBe('"name"')
+    expect(layer.querySelector('[data-token="string"]')?.textContent).toBe('"Alice"')
+  })
+
+  it('inserts indentation on Tab instead of moving focus', () => {
+    const { getByPlaceholderText } = render(<JsonFormatterTool />)
+    const input = getByPlaceholderText(PLACEHOLDER) as HTMLTextAreaElement
+    fireEvent.change(input, { target: { value: '{\n}' } })
+    input.focus()
+    input.setSelectionRange(2, 2)
+    expect(fireEvent.keyDown(input, { key: 'Tab' })).toBe(false)
+    expect(input.value).toBe('{\n  }')
   })
 })

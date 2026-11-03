@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useLocale } from 'next-intl'
 import { convertJsonToSql } from '@/lib/utils/jsonToSql'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
-import IndentRainbowPre from '@/components/ui/IndentRainbowPre'
+import CodeEditor from '@/components/ui/CodeEditor'
+import CodeHighlight from '@/components/ui/CodeHighlight'
 import { localeHref } from '@/lib/utils/locale-href'
 import type { SqlDialect, OutputMode } from '@/lib/utils/jsonToSql'
 
@@ -134,20 +135,19 @@ export default function JsonToSqlTool() {
         <label className="text-base font-medium text-neutral-400" htmlFor="json-input">
           JSON Input
         </label>
-        <textarea
+        <CodeEditor
           id="json-input"
+          language="json"
           value={inputJson}
-          onChange={(e) => {
+          onChange={(value) => {
             if (!inputEnteredRef.current) {
               inputEnteredRef.current = true
               sendEvent('input_enter')
             }
-            setInputJson(e.target.value)
+            setInputJson(value)
           }}
           placeholder={'Paste JSON here…\n\nExample:\n{"id": 1, "name": "Alice", "active": true}'}
-          rows={8}
-          spellCheck={false}
-          className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-200 font-mono leading-relaxed focus:border-neutral-600 focus:outline-none resize-y"
+          className="h-[232px]"
         />
       </div>
 
@@ -280,8 +280,9 @@ export default function JsonToSqlTool() {
                 </button>
               </div>
               <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-6 overflow-x-auto">
-                <IndentRainbowPre
+                <CodeHighlight
                   text={result.sql}
+                  language="sql"
                   className="text-base font-mono text-neutral-200 leading-relaxed whitespace-pre-wrap break-words"
                 />
               </div>

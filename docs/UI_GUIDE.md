@@ -74,8 +74,25 @@ CLS 방지를 위해 IAB 표준 사이즈 기준 `min-height`를 고정한다. �
 
 로딩 전에는 `bg-neutral-900 border border-dashed border-neutral-800` 스켈레톤을 표시한다. 광고 스크립트는 Lazy Load로 삽입한다.
 
-### 들여쓰기 색 띠 출력 (`components/ui/IndentRainbowPre.tsx`)
-JSON·SQL처럼 들여쓰기가 있는 **결과 출력**은 `<pre>` 대신 `IndentRainbowPre`로 그린다(현재 JSON Formatter, JWT Decoder, JSON to SQL). 들여쓰기 단계마다 옅은 배경 띠(`bg-{amber|emerald|sky|rose|lime|orange}-400/10` 순환)를 넣고, 들여쓰기 폭은 텍스트에서 자동 감지한다. 텍스트 내용은 원본과 동일하게 유지해 선택·복사 결과가 바뀌지 않는다. 5,000줄 초과 출력은 성능 때문에 일반 텍스트로 표시한다. 입력 textarea에는 적용하지 않는다(부분 색칠 불가).
+### 코드 하이라이팅 (`components/ui/CodeHighlight.tsx`, `components/ui/CodeEditor.tsx`)
+JSON·SQL·JWT를 다루는 툴(현재 JSON Formatter, JWT Decoder, JSON to SQL)은 Postman처럼 **토큰 종류별 글자색**으로 보여준다. 토크나이저는 `lib/utils/syntaxHighlight.ts`(잘못된/입력 중인 텍스트에서도 예외 없이 동작).
+- **출력**: `<pre>` 대신 `CodeHighlight`. 텍스트 내용은 원본과 동일 → 선택·복사 결과 불변.
+- **입력**: `<textarea>` 대신 `CodeEditor` — 투명 textarea 아래에 하이라이트 레이어를 겹친 구조라 커서·선택·붙여넣기·실행취소는 브라우저 기본 동작 그대로. 두 레이어는 글꼴·패딩·줄바꿈 클래스를 공유하므로 **토큰 색에 font-weight/italic을 쓰지 않는다**(글자 폭이 달라지면 커서 위치가 어긋남).
+- **Tab**: JSON 입력은 Tab=들여쓰기 2칸, Shift+Tab=내어쓰기, 여러 줄 선택 시 줄 단위. 키보드 트랩 방지를 위해 **Esc 후 Tab**은 포커스 이동(스크린리더 안내 문구 포함). JWT 입력은 `tabIndent={false}`.
+
+| 토큰 | 색 |
+|------|----|
+| key | `text-sky-300` |
+| string | `text-emerald-300` |
+| number | `text-orange-300` |
+| true/false | `text-rose-300` |
+| null | `text-neutral-400` |
+| 괄호(깊이별 순환) | `text-yellow-300` → `text-pink-300` → `text-cyan-300` |
+| `: , ;` | `text-neutral-500` |
+| SQL 키워드·타입 / 식별자 | `text-sky-400` / `text-amber-200` |
+| JWT header / payload / signature | `text-rose-300` / `text-sky-300` / `text-emerald-300` |
+
+200,000자를 넘으면 성능 때문에 하이라이팅 없이 일반 텍스트로 표시한다. 보라/인디고는 쓰지 않는다.
 
 ### 면책조항 배너 (`components/ui/DisclaimerBanner.tsx`)
 `disclaimerType`별로 톤을 구분하되 과도하게 위협적이지 않게 한다.

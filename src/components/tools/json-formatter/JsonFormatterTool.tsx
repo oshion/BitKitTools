@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import { formatJson, minifyJson } from '@/lib/utils/jsonFormatter'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
-import IndentRainbowPre from '@/components/ui/IndentRainbowPre'
+import CodeEditor from '@/components/ui/CodeEditor'
+import CodeHighlight from '@/components/ui/CodeHighlight'
 import { localeHref } from '@/lib/utils/locale-href'
 
 // sessionStorage key shared by convention with JsonToSqlTool (same string literal,
@@ -162,23 +163,26 @@ export default function JsonFormatterTool() {
         {/* Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-base font-medium text-neutral-400">Input</label>
+            <label className="text-base font-medium text-neutral-400" htmlFor="json-formatter-input">
+              Input
+            </label>
             <span className="text-sm text-neutral-500">
               {charCount} chars · {lineCount} lines
             </span>
           </div>
-          <textarea
+          <CodeEditor
+            id="json-formatter-input"
+            language="json"
             value={input}
-            onChange={(e) => {
+            onChange={(value) => {
               if (!inputEnteredRef.current) {
                 inputEnteredRef.current = true
                 sendEvent('input_enter')
               }
-              setInput(e.target.value)
+              setInput(value)
             }}
             placeholder='Paste JSON here, e.g. {"name":"Alice","age":30}'
-            spellCheck={false}
-            className="w-full h-[420px] md:h-[700px] rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed resize-y focus:outline-none focus:border-neutral-600 placeholder-neutral-600"
+            className="h-[420px] md:h-[700px]"
           />
         </div>
 
@@ -235,8 +239,9 @@ export default function JsonFormatterTool() {
             )}
 
             {result.type === 'success' && (
-              <IndentRainbowPre
+              <CodeHighlight
                 text={result.output}
+                language="json"
                 onClick={handleCopy}
                 title="Click to copy"
                 className="h-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-300 font-mono leading-relaxed overflow-auto whitespace-pre-wrap break-all cursor-pointer hover:border-neutral-600 transition-colors"

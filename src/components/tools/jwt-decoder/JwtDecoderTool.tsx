@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { decodeJwt, explainStandardClaims } from '@/lib/utils/jwtDecoder'
 import type { ClaimExplanation } from '@/lib/utils/jwtDecoder'
 import { useAnalyticsEvent } from '@/hooks/useAnalyticsEvent'
-import IndentRainbowPre from '@/components/ui/IndentRainbowPre'
+import CodeEditor from '@/components/ui/CodeEditor'
+import CodeHighlight from '@/components/ui/CodeHighlight'
 
 type Locale = 'en' | 'ko'
 
@@ -83,25 +84,24 @@ export default function JwtDecoderTool({ locale }: Props) {
         <label className="text-base font-medium text-neutral-400" htmlFor="jwt-input">
           {isKo ? 'JWT 토큰 붙여넣기' : 'Paste JWT Token'}
         </label>
-        <textarea
+        <CodeEditor
           id="jwt-input"
-          className="w-full rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-3 text-base text-neutral-200 font-mono focus:border-neutral-600 focus:outline-none resize-none leading-relaxed break-all"
-          rows={4}
+          language="jwt"
+          tabIndent={false}
+          className="h-32"
           placeholder={
             isKo
               ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.xxxxx'
               : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.xxxxx'
           }
           value={token}
-          onChange={(e) => {
+          onChange={(value) => {
             if (!inputEnteredRef.current) {
               inputEnteredRef.current = true
               sendEvent('input_enter')
             }
-            setToken(e.target.value)
+            setToken(value)
           }}
-          spellCheck={false}
-          autoComplete="off"
         />
         <p className="text-sm text-neutral-500">
           🔒{' '}
@@ -176,8 +176,9 @@ export default function JwtDecoderTool({ locale }: Props) {
                   {headerCopied ? (isKo ? '복사됨!' : 'Copied!') : (isKo ? '복사' : 'Copy')}
                 </button>
               </div>
-              <IndentRainbowPre
+              <CodeHighlight
                 text={JSON.stringify(state.header, null, 2)}
+                language="json"
                 className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 text-base text-neutral-300 font-mono overflow-auto leading-relaxed"
               />
             </div>
@@ -197,8 +198,9 @@ export default function JwtDecoderTool({ locale }: Props) {
                   {payloadCopied ? (isKo ? '복사됨!' : 'Copied!') : (isKo ? '복사' : 'Copy')}
                 </button>
               </div>
-              <IndentRainbowPre
+              <CodeHighlight
                 text={JSON.stringify(state.payload, null, 2)}
+                language="json"
                 className="rounded-lg bg-neutral-900 border border-neutral-800 p-4 text-base text-neutral-300 font-mono overflow-auto leading-relaxed"
               />
             </div>
