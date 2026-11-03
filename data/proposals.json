@@ -85,7 +85,7 @@
       "type": "growth",
       "target": "/travel/layover-connection-calculator/",
       "firstProposedAt": "2026-11-02",
-      "status": "pending",
+      "status": "implemented",
       "lastReminderAt": "2026-11-02"
     }
   ]
