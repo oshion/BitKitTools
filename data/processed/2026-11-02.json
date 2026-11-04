@@ -23,10 +23,19 @@
         "session_start": 1,
         "tool_open": 1
       },
-      "gscImpressions": 0,
+      "gscImpressions": 3,
       "gscClicks": 0,
-      "gscAvgPosition": null,
+      "gscAvgPosition": 7,
       "bounceRate": 1
+    },
+    {
+      "path": "/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 41,
+      "bounceRate": null
     },
     {
       "path": "/baby/temperament-quiz/",
@@ -40,9 +49,9 @@
         "tool_open": 1,
         "user_engagement": 1
       },
-      "gscImpressions": 0,
+      "gscImpressions": 9,
       "gscClicks": 0,
-      "gscAvgPosition": null,
+      "gscAvgPosition": 5.555555555555555,
       "bounceRate": 0
     },
     {
@@ -54,10 +63,28 @@
         "session_start": 1,
         "tool_open": 1
       },
-      "gscImpressions": 0,
+      "gscImpressions": 4,
       "gscClicks": 0,
-      "gscAvgPosition": null,
+      "gscAvgPosition": 75.25,
       "bounceRate": 1
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 25.333333333333332,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 11,
+      "bounceRate": null
     },
     {
       "path": "/developer/json-formatter/",
@@ -74,6 +101,51 @@
       "bounceRate": 1
     },
     {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 11,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 2,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/jwt-decoder/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 56,
+      "bounceRate": null
+    },
+    {
       "path": "/ko/travel/layover-connection-calculator/",
       "sessions": 1,
       "events": {
@@ -83,9 +155,9 @@
         "tool_open": 1,
         "user_engagement": 1
       },
-      "gscImpressions": 0,
-      "gscClicks": 0,
-      "gscAvgPosition": null,
+      "gscImpressions": 3,
+      "gscClicks": 1,
+      "gscAvgPosition": 6.666666666666667,
       "bounceRate": 1
     },
     {
@@ -101,9 +173,109 @@
       "gscClicks": 0,
       "gscAvgPosition": null,
       "bounceRate": 1
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 16,
+      "gscClicks": 0,
+      "gscAvgPosition": 14,
+      "bounceRate": null
     }
   ],
-  "queries": [],
+  "queries": [
+    {
+      "query": "airport connection times data",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 30
+    },
+    {
+      "query": "baby personality quiz",
+      "page": "/baby/temperament-quiz/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "baby temperament quiz",
+      "page": "/baby/temperament-quiz/",
+      "country": "gbr",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 14
+    },
+    {
+      "query": "bac cal",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "query": "bac calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "can",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 72
+    },
+    {
+      "query": "bac test",
+      "page": "/beer/bac-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 82
+    },
+    {
+      "query": "flight connection time",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "are",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 74
+    },
+    {
+      "query": "jwt 디코딩",
+      "page": "/ko/developer/jwt-decoder/",
+      "country": "kor",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 53
+    },
+    {
+      "query": "jwt 디코딩",
+      "page": "/ko/developer/jwt-decoder/",
+      "country": "ltu",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 59
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",
