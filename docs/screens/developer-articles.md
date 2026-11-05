@@ -26,7 +26,7 @@
 
 ## UI 구성
 - H1 → 게시일·읽는 시간 → "한 줄 요약" 박스(정의문, AI 답변 인용 대상) → 본문 섹션(h2) → 저장소 CTA 링크 → FAQ → 관련 도구
-- 타이포·간격은 툴 페이지와 동일(`max-w-6xl`, h2 `text-2xl font-semibold`, 본문 `text-base`), 본문 폭은 가독성을 위해 `max-w-3xl`
+- 타이포·간격은 툴 페이지와 동일(`max-w-6xl`, h2 `text-2xl font-semibold`, 본문 `text-base`) — 본문·FAQ도 별도 폭 제한 없이 페이지 전체 폭(`max-w-6xl`) 사용 (2026-11-05 사용자 요청)
 - 외부 링크는 `target="_blank" rel="noopener"`
 - 광고·ToolStage 없음(툴 아님)
 
