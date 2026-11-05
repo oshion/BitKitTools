@@ -88,7 +88,7 @@ export default async function DeveloperArticlePage({ params }: Props) {
       <SchemaArticle article={article} locale={safeLocale} url={pageUrl} />
       <SchemaFaqPage faq={article.faq} locale={safeLocale} />
 
-      <header className="max-w-3xl space-y-4">
+      <header className="space-y-4">
         <p className="text-sm text-neutral-500">
           {isKo ? '개발자 · 아티클' : 'Developer · Article'}
         </p>
@@ -99,12 +99,12 @@ export default async function DeveloperArticlePage({ params }: Props) {
         </p>
       </header>
 
-      <div className="max-w-3xl space-y-6">
+      <div className="space-y-6">
         <Body locale={safeLocale} />
       </div>
 
       {/* FAQ */}
-      <section className="max-w-3xl space-y-4">
+      <section className="space-y-4">
         <h2 className="text-2xl font-semibold text-white">{isKo ? '자주 묻는 질문' : 'Frequently Asked Questions'}</h2>
         <dl className="space-y-6">
           {article.faq.map((item, i) => (
