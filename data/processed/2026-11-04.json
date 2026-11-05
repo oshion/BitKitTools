@@ -1,0 +1,368 @@
+{
+  "date": "2026-11-04",
+  "pages": [
+    {
+      "path": "/",
+      "sessions": 1,
+      "events": {
+        "page_view": 2,
+        "session_start": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 2,
+      "events": {
+        "first_visit": 2,
+        "input_enter": 2,
+        "page_view": 2,
+        "session_start": 2,
+        "calculate": 1,
+        "tool_open": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    },
+    {
+      "path": "/developer/json-formatter/",
+      "sessions": 1,
+      "events": {
+        "page_view": 1,
+        "tool_open": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 1,
+      "events": {
+        "calculate": 3,
+        "first_visit": 1,
+        "input_enter": 1,
+        "page_view": 1,
+        "session_start": 1,
+        "tool_open": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    }
+  ],
+  "queries": [],
+  "clarity": [
+    {
+      "metricName": "DeadClickCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 4,
+          "subTotal": 114,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 4,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 4,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 2,
+          "subTotal": 15,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 4,
+          "subTotal": 4,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 2,
+          "subTotal": 2,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": [
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": [
+        {
+          "averageScrollDepth": 46.75,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "averageScrollDepth": 57.5,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "averageScrollDepth": 20.67,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "averageScrollDepth": 100,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "Traffic",
+      "information": [
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 14,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 14,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 14,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 14,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": [
+        {
+          "totalTime": 21,
+          "activeTime": 21,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalTime": 84,
+          "activeTime": 84,
+          "Url": "https://bitkittools.com/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "totalTime": 152,
+          "activeTime": 152,
+          "Url": "https://bitkittools.com/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "totalTime": 19,
+          "activeTime": 16,
+          "Url": "https://bitkittools.com/ko/"
+        }
+      ]
+    }
+  ]
+}
