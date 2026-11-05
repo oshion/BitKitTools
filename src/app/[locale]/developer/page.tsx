@@ -3,6 +3,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { getToolsByCategory } from '@/lib/config/tools-config'
 import ToolCardGrid from '@/components/ui/ToolCardGrid'
+import ArticleCardList from '@/components/ui/ArticleCardList'
+import { getArticlesByCategory } from '@/lib/config/articles-config'
 import SchemaBreadcrumb from '@/components/seo/SchemaBreadcrumb'
 
 type Props = {
@@ -64,6 +66,7 @@ export default async function DeveloperCategoryPage({ params }: Props) {
   const tCategory = await getTranslations({ locale, namespace: 'categoryPage' })
 
   const tools = getToolsByCategory(CATEGORY)
+  const articles = getArticlesByCategory(CATEGORY)
   const isKo = safeLocale === 'ko'
   const pageUrl = isKo ? `${SITE_URL}/ko/${CATEGORY}/` : `${SITE_URL}/${CATEGORY}/`
 
@@ -83,6 +86,13 @@ export default async function DeveloperCategoryPage({ params }: Props) {
       </p>
 
       <ToolCardGrid tools={tools} locale={safeLocale} emptyMessage={tCategory('comingSoon')} />
+
+      {articles.length > 0 && (
+        <section className="space-y-4">
+          <h2 className="text-2xl font-semibold text-white">{isKo ? '아티클' : 'Articles'}</h2>
+          <ArticleCardList articles={articles} locale={safeLocale} />
+        </section>
+      )}
     </div>
   )
 }
