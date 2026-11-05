@@ -96,6 +96,11 @@ export type ToolConfig = {
 - `status`/`popular`/`addedAt`은 **런타임에 자동 계산되지 않는다.** GA4/GSC 월간 리뷰(profile v2 Section 11) 결과를 사람이 수동으로 반영하는 정적 필드다. Static Export는 서버가 없어 실시간 랭킹 계산이 불가능하기 때문.
 - 새 툴 추가 = 이 배열에 항목 하나 + `components/tools/{slug}/` 폴더 하나. 그 외 홈/카테고리/사이트맵/RSS 코드는 수정하지 않는다.
 
+### 아티클 (툴이 아닌 설명형 콘텐츠)
+- 메타데이터는 `lib/config/articles-config.ts`(`types/article.ts`), 본문은 `components/articles/{slug}/ArticleBody.tsx` + `components/articles/index.ts` 레지스트리. 툴과 같은 Configuration-driven 원칙.
+- URL `/{category}/articles/{slug}` — 현재 라우트는 `app/[locale]/developer/articles/[slug]/page.tsx`만 있다. 카테고리 페이지 "아티클" 섹션·사이트맵은 config에서 자동 생성(RSS·홈은 미포함).
+- 새 아티클 추가 = 본문 컴포넌트 + 레지스트리 1줄 + config 항목 1개. 상세 → `docs/screens/developer-articles.md`
+
 ---
 
 ## 데이터 흐름

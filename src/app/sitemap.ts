@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 
 export const dynamic = 'force-static'
 import { toolsConfig, TOOL_CATEGORIES } from '@/lib/config/tools-config'
+import { getArticlePaths } from '@/lib/config/articles-config'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bitkittools.com'
 const LOCALES = ['en', 'ko'] as const
@@ -57,6 +58,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
+  // Article pages — iterates over articlesConfig so new articles appear automatically
+  for (const { path, lastModified } of getArticlePaths()) {
+    entries.push({
+      url: enUrl(path),
+      alternates: { languages: { en: enUrl(path), ko: koUrl(path) } },
+      changeFrequency: 'monthly',
+      priority: 0.7,
+      lastModified,
+    })
+  }
+
   // Legal pages
   for (const page of LEGAL_PAGES) {
     const path = `/${page}`
@@ -90,6 +102,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
       lastModified: tool.addedAt,
+    })
+  }
+
+  for (const { path, lastModified } of getArticlePaths()) {
+    entries.push({
+      url: koUrl(path),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+      lastModified,
     })
   }
 
