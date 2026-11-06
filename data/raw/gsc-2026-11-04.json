@@ -1,0 +1,221 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "0.14 bac",
+        "https://bitkittools.com/ko/beer/bac-calculator/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "est",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 88
+    },
+    {
+      "keys": [
+        "bac calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "can",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 68
+    },
+    {
+      "keys": [
+        "calculate abv homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 48
+    },
+    {
+      "keys": [
+        "eu261 compensation table",
+        "https://bitkittools.com/travel/flight-delay-compensation/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 90
+    },
+    {
+      "keys": [
+        "height predictor",
+        "https://bitkittools.com/baby/height-predictor/",
+        "pak",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 96
+    },
+    {
+      "keys": [
+        "jwt decoder",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
+        "jwt 디코딩",
+        "https://bitkittools.com/ko/developer/jwt-decoder/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "keys": [
+        "temperament baby test",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "deu",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "아기 키 몸무게 백분위",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
+        "아기 키 몸무게 백분위",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 52
+    },
+    {
+      "keys": [
+        "아기 키 백분위",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 87
+    },
+    {
+      "keys": [
+        "아기 키 백분위",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "keys": [
+        "자녀 키 계산기",
+        "https://bitkittools.com/ko/baby/height-predictor/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "keys": [
+        "자녀 키 계산기",
+        "https://bitkittools.com/ko/baby/height-predictor/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 95
+    },
+    {
+      "keys": [
+        "키 백분위 계산기",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "keys": [
+        "키 백분위 계산기",
+        "https://bitkittools.com/ko/baby/growth-percentile/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 51
+    }
+  ],
+  "responseAggregationType": "byPage"
+}

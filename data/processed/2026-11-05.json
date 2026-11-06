@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-05",
+  "pages": [
+    {
+      "path": "/",
+      "sessions": 1,
+      "events": {
+        "page_view": 6,
+        "scroll": 1,
+        "session_start": 1,
+        "user_engagement": 2
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 1,
+      "events": {
+        "first_visit": 1,
+        "page_view": 1,
+        "session_start": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 1
+    },
+    {
+      "path": "/developer/articles/ai-vibe-coding-harness-framework/",
+      "sessions": 1,
+      "events": {
+        "page_view": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    },
+    {
+      "path": "/ko/",
+      "sessions": 1,
+      "events": {
+        "page_view": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    },
+    {
+      "path": "/ko/developer/articles/ai-vibe-coding-harness-framework/",
+      "sessions": 1,
+      "events": {
+        "page_view": 3,
+        "scroll": 2,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    }
+  ],
+  "queries": [],
+  "clarity": [
+    {
+      "metricName": "DeadClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 2,
+          "subTotal": 4,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": [
+        {
+          "averageScrollDepth": 90.5,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "averageScrollDepth": 16,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "Traffic",
+      "information": [
+        {
+          "totalSessionCount": 2,
+          "totalBotSessionCount": 1,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": [
+        {
+          "totalTime": 6,
+          "activeTime": 6,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalTime": 2,
+          "activeTime": 2,
+          "Url": "https://bitkittools.com/baby/height-predictor/"
+        }
+      ]
+    }
+  ]
+}

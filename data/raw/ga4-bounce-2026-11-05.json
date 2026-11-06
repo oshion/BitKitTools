@@ -1,0 +1,100 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "pagePath"
+    }
+  ],
+  "metricHeaders": [
+    {
+      "name": "bounceRate",
+      "type": "TYPE_FLOAT"
+    },
+    {
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "/beer/hydrometer-temperature-correction/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/developer/articles/ai-vibe-coding-harness-framework/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "rowCount": 5,
+  "metadata": {
+    "currencyCode": "KRW",
+    "timeZone": "Asia/Seoul"
+  },
+  "kind": "analyticsData#runReport"
+}

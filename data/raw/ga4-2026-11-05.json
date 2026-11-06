@@ -1,0 +1,262 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "pagePath"
+    },
+    {
+      "name": "eventName"
+    }
+  ],
+  "metricHeaders": [
+    {
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
+    },
+    {
+      "name": "eventCount",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "/"
+        },
+        {
+          "value": "page_view"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/"
+        },
+        {
+          "value": "scroll"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/"
+        },
+        {
+          "value": "session_start"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/"
+        },
+        {
+          "value": "user_engagement"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/beer/hydrometer-temperature-correction/"
+        },
+        {
+          "value": "first_visit"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/beer/hydrometer-temperature-correction/"
+        },
+        {
+          "value": "page_view"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/beer/hydrometer-temperature-correction/"
+        },
+        {
+          "value": "session_start"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "value": "page_view"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/"
+        },
+        {
+          "value": "page_view"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/"
+        },
+        {
+          "value": "user_engagement"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "value": "page_view"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "value": "scroll"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/ko/developer/articles/ai-vibe-coding-harness-framework/"
+        },
+        {
+          "value": "user_engagement"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "rowCount": 13,
+  "metadata": {
+    "currencyCode": "KRW",
+    "timeZone": "Asia/Seoul"
+  },
+  "kind": "analyticsData#runReport"
+}
