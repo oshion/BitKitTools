@@ -1,0 +1,137 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "4 types of baby temperament",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "bra",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 29
+    },
+    {
+      "keys": [
+        "alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "est",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 90
+    },
+    {
+      "keys": [
+        "baby temperament test",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "nld",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "bac calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "can",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 69
+    },
+    {
+      "keys": [
+        "bac estimation",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 48.5
+    },
+    {
+      "keys": [
+        "bac level calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "keys": [
+        "calculate abv homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 95
+    },
+    {
+      "keys": [
+        "eu261 compensation table",
+        "https://bitkittools.com/travel/flight-delay-compensation/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "keys": [
+        "flight connection time",
+        "https://bitkittools.com/travel/layover-connection-calculator/",
+        "are",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 65
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "keys": [
+        "temperature correction factor",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 94
+    }
+  ],
+  "responseAggregationType": "byPage"
+}

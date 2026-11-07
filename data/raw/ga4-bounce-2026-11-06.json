@@ -1,0 +1,55 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "pagePath"
+    }
+  ],
+  "metricHeaders": [
+    {
+      "name": "bounceRate",
+      "type": "TYPE_FLOAT"
+    },
+    {
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "/baby/height-predictor/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "/"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0.66666666666666663"
+        },
+        {
+          "value": "3"
+        }
+      ]
+    }
+  ],
+  "rowCount": 2,
+  "metadata": {
+    "currencyCode": "KRW",
+    "timeZone": "Asia/Seoul"
+  },
+  "kind": "analyticsData#runReport"
+}

@@ -16,6 +16,51 @@
       "bounceRate": 0
     },
     {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 44.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 1,
+      "gscAvgPosition": 5.333333333333333,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 12.75,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 67.2,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 77.4,
+      "bounceRate": null
+    },
+    {
       "path": "/beer/hydrometer-temperature-correction/",
       "sessions": 1,
       "events": {
@@ -23,9 +68,9 @@
         "page_view": 1,
         "session_start": 1
       },
-      "gscImpressions": 0,
+      "gscImpressions": 4,
       "gscClicks": 0,
-      "gscAvgPosition": null,
+      "gscAvgPosition": 27.5,
       "bounceRate": 1
     },
     {
@@ -52,6 +97,42 @@
       "bounceRate": 0
     },
     {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 6,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 4,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 1,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 5,
+      "bounceRate": null
+    },
+    {
       "path": "/ko/developer/articles/ai-vibe-coding-harness-framework/",
       "sessions": 1,
       "events": {
@@ -63,9 +144,147 @@
       "gscClicks": 0,
       "gscAvgPosition": null,
       "bounceRate": 0
+    },
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 6,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/flight-delay-compensation/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 92,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 12,
+      "gscClicks": 0,
+      "gscAvgPosition": 19.5,
+      "bounceRate": null
     }
   ],
-  "queries": [],
+  "queries": [
+    {
+      "query": "4 types of baby temperament",
+      "page": "/baby/temperament-quiz/",
+      "country": "bra",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 29
+    },
+    {
+      "query": "alcohol calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "est",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 90
+    },
+    {
+      "query": "baby temperament test",
+      "page": "/baby/temperament-quiz/",
+      "country": "nld",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "query": "bac calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "can",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 69
+    },
+    {
+      "query": "bac estimation",
+      "page": "/beer/bac-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 48.5
+    },
+    {
+      "query": "bac level calculator",
+      "page": "/beer/bac-calculator/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "query": "calculate abv homebrew",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 3,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 95
+    },
+    {
+      "query": "eu261 compensation table",
+      "page": "/travel/flight-delay-compensation/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "query": "flight connection time",
+      "page": "/travel/layover-connection-calculator/",
+      "country": "are",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 65
+    },
+    {
+      "query": "homebrew abv calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 92
+    },
+    {
+      "query": "temperature correction factor",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 94
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",
