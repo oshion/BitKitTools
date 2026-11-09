@@ -48,7 +48,7 @@
       "status": "completed",
       "summary": "app/[locale]/fun/chiikawa-personality-test/result/[characterId]/: page.tsx(generateStaticParams locale×16=32, generateMetadata canonical/hreflang trailing slash·og:image 고정 /og/chiikawa/{id}-{locale}.png, 본문=대표색 카드·이모지·이름·공식 사이트 링크·팬 설정 유형+라벨·성격 분석·강점·'나도 테스트하기' CTA·FanMadeNotice·SchemaBreadcrumb, 사이트맵/tools-config 미등록) + opengraph-image.tsx(ogColor 배경+반투명 원, 큰 이모지·이름·테스트 제목·bitkittools.com, 캐릭터 그림 없음) + page.test.tsx; postbuild.mjs를 copyResultOgImages(subPath, ogDir) 헬퍼로 묶어 temperament 32 + chiikawa 32 PNG 디렉토리 발견식 복사. 빌드 PNG 육안 확인: 이모지(🐿️·🛡️ FE0F 포함)·한글 정상",
       "started_at": "2026-11-09T09:43:04+0900",
-      "completed_at": "2026-11-09T10:05:00+0900"
+      "completed_at": "2026-11-09T09:46:56+0900"
     }
   ],
   "created_at": "2026-11-09T09:19:43+0900"
