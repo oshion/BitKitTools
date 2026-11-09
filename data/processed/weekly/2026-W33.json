@@ -1,0 +1,145 @@
+{
+  "week": "2026-W33",
+  "dateRange": {
+    "start": "2026-08-10",
+    "end": "2026-08-10"
+  },
+  "totalSessions": 0,
+  "totalGscImpressions": 53,
+  "totalGscClicks": 0,
+  "avgGscPosition": 40.75471698113208,
+  "topPages": [
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "gscImpressions": 19,
+      "gscClicks": 0,
+      "gscAvgPosition": 76.84210526315789
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 20.4
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 8.5
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 65
+    },
+    {
+      "path": "/ko/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 5
+    },
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 32
+    },
+    {
+      "path": "/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 1
+    },
+    {
+      "path": "/about/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 3
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 87
+    },
+    {
+      "path": "/contact/",
+      "sessions": 0,
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 5
+    }
+  ],
+  "topQueries": [
+    {
+      "query": "home brew alcohol calculator",
+      "impressions": 3,
+      "clicks": 0,
+      "avgPosition": 79
+    },
+    {
+      "query": "alcohol calculator homebrew",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 77
+    },
+    {
+      "query": "80 grams of alcohol in ml",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 73
+    },
+    {
+      "query": "alcohol drink calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 88
+    },
+    {
+      "query": "beer gravity calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 83
+    },
+    {
+      "query": "beer og calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 75
+    },
+    {
+      "query": "cdc length percentile calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 67
+    },
+    {
+      "query": "connection time",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 62
+    },
+    {
+      "query": "extract og calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 71
+    },
+    {
+      "query": "homebrew alcohol calculator",
+      "impressions": 1,
+      "clicks": 0,
+      "avgPosition": 75
+    }
+  ]
+}

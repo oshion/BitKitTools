@@ -1,0 +1,1219 @@
+{
+  "date": "2026-11-08",
+  "pages": [
+    {
+      "path": "/",
+      "sessions": 1,
+      "events": {
+        "first_visit": 1,
+        "page_view": 1,
+        "session_start": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 1
+    }
+  ],
+  "queries": [],
+  "clarity": [
+    {
+      "metricName": "DeadClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "sessionsCount": 3,
+          "sessionsWithMetricPercentage": 33.33,
+          "sessionsWithoutMetricPercentage": 66.67,
+          "pagesViews": 2,
+          "subTotal": 16,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 15,
+          "sessionsWithMetricPercentage": 20,
+          "sessionsWithoutMetricPercentage": 80,
+          "pagesViews": 3,
+          "subTotal": 159,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "sessionsCount": 3,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 15,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "sessionsCount": 3,
+          "sessionsWithMetricPercentage": 33.33,
+          "sessionsWithoutMetricPercentage": 66.67,
+          "pagesViews": 1,
+          "subTotal": 2,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 15,
+          "sessionsWithMetricPercentage": 6.67,
+          "sessionsWithoutMetricPercentage": 93.33,
+          "pagesViews": 1,
+          "subTotal": 27,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 50,
+          "sessionsWithoutMetricPercentage": 50,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 50,
+          "sessionsWithoutMetricPercentage": 50,
+          "pagesViews": 4,
+          "subTotal": 4,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "sessionsCount": 3,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 15,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 100,
+          "sessionsWithoutMetricPercentage": 0,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 16.67,
+          "sessionsWithoutMetricPercentage": 83.33,
+          "pagesViews": 1,
+          "subTotal": 1,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "sessionsCount": 3,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 15,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "sessionsCount": 3,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "sessionsCount": 15,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "sessionsCount": 6,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "sessionsCount": 1,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": [
+        {
+          "averageScrollDepth": 68,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "averageScrollDepth": 78.91,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "averageScrollDepth": 44,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "averageScrollDepth": 43,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "averageScrollDepth": 91.5,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "averageScrollDepth": 98,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "averageScrollDepth": 77,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "averageScrollDepth": 14,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "averageScrollDepth": 100,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "averageScrollDepth": 85,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "averageScrollDepth": 65.22,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "averageScrollDepth": 98,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "averageScrollDepth": 86,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "averageScrollDepth": 43,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "averageScrollDepth": 81,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "averageScrollDepth": 86,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "averageScrollDepth": 79.67,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "averageScrollDepth": 98,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "Traffic",
+      "information": [
+        {
+          "totalSessionCount": 2,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 2,
+          "pagesPerSessionPercentage": 2.5,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalSessionCount": 6,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 4,
+          "pagesPerSessionPercentage": 4,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 7,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "totalSessionCount": 3,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 3,
+          "pagesPerSessionPercentage": 5,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 7,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 3,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 7,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "totalSessionCount": 15,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 12,
+          "pagesPerSessionPercentage": 3.1333333333333333,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 7,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 7,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 4,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 7,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "totalSessionCount": 6,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 4,
+          "pagesPerSessionPercentage": 3.5,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "totalSessionCount": 1,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 1,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": [
+        {
+          "totalTime": 6,
+          "activeTime": 6,
+          "Url": "https://bitkittools.com/"
+        },
+        {
+          "totalTime": 17,
+          "activeTime": 17,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/pochette-armor/"
+        },
+        {
+          "totalTime": 0,
+          "activeTime": 0,
+          "Url": "https://bitkittools.com/ko/baby/"
+        },
+        {
+          "totalTime": 19,
+          "activeTime": 19,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/hachiware/"
+        },
+        {
+          "totalTime": 2,
+          "activeTime": 2,
+          "Url": "https://bitkittools.com/ko/travel/"
+        },
+        {
+          "totalTime": 6,
+          "activeTime": 6,
+          "Url": "https://bitkittools.com/baby/growth-percentile/"
+        },
+        {
+          "totalTime": 5,
+          "activeTime": 4,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/shisa/"
+        },
+        {
+          "totalTime": 2,
+          "activeTime": 2,
+          "Url": "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+        },
+        {
+          "totalTime": 25,
+          "activeTime": 25,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/kurimanju/"
+        },
+        {
+          "totalTime": 7,
+          "activeTime": 7,
+          "Url": "https://bitkittools.com/developer/json-formatter/"
+        },
+        {
+          "totalTime": 247,
+          "activeTime": 234,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/"
+        },
+        {
+          "totalTime": 7,
+          "activeTime": 7,
+          "Url": "https://bitkittools.com/travel/flight-delay-compensation/"
+        },
+        {
+          "totalTime": 11,
+          "activeTime": 11,
+          "Url": "https://bitkittools.com/ko/"
+        },
+        {
+          "totalTime": 1,
+          "activeTime": 1,
+          "Url": "https://bitkittools.com/ko/beer/"
+        },
+        {
+          "totalTime": 1,
+          "activeTime": 1,
+          "Url": "https://bitkittools.com/fun/chiikawa-personality-test/"
+        },
+        {
+          "totalTime": 0,
+          "activeTime": 0,
+          "Url": "https://bitkittools.com/ko/fun/"
+        },
+        {
+          "totalTime": 6,
+          "activeTime": 6,
+          "Url": "https://bitkittools.com/ko/fun/chiikawa-personality-test/result/momonga/"
+        },
+        {
+          "totalTime": 7,
+          "activeTime": 7,
+          "Url": "https://bitkittools.com/beer/bac-calculator/"
+        }
+      ]
+    }
+  ]
+}
