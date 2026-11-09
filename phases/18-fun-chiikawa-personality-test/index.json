@@ -23,7 +23,8 @@
       "name": "quiz-logic",
       "status": "completed",
       "started_at": "2026-11-09T09:28:39+0900",
-      "summary": "lib/utils/chiikawaQuiz.ts: scorePersonalityType(answers)→PersonalityType(Q1~Q16, config scoring 집계·2:2 동점 Q1/Q7/Q3/Q4), rankCharacters(answers)→CharacterMatch[16]{id,matches,similarity}(Q17~Q24 answerKey 일치, 동점=Q24→Q17 일치 우선→배열 순서), getChiikawaResult(answers)→{personalityType, top(3)}; 길이≠24·A~D 외 값은 RangeError. 전수 검사: 축별 256조합 128:128, 65,536조합 1위 비율 4.60%~8.91%(16명 전원 1위 가능)"
+      "summary": "lib/utils/chiikawaQuiz.ts: scorePersonalityType(answers)→PersonalityType(Q1~Q16, config scoring 집계·2:2 동점 Q1/Q7/Q3/Q4), rankCharacters(answers)→CharacterMatch[16]{id,matches,similarity}(Q17~Q24 answerKey 일치, 동점=Q24→Q17 일치 우선→배열 순서), getChiikawaResult(answers)→{personalityType, top(3)}; 길이≠24·A~D 외 값은 RangeError. 전수 검사: 축별 256조합 128:128, 65,536조합 1위 비율 4.60%~8.91%(16명 전원 1위 가능)",
+      "completed_at": "2026-11-09T09:32:58+0900"
     },
     {
       "step": 3,
