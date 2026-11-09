@@ -111,6 +111,9 @@ export default async function ChiikawaResultPage({ params }: Props) {
         </p>
         <h1 className={`text-4xl font-bold ${character.nameClassName}`}>{name}</h1>
         <p className="text-base text-neutral-200 leading-relaxed">
+          {character.description[safeLocale]}
+        </p>
+        <p className="text-base text-neutral-300 leading-relaxed">
           {character.tagline[safeLocale]}
         </p>
         <a
@@ -137,17 +140,12 @@ export default async function ChiikawaResultPage({ params }: Props) {
         </p>
       </section>
 
-      {/* Personality analysis + strengths */}
+      {/* Strengths — coreTraits addresses the quiz taker ("you"), so the share landing
+          for a friend shows the character description in the card instead. */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold text-white">
-          {isKo ? '성격 분석' : 'Personality'}
+          {isKo ? `${name}의 강점` : `${name}'s strengths`}
         </h2>
-        <p className="text-base text-neutral-300 leading-relaxed">
-          {character.coreTraits[safeLocale]}
-        </p>
-        <h3 className="text-base font-medium text-neutral-400">
-          {isKo ? '강점' : 'Strengths'}
-        </h3>
         <ul className="list-disc pl-5 space-y-1 text-base text-neutral-300 leading-relaxed">
           {character.strengths[safeLocale].map((item) => (
             <li key={item}>{item}</li>

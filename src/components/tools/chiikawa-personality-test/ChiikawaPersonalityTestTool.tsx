@@ -283,6 +283,9 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
           </div>
           <p className="text-base text-neutral-300">{copy.matchIntro}</p>
           <h2 className={`text-4xl sm:text-5xl font-bold ${topCharacter.nameClassName}`}>{name}</h2>
+          <p className="mx-auto max-w-xl text-base text-neutral-200 leading-relaxed">
+            {topCharacter.description[locale]}
+          </p>
           <a
             href={topCharacter.officialUrl}
             target="_blank"
@@ -313,6 +316,23 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
             <p className="text-2xl font-semibold text-neutral-200 tracking-wider">{topCharacter.fanType}</p>
             <p className="text-sm text-neutral-500">{copy.fanTypeNote}</p>
           </section>
+        </div>
+
+        {/* 결과 공유 — 두 성격 유형 바로 아래 */}
+        <div className="space-y-2">
+          <button
+            type="button"
+            data-testid="share-button"
+            onClick={handleShare}
+            className="w-full rounded-2xl bg-sky-200 px-5 py-3.5 text-base font-semibold text-neutral-900 hover:bg-sky-100 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-300"
+          >
+            {copy.share}
+          </button>
+          {copied && (
+            <p role="status" className="text-sm text-teal-200 text-center">
+              {copy.copied}
+            </p>
+          )}
         </div>
 
         {/* 4. 소개·분석 */}
@@ -374,16 +394,8 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
           </ol>
         </section>
 
-        {/* 7. 버튼 */}
+        {/* 7. 다시 테스트하기 */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <button
-            type="button"
-            data-testid="share-button"
-            onClick={handleShare}
-            className="rounded-2xl bg-sky-200 px-5 py-3.5 text-base font-semibold text-neutral-900 hover:bg-sky-100 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-300"
-          >
-            {copy.share}
-          </button>
           <button
             type="button"
             data-testid="restart-button"
@@ -393,11 +405,6 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
             {copy.restart}
           </button>
         </div>
-        {copied && (
-          <p role="status" className="text-sm text-teal-200">
-            {copy.copied}
-          </p>
-        )}
 
         {/* 8. 팬메이드 고지 */}
         <FanMadeNotice locale={locale} />

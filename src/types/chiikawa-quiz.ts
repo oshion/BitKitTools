@@ -48,6 +48,9 @@ export type ChiikawaCharacter = {
   /** 팬 설정 성격 유형 (공식 설정 아님) */
   fanType: PersonalityType
   tagline: LocalizedText
+  /** 캐릭터 자체에 대한 짧은 소개 (결과 카드의 이름 아래) — 원작 스포일러 금지 */
+  description: LocalizedText
+  /** 성격 분석 — 캐릭터의 성격 → 사용자와 닮은 점 → "비슷한 느낌이에요"로 잇는다 */
   coreTraits: LocalizedText
   strengths: LocalizedList
   cautions: LocalizedList

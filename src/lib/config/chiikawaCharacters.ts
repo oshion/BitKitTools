@@ -30,9 +30,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A gentle soul who treasures even the smallest feelings',
       ko: '작은 마음도 소중하게 여기는 다정한 사람',
     },
+    description: {
+      en: "Small and soft-hearted, but never gives up on doing their share even when things get scary. Quick to tear up, yet as hardworking as anyone.",
+      ko: "작고 여린 마음을 가졌지만, 무서운 일 앞에서도 포기하지 않고 자기 몫을 해내려 애쓰는 친구예요. 눈물이 많아도 누구보다 성실해요.",
+    },
     coreTraits: {
-      en: 'You have a tender heart and a keen eye for detail, and you always try your very best. Even when you feel unsure, you keep going quietly for the people you care about.',
-      ko: '여린 마음과 섬세함을 지녔고, 무슨 일이든 최선을 다하는 사람이에요. 자신이 없을 때도 소중한 사람을 위해 묵묵히 한 걸음씩 나아가요.',
+      en: "Chiikawa notices small feelings and gives every task their very best. You also tend to read other people's moods carefully and stick with things to the end. That gentle, earnest side of Chiikawa is why the two of you feel alike.",
+      ko: "치이카와는 작은 감정도 섬세하게 알아차리고, 맡은 일에는 늘 최선을 다해요. 당신도 다른 사람의 마음을 세심하게 살피고 끝까지 성실하게 해내는 편이에요. 치이카와의 이런 여리고 성실한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You quickly notice how others are feeling.', 'You give everything you are asked to do your best effort.', 'You look out for the people around you with great care.'],
@@ -64,9 +68,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A sunny friend whose words lift everyone up',
       ko: '한마디 말로 모두에게 힘을 주는 밝은 친구',
     },
+    description: {
+      en: "A cheerful friend who lifts everyone up with bright, positive words, and can smile and say \"it'll be okay\" in almost any situation.",
+      ko: "늘 밝고 긍정적인 말로 친구들에게 용기를 주는 친구예요. 어떤 상황에서도 \"괜찮아\" 하고 웃어 줄 줄 알아요.",
+    },
     coreTraits: {
-      en: 'You are positive, kind and naturally sociable. Your warm energy makes people around you feel braver and more relaxed.',
-      ko: '긍정적이고 다정하며 사교적인 사람이에요. 따뜻한 에너지로 주변 사람들이 한결 편안하고 용기 있게 느끼도록 만들어요.',
+      en: "Hachiware stays positive and warmly looks after the friends around them. You also tend to bring good energy to a room and say the encouraging thing at the right moment. That sunny, caring side of Hachiware is why the two of you feel alike.",
+      ko: "하치와레는 언제나 긍정적이고 다정하게 주변 친구들을 챙겨요. 당신도 사람들 사이에서 좋은 에너지를 나누고, 필요한 순간에 힘이 되는 말을 건네는 편이에요. 하치와레의 이런 밝고 다정한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You understand and share in how others feel.', 'You make friends easily wherever you go.', 'Your positive energy brightens the whole room.'],
@@ -98,9 +106,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A free spirit who acts first and surprises everyone',
       ko: '먼저 움직이고 모두를 놀라게 하는 자유로운 영혼',
     },
+    description: {
+      en: "An unpredictable doer who suddenly springs into action with a shout. Looks silly at times, but is fearless when it really counts.",
+      ko: "큰 소리와 함께 갑자기 움직이는, 예측할 수 없는 행동파 친구예요. 엉뚱해 보여도 위기의 순간에는 누구보다 대담해요.",
+    },
     coreTraits: {
-      en: 'You are spontaneous, independent and full of get-up-and-go. When something needs doing, you are already on the move.',
-      ko: '즉흥적이고 독립적이며 행동력이 강한 사람이에요. 해야 할 일이 생기면 이미 몸이 먼저 움직이고 있어요.',
+      en: "Usagi acts on instinct and moves freely without worrying about others' eyes. You also tend to jump in first and think on your feet when something unexpected happens. That bold, free-spirited side of Usagi is why the two of you feel alike.",
+      ko: "우사기는 생각보다 몸이 먼저 움직이고, 남의 시선에 얽매이지 않고 자유롭게 행동해요. 당신도 일단 부딪쳐 보고, 예상 못 한 상황에서 순발력 있게 대처하는 편이에요. 우사기의 이런 대담하고 자유로운 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You think fast and react on the spot.', 'You are bold enough to try what others hesitate over.', 'You stay steady and handle a crisis well.'],
@@ -132,9 +144,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A born performer who loves the spotlight',
       ko: '무대 한가운데가 잘 어울리는 타고난 주인공',
     },
+    description: {
+      en: "A cute friend who wants everyone's attention and never hides what they want — they say it out loud.",
+      ko: "귀여운 모습으로 모두의 관심을 받고 싶어 하는 친구예요. 원하는 것을 숨기지 않고 솔직하게 표현해요.",
+    },
     coreTraits: {
-      en: 'You enjoy expressing yourself and love getting attention. You know how to make any moment more fun.',
-      ko: '자기표현을 즐기고 관심받는 것을 좋아하는 사람이에요. 어떤 순간이든 더 즐겁게 만드는 방법을 알고 있어요.',
+      en: "Momonga loves expressing themselves and being the center of attention. You also tend to show your thoughts and feelings openly and know how to make any moment more fun. That candid, confident side of Momonga is why the two of you feel alike.",
+      ko: "모몽가는 자기표현을 즐기고 관심받는 것을 좋아해요. 당신도 생각과 감정을 숨기지 않고, 어떤 순간이든 더 즐겁게 만드는 방법을 알고 있는 편이에요. 모몽가의 이런 솔직하고 당당한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You express yourself vividly and openly.', 'You carry yourself with confidence.', 'You find something to enjoy in almost anything.'],
@@ -166,9 +182,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A laid-back connoisseur who knows exactly what they like',
       ko: '내 취향을 정확히 아는 여유로운 미식가',
     },
+    description: {
+      en: "A grown-up friend who knows how to enjoy good food and an unhurried break. Values their own taste more than what others think.",
+      ko: "맛있는 것과 느긋한 시간을 즐길 줄 아는 어른스러운 친구예요. 남의 시선보다 자신의 취향을 소중히 여겨요.",
+    },
     coreTraits: {
-      en: 'You are calm and independent, with tastes that are clearly your own. You enjoy life at your own pace.',
-      ko: '차분하고 독립적이며 자신만의 취향이 확실한 사람이에요. 내 속도대로 삶의 즐거움을 누릴 줄 알아요.',
+      en: "Kurimanju stays calm and quietly enjoys their own pleasures at their own pace. You also tend to keep your cool and handle things practically, in your own way. That relaxed, independent side of Kurimanju is why the two of you feel alike.",
+      ko: "쿠리만쥬는 차분하게 자기만의 즐거움을 누리며 자기 속도대로 지내요. 당신도 쉽게 흔들리지 않고, 자기 방식대로 실용적으로 일을 해결하는 편이에요. 쿠리만쥬의 이런 느긋하고 독립적인 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You stay composed in almost any situation.', 'You go for practical solutions that actually work.', 'You solve problems on your own without fuss.'],
@@ -200,9 +220,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'An earnest learner who grows a little every day',
       ko: '매일 조금씩 자라는 성실한 배움꾼',
     },
+    description: {
+      en: "A polite friend who learns their work earnestly. Even when clumsy, grows a little at a time by learning one thing after another.",
+      ko: "예의 바르고 성실하게 일을 배우는 친구예요. 서툴러도 하나씩 배워 가며 조금씩 성장해요.",
+    },
     coreTraits: {
-      en: 'You are polite and hardworking, with a big desire to learn. You keep showing up and improving, step by step.',
-      ko: '예의 바르고 성실하며 배우려는 마음이 큰 사람이에요. 꾸준히 노력하며 한 걸음씩 성장해 나가요.',
+      en: "Shisa is courteous, diligent and always eager to learn. You also tend to keep at things steadily and stay humble while you improve. That earnest, modest side of Shisa is why the two of you feel alike.",
+      ko: "시사는 예의 바르고 성실하며, 늘 배우려는 마음을 잃지 않아요. 당신도 꾸준히 노력하고, 조금씩 나아지면서도 겸손함을 지키는 편이에요. 시사의 이런 성실하고 겸손한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You take your responsibilities seriously.', 'You keep at things steadily over time.', 'You stay humble and open to learning.'],
@@ -234,9 +258,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A confident pro with clear goals and high standards',
       ko: '분명한 목표와 높은 기준을 가진 자신감 있는 실력자',
     },
+    description: {
+      en: "A skilled, reliable presence that many friends look up to. Keeps training steadily by the standards they set for themselves.",
+      ko: "뛰어난 실력으로 많은 친구들이 동경하는 든든한 존재예요. 스스로 정한 기준을 지키며 꾸준히 단련해요.",
+    },
     coreTraits: {
-      en: 'You are self-assured, with clear goals and standards. You set the bar high and work steadily to reach it.',
-      ko: '자신감 있고 목표와 기준이 분명한 사람이에요. 높은 목표를 세우고 그 목표를 향해 꾸준히 나아가요.',
+      en: "Rakko is confident and has clear goals and standards. You also tend to set a direction and push forward, holding yourself to a high bar. That driven, disciplined side of Rakko is why the two of you feel alike.",
+      ko: "랏코는 자신감이 있고 목표와 기준이 분명해요. 당신도 목표를 정하면 추진력 있게 밀고 나가고, 스스로에게 높은 기준을 두는 편이에요. 랏코의 이런 당당하고 철저한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You drive things forward with real momentum.', 'You follow through on what you take on.', 'You manage yourself with discipline.'],
@@ -268,9 +296,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A quiet dreamer with a rich inner world',
       ko: '풍부한 마음속 세계를 가진 조용한 몽상가',
     },
+    description: {
+      en: "A sensitive friend who quietly tends their own little world. Not very talkative, but deeply devoted to the things they love.",
+      ko: "조용히 자기만의 세계를 가꾸는 섬세한 친구예요. 말수는 적어도 좋아하는 것에 대한 마음은 누구보다 깊어요.",
+    },
     coreTraits: {
-      en: 'You are sensitive and quiet, with clear feelings and tastes of your own. There is a lot going on beneath your calm surface.',
-      ko: '섬세하고 조용하며 감정과 취향이 뚜렷한 사람이에요. 차분한 겉모습 안에 깊고 풍부한 생각을 품고 있어요.',
+      en: "Kani (Furuhonya) is quiet and sensitive, with clear feelings and tastes. You also tend to have a rich imagination and value being genuine over being loud. That delicate, sincere side of Kani is why the two of you feel alike.",
+      ko: "카니(후루혼야)는 조용하고 섬세하며 감정과 취향이 뚜렷해요. 당신도 상상력이 풍부하고, 겉으로 드러내기보다 진심을 소중히 여기는 편이에요. 카니의 이런 섬세하고 진솔한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You have a vivid imagination.', 'You understand others\' feelings deeply.', 'You are genuine in everything you do.'],
@@ -302,9 +334,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'An easygoing individualist who lives in the moment',
       ko: '지금 이 순간을 즐기는 나만의 스타일리스트',
     },
+    description: {
+      en: "A friend who lives freely in their own way. Doesn't easily show what they're thinking, but has a strong sense of style and individuality.",
+      ko: "자기만의 방식으로 자유롭게 지내는 친구예요. 속마음을 쉽게 드러내지 않지만 감각과 개성이 뚜렷해요.",
+    },
     coreTraits: {
-      en: 'You are independent and in tune with your senses, and you do things your own way. You know how to enjoy the here and now.',
-      ko: '독립적이고 감각적이며 자기만의 방식이 있는 사람이에요. 지금 이 순간을 즐길 줄 알아요.',
+      en: "Anoko is independent, sensory and has their own way of doing things. You also tend to go with the flow, enjoy the present and keep your own style. That free, distinctive side of Anoko is why the two of you feel alike.",
+      ko: "아노코는 독립적이고 감각적이며 자기만의 방식이 있어요. 당신도 상황에 유연하게 맞추면서 지금 이 순간을 즐기고, 나만의 개성을 지키는 편이에요. 아노코의 이런 자유롭고 개성 있는 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You go with the flow and adapt easily.', 'Your personality shines through in everything.', 'You make the most of the present moment.'],
@@ -336,9 +372,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A big heart that wears every feeling honestly',
       ko: '모든 감정을 솔직하게 표현하는 커다란 마음',
     },
+    description: {
+      en: "A friend full of feelings who shows joy and hurt alike, honestly. Has a clear taste and a way of expressing it.",
+      ko: "기쁨도 서운함도 솔직하게 드러내는 감정이 풍부한 친구예요. 자기 취향과 표현 방식이 뚜렷해요.",
+    },
     coreTraits: {
-      en: 'You feel things deeply and have a clear sense of style and self-expression. What you feel, you show.',
-      ko: '감정이 풍부하고 취향과 표현 방식이 뚜렷한 사람이에요. 느끼는 그대로를 솔직하게 보여 줘요.',
+      en: "Dekatsuyo feels things deeply and has a distinct taste and way of expressing it. You also tend to be honest about your emotions and stay true to what you like. That sensitive, open-hearted side of Dekatsuyo is why the two of you feel alike.",
+      ko: "데카츠요는 감정이 풍부하고 취향과 표현 방식이 뚜렷해요. 당신도 자기 감정에 솔직하고, 좋아하는 것을 있는 그대로 표현하는 편이에요. 데카츠요의 이런 풍부하고 솔직한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You are deeply sensitive to beauty and emotion.', 'Your individuality is easy to recognize.', 'You express your feelings honestly.'],
@@ -370,9 +410,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A friendly host who makes everyone feel included',
       ko: '모두가 함께 어울리도록 챙기는 다정한 분위기 메이커',
     },
+    description: {
+      en: "A kind, easy-to-approach friend who looks after everyone and sets a mood where all can join in.",
+      ko: "친절하고 붙임성 좋게 주변을 챙기는 친구예요. 모두가 함께 어울릴 수 있도록 분위기를 만들어요.",
+    },
     coreTraits: {
-      en: 'You are kind and sociable, and you look out for everyone around you. Groups feel warmer when you are there.',
-      ko: '친절하고 사교적이며 주변을 잘 챙기는 사람이에요. 당신이 있으면 모임이 한층 따뜻해져요.',
+      en: "Ode is kind and sociable and takes good care of the people around them. You also tend to make sure no one is left out and enjoy bringing people together. That warm, friendly side of Ode is why the two of you feel alike.",
+      ko: "오데는 친절하고 사교적이며 주변 사람들을 잘 챙겨요. 당신도 소외되는 사람이 없도록 살피고, 함께 어울리는 시간을 즐기는 편이에요. 오데의 이런 다정하고 친근한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You are thoughtful toward everyone.', 'You get along with people easily.', 'You have a strong sense of community.'],
@@ -404,9 +448,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A soft-hearted maker with a great sense of style',
       ko: '감각적인 취향을 가진 부드러운 손재주꾼',
     },
+    description: {
+      en: "An armor-san with a charming, crafty sensibility, like a cute little pochette. Gentle by nature and expresses their taste with care.",
+      ko: "귀여운 포셰트처럼 아기자기한 감성을 가진 갑옷씨예요. 부드러운 성격으로 자기 취향을 섬세하게 표현해요.",
+    },
     coreTraits: {
-      en: 'You have refined, sensory tastes and a gentle nature. You find quiet joy in making and choosing beautiful things.',
-      ko: '감각적인 취향과 부드러운 성격을 지닌 사람이에요. 예쁜 것을 만들고 고르는 데서 조용한 즐거움을 느껴요.',
+      en: "Pochette Armor-san has a refined sense of taste and a soft, gentle personality. You also tend to notice small details and express your creativity in a quiet way. That delicate, artistic side of Pochette Armor-san is why the two of you feel alike.",
+      ko: "포셰트 갑옷씨는 감각적인 취향과 부드러운 성격을 가졌어요. 당신도 작은 부분까지 섬세하게 챙기고, 조용히 자신만의 창의성을 표현하는 편이에요. 포셰트 갑옷씨의 이런 섬세하고 감각적인 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You are creative and full of ideas.', 'You pay attention to fine details.', 'You adapt gently to different situations.'],
@@ -438,9 +486,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A dependable worker everyone can count on',
       ko: '누구나 믿고 기댈 수 있는 든든한 일꾼',
     },
+    description: {
+      en: "A diligent armor-san who quietly takes responsibility for the work in front of them. Keeping promises and principles earns everyone's trust.",
+      ko: "맡은 일을 묵묵히 책임지는 성실한 갑옷씨예요. 약속과 원칙을 지키는 모습에서 믿음이 느껴져요.",
+    },
     coreTraits: {
-      en: 'You are responsible and value principles and order. You do things properly, one step at a time.',
-      ko: '책임감 있고 원칙과 질서를 중요하게 생각하는 사람이에요. 무슨 일이든 차근차근 제대로 해내요.',
+      en: "Labor Armor-san is responsible and values rules and order. You also tend to handle things systematically and keep your word. That steady, trustworthy side of Labor Armor-san is why the two of you feel alike.",
+      ko: "노동 갑옷씨는 책임감이 강하고 원칙과 질서를 중요하게 여겨요. 당신도 일을 체계적으로 처리하고, 한 번 한 약속은 꼭 지키는 편이에요. 노동 갑옷씨의 이런 든든하고 믿음직한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You are diligent and hardworking.', 'You handle work in an organized, systematic way.', 'People feel they can rely on you.'],
@@ -472,9 +524,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A craftsperson who takes pride in a job well done',
       ko: '완성도에 자부심을 가진 진정한 장인',
     },
+    description: {
+      en: "An armor-san who puts their own standards and care into every bowl of ramen, and leads the work in a practical, hands-on way.",
+      ko: "라멘 한 그릇에도 자신만의 기준과 정성을 담는 갑옷씨예요. 현실적이고 주도적으로 일을 이끌어요.",
+    },
     coreTraits: {
-      en: 'You are practical and take the lead, and you care about getting things just right. Your routines are how you keep quality high.',
-      ko: '현실적이고 주도적이며 완성도를 중요하게 생각하는 사람이에요. 꾸준한 루틴으로 높은 완성도를 지켜 나가요.',
+      en: "Ramen Armor-san is realistic, takes the lead and cares about getting things just right. You also tend to turn plans into action and take pride in a job well done. That practical, craftsmanlike side of Ramen Armor-san is why the two of you feel alike.",
+      ko: "라멘 갑옷씨는 현실적이고 주도적이며 완성도를 중요하게 여겨요. 당신도 계획을 실행으로 옮기는 힘이 있고, 일을 제대로 해냈을 때 자부심을 느끼는 편이에요. 라멘 갑옷씨의 이런 현실적이고 장인 같은 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You turn plans into action.', 'You are good at managing people and tasks.', 'You take full responsibility for your work.'],
@@ -506,9 +562,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A cheerful crew always up for the next adventure',
       ko: '다음 모험이 늘 기다려지는 유쾌한 친구들',
     },
+    description: {
+      en: "A lively bunch for whom anything is fun as long as they're together. They never hide their excitement about something new.",
+      ko: "함께라면 무엇이든 즐거운 활기찬 친구들이에요. 새로운 경험 앞에서 늘 설레는 마음을 숨기지 않아요.",
+    },
     coreTraits: {
-      en: 'You are lively and curious, and you love new experiences. Wherever you go, fun tends to follow.',
-      ko: '활발하고 호기심이 많으며 새로운 경험을 즐기는 사람이에요. 어디를 가든 즐거움이 함께 따라와요.',
+      en: "The Pajama Party is lively, curious and loves new experiences. You also tend to come up with fresh ideas and share your excitement with the people around you. That bright, playful side of the Pajama Party is why the two of you feel alike.",
+      ko: "파자마 파티즈는 활발하고 호기심이 많으며 새로운 경험을 즐겨요. 당신도 새로운 아이디어를 잘 떠올리고, 설렘을 주변 사람들과 나누는 편이에요. 파자마 파티즈의 이런 밝고 유쾌한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You come up with creative ideas.', 'You make friends quickly.', 'Your positive energy is contagious.'],
@@ -540,9 +600,13 @@ export const CHIIKAWA_CHARACTERS: ChiikawaCharacter[] = [
       en: 'A curious newcomer who feels at home anywhere',
       ko: '어디서든 금방 적응하는 호기심 많은 새 친구',
     },
+    description: {
+      en: "A curious, friendly friend who fits in quickly even in a new place, getting to know the world by just giving things a try.",
+      ko: "호기심 많고 친근해서 새로운 곳에서도 금방 어울리는 친구예요. 일단 부딪쳐 보며 세상을 알아가요.",
+    },
     coreTraits: {
-      en: 'You are curious and friendly, and open to new surroundings. You meet the unfamiliar with a smile.',
-      ko: '호기심 많고 친근하며 새로운 환경에 열려 있는 사람이에요. 낯선 것도 웃으며 맞이해요.',
+      en: "Kabutomushi is curious, friendly and open to new surroundings. You also tend to adapt quickly and look on the bright side wherever you go. That open, easygoing side of Kabutomushi is why the two of you feel alike.",
+      ko: "장수풍뎅이는 호기심이 많고 친근하며 새로운 환경에 열려 있어요. 당신도 어디서든 빠르게 적응하고, 긍정적으로 상황을 받아들이는 편이에요. 장수풍뎅이의 이런 개방적이고 친근한 성격 때문에 당신과 비슷한 느낌이에요.",
     },
     strengths: {
       en: ['You adapt quickly to new places.', 'You see the bright side of things.', 'You get along easily with all kinds of people.'],

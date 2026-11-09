@@ -109,6 +109,25 @@ describe('ChiikawaPersonalityTestTool — result', () => {
     expect(items[0].textContent).toContain('100%')
   })
 
+  it('shows the character description under the name and puts share right after the type cards', () => {
+    const character = getChiikawaCharacter('momonga')
+    if (!character) throw new Error('momonga')
+    startQuiz('ko')
+    answerAll(answersFor(character.id))
+
+    const card = screen.getByTestId('result-card')
+    expect(within(card).getByText(character.description.ko)).toBeInTheDocument()
+    expect(screen.getByText(character.coreTraits.ko)).toBeInTheDocument()
+
+    const follows = (a: HTMLElement, b: HTMLElement) =>
+      Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)
+    const share = screen.getByTestId('share-button')
+    const restart = screen.getByTestId('restart-button')
+    expect(follows(screen.getByTestId('fan-type'), share)).toBe(true)
+    expect(follows(share, screen.getByText(character.tagline.ko))).toBe(true)
+    expect(follows(screen.getByTestId('top3'), restart)).toBe(true)
+  })
+
   it('fires the analytics events', () => {
     const character = CHIIKAWA_CHARACTERS[0]
     startQuiz()

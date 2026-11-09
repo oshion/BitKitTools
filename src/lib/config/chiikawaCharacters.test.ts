@@ -39,6 +39,24 @@ function collectStrings(value: unknown, out: string[] = []): string[] {
 }
 
 describe('CHIIKAWA_CHARACTERS', () => {
+  test('every character has a short EN/KO description of the character itself', () => {
+    for (const c of CHIIKAWA_CHARACTERS) {
+      for (const locale of ['en', 'ko'] as const) {
+        expect(c.description[locale].trim()).not.toBe('')
+        expect(c.description[locale].length).toBeLessThanOrEqual(160)
+      }
+    }
+  })
+
+  test('the personality analysis explains why the user feels like the character', () => {
+    for (const c of CHIIKAWA_CHARACTERS) {
+      expect(c.coreTraits.ko).toContain(c.name.ko)
+      expect(c.coreTraits.ko).toContain('비슷한 느낌이에요')
+      expect(c.coreTraits.en).toContain(c.name.en)
+      expect(c.coreTraits.en).toMatch(/feel alike/)
+    }
+  })
+
   test('has 16 characters in spec order with unique ids', () => {
     expect(CHIIKAWA_CHARACTERS.map((c) => c.id)).toEqual(SPEC_ORDER_AND_KEYS.map(([id]) => id))
     expect(new Set(CHIIKAWA_CHARACTERS.map((c) => c.id)).size).toBe(16)
