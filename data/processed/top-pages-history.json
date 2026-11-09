@@ -1,19 +1,6 @@
 {
   "weeks": [
     {
-      "weekStart": "2026-08-08",
-      "pages": [
-        {
-          "page": "/travel/layover-connection-calculator/",
-          "clicks": 1
-        },
-        {
-          "page": "/ko/travel/flight-delay-compensation/",
-          "clicks": 1
-        }
-      ]
-    },
-    {
       "weekStart": "2026-08-15",
       "pages": [
         {
@@ -188,6 +175,23 @@
         },
         {
           "page": "/ko/beer/bac-calculator/",
+          "clicks": 1
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-10-31",
+      "pages": [
+        {
+          "page": "/baby/temperament-quiz/",
+          "clicks": 3
+        },
+        {
+          "page": "/baby/height-predictor/",
+          "clicks": 1
+        },
+        {
+          "page": "/ko/travel/layover-connection-calculator/",
           "clicks": 1
         }
       ]
