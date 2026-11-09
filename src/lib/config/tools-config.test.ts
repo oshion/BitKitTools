@@ -88,7 +88,7 @@ describe('toolsConfig', () => {
     for (const tool of toolsConfig) {
       expect(typeof tool.id).toBe('string')
       expect(typeof tool.slug).toBe('string')
-      expect(['developer', 'travel', 'beer', 'baby']).toContain(tool.category)
+      expect(['developer', 'travel', 'beer', 'baby', 'fun']).toContain(tool.category)
       expect(typeof tool.title.en).toBe('string')
       expect(typeof tool.title.ko).toBe('string')
       expect(Array.isArray(tool.adSlots)).toBe(true)
@@ -231,5 +231,49 @@ describe('layover-connection-calculator KO search snippet', () => {
     expect(layover?.description.ko.startsWith('내 환승 시간이 충분한지')).toBe(true)
     expect(layover?.description.ko).toMatch(/인천/)
     expect(layover?.description.ko).toMatch(/항공사에 확인/)
+  })
+})
+
+describe('chiikawa-personality-test entry', () => {
+  const tool = getToolBySlug('fun', 'chiikawa-personality-test')
+
+  it('is a fun-category tool with a general disclaimer', () => {
+    expect(tool).toBeDefined()
+    expect(tool?.id).toBe('chiikawa-personality-test')
+    expect(tool?.category).toBe('fun')
+    expect(tool?.disclaimerType).toBe('general')
+    expect(tool?.aiOverviewResistance).toBe('medium')
+    expect(tool?.relatedToolIds).toEqual([])
+  })
+
+  it('is listed by getToolsByCategory("fun")', () => {
+    expect(getToolsByCategory('fun').map((t) => t.id)).toContain('chiikawa-personality-test')
+  })
+
+  it('has 4-5 FAQ items with EN and KO text', () => {
+    expect(tool?.faq.length).toBeGreaterThanOrEqual(4)
+    expect(tool?.faq.length).toBeLessThanOrEqual(5)
+    for (const item of tool?.faq ?? []) {
+      for (const locale of ['en', 'ko'] as const) {
+        expect(item.question[locale].length).toBeGreaterThan(0)
+        expect(item.answer[locale].length).toBeGreaterThan(0)
+      }
+    }
+  })
+
+  it('never mentions MBTI in title, description, keywords or FAQ', () => {
+    expect(tool).toBeDefined()
+    if (!tool) return
+    const strings: string[] = []
+    for (const locale of ['en', 'ko'] as const) {
+      strings.push(tool.title[locale], tool.description[locale], ...tool.keywords[locale])
+      for (const item of tool.faq) strings.push(item.question[locale], item.answer[locale])
+    }
+    for (const s of strings) expect(s).not.toMatch(/mbti/i)
+  })
+
+  it('is not referenced by any other tool as a related tool', () => {
+    const referrers = toolsConfig.filter((t) => t.relatedToolIds.includes('chiikawa-personality-test'))
+    expect(referrers).toEqual([])
   })
 })

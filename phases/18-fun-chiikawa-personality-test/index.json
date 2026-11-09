@@ -37,7 +37,9 @@
     {
       "step": 4,
       "name": "tools-config-page",
-      "status": "pending"
+      "status": "completed",
+      "summary": "tools-config에 chiikawa-personality-test(fun, general, medium, relatedToolIds [], FAQ 5개 EN/KO, MBTI 문구 없음 — 테스트로 검사) 추가 + app/[locale]/fun/chiikawa-personality-test/page.tsx(temperament-quiz 패턴: generateMetadata·ToolStage(H1+리드+툴)·Schema 3종 → 이 테스트에 대하여(16명 이모지+이름 목록) → 사용 방법 → 결과 읽는 법(4축·나의 유형 vs 팬 설정·TOP3 유사도) → FAQ → DisclaimerBanner+FanMadeNotice → 관련 도구(비어 있어 미렌더)), rss.xml 재생성",
+      "started_at": "2026-11-09T09:39:09+0900"
     },
     {
       "step": 5,

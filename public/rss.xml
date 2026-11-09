@@ -5,8 +5,15 @@
     <link>https://bitkittools.com/</link>
     <description>Free calculators for developers, travelers, beer lovers &amp; parents</description>
     <language>en</language>
-    <lastBuildDate>Mon, 09 Nov 2026 00:38:59 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 00:41:52 GMT</lastBuildDate>
     <atom:link href="https://bitkittools.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Which Chiikawa Character Are You? 16-Type Personality Quiz</title>
+      <link>https://bitkittools.com/fun/chiikawa-personality-test/</link>
+      <description>Answer 24 questions to find which of 16 Chiikawa friends you are most like, plus your 4-letter personality type and top-3 matches. An unofficial fan-made quiz.</description>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://bitkittools.com/fun/chiikawa-personality-test/</guid>
+    </item>
     <item>
       <title>JWT Decoder</title>
       <link>https://bitkittools.com/developer/jwt-decoder/</link>
