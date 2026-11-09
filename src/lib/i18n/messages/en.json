@@ -9,6 +9,7 @@
     "travel": "Travel",
     "beer": "Beer",
     "baby": "Baby",
+    "fun": "Fun",
     "languageSwitch": "한국어"
   },
   "footer": {
@@ -29,7 +30,8 @@
       "developer": "Quick, no-signup calculators and formatters for everyday developer tasks — all processed locally in your browser.",
       "travel": "Practical calculators for travelers — from compensation claims to visa and insurance requirements.",
       "beer": "Calculators for home brewers and beer enthusiasts, covering safety estimates and recipe math.",
-      "baby": "Calculators for new parents to track baby growth and sleep against standard reference guidelines."
+      "baby": "Calculators for new parents to track baby growth and sleep against standard reference guidelines.",
+      "fun": "Light, fun personality tests and quizzes — answer a few questions and share your result. For entertainment only, not a diagnosis."
     }
   },
   "disclaimer": {

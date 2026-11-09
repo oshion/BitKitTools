@@ -40,37 +40,38 @@ async function main() {
     }
   }
 
-  // Temperament quiz result pages each have a persona-specific opengraph-image.
-  // Discover code slugs dynamically from the built output directory so this script
-  // doesn't need to be updated when personas change in temperamentPersonas.ts.
-  const resultEnDir = join(EN_DIR, 'baby', 'temperament-quiz', 'result')
+  // Quiz result share pages each have a result-specific opengraph-image.
+  // Slugs are discovered from the built output directory so this script doesn't
+  // need updating when personas/characters change in their config files.
+  await copyResultOgImages(['baby', 'temperament-quiz', 'result'], 'temperament')
+  await copyResultOgImages(['fun', 'chiikawa-personality-test', 'result'], 'chiikawa')
+}
+
+/**
+ * Copies out/{en,ko}/<resultSubPath>/<slug>/opengraph-image → out/og/<ogDirName>/<slug>-{en,ko}.png
+ * @param {string[]} resultSubPath
+ * @param {string} ogDirName
+ */
+async function copyResultOgImages(resultSubPath, ogDirName) {
+  const resultEnDir = join(EN_DIR, ...resultSubPath)
   try {
-    const codeSlugs = await readdir(resultEnDir)
-    await mkdir(join(OUT_DIR, 'og', 'temperament'), { recursive: true })
+    const slugs = await readdir(resultEnDir)
+    await mkdir(join(OUT_DIR, 'og', ogDirName), { recursive: true })
 
     let copied = 0
-    for (const code of codeSlugs) {
-      const enSrc = join(resultEnDir, code, 'opengraph-image')
-      const koSrc = join(KO_DIR, 'baby', 'temperament-quiz', 'result', code, 'opengraph-image')
-      const enDest = join(OUT_DIR, 'og', 'temperament', `${code}-en.png`)
-      const koDest = join(OUT_DIR, 'og', 'temperament', `${code}-ko.png`)
-
-      try {
-        await cp(enSrc, enDest)
-        copied++
-      } catch (err) {
-        if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') throw err
-      }
-      try {
-        await cp(koSrc, koDest)
-        copied++
-      } catch (err) {
-        if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') throw err
+    for (const slug of slugs) {
+      for (const [locale, localeDir] of [['en', EN_DIR], ['ko', KO_DIR]]) {
+        const src = join(localeDir, ...resultSubPath, slug, 'opengraph-image')
+        const dest = join(OUT_DIR, 'og', ogDirName, `${slug}-${locale}.png`)
+        try {
+          await cp(src, dest)
+          copied++
+        } catch (err) {
+          if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') throw err
+        }
       }
     }
-    console.log(
-      `[postbuild] Copied ${copied} temperament persona OG images → out/og/temperament/`
-    )
+    console.log(`[postbuild] Copied ${copied} ${ogDirName} result OG images → out/og/${ogDirName}/`)
   } catch (err) {
     if (/** @type {NodeJS.ErrnoException} */ (err).code !== 'ENOENT') {
       throw err

@@ -1484,9 +1484,104 @@ export const toolsConfig: ToolConfig[] = [
     addedAt: '2026-07-23',
     popular: false,
   },
+  {
+    id: 'chiikawa-personality-test',
+    slug: 'chiikawa-personality-test',
+    category: 'fun',
+    title: {
+      en: 'Which Chiikawa Character Are You? 16-Type Personality Quiz',
+      ko: '나와 닮은 치이카와 친구는? 16가지 성격 유형 테스트',
+    },
+    description: {
+      en: 'Answer 24 questions to find which of 16 Chiikawa friends you are most like, plus your 4-letter personality type and top-3 matches. An unofficial fan-made quiz.',
+      ko: '24개 질문에 답하고 치이카와·하치와레·우사기 등 16명의 친구 중 나와 가장 닮은 캐릭터와 나의 성격 유형 4글자, 닮은 캐릭터 TOP 3를 확인해 보세요. 비공식 팬메이드 테스트입니다.',
+    },
+    keywords: {
+      en: [
+        'chiikawa quiz',
+        'which chiikawa are you',
+        'chiikawa personality test',
+        'chiikawa character quiz',
+      ],
+      ko: [
+        '치이카와 테스트',
+        '치이카와 성격 테스트',
+        '나와 닮은 치이카와',
+        '치이카와 캐릭터 테스트',
+        '성격 유형 테스트',
+      ],
+    },
+    schemaType: 'WebApplication',
+    faq: [
+      {
+        question: {
+          en: 'How is my result decided?',
+          ko: '결과는 어떻게 정해지나요?',
+        },
+        answer: {
+          en: 'Your result comes from two separate calculations. Questions 1–16 build your 4-letter personality type — four questions per axis (E/I, S/N, T/F, J/P), and the letter you pick more often wins. Questions 17–24 pick your character: your answers are compared with each of the 16 characters\' answer sets, and the one with the most matches out of 8 comes first. That is why your own type and your matched character\'s type can differ.',
+          ko: '결과는 두 가지 계산으로 따로 정해집니다. 1~16번 문항으로 나의 성격 유형 4글자를 정하는데, 축(E/I, S/N, T/F, J/P)마다 4문항씩 더 많이 고른 쪽 글자가 선택됩니다. 17~24번 문항으로는 닮은 캐릭터를 정하는데, 16명 캐릭터의 기준 답안과 비교해 8문항 중 가장 많이 일치하는 캐릭터가 1위가 됩니다. 그래서 나의 성격 유형과 닮은 캐릭터의 유형이 서로 다를 수 있습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Is this an official Chiikawa quiz?',
+          ko: '치이카와 공식 테스트인가요?',
+        },
+        answer: {
+          en: 'No. It is an unofficial, fan-made quiz with no connection to the original creator or the official licensors, and it uses no official character artwork. To see the characters themselves, please visit the official Chiikawa website linked on this page.',
+          ko: '아닙니다. 원작자 및 공식 라이선스 보유사와 무관한 비공식 팬메이드 테스트이며, 공식 캐릭터 이미지도 사용하지 않습니다. 캐릭터의 실제 모습은 이 페이지에 연결된 치이카와 공식 사이트에서 확인해 주세요.',
+        },
+      },
+      {
+        question: {
+          en: "Is each character's personality type part of the official story?",
+          ko: '캐릭터의 성격 유형은 공식 설정인가요?',
+        },
+        answer: {
+          en: "No. The 4-letter type shown for each character is the quiz creator's own imaginative guess based on how the character comes across — it is not canon. The result screen labels it as a fan interpretation and shows it separately from the type calculated from your answers.",
+          ko: '아닙니다. 캐릭터마다 표시되는 4글자 유형은 캐릭터의 분위기를 바탕으로 제작자가 추정한 창작 해석이며 공식 설정이 아닙니다. 결과 화면에서도 "팬 설정"으로 표시하고, 내 응답으로 계산한 성격 유형과 따로 보여 줍니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Can I share my result with friends?',
+          ko: '결과를 친구에게 공유할 수 있나요?',
+        },
+        answer: {
+          en: "Yes. The share button opens your device's share menu, or copies a link if sharing is not supported. The link points to your matched character's result page, so your friends see that character card and can take the quiz themselves. Your individual answers are never included in the link.",
+          ko: '네. 공유 버튼을 누르면 기기의 공유 메뉴가 열리고, 공유 기능을 지원하지 않는 브라우저에서는 링크가 복사됩니다. 링크는 닮은 캐릭터의 결과 페이지로 연결되어 친구가 캐릭터 카드를 보고 바로 테스트를 시작할 수 있습니다. 개별 응답은 링크에 담기지 않습니다.',
+        },
+      },
+      {
+        question: {
+          en: 'Are my answers saved anywhere?',
+          ko: '내 답변이 어딘가에 저장되나요?',
+        },
+        answer: {
+          en: 'No. Your answers are kept only in your browser while you take the quiz and the result is calculated on your device. Nothing is sent to a server or saved to local storage, so closing or refreshing the page clears everything.',
+          ko: '아닙니다. 답변은 테스트를 하는 동안 브라우저 메모리에만 머물고 결과도 기기 안에서 계산됩니다. 서버로 전송하거나 로컬 저장소에 저장하지 않으므로 페이지를 닫거나 새로고침하면 모두 사라집니다.',
+        },
+      },
+    ],
+    relatedToolIds: [],
+    adSlots: [
+      { position: 'header', minHeightPx: 90 },
+      { position: 'result', minHeightPx: 250 },
+      { position: 'mid-content', minHeightPx: 280 },
+      { position: 'above-faq', minHeightPx: 250 },
+      { position: 'footer', minHeightPx: 90 },
+    ],
+    ogImage: '/og/default-en.png',
+    status: 'testing',
+    disclaimerType: 'general',
+    aiOverviewResistance: 'medium',
+    addedAt: '2026-11-09',
+    popular: false,
+  },
 ]
 
-export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
+export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby', 'fun']
 
 export function getToolBySlug(category: ToolCategory, slug: string): ToolConfig | undefined {
   return toolsConfig.find((t) => t.category === category && t.slug === slug)
