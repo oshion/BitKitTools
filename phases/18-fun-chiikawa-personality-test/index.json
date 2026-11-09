@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "quiz-data",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-11-09T09:23:08+0900",
+      "summary": "types/chiikawa-quiz.ts(AnswerLetter/PersonalityAxis/PersonalityLetter/PersonalityType/ChiikawaCharacterId/ChiikawaQuestion/ChiikawaCharacter/LocalizedList) + lib/config/chiikawaQuestions.ts(CHIIKAWA_INTRO, CHIIKAWA_QUESTIONS 24개, Q1~Q16 scoring=스펙 수정 채점표·Q17~24 scoring 없음) + chiikawaCharacters.ts(CHIIKAWA_OFFICIAL_SITE, CHIIKAWA_CHARACTERS 16명 스펙 표 순서·수정 answerKey·cardClassName/nameClassName 완성 문자열·ogColor 700~800 hex, getChiikawaCharacter) + personalityTypeLabels.ts(PERSONALITY_TYPE_LABELS 16개). EN 이름: Kani (Furuhonya)/Pochette Armor-san/Labor Armor-san/Ramen Armor-san/Pajama Party/Kabutomushi(사용자 검수 필요). 테스트: 2:2 축 분할·쌍별 차이≥3·색 중복/보라 금지·MBTI 문자열 없음",
+      "completed_at": "2026-11-09T09:40:00+0900"
     },
     {
       "step": 2,
