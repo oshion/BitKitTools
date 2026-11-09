@@ -30,3 +30,9 @@ export function extractAnthropicText(json: AnthropicMessageResponse): string {
 export function isTruncated(json: AnthropicMessageResponse): boolean {
   return json.stop_reason === 'max_tokens'
 }
+
+/** One-line summary for logs when a response has no usable text (e.g. only non-text blocks). */
+export function describeAnthropicResponse(json: AnthropicMessageResponse): string {
+  const blocks = (json.content ?? []).map((block) => block.type).join(',')
+  return `stop_reason=${json.stop_reason ?? 'unknown'}, blocks=[${blocks}]`
+}

@@ -1,4 +1,4 @@
-import { extractAnthropicText, isTruncated } from '../anthropicResponse'
+import { describeAnthropicResponse, extractAnthropicText, isTruncated } from '../anthropicResponse'
 
 describe('extractAnthropicText', () => {
   it('returns the text of the first text block', () => {
@@ -23,5 +23,17 @@ describe('isTruncated', () => {
 
   it('returns false when stop_reason is absent', () => {
     expect(isTruncated({})).toBe(false)
+  })
+})
+
+describe('describeAnthropicResponse', () => {
+  it('reports stop_reason and block types so an empty response can be diagnosed', () => {
+    const summary = describeAnthropicResponse({ stop_reason: 'max_tokens', content: [{ type: 'thinking' }] })
+    expect(summary).toContain('stop_reason=max_tokens')
+    expect(summary).toContain('thinking')
+  })
+
+  it('handles a response with no content', () => {
+    expect(describeAnthropicResponse({})).toContain('blocks=[]')
   })
 })

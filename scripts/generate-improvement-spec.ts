@@ -21,7 +21,7 @@ import type { CtrAnomaly } from './lib/detectCtrAnomalies'
 import type { HighBouncePage } from './lib/aggregateWeeklyReport'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
-import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
+import { describeAnthropicResponse, extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -101,6 +101,8 @@ function reminderString(page: string, proposals: ProposalLog, asOf: Date): strin
  * Candidates with empty evidence are never emitted — this is guaranteed by
  * the buildXxxEvidence helpers always producing a non-empty string.
  */
+const HOME_PATHS = new Set(['/', '/ko/'])
+
 export function selectImprovementCandidates(
   ctrAnomalies: CtrAnomaly[],
   bouncePages: HighBouncePage[],
@@ -140,6 +142,10 @@ export function selectImprovementCandidates(
 
   // Add bounce-sourced candidates (merge if page already exists from CTR)
   for (const bp of bouncePages) {
+    // Locale home pages are landing pages that hand visitors off to tools, so a
+    // "high" bounce rate there is not a tool problem (2026-11-09: / at 37.5%
+    // became a candidate and the spec call failed anyway).
+    if (HOME_PATHS.has(bp.path)) continue
     const bounceEvidence = buildBounceEvidence(bp)
     if (!bounceEvidence.trim()) continue
 
@@ -272,7 +278,9 @@ export async function generateImprovementSpec(
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 4096,
+      // Was 4096 — on 2026-11-09 the response for / came back with no text at all
+      // (limit spent before any text block). Matches generate-report.ts.
+      max_tokens: 16000,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -290,13 +298,6 @@ export async function generateImprovementSpec(
   }
   const text = extractAnthropicText(json)
 
-  if (!text.trim()) {
-    throw new Error(
-      '[generate-improvement-spec] Anthropic API returned empty response for ' +
-        candidate.page
-    )
-  }
-
   if (isTruncated(json)) {
     // A truncated spec is worse than no spec — it can end mid-sentence and
     // get committed straight into the weekly report. Throw so the caller's
@@ -305,6 +306,12 @@ export async function generateImprovementSpec(
     // where this exact pattern produced a truncated growth spec in prod).
     throw new Error(
       `[generate-improvement-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — refusing to return a truncated spec.`
+    )
+  }
+
+  if (!text.trim()) {
+    throw new Error(
+      `[generate-improvement-spec] Anthropic API returned empty response for ${candidate.page} (${describeAnthropicResponse(json)})`
     )
   }
 
