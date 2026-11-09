@@ -98,8 +98,8 @@ describe('toolsConfig', () => {
 })
 
 describe('TOOL_CATEGORIES', () => {
-  it('contains all four categories in order', () => {
-    expect(TOOL_CATEGORIES).toEqual(['developer', 'travel', 'beer', 'baby'])
+  it('contains all five categories in order, with fun last', () => {
+    expect(TOOL_CATEGORIES).toEqual(['developer', 'travel', 'beer', 'baby', 'fun'])
   })
 })
 

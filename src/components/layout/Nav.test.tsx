@@ -38,13 +38,14 @@ beforeEach(() => {
 })
 
 describe('Nav', () => {
-  it('renders links for all 4 categories', () => {
+  it('renders links for all 5 categories', () => {
     render(<Nav />)
     // t(category) returns the category key name via mock
     expect(screen.getByText('developer')).toBeInTheDocument()
     expect(screen.getByText('travel')).toBeInTheDocument()
     expect(screen.getByText('beer')).toBeInTheDocument()
     expect(screen.getByText('baby')).toBeInTheDocument()
+    expect(screen.getByText('fun')).toBeInTheDocument()
   })
 
   it('renders the language switch link', () => {

@@ -2,7 +2,7 @@ export type DisclaimerType = 'none' | 'general' | 'medical' | 'financial' | 'leg
 export type AiOverviewResistance = 'high' | 'medium' | 'low'
 export type ToolStatus = 'testing' | 'validated' | 'underperforming'
 export type SchemaType = 'WebApplication'
-export type ToolCategory = 'developer' | 'travel' | 'beer' | 'baby'
+export type ToolCategory = 'developer' | 'travel' | 'beer' | 'baby' | 'fun'
 
 export type AdSlotConfig = {
   position: 'header' | 'result' | 'mid-content' | 'above-faq' | 'footer'

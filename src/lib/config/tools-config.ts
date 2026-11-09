@@ -1486,7 +1486,7 @@ export const toolsConfig: ToolConfig[] = [
   },
 ]
 
-export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby']
+export const TOOL_CATEGORIES: ToolCategory[] = ['developer', 'travel', 'beer', 'baby', 'fun']
 
 export function getToolBySlug(category: ToolCategory, slug: string): ToolConfig | undefined {
   return toolsConfig.find((t) => t.category === category && t.slug === slug)
