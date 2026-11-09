@@ -29,8 +29,10 @@
     {
       "step": 3,
       "name": "quiz-component",
-      "status": "pending",
-      "started_at": "2026-11-09T09:32:58+0900"
+      "status": "completed",
+      "started_at": "2026-11-09T09:32:58+0900",
+      "summary": "components/tools/chiikawa-personality-test/: ChiikawaPersonalityTestTool({locale?:Locale}, use client — 시작→24문항(진행바·이전·덮어쓰기)→결과(캐릭터 카드·나의 유형/팬 설정 유형 분리·TOP3·궁합 칩·다시하기/공유), 공유 URL=SITE_URL+localeHref(locale,\"/fun/chiikawa-personality-test/result/{id}\"), navigator.share→clipboard 폴백, 이벤트 tool_open/input_enter/calculate{character,type}/share) + FanMadeNotice({locale:\"en\"|\"ko\"}, 서버 컴포넌트 호환 default export, 4줄 고지+공식 사이트 링크 — 툴 페이지 본문·결과 공유 페이지에서 재사용) + lib/utils/koreanParticle.ts withAndParticle(name)",
+      "completed_at": "2026-11-09T09:45:00+0900"
     },
     {
       "step": 4,
