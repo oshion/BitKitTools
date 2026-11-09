@@ -182,6 +182,16 @@ describe('selectImprovementCandidates', () => {
     expect(c.evidence).not.toBe('')
   })
 
+  it('skips the locale home pages — they are landing pages, not tools to improve', () => {
+    const bouncePages = [
+      makeBouncePage({ path: '/' }),
+      makeBouncePage({ path: '/ko/' }),
+      makeBouncePage({ path: '/beer/bac-calculator/' }),
+    ]
+    const result = selectImprovementCandidates([], bouncePages, makeProposalLog(), asOf)
+    expect(result.candidates.map((c) => c.page)).toEqual(['/beer/bac-calculator/'])
+  })
+
   it('puts already-pending proposal target in reminders, not candidates', () => {
     const anomalies = [makeAnomaly({ page: '/beer/bac-calculator/' })]
     const log = makeProposalLog([makePendingProposal('/beer/bac-calculator/')])
@@ -360,6 +370,22 @@ describe('generateImprovementSpec', () => {
     global.fetch = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 개선 spec 본문', 'end_turn'))
     const result = await generateImprovementSpec(candidate, '', 'dummy-key')
     expect(result).toBe('## 개선 spec 본문')
+  })
+
+  it('reports a truncated thinking-only response as truncated, not as empty', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ content: [{ type: 'thinking' }], stop_reason: 'max_tokens' }),
+    } as unknown as Response)
+    await expect(generateImprovementSpec(candidate, '', 'dummy-key')).rejects.toThrow(/cut off by max_tokens/)
+  })
+
+  it('asks for up to 16000 output tokens (2026-11-09: 4096/8192 limits cut specs off)', async () => {
+    const fetchMock = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 개선 spec 본문', 'end_turn'))
+    global.fetch = fetchMock
+    await generateImprovementSpec(candidate, '', 'dummy-key')
+    const body = JSON.parse(String((fetchMock.mock.calls[0] as [string, RequestInit])[1].body))
+    expect(body.max_tokens).toBe(16000)
   })
 
   it('throws instead of returning a truncated spec (stop_reason: max_tokens)', async () => {

@@ -26,6 +26,7 @@ import { appendTrendPoint, readActionLog, readTrend, writeTrend } from './lib/de
 import { getWeeklyReportWindow, getPreviousWeeklyWindow } from './lib/weeklyReportWindow'
 import { buildCleanupSection, type CleanupCandidate } from './lib/cleanupSection'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
+import { buildFallbackHistoryEntry, parseReportResponse } from './lib/reportResponse'
 import { toolsConfig } from '../src/lib/config/tools-config'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
 import type { PageLighthouseScore } from './lib/lighthouseThreshold'
@@ -154,43 +155,6 @@ function buildWowComparison(
     formatChange(totals.sessions, previousWeek.organicSessions, '세션'),
     formatChange(totals.clicks, previousWeek.organicClicks, '클릭'),
   ].join(' / ')
-}
-
-// ── Response Parsing ──────────────────────────────────────────────────────────
-
-interface ParsedResponse {
-  report: string
-  historyEntry: string | null
-}
-
-/**
- * Extracts the report body and history entry from the delimited API response.
- *
- * Expected format:
- *   ===REPORT===
- *   ...
- *   ===HISTORY===
- *   ...
- *   ===END===
- *
- * Fail-soft: if delimiters are not found, returns the full response text as
- * the report and null for historyEntry. This preserves the report even when
- * the model doesn't follow the exact format.
- */
-function parseApiResponse(text: string): ParsedResponse {
-  const reportMatch = text.match(/===REPORT===([\s\S]*?)===HISTORY===/)
-  const historyMatch = text.match(/===HISTORY===([\s\S]*?)===END===/)
-
-  if (!reportMatch) {
-    // Fall back to full response text — better than losing the report entirely
-    console.warn('[generate-report] Could not find ===REPORT=== delimiter — using full response as report.')
-    return { report: text.trim(), historyEntry: null }
-  }
-
-  return {
-    report: (reportMatch[1] ?? '').trim(),
-    historyEntry: historyMatch ? (historyMatch[1] ?? '').trim() : null,
-  }
 }
 
 // ── Date Helper ───────────────────────────────────────────────────────────────
@@ -473,7 +437,12 @@ ${lighthouseSection}
 
   // ── 8. Parse response ────────────────────────────────────────────────────────
 
-  const { report: aiReport, historyEntry } = parseApiResponse(apiResponseText)
+  const { report: aiReport, historyEntry: aiHistoryEntry } = parseReportResponse(apiResponseText)
+  // The model sometimes omits the HISTORY block (2026-11-09) — never let history.md skip a week.
+  const historyEntry = aiHistoryEntry ?? buildFallbackHistoryEntry(weeklyData, previousWeek)
+  if (!aiHistoryEntry) {
+    console.warn('[generate-report] No ===HISTORY=== section in response — appending a data-only fallback entry.')
+  }
 
   // ── 8b. Deterministically append performance warning section ─────────────────
   // This is NOT delegated to AI — we guarantee the section appears whenever
@@ -516,16 +485,10 @@ ${lighthouseSection}
 
   // ── 10. Append history entry ─────────────────────────────────────────────────
 
-  if (historyEntry) {
-    const existingContent = readHistory()
-    const separator = existingContent.length > 0 ? '\n\n' : ''
-    appendFileSync(HISTORY_PATH, `${separator}${historyEntry}`, 'utf-8')
-    console.log('[generate-report] Appended history entry to data/history.md')
-  } else {
-    console.log(
-      '[generate-report] No ===HISTORY=== section found in response — history.md not updated.'
-    )
-  }
+  const existingContent = readHistory()
+  const separator = existingContent.length > 0 ? '\n\n' : ''
+  appendFileSync(HISTORY_PATH, `${separator}${historyEntry}`, 'utf-8')
+  console.log('[generate-report] Appended history entry to data/history.md')
 }
 
 main().catch((err: unknown) => {

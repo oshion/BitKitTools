@@ -287,6 +287,14 @@ describe('generateGrowthSpec', () => {
     expect(result).toBe('## 확장 spec 본문')
   })
 
+  it('asks for up to 16000 output tokens (2026-11-09: 4096/8192 limits cut specs off)', async () => {
+    const fetchMock = jest.fn().mockResolvedValueOnce(makeFetchResponse('## 확장 spec 본문', 'end_turn'))
+    global.fetch = fetchMock
+    await generateGrowthSpec(candidate, '', 'dummy-key')
+    const body = JSON.parse(String((fetchMock.mock.calls[0] as [string, RequestInit])[1].body))
+    expect(body.max_tokens).toBe(16000)
+  })
+
   it('throws instead of returning a truncated spec (stop_reason: max_tokens) — regression test for the 2026-08-31 incident where this reached data/reports/2026/2026-08-31.md mid-sentence', async () => {
     global.fetch = jest
       .fn()

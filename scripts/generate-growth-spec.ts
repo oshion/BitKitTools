@@ -21,7 +21,7 @@ import type { TopPagesHistory } from './lib/topPagesHistory'
 import { findConsecutiveTopPerformers } from './lib/topPagesHistory'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
-import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
+import { describeAnthropicResponse, extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 import type { ToolConfig } from '../src/types/tool'
 import { toolsConfig } from '../src/lib/config/tools-config'
 
@@ -252,8 +252,9 @@ Google이 리치 결과를 더 이상 보여주지 않는 Schema(HowTo — 2023�
       // Was 4096 — observed truncating mid-sentence in production
       // (report-review session, 2026-08-31, /travel/flight-delay-compensation/
       // growth spec). Growth specs cover a 3-4 section structured expansion
-      // plan and can run long in Korean; matches generate-report.ts's limit.
-      max_tokens: 8192,
+      // plan and can run long in Korean. Raised again from 8192 after the
+      // 2026-11-09 KO layover growth spec was cut off; matches generate-report.ts.
+      max_tokens: 16000,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
@@ -271,18 +272,18 @@ Google이 리치 결과를 더 이상 보여주지 않는 Schema(HowTo — 2023�
   }
   const text = extractAnthropicText(json)
 
-  if (!text.trim()) {
-    throw new Error(
-      '[generate-growth-spec] Anthropic API returned empty response for ' + candidate.page
-    )
-  }
-
   if (isTruncated(json)) {
     // A truncated spec is worse than no spec — see generate-improvement-spec.ts
     // for the full rationale. Throw so safeRunStep() drops this candidate
     // instead of publishing broken content into the weekly report.
     throw new Error(
       `[generate-growth-spec] Anthropic response was cut off by max_tokens for ${candidate.page} — refusing to return a truncated spec.`
+    )
+  }
+
+  if (!text.trim()) {
+    throw new Error(
+      `[generate-growth-spec] Anthropic API returned empty response for ${candidate.page} (${describeAnthropicResponse(json)})`
     )
   }
 
