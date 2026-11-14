@@ -1,0 +1,161 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "9 temperament traits quiz",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "usa",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 12
+    },
+    {
+      "keys": [
+        "alcohol calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "est",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "keys": [
+        "baby sleep calculator",
+        "https://bitkittools.com/baby/sleep-schedule/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 76.5
+    },
+    {
+      "keys": [
+        "bac calculator",
+        "https://bitkittools.com/beer/bac-calculator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "keys": [
+        "calculate abv homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 34
+    },
+    {
+      "keys": [
+        "chiikawa personality test",
+        "https://bitkittools.com/fun/chiikawa-personality-test/",
+        "tha",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "chiikawa test",
+        "https://bitkittools.com/fun/chiikawa-personality-test/",
+        "idn",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 9.25
+    },
+    {
+      "keys": [
+        "chiikawa test",
+        "https://bitkittools.com/fun/chiikawa-personality-test/",
+        "idn",
+        "TABLET"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 98
+    },
+    {
+      "keys": [
+        "parse jwt token",
+        "https://bitkittools.com/developer/jwt-decoder/",
+        "ind",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 33
+    },
+    {
+      "keys": [
+        "temp correction factor",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "keys": [
+        "temperature correction factor",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "keys": [
+        "항공편기 도트",
+        "https://bitkittools.com/ko/travel/flight-delay-compensation/",
+        "kor",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 15
+    }
+  ],
+  "responseAggregationType": "byPage"
+}

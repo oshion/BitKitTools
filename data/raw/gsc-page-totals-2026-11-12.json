@@ -1,0 +1,149 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "https://bitkittools.com/baby/growth-percentile/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/height-predictor/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 5.75
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/sleep-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/baby/temperament-quiz/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 10.333333333333334
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/bac-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 57.75
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 66
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/developer/jwt-decoder/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 33
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/fun/chiikawa-personality-test/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 9.333333333333334
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/baby/growth-percentile/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 13
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/baby/sleep-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/beer/hydrometer-temperature-correction/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/travel/flight-delay-compensation/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 15
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/ko/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 5.833333333333333
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/jetlag-recovery-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "keys": [
+        "https://bitkittools.com/travel/layover-connection-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 9.8
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
