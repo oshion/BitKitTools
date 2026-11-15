@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-14",
+  "pages": [
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 2,
+      "events": {
+        "input_enter": 2,
+        "page_view": 2,
+        "session_start": 2,
+        "calculate": 5,
+        "first_visit": 1,
+        "scroll": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    }
+  ],
+  "queries": [],
+  "clarity": [
+    {
+      "metricName": "DeadClickCount",
+      "information": []
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": []
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": []
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": []
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": []
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": []
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": []
+    },
+    {
+      "metricName": "Traffic",
+      "information": []
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": []
+    }
+  ]
+}
