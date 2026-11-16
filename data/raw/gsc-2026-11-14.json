@@ -2,7 +2,7 @@
   "rows": [
     {
       "keys": [
-        "alc vol calculator",
+        "0.00.01",
         "https://bitkittools.com/beer/standard-drinks-calculator/",
         "aus",
         "DESKTOP"
@@ -10,19 +10,31 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 85
+      "position": 66
     },
     {
       "keys": [
-        "alcohol calculator homebrew",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "aus",
-        "DESKTOP"
+        "9 temperament traits quiz",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "gbr",
+        "MOBILE"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 80
+      "position": 11
+    },
+    {
+      "keys": [
+        "abv conversion",
+        "https://bitkittools.com/beer/standard-drinks-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 79.25
     },
     {
       "keys": [
@@ -38,91 +50,43 @@
     },
     {
       "keys": [
-        "beer abv calculator",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "aus",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 71
-    },
-    {
-      "keys": [
-        "brix temp correction",
-        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "isr",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 77
-    },
-    {
-      "keys": [
-        "child temperament quiz",
+        "baby temperament quiz",
         "https://bitkittools.com/baby/temperament-quiz/",
-        "rus",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 46
-    },
-    {
-      "keys": [
-        "correct specific gravity for temperature",
-        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "usa",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 86
-    },
-    {
-      "keys": [
-        "correcting specific gravity for temperature",
-        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "usa",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 85
-    },
-    {
-      "keys": [
-        "extract og calculator",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "aus",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 77
-    },
-    {
-      "keys": [
-        "flight connection time",
-        "https://bitkittools.com/travel/layover-connection-calculator/",
-        "are",
+        "gbr",
         "MOBILE"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 43
+      "position": 15
     },
     {
       "keys": [
-        "gravity calculator beer",
+        "baby temperament test",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "aut",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "bac calculator",
+        "https://bitkittools.com/ko/beer/bac-calculator/",
+        "kor",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 56
+    },
+    {
+      "keys": [
+        "brew gravity calculator",
         "https://bitkittools.com/beer/homebrew-recipe-calculator/",
         "aus",
         "DESKTOP"
@@ -130,31 +94,67 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 86
+      "position": 89
     },
     {
       "keys": [
-        "home brew alcohol calculator",
+        "calculate abv homebrew",
         "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "aus",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 99
+    },
+    {
+      "keys": [
+        "chiikawa test",
+        "https://bitkittools.com/fun/chiikawa-personality-test/",
+        "idn",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "height predictor",
+        "https://bitkittools.com/baby/height-predictor/",
+        "deu",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 98
+    },
+    {
+      "keys": [
+        "hydrometer calibration temperature",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "usa",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 79
-    },
-    {
-      "keys": [
-        "hydrometer calculator",
-        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
-        "aus",
-        "DESKTOP"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 87
     },
     {
       "keys": [
@@ -166,19 +166,31 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 56
+      "position": 53
     },
     {
       "keys": [
-        "mead abv calculator",
-        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
-        "usa",
+        "mid parental height formula",
+        "https://bitkittools.com/baby/height-predictor/",
+        "sgp",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 85
+      "position": 86
+    },
+    {
+      "keys": [
+        "mid-parental height formula",
+        "https://bitkittools.com/baby/height-predictor/",
+        "aus",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 90
     },
     {
       "keys": [
@@ -188,13 +200,25 @@
         "DESKTOP"
       ],
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 1,
       "ctr": 0,
-      "position": 75.71428571428571
+      "position": 88
     },
     {
       "keys": [
-        "std drink calculator",
+        "parse jwt token",
+        "https://bitkittools.com/developer/jwt-decoder/",
+        "ind",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "keys": [
+        "standards drinks calculator",
         "https://bitkittools.com/beer/standard-drinks-calculator/",
         "aus",
         "DESKTOP"
@@ -202,19 +226,19 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 83
+      "position": 86
     },
     {
       "keys": [
-        "맥주 비중 평가 방법",
-        "https://bitkittools.com/ko/beer/",
-        "kor",
+        "thomas and chess's classic temperamental categories",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "usa",
         "DESKTOP"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 29
+      "position": 28
     }
   ],
   "responseAggregationType": "byPage"
