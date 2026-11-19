@@ -89,27 +89,11 @@
       "lastReminderAt": "2026-11-02"
     },
     {
-      "id": "improvement-fun-chiikawa-personality-test",
-      "type": "improvement",
-      "target": "/fun/chiikawa-personality-test/",
-      "firstProposedAt": "2026-11-16",
-      "status": "pending",
-      "lastReminderAt": "2026-11-16"
-    },
-    {
       "id": "improvement-ko-fun-chiikawa-personality-test-result-pochette-armor",
       "type": "improvement",
       "target": "/ko/fun/chiikawa-personality-test/result/pochette-armor/",
       "firstProposedAt": "2026-11-16",
-      "status": "pending",
-      "lastReminderAt": "2026-11-16"
-    },
-    {
-      "id": "improvement-ko-fun-chiikawa-personality-test",
-      "type": "improvement",
-      "target": "/ko/fun/chiikawa-personality-test/",
-      "firstProposedAt": "2026-11-16",
-      "status": "pending",
+      "status": "rejected",
       "lastReminderAt": "2026-11-16"
     },
     {

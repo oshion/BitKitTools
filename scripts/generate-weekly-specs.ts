@@ -26,6 +26,7 @@ import { join, resolve } from 'path'
 import type { ProcessedDay } from './process-analytics'
 import { aggregateQueriesByPageAndQuery, aggregateWeeklyReport } from './lib/aggregateWeeklyReport'
 import { getWeeklyReportWindow } from './lib/weeklyReportWindow'
+import { findConcentratedPages, removeAuditSessions } from './lib/reportFacts'
 import { detectCtrAnomalies } from './lib/detectCtrAnomalies'
 import type { CtrBenchmarkTable } from './lib/detectCtrAnomalies'
 import { readProposals, writeProposals, upsertProposal } from './lib/proposalTracking'
@@ -182,7 +183,7 @@ export async function generateWeeklySpecs(apiKey: string): Promise<WeeklySpecsRe
   }
 
   const { start: windowStart, end: windowEnd } = getWeeklyReportWindow(new Date())
-  const days = readProcessedDaysInWindow(windowStart, windowEnd)
+  const { days } = removeAuditSessions(readProcessedDaysInWindow(windowStart, windowEnd))
   if (days.length === 0) {
     console.log('[generate-weekly-specs] No processed data found — skipping all spec generation.')
     return result
@@ -235,7 +236,8 @@ export async function generateWeeklySpecs(apiKey: string): Promise<WeeklySpecsRe
       ctrAnomalies,
       weeklyData.highBouncePages,
       proposals,
-      asOf
+      asOf,
+      findConcentratedPages(days)
     )
     result.reminders.push(...reminders)
 

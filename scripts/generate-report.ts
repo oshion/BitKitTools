@@ -3,8 +3,8 @@
  *
  * Weekly report generator. Reads the calendar Saturday-to-Friday week of
  * processed data (see lib/weeklyReportWindow.ts), aggregates it, classifies
- * query intents, detects stagnation trend, and generates an AI-authored
- * Markdown report via Anthropic API.
+ * query intents, detects stagnation trend, and writes a Markdown report: code-computed
+ * facts plus AI claims that passed validation (docs/report-quality-pipeline.md).
  *
  * Usage: npx tsx scripts/generate-report.ts
  */
@@ -12,11 +12,7 @@
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, resolve } from 'path'
 import type { ProcessedDay } from './process-analytics'
-import {
-  aggregateWeeklyReport,
-  buildTitleExperimentSection,
-  MIN_IMPRESSIONS_FOR_RANK_CHANGE,
-} from './lib/aggregateWeeklyReport'
+import { aggregateWeeklyReport, buildTitleExperimentSection } from './lib/aggregateWeeklyReport'
 import {
   classifyAmbiguousQueries,
   classifyIntentRuleBased,
@@ -24,9 +20,11 @@ import {
 } from './lib/classifyIntent'
 import { appendTrendPoint, readActionLog, readTrend, writeTrend } from './lib/detectStagnation'
 import { getWeeklyReportWindow, getPreviousWeeklyWindow } from './lib/weeklyReportWindow'
-import { buildCleanupSection, type CleanupCandidate } from './lib/cleanupSection'
-import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
-import { buildFallbackHistoryEntry, parseReportResponse } from './lib/reportResponse'
+import type { CleanupCandidate } from './lib/cleanupSection'
+import { buildFallbackHistoryEntry } from './lib/reportResponse'
+import { buildReportFacts, removeAuditSessions } from './lib/reportFacts'
+import { buildClaimsPrompt, requestReportClaims, validateClaims } from './lib/reportClaims'
+import { renderReport } from './lib/renderReport'
 import { toolsConfig } from '../src/lib/config/tools-config'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
 import type { PageLighthouseScore } from './lib/lighthouseThreshold'
@@ -36,10 +34,6 @@ import type { PageLighthouseScore } from './lib/lighthouseThreshold'
 const PROCESSED_DIR = resolve(process.cwd(), 'data', 'processed')
 const REPORTS_DIR = resolve(process.cwd(), 'data', 'reports')
 const HISTORY_PATH = resolve(process.cwd(), 'data', 'history.md')
-
-const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages'
-const ANTHROPIC_API_VERSION = '2023-06-01'
-const MODEL = 'claude-sonnet-5'
 
 /** Top N queries (by impressions) to classify for intent */
 const TOP_QUERIES_LIMIT = 30
@@ -127,36 +121,6 @@ function getCleanupCandidates(days: ProcessedDay[]): CleanupCandidate[] {
   return candidates
 }
 
-// ── Week-over-Week Comparison ────────────────────────────────────────────────
-
-/**
- * Builds a plain-text WoW summary for sessions/clicks. Returns a message
- * saying no comparison is possible when there's no previous week, and
- * avoids dividing by zero when the previous week's value was 0.
- */
-function buildWowComparison(
-  totals: { sessions: number; clicks: number },
-  previousWeek: { organicSessions: number; organicClicks: number } | undefined
-): string {
-  if (!previousWeek) {
-    return '지난 주 데이터 없음 — 비교 불가(이번이 첫 리포트이거나 트렌드 기록이 아직 없음)'
-  }
-
-  const formatChange = (current: number, previous: number, label: string): string => {
-    if (previous === 0) {
-      return `${label}: ${previous} → ${current} (지난 주 0이라 증감률 계산 불가)`
-    }
-    const pct = ((current - previous) / previous) * 100
-    const sign = pct >= 0 ? '+' : ''
-    return `${label}: ${previous} → ${current} (${sign}${pct.toFixed(1)}%)`
-  }
-
-  return [
-    formatChange(totals.sessions, previousWeek.organicSessions, '세션'),
-    formatChange(totals.clicks, previousWeek.organicClicks, '클릭'),
-  ].join(' / ')
-}
-
 // ── Date Helper ───────────────────────────────────────────────────────────────
 
 function todayIso(): string {
@@ -233,7 +197,7 @@ async function main(): Promise<void> {
   const { start: windowStart, end: windowEnd } = getWeeklyReportWindow(new Date())
   console.log(`[generate-report] Report window: ${windowStart} ~ ${windowEnd}`)
 
-  const days = readProcessedDaysInWindow(windowStart, windowEnd)
+  const { days, removedSessions } = removeAuditSessions(readProcessedDaysInWindow(windowStart, windowEnd))
 
   if (days.length === 0) {
     console.log(
@@ -251,7 +215,9 @@ async function main(): Promise<void> {
 
   // Previous Sat-Fri week, only for week-over-week rank changes (risingQueries/fallingQueries).
   const previousWindow = getPreviousWeeklyWindow({ start: windowStart, end: windowEnd })
-  const previousDays = readProcessedDaysInWindow(previousWindow.start, previousWindow.end)
+  const { days: previousDays } = removeAuditSessions(
+    readProcessedDaysInWindow(previousWindow.start, previousWindow.end)
+  )
 
   const weeklyData = aggregateWeeklyReport(days, previousDays)
 
@@ -317,132 +283,28 @@ async function main(): Promise<void> {
   writeTrend(updatedTrend)
   console.log('[generate-report] Trend data updated.')
 
-  // ── 6. Read history ──────────────────────────────────────────────────────────
+  // ── 6. Compute facts ─────────────────────────────────────────────────────────
 
-  const history = readHistory()
+  const facts = buildReportFacts({
+    weekly: weeklyData,
+    days,
+    previousWeek,
+    removedAuditSessions: removedSessions,
+    lighthouse: lighthouseSnapshot?.scores ?? [],
+    cleanupCount: cleanupCandidates.length,
+    intents: intentClassifications,
+  })
 
-  // ── 7. Build prompt & call Anthropic API ────────────────────────────────────
-
-  const wowComparison = buildWowComparison(weeklyData.totals, previousWeek)
-
-  const intentLines = Object.entries(intentClassifications)
-    .map(([q, intent]) => `- "${q}": ${intent}`)
-    .join('\n')
-
-  const cleanupSection = buildCleanupSection(cleanupCandidates, toolsConfig.length)
-
-  const lighthouseSection = lighthouseSnapshot
-    ? `## Lighthouse 점수 (${lighthouseSnapshot.date} 기준)\n\n\`\`\`json\n${JSON.stringify(lighthouseSnapshot.scores, null, 2)}\n\`\`\``
-    : '## Lighthouse 점수\n\n(오늘 스냅샷 없음 — collect-lighthouse.ts가 실행되지 않았거나 실패했을 수 있음)'
-
-  const prompt = `당신은 BitKitTools.com의 SEO/콘텐츠 분석가입니다. 아래 주간 데이터를 바탕으로 한국어 마크다운 리포트를 작성하세요.
-
-## 이번 주 집계 데이터 (${weeklyData.periodStart} ~ ${weeklyData.periodEnd})
-
-\`\`\`json
-${JSON.stringify(weeklyData, null, 2)}
-\`\`\`
-
-## 지난 주 대비 변화 (Week-over-Week)
-
-${wowComparison}
-
-## 검색 의도 분류 결과 (상위 쿼리 최대 ${TOP_QUERIES_LIMIT}개)
-
-${intentLines || '분류할 쿼리 없음'}
-
-## 정리 후보 (게시 ${CLEANUP_AGE_DAYS}일 이상 + 최근 7일 세션 ${CLEANUP_SESSION_THRESHOLD}회 미만)
-
-${cleanupSection}
-
-## 과거 이력 (이미 시도한 접근을 반복 제안하지 않기 위한 참고)
-
-${history || '(아직 이력 없음)'}
-
-${lighthouseSection}
-
----
-
-위 데이터를 분석하고 다음 항목을 포함한 주간 리포트를 작성하세요:
-
-1. **잘 되고 있는 것**: topPerformingPages(클릭이 실제로 발생한 페이지)와 지난 주 대비 변화(Week-over-Week)를 근거로 이번 주 긍정적인 신호를 요약. 데이터가 부족해 뚜렷한 성과가 없으면 억지로 만들어내지 말고 "아직 판단할 만한 데이터가 부족함"이라고 명시.
-2. **CTR 0 페이지 분석**: zeroCtrPages의 페이지들이 클릭을 받지 못하는 원인 해설 (제목·스니펫·검색 의도 불일치 등)
-3. **이탈률 높은 페이지 분석**: highBouncePages 주요 항목 분석 및 개선 방향
-4. **국가/기기별 CTR 편차**: ctrDeviations 주요 항목 해설
-5. **검색 의도 분류 요약**: 분류 결과에서 발견되는 패턴과 콘텐츠 전략 시사점
-6. **순위 변동 쿼리**: risingQueries/fallingQueries 주요 항목 해설. 이 값은 지난주 대비 이번 주의 노출 가중 평균 순위(previousWeekPosition → thisWeekPosition)이며, 양쪽 주 모두 노출 ${MIN_IMPRESSIONS_FOR_RANK_CHANGE}회 이상인 쿼리만 포함된다. 둘 다 비어 있으면 "비교할 만큼 노출이 쌓인 쿼리 없음"이라고만 쓰고, 노출이 적은 쿼리의 순위를 따로 추정해 서술하지 말 것
-7. **정리 후보**: 위에 제공된 데이터를 그대로 요약 (해당 없으면 "현재 해당 없음" 명시)
-8. **툴 품질 신호** (toolEngagement/claritySignals 데이터가 있을 때만): toolEngagement는 페이지별 "세션 대비 실제로 입력값을 건드려본 비율"(engagementRate)이다 — 세션은 있는데 engagementRate가 낮은 페이지는 검색 의도 불일치나 UX 문제로 방문자가 도구를 쓰지도 않고 이탈했다는 신호이니 원인 후보를 짧게 짚는다. claritySignals는 DeadClickCount(반응 없는 요소 클릭)/RageClickCount(반복 클릭)/ScriptErrorCount(실제 JS 에러)/QuickbackClick(들어왔다 바로 이탈) 같은 UX 이상 신호이며, affectedSessionCount는 그 신호가 실제로 발생한 세션 수, samplePages는 발생한 페이지다(발생 0건인 지표는 목록에 아예 없다). 특히 ScriptErrorCount는 볼륨과 무관하게 실제 버그일 가능성이 있으니 발견 시 페이지와 함께 반드시 명시한다. 둘 다 데이터가 없으면(빈 배열) 이 항목은 생략한다.
-9. **추가 아이디어 제안** (필수 — 최소 1개): 신규 콘텐츠 방향, 놓치고 있는 키워드, 경쟁사 벤치마킹 아이디어 등. 위에서 발견된 문제와 별개로 반드시 포함한다. **과거 이력(history.md)에 이미 시도했던 접근은 반복 제안하지 말 것.**
-10. **Lighthouse 성능 분석** (Lighthouse 점수 데이터가 있을 때만): 점수가 낮은 페이지의 원인 후보(무거운 JS, 이미지 최적화 부족, 서드파티 스크립트 영향 등)를 짧게 언급하고 개선 방향을 제안. 데이터가 없으면 이 항목은 생략한다.
-
-응답은 반드시 아래 형식을 그대로 사용하세요 (구분자 줄을 정확히 일치시켜야 합니다):
-===REPORT===
-(전체 마크다운 리포트 본문)
-===HISTORY===
-(3~5줄 압축 요약 — 형식: "YYYY년 MM월 N주차: 핵심 지표 / 특이사항 / 시도한 개선 / 결과")
-===END===`
+  // ── 7. Request and validate AI claims ────────────────────────────────────────
 
   console.log('[generate-report] Calling Anthropic API...')
-
-  let apiResponseText: string
-  let responseWasTruncated = false
-  try {
-    const response = await fetch(ANTHROPIC_API_URL, {
-      method: 'POST',
-      headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': ANTHROPIC_API_VERSION,
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        // Was 8192 — the 2026-10-26 and 2026-11-02 reports were both cut off by it
-        // (sections and the ===HISTORY=== block lost).
-        max_tokens: 16000,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    })
-
-    if (!response.ok) {
-      const errorText = await response.text().catch(() => '(unreadable)')
-      console.error(`[generate-report] Anthropic API error ${response.status}: ${errorText}`)
-      process.exit(1)
-    }
-
-    const json = (await response.json()) as {
-      content?: Array<{ type: string; text?: string }>
-      stop_reason?: string
-    }
-    apiResponseText = extractAnthropicText(json)
-
-    if (isTruncated(json)) {
-      console.warn(
-        '[generate-report] Anthropic response was cut off by max_tokens — the report may be incomplete.'
-      )
-      responseWasTruncated = true
-    }
-
-    if (!apiResponseText.trim()) {
-      console.error(
-        '[generate-report] Anthropic API returned an empty response. Raw response:',
-        JSON.stringify(json)
-      )
-      process.exit(1)
-    }
-  } catch (err) {
-    console.error('[generate-report] Network error calling Anthropic API:', err)
-    process.exit(1)
-  }
-
-  // ── 8. Parse response ────────────────────────────────────────────────────────
-
-  const { report: aiReport, historyEntry: aiHistoryEntry } = parseReportResponse(apiResponseText)
-  // The model sometimes omits the HISTORY block (2026-11-09) — never let history.md skip a week.
-  const historyEntry = aiHistoryEntry ?? buildFallbackHistoryEntry(weeklyData, previousWeek)
-  if (!aiHistoryEntry) {
-    console.warn('[generate-report] No ===HISTORY=== section in response — appending a data-only fallback entry.')
-  }
+  const claims = await requestReportClaims(buildClaimsPrompt(facts, readHistory()), apiKey)
+  const { accepted, rejected } = validateClaims(claims ?? [], facts)
+  console.log(
+    claims
+      ? `[generate-report] Claims: ${accepted.length} accepted, ${rejected.length} removed.`
+      : '[generate-report] No usable AI claims — publishing facts only.'
+  )
 
   // ── 8b. Deterministically append performance warning section ─────────────────
   // This is NOT delegated to AI — we guarantee the section appears whenever
@@ -457,21 +319,18 @@ ${lighthouseSection}
   const actionLog = readActionLog()
   const titleExperimentSection = buildTitleExperimentSection(actionLog)
 
-  // Unlike the per-candidate spec generators (generate-improvement-spec.ts
-  // etc.), a truncated main report is not discarded — the weekly report file
-  // and Slack post are the primary artifact, and no report is worse than a
-  // partial one. Instead, a visible banner is prepended so a reader (and the
-  // /report-review skill) sees the problem immediately instead of it being
-  // buried in a CI log nobody checks.
-  const truncationWarning = responseWasTruncated
-    ? '## ⚠️ 리포트 응답 잘림\n\n이 리포트는 Anthropic API 응답이 max_tokens 한도에 걸려 일부 내용이 누락됐을 수 있습니다. 아래 내용을 신뢰하기 전에 원본 데이터로 재검증하세요.'
-    : null
-
-  const reportParts = [aiReport]
-  if (truncationWarning) reportParts.unshift(truncationWarning)
-  if (performanceWarning) reportParts.push(performanceWarning)
-  if (titleExperimentSection) reportParts.push(titleExperimentSection)
-  const report = reportParts.join('\n\n')
+  const report = renderReport({
+    periodStart: weeklyData.periodStart,
+    periodEnd: weeklyData.periodEnd,
+    status: claims ? 'analyzed' : 'facts-only',
+    facts,
+    accepted,
+    rejected,
+    cleanupCandidates,
+    appendSections: [performanceWarning, titleExperimentSection].filter(
+      (section): section is string => Boolean(section)
+    ),
+  })
 
   // ── 9. Save report ───────────────────────────────────────────────────────────
 
@@ -485,6 +344,8 @@ ${lighthouseSection}
 
   // ── 10. Append history entry ─────────────────────────────────────────────────
 
+  // Written from the data only: unverified AI summaries spread into later specs.
+  const historyEntry = buildFallbackHistoryEntry(weeklyData, previousWeek)
   const existingContent = readHistory()
   const separator = existingContent.length > 0 ? '\n\n' : ''
   appendFileSync(HISTORY_PATH, `${separator}${historyEntry}`, 'utf-8')

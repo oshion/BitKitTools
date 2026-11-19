@@ -1,30 +1,5 @@
-import { parseReportResponse, weekLabel, buildFallbackHistoryEntry } from '../reportResponse'
+import { weekLabel, buildFallbackHistoryEntry } from '../reportResponse'
 import type { WeeklyReportData } from '../aggregateWeeklyReport'
-
-describe('parseReportResponse', () => {
-  it('splits report and history when all delimiters are present', () => {
-    const text = '===REPORT===\n# 리포트\n===HISTORY===\n2026년 요약\n===END==='
-    expect(parseReportResponse(text)).toEqual({ report: '# 리포트', historyEntry: '2026년 요약' })
-  })
-
-  it('keeps the history entry when ===END=== is missing', () => {
-    const text = '===REPORT===\n# 리포트\n===HISTORY===\n2026년 요약'
-    expect(parseReportResponse(text)).toEqual({ report: '# 리포트', historyEntry: '2026년 요약' })
-  })
-
-  it('returns null history when the model omitted the HISTORY block', () => {
-    const text = '===REPORT===\n# 리포트 본문만'
-    expect(parseReportResponse(text)).toEqual({ report: '# 리포트 본문만', historyEntry: null })
-  })
-
-  it('falls back to the full text when there are no delimiters at all', () => {
-    expect(parseReportResponse('그냥 텍스트')).toEqual({ report: '그냥 텍스트', historyEntry: null })
-  })
-
-  it('treats an empty HISTORY block as missing', () => {
-    expect(parseReportResponse('===REPORT===\nA\n===HISTORY===\n \n===END===').historyEntry).toBeNull()
-  })
-})
 
 describe('weekLabel', () => {
   // The label follows the month that holds most of the Sat-Fri window (its middle day),

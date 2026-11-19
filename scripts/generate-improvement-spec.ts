@@ -21,6 +21,8 @@ import type { CtrAnomaly } from './lib/detectCtrAnomalies'
 import type { HighBouncePage } from './lib/aggregateWeeklyReport'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
+import { buildSpecHistorySection } from './lib/specHistorySection'
+import { toolsConfig } from '../src/lib/config/tools-config'
 import { describeAnthropicResponse, extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -102,12 +104,26 @@ function reminderString(page: string, proposals: ProposalLog, asOf: Date): strin
  * the buildXxxEvidence helpers always producing a non-empty string.
  */
 const HOME_PATHS = new Set(['/', '/ko/'])
+/** Below this, weekly bounce rates are mostly individual visits */
+const MIN_BOUNCE_CANDIDATE_SESSIONS = 10
+/** New pages have no stable rank or traffic yet */
+const MIN_PAGE_AGE_DAYS = 28
+
+function isTooNew(page: string, asOf: Date): boolean {
+  const path = page.replace(/^\/ko\//, '/')
+  const tool = toolsConfig.find((t) => path.startsWith(`/${t.category}/${t.slug}/`))
+  if (!tool) return false
+  const ageMs = asOf.getTime() - new Date(tool.addedAt).getTime()
+  return ageMs < MIN_PAGE_AGE_DAYS * 24 * 60 * 60 * 1000
+}
 
 export function selectImprovementCandidates(
   ctrAnomalies: CtrAnomaly[],
   bouncePages: HighBouncePage[],
   proposals: ProposalLog,
-  asOf: Date
+  asOf: Date,
+  /** Pages whose sessions came mostly from one day, so their bounce rate is not a pattern */
+  concentratedPages: ReadonlySet<string> = new Set()
 ): { candidates: ImprovementSpecCandidate[]; reminders: string[] } {
   // ── Step 1: build raw candidates keyed by page ──────────────────────────────
 
@@ -146,6 +162,7 @@ export function selectImprovementCandidates(
     // "high" bounce rate there is not a tool problem (2026-11-09: / at 37.5%
     // became a candidate and the spec call failed anyway).
     if (HOME_PATHS.has(bp.path)) continue
+    if (bp.sessions < MIN_BOUNCE_CANDIDATE_SESSIONS || concentratedPages.has(bp.path)) continue
     const bounceEvidence = buildBounceEvidence(bp)
     if (!bounceEvidence.trim()) continue
 
@@ -173,6 +190,8 @@ export function selectImprovementCandidates(
   const reminders: string[] = []
 
   for (const raw of rawByPage.values()) {
+    if (isTooNew(raw.page, asOf)) continue
+
     const isPending = !!findPendingProposal(proposals, 'improvement', raw.page)
     if (isPending) {
       reminders.push(reminderString(raw.page, proposals, asOf))
@@ -219,9 +238,7 @@ export function buildImprovementSpecPrompt(
   candidate: ImprovementSpecCandidate,
   historyMd: string
 ): string {
-  const historySection = historyMd.trim()
-    ? `## 과거 이력 (이미 시도한 접근을 반복 제안하지 않기 위한 참고)\n\n${historyMd}`
-    : '## 과거 이력\n\n(아직 이력 없음)'
+  const historySection = buildSpecHistorySection(historyMd)
 
   return `당신은 BitKitTools.com의 SEO/콘텐츠 전문가입니다.
 아래 데이터 기반으로 특정 페이지의 개선 spec을 작성하세요.
