@@ -209,6 +209,25 @@ describe('validateClaims — evidence checks', () => {
     expect(validateClaims([claim(text, ['page:/a/'], { kind: 'hypothesis' })], facts).rejected).toEqual([])
   })
 
+  it('keeps sentences that explicitly decline to conclude (false positives in the first real run)', () => {
+    const clarity = fact('clarity:DeadClickCount', { values: [4], sample: 'small', tags: ['url-level'] })
+    const clicks = fact('totals.clicks', { values: [3, 5, 40], sample: 'small' })
+    const result = validateClaims(
+      [
+        claim('검색 클릭은 3건으로 소표본이라 감소를 추세로 단정하기 어렵다.', ['totals.clicks']),
+        claim('데드클릭은 4세션이지만 어떤 요소에서 발생했는지는 알 수 없다.', ['clarity:DeadClickCount']),
+      ],
+      [clarity, clicks],
+    )
+    expect(result.rejected).toEqual([])
+  })
+
+  it('still removes large-change wording and defect guesses from hedged sentences', () => {
+    const rank = fact('rank:q:/a/', { values: [73.8, 24], subjects: ['q', '/a/'], sample: 'small' })
+    expect(rejectedRule([claim('73.8위에서 24위로 큰 폭 상승했으나 단정하기 어렵다.', ['rank:q:/a/'])], [rank])).toBe('R5')
+    expect(rejectedRule([claim('버튼 결함인지는 알 수 없다.', ['rank:q:/a/'])], [rank])).toBe('R4')
+  })
+
   it('accepts plain observations and internal-link recommendations', () => {
     const result = validateClaims(
       [

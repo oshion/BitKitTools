@@ -70,7 +70,10 @@ const FAULT_WORDS = /버그|결함|오작동|고장|작동하지|동작하지|�
 /** Specific UI parts, which URL-level signals cannot identify */
 const ELEMENT_WORDS = /버튼|링크|요소|컴포넌트|아이콘|배지|목차|입력창/
 /** Trend language that a small sample cannot support, whatever the claim kind */
-const TREND_WORDS = /급증|급감|급등|급락|큰 폭|대폭|성장|견인|입증|추세|뚜렷/
+const TREND_WORDS = /급증|급감|급등|급락|성장|견인|입증|추세|뚜렷/
+const LARGE_CHANGE_WORDS = /큰 폭|대폭/
+/** The sentence says the data cannot support a conclusion, which is what we want */
+const DECLINES_TO_CONCLUDE = /단정하기 어렵|보기 어렵|판단하기 이르|알 수 없/
 /** Causal or settled language, allowed only when written as a hypothesis */
 const CAUSAL_WORDS = /때문|덕분|원인은|로 인해|개선됐|개선되었|악화됐|악화되었|확인됐|확인되었/
 const SESSION_GROWTH = /세션[^.。]*(증가|늘었|늘어|급증|성장|견인|성과|상승)/
@@ -122,12 +125,13 @@ function checkClaim(claim: ReportClaim, factsById: Map<string, ReportFact>, conc
   if (FAULT_WORDS.test(claim.text)) {
     return { rule: 'R4' as const, reason: '수집 데이터로 확인할 수 없는 기능 결함을 지목함' }
   }
-  if (facts.some((fact) => fact.tags?.includes('url-level')) && ELEMENT_WORDS.test(claim.text)) {
+  const declines = DECLINES_TO_CONCLUDE.test(claim.text)
+  if (!declines && facts.some((fact) => fact.tags?.includes('url-level')) && ELEMENT_WORDS.test(claim.text)) {
     return { rule: 'R4' as const, reason: '페이지 단위 데이터로 특정 화면 요소를 지목함' }
   }
 
   if (facts.some((fact) => fact.sample === 'small')) {
-    if (TREND_WORDS.test(claim.text)) {
+    if (LARGE_CHANGE_WORDS.test(claim.text) || (!declines && TREND_WORDS.test(claim.text))) {
       return { rule: 'R5' as const, reason: '소표본으로 추세나 큰 변화를 단정함' }
     }
     if (claim.kind === 'observation' && CAUSAL_WORDS.test(claim.text)) {
