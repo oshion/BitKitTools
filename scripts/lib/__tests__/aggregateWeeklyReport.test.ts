@@ -234,10 +234,23 @@ describe('aggregateWeeklyReport — highBouncePages', () => {
     expect(result.highBouncePages).toEqual([])
   })
 
+  test('excludes pages below the 50% bounce rate — 0%, 7.7% and 20% were reported as "high" on 2026-11-16', () => {
+    const day = makeDay('2026-08-01', {
+      pages: [
+        makePage({ path: '/zero/', sessions: 5, bounceRate: 0 }),
+        makePage({ path: '/low/', sessions: 13, bounceRate: 0.077 }),
+        makePage({ path: '/just-below/', sessions: 10, bounceRate: 0.49 }),
+        makePage({ path: '/at-threshold/', sessions: 10, bounceRate: 0.5 }),
+      ],
+      queries: [],
+    })
+    expect(aggregateWeeklyReport([day]).highBouncePages.map((p) => p.path)).toEqual(['/at-threshold/'])
+  })
+
   test('orders by bounceRate descending', () => {
     const day = makeDay('2026-08-01', {
       pages: [
-        makePage({ path: '/a/', sessions: 10, bounceRate: 0.4 }),
+        makePage({ path: '/a/', sessions: 10, bounceRate: 0.5 }),
         makePage({ path: '/b/', sessions: 10, bounceRate: 0.9 }),
         makePage({ path: '/c/', sessions: 10, bounceRate: 0.7 }),
       ],
@@ -249,7 +262,7 @@ describe('aggregateWeeklyReport — highBouncePages', () => {
 
   test('returns at most 10 entries', () => {
     const pages = Array.from({ length: 15 }, (_, i) =>
-      makePage({ path: `/page-${i}/`, sessions: 10, bounceRate: (i + 1) / 20 })
+      makePage({ path: `/page-${i}/`, sessions: 10, bounceRate: 0.5 + i / 40 })
     )
     const day = makeDay('2026-08-01', { pages, queries: [] })
     const result = aggregateWeeklyReport([day])

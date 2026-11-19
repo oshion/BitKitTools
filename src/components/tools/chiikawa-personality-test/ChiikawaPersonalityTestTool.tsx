@@ -43,6 +43,8 @@ const COPY = {
     restart: 'Take the test again',
     share: 'Share my result',
     copied: 'Link copied',
+    copyManually: 'Sharing is not available here. Please copy this link yourself.',
+    shareLink: 'Result link',
     shareTitle: 'Which Chiikawa Character Are You?',
     shareText: (name: string, type: string) =>
       `I'm most like ${name} among the Chiikawa friends! My personality type is ${type}. Which character are you?`,
@@ -67,6 +69,8 @@ const COPY = {
     restart: '다시 테스트하기',
     share: '결과 공유하기',
     copied: '링크를 복사했어요',
+    copyManually: '이 브라우저에서는 바로 공유할 수 없어요. 아래 링크를 직접 복사해 주세요.',
+    shareLink: '결과 링크',
     shareTitle: '나와 닮은 치이카와 친구는?',
     shareText: (name: string, type: string) =>
       `나는 치이카와 친구 중 ${withAndParticle(name)} 가장 닮았대! 내 성격 유형은 ${type}! 너는 어떤 캐릭터와 닮았을까?`,
@@ -145,6 +149,10 @@ function CharacterChips({ ids, locale }: { ids: readonly ChiikawaCharacterId[]; 
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
+function isShareCancelled(error: unknown): boolean {
+  return typeof error === 'object' && error !== null && 'name' in error && error.name === 'AbortError'
+}
+
 export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
   const { sendEvent } = useAnalyticsEvent()
   const hasFiredOpenRef = useRef(false)
@@ -156,6 +164,7 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
   const [answers, setAnswers] = useState<Array<AnswerLetter | undefined>>([])
   const [result, setResult] = useState<ChiikawaResult | null>(null)
   const [copied, setCopied] = useState(false)
+  const [manualShareUrl, setManualShareUrl] = useState<string | null>(null)
 
   useEffect(() => {
     if (!hasFiredOpenRef.current) {
@@ -211,6 +220,7 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
     setCurrentIndex(0)
     setResult(null)
     setCopied(false)
+    setManualShareUrl(null)
     setPhase('start')
   }
 
@@ -222,23 +232,28 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
     const url = `${SITE_URL}${localeHref(locale, `/fun/chiikawa-personality-test/result/${character.id}`)}`
     const text = copy.shareText(character.name[locale], result.personalityType)
     sendEvent('share')
+    setCopied(false)
+    setManualShareUrl(null)
 
     if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
       try {
         await navigator.share({ title: copy.shareTitle, text, url })
-      } catch {
-        // user cancelled (AbortError) — ignore
+        return
+      } catch (error) {
+        if (isShareCancelled(error)) return
+        // Share sheet unavailable (e.g. blocked in an in-app browser) — try the clipboard.
       }
-      return
     }
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
       try {
         await navigator.clipboard.writeText(`${text} ${url}`)
         setCopied(true)
+        return
       } catch {
-        // clipboard permission denied — ignore
+        // Clipboard permission denied — show the link instead.
       }
     }
+    setManualShareUrl(url)
   }
 
   // ── Render: start ─────────────────────────────────────────────────────────
@@ -332,6 +347,22 @@ export default function ChiikawaPersonalityTestTool({ locale = 'en' }: Props) {
             <p role="status" className="text-sm text-teal-200 text-center">
               {copy.copied}
             </p>
+          )}
+          {manualShareUrl && (
+            <div className="space-y-2">
+              <p role="status" className="text-sm text-teal-200 text-center">
+                {copy.copyManually}
+              </p>
+              <input
+                type="text"
+                readOnly
+                data-testid="share-manual-url"
+                aria-label={copy.shareLink}
+                value={manualShareUrl}
+                onFocus={(event) => event.currentTarget.select()}
+                className="w-full rounded-xl border border-neutral-700 bg-neutral-900 px-3 py-2.5 text-base text-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-300"
+              />
+            </div>
           )}
         </div>
 

@@ -216,6 +216,22 @@ describe('layover-connection-calculator FAQ', () => {
   })
 })
 
+describe('layover-connection-calculator EN search snippet', () => {
+  const layover = getToolBySlug('travel', 'layover-connection-calculator')
+
+  it('leads with the search term and the question the tool answers', () => {
+    expect(layover?.title.en).toBe('Layover Calculator – Is Your Connection Time Long Enough?')
+    expect(layover?.description.en.startsWith('Is your layover long enough?')).toBe(true)
+  })
+
+  it('names major hubs and keeps the reference-only notice', () => {
+    expect(layover?.description.en).toMatch(/Minimum Connecting Time \(MCT\)/)
+    expect(layover?.description.en).toMatch(/JFK, LHR, DXB and SIN/)
+    expect(layover?.description.en).toMatch(/Reference only/)
+    expect(layover?.description.en.length).toBeLessThanOrEqual(200)
+  })
+})
+
 describe('layover-connection-calculator KO search snippet', () => {
   // KO page sat at avg position 5-10 for 5 weeks with 1 click in 87 impressions
   // (report-review 2026-11-02): the KO title/description must state the concrete value.
