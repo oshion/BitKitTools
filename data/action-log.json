@@ -57,6 +57,16 @@
       "baselineCtr": 0.0115,
       "status": "kept",
       "attemptNumber": 1
+    },
+    {
+      "id": "content-update-travel-layover-connection-calculator-2",
+      "type": "content-update",
+      "page": "/travel/layover-connection-calculator/",
+      "deployedAt": "2026-11-19T02:36:55Z",
+      "description": "EN title/description rewrite (PR #54): title 'Layover & Connection Time Calculator' -> 'Layover Calculator – Is Your Connection Time Long Enough?', description leads with 'Is your layover long enough?' + names JFK/LHR/DXB/SIN. EVALUATE WITH PAGE-LEVEL GSC TOTALS (data/processed pages[].gscClicks/gscImpressions), not getPageCtr, because most queries are redacted. baselineCtr = page-level 2026-11-04~11-17: 0 clicks / 173 impressions at avg position 13.5 (earlier 2026-09-26~10-30: 6/336 at 11.4)",
+      "baselineCtr": 0,
+      "status": "in-progress",
+      "attemptNumber": 2
     }
   ]
 }
