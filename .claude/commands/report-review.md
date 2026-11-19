@@ -18,6 +18,10 @@
 - **표본 크기가 매우 작다** (이 사이트는 신생 사이트, 주당 클릭 수가 한 자릿수인 경우가 흔함). 클릭 1~2건 차이로 "급증/급감"이라 서술하거나 확정적 원인을 단정하는 건 과잉해석이다.
 - **이 리포트 파일에는 이미 자동 생성된 제안이 섞여 있다**: `generate-weekly-specs.ts`가 매주 `generate-report.ts`의 AI 서술 리포트 뒤에 개선/성장/툴리서치/신규카테고리/프로그래매틱 SEO 초안 섹션을 자동으로 append하고, 그 추적 상태를 `data/proposals.json`(status: `pending`/`rejected`/`implemented`)에 기록한다. `rejected`는 이 스킬의 Step 8에서 사용자가 거절한 제안을 기록해 다음 주 자동 파이프라인이 재생성하지 않도록 막는 상태다. 이 스킬의 Step 7이 "새로운" 제안을 만들기 전에 반드시 이 자동 생성분과 겹치는지, 이미 `rejected` 처리된 항목을 다시 제안하는 건 아닌지 먼저 확인해야 한다.
 
+## 리포트 구조 (2026-11-19 이후)
+
+리포트의 `## 검증된 사실`은 코드가 계산한 값이고, `## 분석`은 근거 검사를 통과한 AI 주장이며, `## 제거된 주장`은 검사에서 탈락한 문장이다. Step 2~4에서는 `## 제거된 주장`을 사실로 쓰지 말고, 정상 문장이 잘못 제거됐다면(오탐) `scripts/lib/reportClaims.ts`의 규칙과 테스트를 고치는 항목으로 보고한다. `> ⚠️ ... 사실만 담았습니다`가 있으면 Actions 로그의 `[report-claims]` 경고를 확인한다. 설계는 `docs/report-quality-pipeline.md`.
+
 ## Step 0: 지난 콘텐츠 개선 액션의 효과 검증
 
 `data/action-log.json`에서 `type: 'content-update'`이고 `status: 'in-progress'`인 항목을 찾는다 — 이 스킬의 이전 Step 8 실행에서 승인·배포된 콘텐츠/문구 수정 건들이다 (title-experiment는 `run-title-experiment.ts`가 별도로 자동 평가하므로 여기서 다루지 않는다). 각 항목에 대해:

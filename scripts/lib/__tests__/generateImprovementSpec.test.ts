@@ -192,6 +192,35 @@ describe('selectImprovementCandidates', () => {
     expect(result.candidates.map((c) => c.page)).toEqual(['/beer/bac-calculator/'])
   })
 
+  it('skips bounce candidates with few sessions or a one-day spike', () => {
+    const result = selectImprovementCandidates(
+      [],
+      [
+        makeBouncePage({ path: '/beer/bac-calculator/', sessions: 9 }),
+        makeBouncePage({ path: '/beer/homebrew-recipe-calculator/', sessions: 20 }),
+        makeBouncePage({ path: '/developer/json-formatter/', sessions: 20 }),
+      ],
+      makeProposalLog(),
+      asOf,
+      new Set(['/beer/homebrew-recipe-calculator/']),
+    )
+    expect(result.candidates.map((c) => c.page)).toEqual(['/developer/json-formatter/'])
+  })
+
+  it('skips pages published less than 28 days ago, including their KO and result pages', () => {
+    const newPageDate = new Date('2026-11-16T00:00:00Z')
+    const result = selectImprovementCandidates(
+      [],
+      [
+        makeBouncePage({ path: '/fun/chiikawa-personality-test/' }),
+        makeBouncePage({ path: '/ko/fun/chiikawa-personality-test/result/momonga/' }),
+      ],
+      makeProposalLog(),
+      newPageDate,
+    )
+    expect(result.candidates).toEqual([])
+  })
+
   it('puts already-pending proposal target in reminders, not candidates', () => {
     const anomalies = [makeAnomaly({ page: '/beer/bac-calculator/' })]
     const log = makeProposalLog([makePendingProposal('/beer/bac-calculator/')])

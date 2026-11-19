@@ -21,6 +21,7 @@ import type { TopPagesHistory } from './lib/topPagesHistory'
 import { findConsecutiveTopPerformers } from './lib/topPagesHistory'
 import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
+import { buildSpecHistorySection } from './lib/specHistorySection'
 import { describeAnthropicResponse, extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 import type { ToolConfig } from '../src/types/tool'
 import { toolsConfig } from '../src/lib/config/tools-config'
@@ -204,9 +205,7 @@ export async function generateGrowthSpec(
   historyMd: string,
   apiKey: string
 ): Promise<string> {
-  const historySection = historyMd.trim()
-    ? `## 과거 이력 (이미 시도한 접근을 반복 제안하지 않기 위한 참고)\n\n${historyMd}`
-    : '## 과거 이력\n\n(아직 이력 없음)'
+  const historySection = buildSpecHistorySection(historyMd)
 
   const prompt = `당신은 BitKitTools.com의 SEO/콘텐츠 전문가입니다.
 아래 데이터를 바탕으로 이미 검증된 고성과 페이지를 더 키우기 위한 확장 spec을 작성하세요.

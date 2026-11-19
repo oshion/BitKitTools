@@ -32,6 +32,7 @@ import type { ProposalLog } from './lib/proposalTracking'
 import { findPendingProposal, findRejectedProposal, weeksPending } from './lib/proposalTracking'
 import type { UnmatchedQuery, SgeRiskPatterns } from './lib/toolResearchMatching'
 import { classifySgeRiskByRules } from './lib/toolResearchMatching'
+import { buildSpecHistorySection } from './lib/specHistorySection'
 import { extractAnthropicText, isTruncated } from './lib/anthropicResponse'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -290,9 +291,7 @@ export async function generateToolResearchSpec(
   historyMd: string,
   apiKey: string
 ): Promise<string> {
-  const historySection = historyMd.trim()
-    ? `## 과거 이력 (이미 시도한 접근을 반복 제안하지 않기 위한 참고)\n\n${historyMd}`
-    : '## 과거 이력\n\n(아직 이력 없음)'
+  const historySection = buildSpecHistorySection(historyMd)
 
   const prompt = `당신은 BitKitTools.com의 SEO/콘텐츠 전문가입니다.
 아래 데이터를 바탕으로 신규 툴 추가를 검토하기 위한 리서치 spec을 작성하세요.
@@ -462,9 +461,7 @@ export async function generateNewCategorySpec(
   historyMd: string,
   apiKey: string
 ): Promise<string | null> {
-  const historySection = historyMd.trim()
-    ? `## 과거 이력 (이미 시도한 접근을 반복 제안하지 않기 위한 참고)\n\n${historyMd}`
-    : '## 과거 이력\n\n(아직 이력 없음)'
+  const historySection = buildSpecHistorySection(historyMd)
 
   const queriesList = candidate.queries.map((q) => `- "${q}"`).join('\n')
 
