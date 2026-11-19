@@ -16,6 +16,7 @@
 import { spawnSync } from 'child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, resolve } from 'path'
+import { buildLhciCollectArgs } from './lib/lighthouseAudit'
 import { findScoresBelowThreshold } from './lib/lighthouseThreshold'
 import type { PageLighthouseScore } from './lib/lighthouseThreshold'
 
@@ -69,22 +70,7 @@ function toPercent(score: number | null | undefined): number {
 function runLhciCollect(): void {
   console.log('[collect-lighthouse] Running lhci collect against production URLs…')
 
-  const urlArgs = URLS.map((url) => `--url=${url}`)
-
-  const args = [
-    'lhci',
-    'collect',
-    // Prevent lhci from auto-loading the repo-root .lighthouserc.json (used by
-    // test-gate.yml for staticDistDir-based PR audits). Without this flag, its
-    // staticDistDir setting causes lhci to spin up an unrelated local static
-    // server and merge that server's port into our production URLs
-    // (observed as requests to "https://bitkittools.com:PORT/" that never load).
-    '--no-lighthouserc',
-    ...urlArgs,
-    '--numberOfRuns=1',
-    '--settings.onlyCategories=performance,accessibility,best-practices,seo',
-    '--settings.chromeFlags=--no-sandbox --disable-gpu --disable-dev-shm-usage',
-  ]
+  const args = buildLhciCollectArgs(URLS)
 
   const result = spawnSync('npx', args, {
     stdio: 'inherit',

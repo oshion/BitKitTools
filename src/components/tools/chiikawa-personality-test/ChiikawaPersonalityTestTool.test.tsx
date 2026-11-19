@@ -216,4 +216,58 @@ describe('ChiikawaPersonalityTestTool — share', () => {
     expect(copied).toContain(character.name.en)
     expect(screen.getByRole('status')).toHaveTextContent('Link copied')
   })
+
+  async function shareResult(locale: 'en' | 'ko' = 'en') {
+    startQuiz(locale)
+    answerAll(answersFor(CHIIKAWA_CHARACTERS[3].id))
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('share-button'))
+    })
+  }
+
+  it('does nothing further when the user cancels the share sheet', async () => {
+    const writeText = jest.fn().mockResolvedValue(undefined)
+    const abort = Object.assign(new Error('cancelled'), { name: 'AbortError' })
+    setNavigator(jest.fn().mockRejectedValue(abort), { writeText })
+
+    await shareResult()
+
+    expect(writeText).not.toHaveBeenCalled()
+    expect(screen.queryByRole('status')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('share-manual-url')).not.toBeInTheDocument()
+  })
+
+  it('copies the link when the share sheet fails for another reason', async () => {
+    const writeText = jest.fn().mockResolvedValue(undefined)
+    const denied = Object.assign(new Error('denied'), { name: 'NotAllowedError' })
+    setNavigator(jest.fn().mockRejectedValue(denied), { writeText })
+
+    await shareResult()
+
+    expect(writeText).toHaveBeenCalledTimes(1)
+    expect(screen.getByRole('status')).toHaveTextContent('Link copied')
+  })
+
+  it('shows the link to copy by hand when clipboard access fails', async () => {
+    setNavigator(undefined, { writeText: jest.fn().mockRejectedValue(new Error('denied')) })
+
+    await shareResult('ko')
+
+    const input = screen.getByTestId('share-manual-url') as HTMLInputElement
+    expect(input.value).toContain(`/fun/chiikawa-personality-test/result/${CHIIKAWA_CHARACTERS[3].id}/`)
+    expect(input).toHaveAttribute('readonly')
+    expect(screen.getByRole('status')).toHaveTextContent('직접 복사')
+  })
+
+  it('shows the link when neither share nor clipboard exists, and clears it on restart', async () => {
+    setNavigator(undefined, undefined)
+
+    await shareResult()
+    expect(screen.getByTestId('share-manual-url')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByTestId('restart-button'))
+    fireEvent.click(screen.getByTestId('start-button'))
+    answerAll(answersFor(CHIIKAWA_CHARACTERS[3].id))
+    expect(screen.queryByTestId('share-manual-url')).not.toBeInTheDocument()
+  })
 })

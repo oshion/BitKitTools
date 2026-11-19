@@ -67,7 +67,7 @@ export interface WeeklyReportData {
   topPerformingPages: TopPerformingPage[]
   /** Pages with impressions > 0 but clicks === 0, top 10 by impressions desc */
   zeroCtrPages: ZeroCtrPage[]
-  /** Pages with sessions >= 5, top 10 by bounceRate desc */
+  /** Pages with sessions >= 5 and bounceRate >= 50%, top 10 by bounceRate desc */
   highBouncePages: HighBouncePage[]
   /** Segments with significant CTR deviation from the page overall CTR */
   ctrDeviations: CtrDeviation[]
@@ -179,6 +179,9 @@ export function buildTitleExperimentSection(
 
 /** Minimum sessions required to include a page in highBouncePages */
 const MIN_SESSIONS_FOR_BOUNCE = 5
+
+/** Minimum bounce rate for a page to count as "high bounce" */
+const MIN_HIGH_BOUNCE_RATE = 0.5
 
 /** Minimum impressions for a segment to be considered in CTR deviation analysis */
 const MIN_SEGMENT_IMPRESSIONS = 10
@@ -327,6 +330,7 @@ export function aggregateWeeklyReport(
     if (bounceSessionSum === 0) continue
 
     const bounceRate = bounceWeightedSum / bounceSessionSum
+    if (bounceRate < MIN_HIGH_BOUNCE_RATE) continue
     highBouncePages.push({ path, bounceRate, sessions })
   }
   highBouncePages.sort((a, b) => b.bounceRate - a.bounceRate)
