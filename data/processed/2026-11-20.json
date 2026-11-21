@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-20",
+  "pages": [
+    {
+      "path": "/ko/travel/layover-connection-calculator/",
+      "sessions": 1,
+      "events": {
+        "first_visit": 1,
+        "input_enter": 1,
+        "page_view": 1,
+        "session_start": 1,
+        "user_engagement": 1
+      },
+      "gscImpressions": 0,
+      "gscClicks": 0,
+      "gscAvgPosition": null,
+      "bounceRate": 0
+    }
+  ],
+  "queries": [],
+  "clarity": [
+    {
+      "metricName": "DeadClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": [
+        {
+          "averageScrollDepth": 46,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "Traffic",
+      "information": [
+        {
+          "totalSessionCount": 2,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 2,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": [
+        {
+          "totalTime": 0,
+          "activeTime": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    }
+  ]
+}

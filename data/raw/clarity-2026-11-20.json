@@ -1,0 +1,116 @@
+{
+  "collectedAt": "2026-11-21T10:24:43.452Z",
+  "collectionDate": "2026-11-20",
+  "note": "Clarity Data Export API returns rolling last-24h aggregates; specific calendar-date queries are not supported by the API.",
+  "data": [
+    {
+      "metricName": "DeadClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ExcessiveScroll",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "RageClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "QuickbackClick",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScriptErrorCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ErrorClickCount",
+      "information": [
+        {
+          "sessionsCount": 2,
+          "sessionsWithMetricPercentage": 0,
+          "sessionsWithoutMetricPercentage": 100,
+          "pagesViews": 0,
+          "subTotal": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "ScrollDepth",
+      "information": [
+        {
+          "averageScrollDepth": 46,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "Traffic",
+      "information": [
+        {
+          "totalSessionCount": 2,
+          "totalBotSessionCount": 0,
+          "distinctUserCount": 2,
+          "pagesPerSessionPercentage": 1,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    },
+    {
+      "metricName": "EngagementTime",
+      "information": [
+        {
+          "totalTime": 0,
+          "activeTime": 0,
+          "Url": "https://bitkittools.com/"
+        }
+      ]
+    }
+  ]
+}
