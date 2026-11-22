@@ -2,54 +2,54 @@
   "https://bitkittools.com/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:02.703Z"
+    "lastCheckedAt": "2026-11-22T10:29:13.455Z"
   },
   "https://bitkittools.com/ko/developer/jwt-decoder": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:08.862Z"
+    "lastCheckedAt": "2026-11-22T10:29:19.809Z"
   },
   "https://bitkittools.com/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:15.000Z"
+    "lastCheckedAt": "2026-11-22T10:29:26.121Z"
   },
   "https://bitkittools.com/ko/beer/hydrometer-temperature-correction": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:21.122Z"
+    "lastCheckedAt": "2026-11-22T10:29:32.453Z"
   },
   "https://bitkittools.com/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:27.239Z"
+    "lastCheckedAt": "2026-11-22T10:29:38.797Z"
   },
   "https://bitkittools.com/ko/beer/standard-drinks-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:33.398Z"
+    "lastCheckedAt": "2026-11-22T10:29:45.135Z"
   },
   "https://bitkittools.com/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-11-21T10:25:39.742Z",
+    "lastCheckedAt": "2026-11-22T10:29:51.467Z",
     "lastCrawlTime": "2026-11-12T20:12:40Z"
   },
   "https://bitkittools.com/ko/travel/layover-connection-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:25:45.857Z"
+    "lastCheckedAt": "2026-11-22T10:29:57.804Z"
   },
   "https://bitkittools.com/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-11-21T10:25:52.040Z",
+    "lastCheckedAt": "2026-11-22T10:30:04.164Z",
     "lastCrawlTime": "2026-11-05T11:25:25Z"
   },
   "https://bitkittools.com/ko/travel/jetlag-recovery-calculator": {
     "verdict": "NEUTRAL",
     "coverageState": "Page with redirect",
-    "lastCheckedAt": "2026-11-21T10:25:58.143Z",
+    "lastCheckedAt": "2026-11-22T10:30:10.518Z",
     "lastCrawlTime": "2026-11-04T11:44:16Z"
   },
   "https://bitkittools.com/developer/json-to-sql": {
@@ -61,16 +61,16 @@
   "https://bitkittools.com/ko/developer/json-to-sql": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:26:04.257Z"
+    "lastCheckedAt": "2026-11-22T10:30:16.845Z"
   },
   "https://bitkittools.com/fun/chiikawa-personality-test": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:24:50.251Z"
+    "lastCheckedAt": "2026-11-22T10:29:00.702Z"
   },
   "https://bitkittools.com/ko/fun/chiikawa-personality-test": {
     "verdict": "NEUTRAL",
     "coverageState": "URL is unknown to Google",
-    "lastCheckedAt": "2026-11-21T10:24:56.378Z"
+    "lastCheckedAt": "2026-11-22T10:29:07.093Z"
   }
 }
