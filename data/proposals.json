@@ -103,6 +103,14 @@
       "firstProposedAt": "2026-11-16",
       "status": "pending",
       "lastReminderAt": "2026-11-16"
+    },
+    {
+      "id": "improvement-beer-homebrew-recipe-calculator",
+      "type": "improvement",
+      "target": "/beer/homebrew-recipe-calculator/",
+      "firstProposedAt": "2026-11-23",
+      "status": "pending",
+      "lastReminderAt": "2026-11-23"
     }
   ]
 }
