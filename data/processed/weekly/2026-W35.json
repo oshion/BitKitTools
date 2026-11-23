@@ -1,0 +1,145 @@
+{
+  "week": "2026-W35",
+  "dateRange": {
+    "start": "2026-08-24",
+    "end": "2026-08-24"
+  },
+  "totalSessions": 0,
+  "totalGscImpressions": 87,
+  "totalGscClicks": 1,
+  "avgGscPosition": 56.51724137931034,
+  "topPages": [
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "gscImpressions": 23,
+      "gscClicks": 0,
+      "gscAvgPosition": 73.56521739130434
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "gscImpressions": 12,
+      "gscClicks": 0,
+      "gscAvgPosition": 39.083333333333336
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "gscImpressions": 11,
+      "gscClicks": 0,
+      "gscAvgPosition": 78.63636363636364
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "gscImpressions": 10,
+      "gscClicks": 0,
+      "gscAvgPosition": 76.7
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "gscImpressions": 6,
+      "gscClicks": 0,
+      "gscAvgPosition": 54.833333333333336
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 16.5
+    },
+    {
+      "path": "/beer/bac-calculator/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 76.33333333333333
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 45.333333333333336
+    },
+    {
+      "path": "/developer/json-to-sql/",
+      "sessions": 0,
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 61.5
+    },
+    {
+      "path": "/ko/developer/jwt-decoder/",
+      "sessions": 0,
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 63.5
+    }
+  ],
+  "topQueries": [
+    {
+      "query": "og calculator extract",
+      "impressions": 3,
+      "clicks": 0,
+      "avgPosition": 78.33333333333333
+    },
+    {
+      "query": "alcohol measurement",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 86
+    },
+    {
+      "query": "flight connection times data",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 71
+    },
+    {
+      "query": "gravity to abv",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 74
+    },
+    {
+      "query": "home brew alcohol calculator",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 77
+    },
+    {
+      "query": "jet lag recovery calculator",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 46.5
+    },
+    {
+      "query": "jwt 디코딩",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 63.5
+    },
+    {
+      "query": "mid parental height formula",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 93.5
+    },
+    {
+      "query": "specific gravity to alcohol calculator",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 80.5
+    },
+    {
+      "query": "tanner formula",
+      "impressions": 2,
+      "clicks": 0,
+      "avgPosition": 60
+    }
+  ]
+}
