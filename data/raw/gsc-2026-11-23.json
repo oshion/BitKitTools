@@ -1,0 +1,113 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "baby temperament quiz",
+        "https://bitkittools.com/baby/temperament-quiz/",
+        "isl",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "beer gravity calculator",
+        "https://bitkittools.com/beer/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 43
+    },
+    {
+      "keys": [
+        "brewing gravity calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "keys": [
+        "calculate abv homebrew",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 74
+    },
+    {
+      "keys": [
+        "crypto password generator",
+        "https://bitkittools.com/developer/password-generator/",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 16
+    },
+    {
+      "keys": [
+        "flight connection time",
+        "https://bitkittools.com/travel/layover-connection-calculator/",
+        "are",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 22
+    },
+    {
+      "keys": [
+        "homebrew abv calculator",
+        "https://bitkittools.com/beer/homebrew-recipe-calculator/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 97
+    },
+    {
+      "keys": [
+        "hydrometer temperature",
+        "https://bitkittools.com/beer/hydrometer-temperature-correction/",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 75
+    },
+    {
+      "keys": [
+        "icn mct",
+        "https://bitkittools.com/travel/layover-connection-calculator/",
+        "usa",
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 20
+    }
+  ],
+  "responseAggregationType": "byPage"
+}
