@@ -15,9 +15,423 @@
       "gscClicks": 0,
       "gscAvgPosition": null,
       "bounceRate": 0.4
+    },
+    {
+      "path": "/baby/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 26,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 4,
+      "gscClicks": 0,
+      "gscAvgPosition": 16,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 7,
+      "gscClicks": 0,
+      "gscAvgPosition": 36.285714285714285,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 77.33333333333333,
+      "bounceRate": null
+    },
+    {
+      "path": "/baby/temperament-quiz/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 6,
+      "gscClicks": 1,
+      "gscAvgPosition": 21,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/homebrew-recipe-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 9,
+      "gscClicks": 0,
+      "gscAvgPosition": 75.55555555555556,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 14,
+      "gscClicks": 0,
+      "gscAvgPosition": 53.142857142857146,
+      "bounceRate": null
+    },
+    {
+      "path": "/beer/standard-drinks-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 5,
+      "gscClicks": 0,
+      "gscAvgPosition": 78,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/growth-percentile/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 3,
+      "gscClicks": 0,
+      "gscAvgPosition": 48.666666666666664,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/height-predictor/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 4,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/baby/sleep-schedule/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 7,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/beer/hydrometer-temperature-correction/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 4.5,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/articles/ai-vibe-coding-harness-framework/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 19,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/developer/jwt-decoder/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 2,
+      "gscClicks": 0,
+      "gscAvgPosition": 44,
+      "bounceRate": null
+    },
+    {
+      "path": "/ko/travel/visa-requirement-checker/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 1,
+      "gscClicks": 0,
+      "gscAvgPosition": 1,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/jetlag-recovery-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 9,
+      "gscClicks": 0,
+      "gscAvgPosition": 7.444444444444445,
+      "bounceRate": null
+    },
+    {
+      "path": "/travel/layover-connection-calculator/",
+      "sessions": 0,
+      "events": {},
+      "gscImpressions": 29,
+      "gscClicks": 0,
+      "gscAvgPosition": 11.448275862068966,
+      "bounceRate": null
     }
   ],
-  "queries": [],
+  "queries": [
+    {
+      "query": "baby sleep calculator",
+      "page": "/baby/sleep-schedule/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 2,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 81
+    },
+    {
+      "query": "baby sleep schedule calculator",
+      "page": "/baby/sleep-schedule/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
+    },
+    {
+      "query": "baby weight check calculator",
+      "page": "/baby/growth-percentile/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 28
+    },
+    {
+      "query": "brew gravity calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "isr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "query": "brewing gravity calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "isr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 79
+    },
+    {
+      "query": "brix hydrometer conversion",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 98
+    },
+    {
+      "query": "calculate abv homebrew",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 74
+    },
+    {
+      "query": "calibrate hydrometer",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "height predictor uk",
+      "page": "/baby/height-predictor/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 21
+    },
+    {
+      "query": "homebrew abv calculator",
+      "page": "/beer/homebrew-recipe-calculator/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 98
+    },
+    {
+      "query": "how much alcohol",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 63
+    },
+    {
+      "query": "hydrometer calibration",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 79
+    },
+    {
+      "query": "hydrometer temperature",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 75
+    },
+    {
+      "query": "jha0313",
+      "page": "/ko/developer/articles/ai-vibe-coding-harness-framework/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 19
+    },
+    {
+      "query": "jwt 디코딩",
+      "page": "/ko/developer/jwt-decoder/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 44
+    },
+    {
+      "query": "jwt 디코딩",
+      "page": "/ko/developer/jwt-decoder/",
+      "country": "kor",
+      "device": "MOBILE",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 44
+    },
+    {
+      "query": "kalkulator skoków rozwojowych",
+      "page": "/baby/",
+      "country": "isr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 26
+    },
+    {
+      "query": "midparental height formula",
+      "page": "/baby/height-predictor/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 84
+    },
+    {
+      "query": "percentile calculator",
+      "page": "/baby/growth-percentile/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 12
+    },
+    {
+      "query": "predict height of child",
+      "page": "/baby/height-predictor/",
+      "country": "gbr",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 70
+    },
+    {
+      "query": "soy hombre",
+      "page": "/baby/height-predictor/",
+      "country": "nor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "standard drink calculator",
+      "page": "/beer/standard-drinks-calculator/",
+      "country": "aus",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "query": "temp correction factor",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 62
+    },
+    {
+      "query": "temperature correction factor",
+      "page": "/beer/hydrometer-temperature-correction/",
+      "country": "usa",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 67
+    },
+    {
+      "query": "성장곡선 계산기",
+      "page": "/ko/baby/growth-percentile/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 48
+    },
+    {
+      "query": "성장발달계산기",
+      "page": "/ko/baby/growth-percentile/",
+      "country": "kor",
+      "device": "DESKTOP",
+      "impressions": 1,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 49
+    }
+  ],
   "clarity": [
     {
       "metricName": "DeadClickCount",
